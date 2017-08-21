@@ -1,0 +1,136 @@
+outdoor_lights:
+  name: Outdoor Lights
+  entities:
+    - light.outdoor_frontdoor_light
+    - light.outdoor_backdoor_light
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.kitchen_ceiling_light
+    - light.kitchen_sideboard_light
+living_room_lights:
+  name: Living Room Lights
+  entities:
+    - light.living_room_ceiling_light
+    - light.living_room_sofa_light
+bedroom_lights:
+  name: Bedroom Lights
+  entities:
+    - light.bedroom_ceiling_light
+    - light.bedroom_bed_light
+    - light.bedroom_ambience_light
+hall_lights:
+  name: Hall Lights
+  entities:
+    - light.hall_ceiling_light
+
+outdoor:
+  name: Outdoor
+  entities:
+    - light.outdoor_frontdoor_light
+    - light.outdoor_backdoor_light
+kitchen:
+  name: Kitchen
+  entities:
+    - light.kitchen_ceiling_light
+    - light.kitchen_sideboard_light
+living_room:
+  name: Living Room
+  entities:
+    - light.living_room_ceiling_light
+    - light.living_room_sofa_light
+bedroom:
+  name: Bedroom
+  entities:
+    - light.bedroom_ceiling_light
+    - light.bedroom_bed_light
+    - light.bedroom_ambience_light
+hall:
+  name: Hall
+  entities:
+    - light.hall_ceiling_light
+
+weather:
+  name: Weather
+  entities:
+    - sun.sun
+    - sensor.owm_condition
+    - sensor.owm_temperature
+    - sensor.owm_humidity
+    - sensor.owm_cloud_coverage
+    - sensor.owm_pressure
+
+internet:
+  name: Internet
+  entities:
+    - sensor.fritz_netmonitor
+    - sensor.fritz_bytes_received
+    - sensor.fritz_bytes_sent
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+
+raspberry_pi:
+  name: Raspberry Pi
+  entities:
+    - sensor.average_load_1m
+    - sensor.average_load_5m
+    - sensor.average_load_15m
+    - sensor.cpu_use
+    - sensor.ram_use
+    - sensor.disk_use_
+    - sensor.since_last_boot
+
+smarty:
+  name: Smarty Devices
+  entities:
+    - binary_sensor.outdoor_frontdoor_light_connectivity
+    - sensor.outdoor_frontdoor_light_uptime
+    - sensor.outdoor_frontdoor_light_firmware
+    - sensor.outdoor_frontdoor_light_wifi_ip
+    - sensor.outdoor_frontdoor_light_wifi_rssi
+    - binary_sensor.kitchen_sideboard_light_connectivity
+    - sensor.kitchen_sideboard_light_uptime
+    - sensor.kitchen_sideboard_light_firmware
+    - sensor.kitchen_sideboard_light_wifi_ip
+    - sensor.kitchen_sideboard_light_wifi_rssi
+    - binary_sensor.living_room_sofa_light_connectivity
+    - sensor.living_room_sofa_light_uptime
+    - sensor.living_room_sofa_light_firmware
+    - sensor.living_room_sofa_light_wifi_ip
+    - sensor.living_room_sofa_light_wifi_rssi
+    - binary_sensor.bedroom_ambience_light_connectivity
+    - sensor.bedroom_ambience_light_uptime
+    - sensor.bedroom_ambience_light_firmware
+    - sensor.bedroom_ambience_light_wifi_ip
+    - sensor.bedroom_ambience_light_wifi_rssi
+
+rooms_view:
+  name: Rooms
+  view: yes
+  entities:
+    - group.outdoor
+    - group.kitchen
+    - group.living_room
+    - group.bedroom
+    - group.hall
+
+weather_view:
+  name: Weather
+  view: yes
+  entities:
+    - group.weather
+
+system_view:
+  name: System
+  view: yes
+  entities:
+    - group.internet
+    - group.raspberry_pi
+    - group.smarty
+
+development_view:
+  name: Development
+  view: yes
+  entities:
+    - switch.development_module_relay

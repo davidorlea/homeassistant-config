@@ -1,0 +1,72 @@
+- name: All Lights on
+  entities:
+    group.all_lights: on
+
+- name: All Lights off
+  entities:
+    group.all_lights: off
+
+- name: All Indoor Lights on
+  entities:
+    group.kitchen_lights: on
+    group.living_room_lights: on
+    group.hall_lights: on
+    group.bedroom_lights: on
+
+- name: All Indoor Lights off
+  entities:
+    group.kitchen_lights: off
+    group.living_room_lights: off
+    group.hall_lights: off
+    group.bedroom_lights: off
+
+- name: Arrive Home at Day
+  entities:
+    light.living_room_ceiling_light: on
+    light.hall_ceiling_light: on
+
+- name: Arrive Home at Night
+  entities:
+    light.kitchen_sideboard_light: on
+    light.living_room_sofa_light: on
+    light.hall_ceiling_light: on
+
+- name: Leave Home at Day
+  entities:
+    group.kitchen_lights: off
+    group.living_room_lights: off
+    group.hall_lights: off
+    group.bedroom_lights: off
+    media_player.kuche:
+      state: paused
+    media_player.wohnzimmer:
+      state: paused
+
+- name: Leave Home at Night
+  entities:
+    light.kitchen_ceiling_light: off
+    light.living_room_ceiling_light: off
+    light.hall_ceiling_light: off
+    light.bedroom_ceiling_light: off
+    media_player.kuche:
+      state: paused
+    media_player.wohnzimmer:
+      state: paused
+
+- name: Occupancy Simulation 1
+  entities:
+    light.kitchen_sideboard_light: on
+    light.living_room_sofa_light: on
+    light.bedroom_ambience_light: off
+
+- name: Occupancy Simulation 2
+  entities:
+    light.kitchen_sideboard_light: on
+    light.living_room_sofa_light: off
+    light.bedroom_ambience_light: on
+
+- name: Occupancy Simulation 3
+  entities:
+    light.kitchen_sideboard_light: off
+    light.living_room_sofa_light: on
+    light.bedroom_ambience_light: on

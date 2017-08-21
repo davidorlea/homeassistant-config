@@ -1,0 +1,6 @@
+- platform: mqtt
+  name: 'Development Module Relay'
+  state_topic: 'smarty/esp8266-9541f4/relay1'
+  command_topic: 'smarty/esp8266-9541f4/relay1/set'
+  payload_on: '1'
+  payload_off: '0'

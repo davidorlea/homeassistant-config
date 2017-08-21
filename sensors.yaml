@@ -1,0 +1,128 @@
+- platform: openweathermap
+  api_key: !secret openweathermap_api_key
+  forecast: false
+  monitored_conditions:
+    - clouds
+    - humidity
+    - pressure
+    - temperature
+    - weather
+- platform: fritzbox_netmonitor
+- platform: systemmonitor
+  resources:
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: processor_use
+    - type: memory_use_percent
+    - type: disk_use_percent
+      arg: /
+    - type: since_last_boot
+- platform: speedtest
+  minute:
+    - 2
+    - 17
+    - 32
+    - 47
+  monitored_conditions:
+  - ping
+  - download
+  - upload
+
+- platform: mqtt
+  state_topic: 'smarty/esp8266-3775be/$system'
+  name: 'Outdoor Frontdoor Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-3775be/$system'
+  name: 'Outdoor Frontdoor Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-3775be/$system'
+  name: 'Outdoor Frontdoor Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-3775be/$system'
+  name: 'Outdoor Frontdoor Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Sideboard Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Sideboard Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Sideboard Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Sideboard Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
+- platform: mqtt
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  name: 'Living Room Sofa Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  name: 'Living Room Sofa Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  name: 'Living Room Sofa Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  name: 'Living Room Sofa Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
+- platform: mqtt
+  state_topic: 'smarty/esp8266-afc031/$system'
+  name: 'Bedroom Ambience Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-afc031/$system'
+  name: 'Bedroom Ambience Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-afc031/$system'
+  name: 'Bedroom Ambience Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-afc031/$system'
+  name: 'Bedroom Ambience Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
+- platform: template
+  sensors:
+    fritz_bytes_received:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_received | filesizeformat }}'
+- platform: template
+  sensors:
+    fritz_bytes_sent:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
+

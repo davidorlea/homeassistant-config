@@ -1,0 +1,39 @@
+light.outdoor_frontdoor_light:
+  icon: mdi:spotlight-beam
+light.outdoor_backdoor_light:
+  icon: mdi:spotlight-beam
+light.kitchen_ceiling_light:
+  icon: mdi:ceiling-light
+light.kitchen_sideboard_light:
+  icon: mdi:lamp
+light.living_room_ceiling_light:
+  icon: mdi:ceiling-light
+light.living_room_sofa_light:
+  icon: mdi:lamp
+light.bedroom_ceiling_light:
+  icon: mdi:ceiling-light
+light.bedroom_bed_light:
+  icon: mdi:lamp
+light.bedroom_ambience_light:
+  icon: mdi:lamp
+light.hall_ceiling_light:
+  icon: mdi:ceiling-light
+
+sensor.fritz_netmonitor:
+  friendly_name: 'Fritz!Box'
+sensor.fritz_bytes_received:
+  friendly_name: 'Received'
+  icon: mdi:download-network
+sensor.fritz_bytes_sent:
+  friendly_name: 'Sent'
+  icon: mdi:upload-network
+sensor.owm_condition:
+  icon: mdi:earth
+sensor.owm_cloud_coverage:
+  icon: mdi:weather-cloudy
+sensor.owm_humidity:
+  icon: mdi:water
+sensor.owm_pressure:
+  icon: mdi:buffer
+sensor.since_last_boot:
+  friendly_name: 'Uptime'

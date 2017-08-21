@@ -1,0 +1,22 @@
+"binary_sensor.*_connectivity":
+  device_class: connectivity
+  icon: mdi:wifi
+
+"media_player.*":
+  hidden: true
+
+"sensor.*_uptime":
+  icon: mdi:clock
+"sensor.*_firmware":
+  icon: mdi:settings
+"sensor.*_wifi_ip":
+  icon: mdi:ethernet
+"sensor.*_rssi":
+  icon: mdi:signal
+
+"scene.arrive_home_at_*":
+  hidden: true
+"scene.leave_home_at_*":
+  hidden: true
+"scene.occupancy_simulation_*":
+  hidden: true

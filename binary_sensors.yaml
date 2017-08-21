@@ -1,0 +1,20 @@
+- platform: mqtt
+  state_topic: 'smarty/esp8266-3775be/$online'
+  name: 'Outdoor Frontdoor Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$online'
+  name: 'Kitchen Sideboard Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-1dd8c0/$online'
+  name: 'Living Room Sofa Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-afc031/$online'
+  name: 'Bedroom Ambience Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
