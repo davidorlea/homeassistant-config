@@ -116,8 +116,8 @@ rooms_view:
     - group.bedroom
     - group.hall
 
-weather_view:
-  name: Weather
+environment_view:
+  name: Environment
   view: yes
   entities:
     - group.weather
