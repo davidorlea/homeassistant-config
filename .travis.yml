@@ -1,9 +1,11 @@
 language: python
 python:
   - '3.4'
+env:
+  - HASS=0.48.1
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
 install:
-  - pip3 install homeassistant
+  - pip3 install homeassistant==$HASS
 script:
   - hass -c . --script check_config
