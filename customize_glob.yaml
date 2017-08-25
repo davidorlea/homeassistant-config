@@ -2,6 +2,9 @@
   device_class: connectivity
   icon: mdi:wifi
 
+"group.all_*":
+  hidden: false
+
 "media_player.*":
   hidden: true
 
@@ -13,10 +16,3 @@
   icon: mdi:ethernet
 "sensor.*_rssi":
   icon: mdi:signal
-
-"scene.arrive_home_at_*":
-  hidden: true
-"scene.leave_home_at_*":
-  hidden: true
-"scene.occupancy_simulation_*":
-  hidden: true

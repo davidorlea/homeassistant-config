@@ -1,3 +1,18 @@
+all_scenes:
+  name: all scenes
+  entities:
+    - scene.all_indoor_lights_off
+    - scene.all_indoor_lights_on
+    - scene.all_lights_off
+    - scene.all_lights_on
+    - scene.arrive_home_at_day
+    - scene.arrive_home_at_night
+    - scene.leave_home_at_day
+    - scene.leave_home_at_night
+    - scene.occupancy_simulation_1
+    - scene.occupancy_simulation_2
+    - scene.occupancy_simulation_3
+
 outdoor_lights:
   name: Outdoor Lights
   entities:
@@ -106,6 +121,19 @@ smarty:
     - sensor.bedroom_ambience_light_wifi_ip
     - sensor.bedroom_ambience_light_wifi_rssi
 
+default_view:
+  view: yes
+  entities:
+    - updater.updater
+    - sun.sun
+    - sensor.owm_temperature
+    - device_tracker.owntracksdavid1_davidnexus5x
+    - light.outdoor_frontdoor_light
+    - light.kitchen_sideboard_light
+    - light.living_room_sofa_light
+    - light.bedroom_ambience_light
+    - script.bedtime
+
 rooms_view:
   name: Rooms
   view: yes
@@ -129,6 +157,14 @@ system_view:
     - group.internet
     - group.raspberry_pi
     - group.smarty
+
+configuration_view:
+  name: Configuration
+  view: yes
+  entities:
+    - group.all_automations
+    - group.all_scripts
+    - group.all_scenes
 
 development_view:
   name: Development
