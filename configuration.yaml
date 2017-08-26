@@ -58,9 +58,10 @@ recorder:
   db_url: !secret recorder_db_url
   exclude:
     domains:
-      - media_player
       - group
+      - media_player
       - sun
+      - weather
     entities:
       - switch.development_module_relay
       - sensor.average_load_1m
@@ -146,18 +147,18 @@ media_player:
       - 192.168.178.22
       - 192.168.178.30
 
+automation: !include automations.yaml
+
 binary_sensor: !include binary_sensors.yaml
-
-sensor: !include sensors.yaml
-
-switch: !include switchs.yaml
-
-light: !include lights.yaml
 
 group: !include groups.yaml
 
-script: !include scripts.yaml
+light: !include lights.yaml
+
+sensor: !include sensors.yaml
 
 scene: !include scenes.yaml
 
-automation: !include automations.yaml
+script: !include scripts.yaml
+
+switch: !include switchs.yaml
