@@ -125,4 +125,3 @@
   sensors:
     fritz_bytes_sent:
       value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
-
