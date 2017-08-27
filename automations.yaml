@@ -6,7 +6,8 @@
   action:
     - delay: '00:{{ (range(0, 11) | random) }}:00'
     - service: light.turn_on
-      entity_id: light.outdoor_frontdoor_light
+      data:
+        entity_id: light.outdoor_frontdoor_light
 
 - alias: 'Turn Outdoor Lights off in the Night'
   trigger:
@@ -15,7 +16,8 @@
   action:
     - delay: '00:{{ (range(0, 60) | random) }}:00'
     - service: light.turn_off
-      entity_id: group.outdoor_lights
+      data:
+        entity_id: group.outdoor_lights
 
 - alias: 'Arrive Home at Day'
   trigger:
@@ -34,9 +36,11 @@
         before_offset: '-2:00:00'
   action:
     - service: automation.turn_off
-      entity_id: automation.simulate_occupancy
+      data:
+        entity_id: automation.simulate_occupancy
     - service: scene.turn_on
-      entity_id: scene.arrive_home_at_day
+      data:
+        entity_id: scene.arrive_home_at_day
 
 - alias: 'Arrive Home at Night'
   trigger:
@@ -55,9 +59,11 @@
         before_offset: '2:00:00'
   action:
     - service: automation.turn_off
-      entity_id: automation.simulate_occupancy
+      data:
+        entity_id: automation.simulate_occupancy
     - service: scene.turn_on
-      entity_id: scene.arrive_home_at_night
+      data:
+        entity_id: scene.arrive_home_at_night
 
 - alias: 'Leave Home at Day'
   trigger:
@@ -76,9 +82,11 @@
         before_offset: '-2:00:00'
   action:
     - service: scene.turn_on
-      entity_id: scene.leave_home_at_day
+      data:
+        entity_id: scene.leave_home_at_day
     - service: automation.turn_on
-      entity_id: automation.simulate_occupancy
+      data:
+        entity_id: automation.simulate_occupancy
 
 - alias: 'Leave Home at Night'
   trigger:
@@ -97,9 +105,11 @@
         before_offset: '2:00:00'
   action:
     - service: scene.turn_on
-      entity_id: scene.leave_home_at_night
+      data:
+        entity_id: scene.leave_home_at_night
     - service: automation.turn_on
-      entity_id: automation.simulate_occupancy
+      data:
+        entity_id: automation.simulate_occupancy
 
 - alias: 'Simulate Occupancy'
   initial_state: false
