@@ -1,0 +1,3 @@
+simulate_occupancy:
+  name: Simulate Occupancy
+  initial: 'off'

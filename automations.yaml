@@ -35,9 +35,9 @@
         before: sunset
         before_offset: '-2:00:00'
   action:
-    - service: automation.turn_off
+    - service: input_boolean.turn_off
       data:
-        entity_id: automation.simulate_occupancy
+        entity_id: input_boolean.simulate_occupancy
     - service: scene.turn_on
       data:
         entity_id: scene.arrive_home_at_day
@@ -58,9 +58,9 @@
         before: sunrise
         before_offset: '2:00:00'
   action:
-    - service: automation.turn_off
+    - service: input_boolean.turn_off
       data:
-        entity_id: automation.simulate_occupancy
+        entity_id: input_boolean.simulate_occupancy
     - service: scene.turn_on
       data:
         entity_id: scene.arrive_home_at_night
@@ -84,9 +84,9 @@
     - service: scene.turn_on
       data:
         entity_id: scene.leave_home_at_day
-    - service: automation.turn_on
+    - service: input_boolean.turn_on
       data:
-        entity_id: automation.simulate_occupancy
+        entity_id: input_boolean.simulate_occupancy
 
 - alias: 'Leave Home at Night'
   trigger:
@@ -107,26 +107,59 @@
     - service: scene.turn_on
       data:
         entity_id: scene.leave_home_at_night
-    - service: automation.turn_on
+    - service: input_boolean.turn_on
       data:
-        entity_id: automation.simulate_occupancy
+        entity_id: input_boolean.simulate_occupancy
 
-- alias: 'Simulate Occupancy'
-  initial_state: false
+- alias: 'Start Occupancy Simulation'
   trigger:
-    platform: time
-    minutes: '/30'
-    seconds: '00'
+    - platform: state
+      entity_id: input_boolean.simulate_occupancy
+      from: 'off'
+      to: 'on'
+    - platform: sun
+      event: sunset
+      offset: '-02:00:00'
   condition:
-    condition: or
+    condition: and
     conditions:
-      - condition: sun
-        after: sunset
-        after_offset: '-02:00:00'
-      - condition: time
-        before: '01:00:00'
+      - condition: state
+        entity_id: input_boolean.simulate_occupancy
+        state: 'on'
+      - condition: or
+        conditions:
+          - condition: sun
+            after: sunset
+            after_offset: '-02:00:00'
+          - condition: time
+            before: '01:00:00'
   action:
-    - delay: '00:{{ (range(0, 16) | random) }}:00'
-    - service: scene.turn_on
-      data_template:
-        entity_id: 'scene.occupancy_simulation_{{ (range(1, 4) | random) }}'
+    - service: script.turn_on
+      data:
+        entity_id: script.occupancy_simulation_start
+
+- alias: 'Stop Occupancy Simulation'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.simulate_occupancy
+      from: 'on'
+      to: 'off'
+    - platform: time
+      at: '01:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.simulate_occupancy
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: sun
+            after: sunset
+            after_offset: '-02:00:00'
+          - condition: time
+            before: '01:00:00'
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.occupancy_simulation_stop
