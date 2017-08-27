@@ -2,12 +2,10 @@ bedtime:
   alias: Bedtime
   sequence:
     - delay: '00:{{ (range(8, 13) | random) }}:00'
-    - alias: Kitchen and Living Room Lights off
-      service: light.turn_off
+    - service: light.turn_off
       entity_id:
         - group.kitchen_lights
         - group.living_room_lights
     - delay: '00:{{ (range(25, 36) | random) }}:00'
-    - alias: Hall Lights off
-      service: light.turn_off
+    - service: light.turn_off
       entity_id: group.hall_lights
