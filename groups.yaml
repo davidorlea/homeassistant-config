@@ -130,7 +130,6 @@ default_view:
   view: yes
   entities:
     - updater.updater
-    - sun.sun
     - sensor.owm_temperature
     - device_tracker.owntracksdavid1_davidnexus5x
     - light.outdoor_frontdoor_light
