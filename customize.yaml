@@ -1,5 +1,7 @@
 group.all_automations:
   friendly_name: 'All Automations'
+group.all_input_booleans:
+  friendly_name: 'All Input Booleans'
 group.all_scenes:
   friendly_name: 'All Scenes'
 group.all_scripts:

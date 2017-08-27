@@ -1,3 +1,8 @@
+all_input_booleans:
+  name: all input booleans
+  entities:
+    - input_boolean.simulate_occupancy
+
 all_scenes:
   name: all scenes
   entities:
@@ -162,8 +167,9 @@ configuration_view:
   view: yes
   entities:
     - group.all_automations
-    - group.all_scripts
+    - group.all_input_booleans
     - group.all_scenes
+    - group.all_scripts
 
 development_view:
   name: Development
