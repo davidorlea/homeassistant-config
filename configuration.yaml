@@ -64,6 +64,7 @@ recorder:
       - weather
     entities:
       - switch.development_module_relay
+      - sensor.moon
       - sensor.average_load_1m
       - sensor.average_load_5m
       - sensor.average_load_15m

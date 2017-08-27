@@ -74,6 +74,7 @@ weather:
   name: Weather
   entities:
     - sun.sun
+    - sensor.moon
     - sensor.owm_condition
     - sensor.owm_temperature
     - sensor.owm_humidity
