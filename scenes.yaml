@@ -53,6 +53,12 @@
     media_player.wohnzimmer:
       state: paused
 
+- name: Occupancy Simulation 0
+  entities:
+    light.kitchen_sideboard_light: off
+    light.living_room_sofa_light: off
+    light.bedroom_ambience_light: off
+
 - name: Occupancy Simulation 1
   entities:
     light.kitchen_sideboard_light: on

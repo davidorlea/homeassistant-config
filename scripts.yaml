@@ -28,6 +28,9 @@ occupancy_simulation_stop:
     - service: script.turn_off
       data:
         entity_id: script.occupancy_simulation_loop
+    - service: scene.turn_on
+      data_template:
+        entity_id: 'scene.occupancy_simulation_0'
 
 occupancy_simulation_loop:
   alias: Occupancy Simulation Loop
