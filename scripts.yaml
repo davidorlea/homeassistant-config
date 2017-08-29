@@ -32,7 +32,7 @@ occupancy_simulation_stop:
 occupancy_simulation_loop:
   alias: Occupancy Simulation Loop
   sequence:
-    - delay: '00:00:{{ (range(20, 41) | random) }}'
+    - delay: '00:{{ (range(20, 41) | random) }}:00'
     - service: script.turn_on
       data:
         entity_id: script.occupancy_simulation_start
