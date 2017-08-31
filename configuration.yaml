@@ -63,7 +63,9 @@ recorder:
       - sun
       - weather
     entities:
-      - switch.development_module_relay
+      - script.occupancy_simulation_start
+      - script.occupancy_simulation_stop
+      - script.occupancy_simulation_loop
       - sensor.moon
       - sensor.average_load_1m
       - sensor.average_load_5m
@@ -88,6 +90,7 @@ recorder:
       - sensor.bedroom_ambience_light_uptime
       - sensor.bedroom_ambience_light_firmware
       - sensor.bedroom_ambience_light_wifi_ip
+      - switch.development_module_relay
 
 # Enables support for tracking state changes over time.
 history:
