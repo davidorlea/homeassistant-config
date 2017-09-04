@@ -97,45 +97,45 @@
   value_template: '{{ value_json["wifi"]["ip"] }}'
 
 - platform: mqtt
-  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light Uptime'
   expire_after: '660'
   value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light Firmware'
   expire_after: '660'
   value_template: '{{ value_json["firmware"]["version"] }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light WiFi RSSI'
   unit_of_measurement: '%'
   expire_after: '660'
   value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-1dd8c0/$system'
+  state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light WiFi IP'
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'
 
 - platform: mqtt
-  state_topic: 'smarty/esp8266-afc031/$system'
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
   name: 'Bedroom Ambience Light Uptime'
   expire_after: '660'
   value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-afc031/$system'
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
   name: 'Bedroom Ambience Light Firmware'
   expire_after: '660'
   value_template: '{{ value_json["firmware"]["version"] }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-afc031/$system'
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
   name: 'Bedroom Ambience Light WiFi RSSI'
   unit_of_measurement: '%'
   expire_after: '660'
   value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-afc031/$system'
+  state_topic: 'smarty/esp8266-1dd8c0/$system'
   name: 'Bedroom Ambience Light WiFi IP'
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'
