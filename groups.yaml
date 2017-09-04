@@ -115,6 +115,11 @@ smarty:
     - sensor.kitchen_sideboard_light_firmware
     - sensor.kitchen_sideboard_light_wifi_ip
     - sensor.kitchen_sideboard_light_wifi_rssi
+    - binary_sensor.living_room_ceiling_light_connectivity
+    - sensor.living_room_ceiling_light_uptime
+    - sensor.living_room_ceiling_light_firmware
+    - sensor.living_room_ceiling_light_wifi_ip
+    - sensor.living_room_ceiling_light_wifi_rssi
     - binary_sensor.living_room_sofa_light_connectivity
     - sensor.living_room_sofa_light_uptime
     - sensor.living_room_sofa_light_firmware
@@ -134,6 +139,7 @@ default_view:
     - device_tracker.owntracksdavid1_davidnexus5x
     - light.outdoor_frontdoor_light
     - light.kitchen_sideboard_light
+    - light.living_room_ceiling_light
     - light.living_room_sofa_light
     - light.bedroom_ambience_light
     - script.bedtime

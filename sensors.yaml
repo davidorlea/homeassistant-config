@@ -75,6 +75,28 @@
   value_template: '{{ value_json["wifi"]["ip"] }}'
 
 - platform: mqtt
+  state_topic: 'smarty/esp8266-826269/$system'
+  name: 'Living Room Ceiling Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-826269/$system'
+  name: 'Living Room Ceiling Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-826269/$system'
+  name: 'Living Room Ceiling Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-826269/$system'
+  name: 'Living Room Ceiling Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
+- platform: mqtt
   state_topic: 'smarty/esp8266-1dd8c0/$system'
   name: 'Living Room Sofa Light Uptime'
   expire_after: '660'
