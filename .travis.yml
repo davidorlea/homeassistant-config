@@ -2,7 +2,7 @@ language: python
 python:
   - '3.4'
 env:
-  - HASS=0.52.1
+  - HASS=0.53.0
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
 install:
