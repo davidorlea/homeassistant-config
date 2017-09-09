@@ -1,6 +1,8 @@
 language: python
 python:
   - '3.4'
+  - '3.5'
+  - '3.6'
 env:
   - HASS=0.53.0
 before_install:
