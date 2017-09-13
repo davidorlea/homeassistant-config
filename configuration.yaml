@@ -81,6 +81,9 @@ recorder:
       - sensor.outdoor_frontdoor_light_uptime
       - sensor.outdoor_frontdoor_light_firmware
       - sensor.outdoor_frontdoor_light_wifi_ip
+      - sensor.kitchen_ceiling_light_uptime
+      - sensor.kitchen_ceiling_light_firmware
+      - sensor.kitchen_ceiling_light_wifi_ip
       - sensor.kitchen_sideboard_light_uptime
       - sensor.kitchen_sideboard_light_firmware
       - sensor.kitchen_sideboard_light_wifi_ip
@@ -93,6 +96,9 @@ recorder:
       - sensor.bedroom_ambience_light_uptime
       - sensor.bedroom_ambience_light_firmware
       - sensor.bedroom_ambience_light_wifi_ip
+      - sensor.hall_ceiling_light_uptime
+      - sensor.hall_ceiling_light_firmware
+      - sensor.hall_ceiling_light_wifi_ip
       - switch.development_module_relay
 
 # Enables support for tracking state changes over time.
