@@ -12,8 +12,8 @@
   payload_off: '0'
 - platform: mqtt
   name: 'Kitchen Ceiling Light'
-  state_topic: 'smarty/dummy-2/relay1'
-  command_topic: 'smarty/dummy-2/relay1/set'
+  state_topic: 'smarty/esp8266-376566/relay1'
+  command_topic: 'smarty/esp8266-376566/relay1/set'
   payload_on: '1'
   payload_off: '0'
 - platform: mqtt

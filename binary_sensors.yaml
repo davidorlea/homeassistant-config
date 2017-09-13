@@ -4,6 +4,11 @@
   payload_on: 'true'
   payload_off: 'false'
 - platform: mqtt
+  state_topic: 'smarty/esp8266-376566/$online'
+  name: 'Kitchen Ceiling Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
+- platform: mqtt
   state_topic: 'smarty/esp8266-954045/$online'
   name: 'Kitchen Sideboard Light Connectivity'
   payload_on: 'true'
