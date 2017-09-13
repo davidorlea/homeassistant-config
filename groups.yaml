@@ -148,13 +148,6 @@ default_view:
     - updater.updater
     - sensor.owm_temperature
     - device_tracker.owntracksdavid1_davidnexus5x
-    - light.outdoor_frontdoor_light
-    - light.kitchen_ceiling_light
-    - light.kitchen_sideboard_light
-    - light.living_room_ceiling_light
-    - light.living_room_sofa_light
-    - light.bedroom_ambience_light
-    - light.hall_ceiling_light
     - script.bedtime
 
 rooms_view:
