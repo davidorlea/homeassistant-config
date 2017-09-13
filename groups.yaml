@@ -135,6 +135,11 @@ smarty:
     - sensor.bedroom_ambience_light_firmware
     - sensor.bedroom_ambience_light_wifi_ip
     - sensor.bedroom_ambience_light_wifi_rssi
+    - binary_sensor.hall_ceiling_light_connectivity
+    - sensor.hall_ceiling_light_uptime
+    - sensor.hall_ceiling_light_firmware
+    - sensor.hall_ceiling_light_wifi_ip
+    - sensor.hall_ceiling_light_wifi_rssi
 
 default_view:
   view: yes
@@ -148,6 +153,7 @@ default_view:
     - light.living_room_ceiling_light
     - light.living_room_sofa_light
     - light.bedroom_ambience_light
+    - light.hall_ceiling_light
     - script.bedtime
 
 rooms_view:

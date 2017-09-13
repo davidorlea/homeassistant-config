@@ -162,6 +162,28 @@
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'
 
+- platform: mqtt
+  state_topic: 'smarty/esp8266-121bb3/$system'
+  name: 'Hall Ceiling Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-121bb3/$system'
+  name: 'Hall Ceiling Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-121bb3/$system'
+  name: 'Hall Ceiling Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-121bb3/$system'
+  name: 'Hall Ceiling Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
 - platform: template
   sensors:
     fritz_bytes_received:
