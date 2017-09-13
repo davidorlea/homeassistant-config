@@ -14,6 +14,7 @@ all_scenes:
     - scene.arrive_home_at_night
     - scene.leave_home_at_day
     - scene.leave_home_at_night
+    - scene.occupancy_simulation_0
     - scene.occupancy_simulation_1
     - scene.occupancy_simulation_2
     - scene.occupancy_simulation_3
