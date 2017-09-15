@@ -123,6 +123,7 @@ tts:
   cache: true
   cache_dir: /tmp/tts
   time_memory: 300
+  language: 'de'
 
 zone:
   name: Home
