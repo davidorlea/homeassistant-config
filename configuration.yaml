@@ -81,6 +81,9 @@ recorder:
       - sensor.outdoor_frontdoor_light_uptime
       - sensor.outdoor_frontdoor_light_firmware
       - sensor.outdoor_frontdoor_light_wifi_ip
+      - sensor.outdoor_backdoor_light_uptime
+      - sensor.outdoor_backdoor_light_firmware
+      - sensor.outdoor_backdoor_light_wifi_ip
       - sensor.kitchen_ceiling_light_uptime
       - sensor.kitchen_ceiling_light_firmware
       - sensor.kitchen_ceiling_light_wifi_ip

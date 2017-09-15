@@ -111,6 +111,11 @@ smarty:
     - sensor.outdoor_frontdoor_light_firmware
     - sensor.outdoor_frontdoor_light_wifi_ip
     - sensor.outdoor_frontdoor_light_wifi_rssi
+    - binary_sensor.outdoor_backdoor_light_connectivity
+    - sensor.outdoor_backdoor_light_uptime
+    - sensor.outdoor_backdoor_light_firmware
+    - sensor.outdoor_backdoor_light_wifi_ip
+    - sensor.outdoor_backdoor_light_wifi_rssi
     - binary_sensor.kitchen_ceiling_light_connectivity
     - sensor.kitchen_ceiling_light_uptime
     - sensor.kitchen_ceiling_light_firmware
