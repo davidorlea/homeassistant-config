@@ -37,9 +37,9 @@
     group.living_room_lights: off
     group.hall_lights: off
     group.bedroom_lights: off
-    media_player.kuche:
+    media_player.sonos_device_kuche:
       state: paused
-    media_player.wohnzimmer:
+    media_player.sonos_device_wohnzimmer:
       state: paused
 
 - name: Leave Home at Night
@@ -48,9 +48,9 @@
     light.living_room_ceiling_light: off
     light.hall_ceiling_light: off
     light.bedroom_ceiling_light: off
-    media_player.kuche:
+    media_player.sonos_device_kuche:
       state: paused
-    media_player.wohnzimmer:
+    media_player.sonos_device_wohnzimmer:
       state: paused
 
 - name: Occupancy Simulation 0

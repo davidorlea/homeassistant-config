@@ -5,7 +5,7 @@
 "group.all_*":
   hidden: false
 
-"media_player.*":
+"media_player.sonos_device_*":
   hidden: true
 
 "sensor.*_uptime":
