@@ -32,7 +32,7 @@ occupancy_simulation_stop:
       data:
         entity_id: script.occupancy_simulation_loop
     - service: scene.turn_on
-      data_template:
+      data:
         entity_id: 'scene.occupancy_simulation_0'
 
 occupancy_simulation_loop:
