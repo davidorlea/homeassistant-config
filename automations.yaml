@@ -21,10 +21,12 @@
 
 - alias: 'Arrive Home at Day'
   trigger:
-    platform: state
-    entity_id: group.all_devices
-    from: 'not_home'
-    to: 'home'
+    - platform: state
+      entity_id: group.all_devices
+      from: 'not_home'
+      to: 'home'
+    - platform: mqtt
+      topic: 'smarty/+/button1'
   condition:
     condition: and
     conditions:
@@ -44,10 +46,12 @@
 
 - alias: 'Arrive Home at Night'
   trigger:
-    platform: state
-    entity_id: group.all_devices
-    from: 'not_home'
-    to: 'home'
+    - platform: state
+      entity_id: group.all_devices
+      from: 'not_home'
+      to: 'home'
+    - platform: mqtt
+      topic: 'smarty/+/button1'
   condition:
     condition: or
     conditions:
