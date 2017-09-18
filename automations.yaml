@@ -37,7 +37,7 @@
   action:
     - service: input_boolean.turn_off
       data:
-        entity_id: input_boolean.simulate_occupancy
+        entity_id: input_boolean.away_mode
     - service: scene.turn_on
       data:
         entity_id: scene.arrive_home_at_day
@@ -60,7 +60,7 @@
   action:
     - service: input_boolean.turn_off
       data:
-        entity_id: input_boolean.simulate_occupancy
+        entity_id: input_boolean.away_mode
     - service: scene.turn_on
       data:
         entity_id: scene.arrive_home_at_night
@@ -86,7 +86,7 @@
         entity_id: scene.leave_home_at_day
     - service: input_boolean.turn_on
       data:
-        entity_id: input_boolean.simulate_occupancy
+        entity_id: input_boolean.away_mode
 
 - alias: 'Leave Home at Night'
   trigger:
@@ -109,12 +109,12 @@
         entity_id: scene.leave_home_at_night
     - service: input_boolean.turn_on
       data:
-        entity_id: input_boolean.simulate_occupancy
+        entity_id: input_boolean.away_mode
 
 - alias: 'Start Occupancy Simulation'
   trigger:
     - platform: state
-      entity_id: input_boolean.simulate_occupancy
+      entity_id: input_boolean.away_mode
       from: 'off'
       to: 'on'
     - platform: sun
@@ -124,7 +124,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.simulate_occupancy
+        entity_id: input_boolean.away_mode
         state: 'on'
       - condition: or
         conditions:
@@ -141,7 +141,7 @@
 - alias: 'Stop Occupancy Simulation'
   trigger:
     - platform: state
-      entity_id: input_boolean.simulate_occupancy
+      entity_id: input_boolean.away_mode
       from: 'on'
       to: 'off'
     - platform: time
@@ -150,7 +150,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.simulate_occupancy
+        entity_id: input_boolean.away_mode
         state: 'off'
       - condition: or
         conditions:

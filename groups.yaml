@@ -1,7 +1,7 @@
 all_input_booleans:
   name: all input booleans
   entities:
-    - input_boolean.simulate_occupancy
+    - input_boolean.away_mode
 
 all_scenes:
   name: all scenes
