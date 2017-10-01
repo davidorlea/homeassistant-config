@@ -153,6 +153,7 @@ default_view:
     - updater.updater
     - sensor.owm_temperature
     - device_tracker.owntracksdavid1_davidnexus5x
+    - input_boolean.away_mode
     - script.bedtime
 
 rooms_view:
