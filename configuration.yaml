@@ -54,7 +54,8 @@ influxdb:
 
 # Configures storage of tracked state changes
 recorder:
-  purge_days: 3
+  purge_interval: 1
+  purge_keep_days: 3
   db_url: !secret recorder_db_url
   exclude:
     domains:
