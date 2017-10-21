@@ -88,9 +88,6 @@ internet:
     - sensor.fritz_netmonitor
     - sensor.fritz_bytes_received
     - sensor.fritz_bytes_sent
-    - sensor.speedtest_ping
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
 
 raspberry_pi:
   name: Raspberry Pi
