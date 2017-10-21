@@ -158,6 +158,8 @@ device_tracker:
     track_new_devices: false
   - platform: owntracks
     max_gps_accuracy: 100
+  - platform: owntracks_http
+    max_gps_accuracy: 100
 
 media_player:
   - platform: sonos

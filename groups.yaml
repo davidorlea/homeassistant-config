@@ -149,7 +149,7 @@ default_view:
   entities:
     - updater.updater
     - sensor.owm_temperature
-    - device_tracker.owntracksdavid1_davidnexus5x
+    - device_tracker.david_nexus5x
     - input_boolean.away_mode
     - script.bedtime
 
