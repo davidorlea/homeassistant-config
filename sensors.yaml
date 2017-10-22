@@ -19,6 +19,7 @@
     - type: disk_use_percent
       arg: /
     - type: since_last_boot
+- platform: uptime
 
 - platform: mqtt
   state_topic: 'smarty/esp8266-3db1ec/$system'
