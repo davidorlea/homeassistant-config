@@ -15,6 +15,9 @@ logger:
 # Enables the frontend
 frontend:
 
+# Enables the map
+map:
+
 # Enables configuration UI
 config:
 
