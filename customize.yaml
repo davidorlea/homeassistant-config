@@ -9,24 +9,34 @@ group.all_scripts:
 
 light.outdoor_frontdoor_light:
   icon: mdi:spotlight-beam
+  google_assistant: true
 light.outdoor_backdoor_light:
   icon: mdi:spotlight-beam
+  google_assistant: true
 light.kitchen_ceiling_light:
   icon: mdi:ceiling-light
+  google_assistant: true
 light.kitchen_sideboard_light:
   icon: mdi:lamp
+  google_assistant: true
 light.living_room_ceiling_light:
   icon: mdi:ceiling-light
+  google_assistant: true
 light.living_room_sofa_light:
   icon: mdi:lamp
+  google_assistant: true
 light.bedroom_ceiling_light:
   icon: mdi:ceiling-light
+  google_assistant: true
 light.bedroom_bed_light:
   icon: mdi:lamp
+  google_assistant: true
 light.bedroom_ambience_light:
   icon: mdi:lamp
+  google_assistant: true
 light.hall_ceiling_light:
   icon: mdi:ceiling-light
+  google_assistant: true
 
 sensor.fritz_netmonitor:
   friendly_name: 'Fritz!Box'
