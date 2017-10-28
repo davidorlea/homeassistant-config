@@ -21,6 +21,17 @@ sonos_play:
       data_template:
         entity_id: '{{ sonos_play_entity }}'
 
+dogbark:
+  alias: Let the dogs out
+  sequence:
+    - service: script.sonos_play
+      data_template:
+        sonos_play_entity: 'media_player.sonos_device_kuche'
+        sonos_play_volume: '0.7'
+        sonos_play_media_id: 'http://192.168.178.10:8123/local/sounds/dog_barking.mp3'
+        sonos_play_media_type: 'audio/mp4'
+        sonos_play_delay: '00:00:21'
+
 bedtime:
   alias: Go to bed
   sequence:
