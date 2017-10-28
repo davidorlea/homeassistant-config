@@ -1,3 +1,26 @@
+sonos_play:
+  alias: "Sonos Play Script"
+  sequence:
+    - service: media_player.sonos_snapshot
+      data_template:
+        entity_id: '{{ sonos_play_entity }}'
+    - service: media_player.sonos_unjoin
+      data_template:
+        entity_id: '{{ sonos_play_entity }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: '{{ sonos_play_entity }}'
+        volume_level: '{{ sonos_play_volume }}'
+    - service: media_player.play_media
+      data_template:
+        entity_id: '{{ sonos_play_entity }}'
+        media_content_id: '{{ sonos_play_media_id }}'
+        media_content_type: '{{ sonos_play_media_type }}'
+    - delay: '{{ sonos_play_delay }}'
+    - service: media_player.sonos_restore
+      data_template:
+        entity_id: '{{ sonos_play_entity }}'
+
 bedtime:
   alias: Go to bed
   sequence:
