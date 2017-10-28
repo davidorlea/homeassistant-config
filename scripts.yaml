@@ -32,6 +32,17 @@ dogbark:
         sonos_play_media_type: 'audio/mp4'
         sonos_play_delay: '00:00:21'
 
+alarm:
+  alias: Ring the alarm
+  sequence:
+    - service: script.sonos_play
+      data_template:
+        sonos_play_entity: 'media_player.sonos_device_wohnzimmer'
+        sonos_play_volume: '0.5'
+        sonos_play_media_id: 'http://192.168.178.10:8123/local/sounds/alarm_siren.mp3'
+        sonos_play_media_type: 'audio/mp4'
+        sonos_play_delay: '00:00:09'
+
 bedtime:
   alias: Go to bed
   sequence:
