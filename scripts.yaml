@@ -66,6 +66,16 @@ alarm:
         sonos_play_media_type: 'audio/mp4'
         sonos_play_delay: '00:00:09'
 
+ttstest:
+  alias: Test the TTS
+  sequence:
+    - service: script.sonos_say
+      data_template:
+        sonos_say_entity: 'media_player.sonos_device_kuche'
+        sonos_say_volume: '0.5'
+        sonos_say_message: 'Hallo, das ist ein Test.'
+        sonos_say_delay: '00:00:03'
+
 bedtime:
   alias: Go to bed
   sequence:
