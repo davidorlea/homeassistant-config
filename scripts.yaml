@@ -34,7 +34,6 @@ sonos_say:
       data_template:
         entity_id: '{{ sonos_say_entity }}'
         volume_level: '{{ sonos_say_volume }}'
-    - delay: '00:00:05'
     - service: tts.google_say
       data_template:
         entity_id: '{{ sonos_say_entity }}'
