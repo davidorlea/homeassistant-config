@@ -72,7 +72,7 @@ dogbark:
   sequence:
     - service: script.sonos_play
       data_template:
-        sonos_play_volume: '0.7'
+        sonos_play_volume: '0.5'
         sonos_play_media_id: 'http://192.168.178.10:8123/local/sounds/dog_barking.mp3'
         sonos_play_media_type: 'audio/mp4'
         sonos_play_delay: '00:00:21'
@@ -82,7 +82,7 @@ alarm:
   sequence:
     - service: script.sonos_play
       data_template:
-        sonos_play_volume: '0.5'
+        sonos_play_volume: '0.2'
         sonos_play_media_id: 'http://192.168.178.10:8123/local/sounds/alarm_siren.mp3'
         sonos_play_media_type: 'audio/mp4'
         sonos_play_delay: '00:00:09'
@@ -92,7 +92,7 @@ ttstest:
   sequence:
     - service: script.sonos_say
       data_template:
-        sonos_say_volume: '0.5'
+        sonos_say_volume: '0.4'
         sonos_say_message: 'Hallo, das ist ein Test.'
         sonos_say_delay: '00:00:03'
 
