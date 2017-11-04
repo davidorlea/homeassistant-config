@@ -13,13 +13,10 @@ logger:
   logs:
     homeassistant.components.http.ban: warning
 
-# Enables the frontend
 frontend:
 
-# Enables the map
 map:
 
-# Enables configuration UI
 config:
 
 http:
@@ -32,11 +29,9 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-# Checks for available updates
 updater:
   reporting: false
 
-# Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
 influxdb:
@@ -53,7 +48,6 @@ influxdb:
       - sensor.disk_used_
       - sensor.ram_used
 
-# Configures storage of tracked state changes
 recorder:
   purge_interval: 1
   purge_keep_days: 3
@@ -106,20 +100,16 @@ recorder:
       - sensor.hall_ceiling_light_wifi_ip
       - switch.development_module_relay
 
-# Enables support for tracking state changes over time.
 history:
   exclude:
     domains:
       - automation
       - script
 
-# View all events in a logbook
 logbook:
 
-# Track the sun
 sun:
 
-# Text to speech
 tts:
   platform: google
   cache: true
