@@ -10,7 +10,7 @@ homeassistant:
 
 logger:
   default: warning
-  #homeassistant.components.media_player: error
+  homeassistant.components.http.ban: warning
 
 # Enables the frontend
 frontend:
