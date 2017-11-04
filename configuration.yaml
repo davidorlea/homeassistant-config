@@ -41,12 +41,19 @@ influxdb:
   database: !secret influxdb_database
   include:
     entities:
-      - sensor.average_load_1m
-      - sensor.average_load_5m
-      - sensor.average_load_15m
-      - sensor.cpu_used
-      - sensor.disk_used_
-      - sensor.ram_used
+      - sensor.owm_temperature
+      - sensor.owm_humidity
+      - sensor.owm_cloud_coverage
+      - sensor.owm_pressure
+  component_config:
+    sensor.owm_temperature:
+      override_measurement: 'sensor.owm_temperature'
+    sensor.owm_humidity:
+      override_measurement: 'sensor.owm_humidity'
+    sensor.owm_cloud_coverage:
+      override_measurement: 'sensor.owm_cloud_coverage'
+    sensor.owm_pressure:
+      override_measurement: 'sensor.owm_pressure'
 
 recorder:
   purge_interval: 1
