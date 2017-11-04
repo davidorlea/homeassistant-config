@@ -10,7 +10,8 @@ homeassistant:
 
 logger:
   default: warning
-  homeassistant.components.http.ban: warning
+  logs:
+    homeassistant.components.http.ban: warning
 
 # Enables the frontend
 frontend:
