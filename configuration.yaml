@@ -74,7 +74,6 @@ recorder:
       - sensor.cpu_used
       - sensor.disk_used_
       - sensor.owm_condition
-      - sensor.owm_forecast
       - sensor.ram_used
       - sensor.since_last_boot
       - sensor.uptime
