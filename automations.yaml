@@ -184,8 +184,10 @@
 
 - alias: 'Say Good Morning'
   trigger:
-    platform: mqtt
-    topic: 'smarty/esp8266-376566/button1'
+    - platform: mqtt
+      topic: 'smarty/esp8266-376566/button1'
+    - platform: mqtt
+      topic: 'smarty/esp8266-826269/button1'
   action:
     - delay: '00:00:05'
     - service: script.sonos_say
