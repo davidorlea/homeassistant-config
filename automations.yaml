@@ -189,7 +189,7 @@
     - platform: mqtt
       topic: 'smarty/esp8266-826269/button1'
   action:
-    - delay: '00:00:05'
+    - delay: '00:00:01'
     - service: script.sonos_say
       data_template:
         sonos_say_volume: '0.3'
