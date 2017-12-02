@@ -18,28 +18,28 @@ fi
 
 case "$1" in
     "automations" )
-        echo "Deploying automations..."
+        echo -n "Deploying automations... "
         scp -q automations.yaml "$HASS_SSH_URL"
-        echo "...done."
-        echo "Reloading automations..."
+        echo "done."
+        echo -n "Reloading automations... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/automation/reload
-        echo "...done."
+        echo "done."
         ;;
     "groups" )
-        echo "Deploying groups..."
+        echo -n "Deploying groups... "
         scp -q groups.yaml "$HASS_SSH_URL"
-        echo "...done."
-        echo "Reloading groups..."
+        echo "done."
+        echo -n "Reloading groups... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/group/reload
-        echo "...done."
+        echo "done."
         ;;
     "scripts" )
-        echo "Deploying scripts..."
+        echo -n "Deploying scripts... "
         scp -q scripts.yaml "$HASS_SSH_URL"
-        echo "...done."
-        echo "Reloading scripts..."
+        echo "done."
+        echo -n "Reloading scripts... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/script/reload
-        echo "...done."
+        echo "done."
         ;;
     *)
         echo "Usage: $0 [automations|groups|scripts]"
