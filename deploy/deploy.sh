@@ -2,7 +2,7 @@
 
 if [ $# -lt 1 ]
 then
-    echo "Usage: $0 [automations|groups|scripts]"
+    echo "Usage: $0 [all|automations|groups|scripts]"
     exit 1
 fi
 
@@ -17,6 +17,14 @@ if [ -z "$HASS_WEB_URL" ]; then
 fi
 
 case "$1" in
+    "all" )
+        echo -n "Deploying everything... "
+        scp -q *.yaml "$HASS_SSH_URL"
+        echo "done."
+        echo -n "Restarting Home Assistant... "
+        curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/homeassistant/restart
+        echo "done."
+        ;;
     "automations" )
         echo -n "Deploying automations... "
         scp -q automations.yaml "$HASS_SSH_URL"
@@ -42,7 +50,7 @@ case "$1" in
         echo "done."
         ;;
     *)
-        echo "Usage: $0 [automations|groups|scripts]"
+        echo "Usage: $0 [all|automations|groups|scripts]"
         exit 1
         ;;
 esac
