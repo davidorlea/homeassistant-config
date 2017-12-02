@@ -94,15 +94,15 @@ recorder:
       - sensor.kitchen_sideboard_light_uptime
       - sensor.kitchen_sideboard_light_firmware
       - sensor.kitchen_sideboard_light_wifi_ip
+      - sensor.kitchen_cabinet_light_uptime
+      - sensor.kitchen_cabinet_light_firmware
+      - sensor.kitchen_cabinet_light_wifi_ip
       - sensor.living_room_ceiling_light_uptime
       - sensor.living_room_ceiling_light_firmware
       - sensor.living_room_ceiling_light_wifi_ip
       - sensor.living_room_sofa_light_uptime
       - sensor.living_room_sofa_light_firmware
       - sensor.living_room_sofa_light_wifi_ip
-      - sensor.bedroom_ambience_light_uptime
-      - sensor.bedroom_ambience_light_firmware
-      - sensor.bedroom_ambience_light_wifi_ip
       - sensor.hall_ceiling_light_uptime
       - sensor.hall_ceiling_light_firmware
       - sensor.hall_ceiling_light_wifi_ip

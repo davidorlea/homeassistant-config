@@ -19,6 +19,9 @@ light.kitchen_ceiling_light:
 light.kitchen_sideboard_light:
   icon: mdi:lamp
   google_assistant: true
+light.kitchen_cabinet_light:
+  icon: mdi:lamp
+  google_assistant: true
 light.living_room_ceiling_light:
   icon: mdi:ceiling-light
   google_assistant: true
@@ -29,9 +32,6 @@ light.bedroom_ceiling_light:
   icon: mdi:ceiling-light
   google_assistant: true
 light.bedroom_bed_light:
-  icon: mdi:lamp
-  google_assistant: true
-light.bedroom_ambience_light:
   icon: mdi:lamp
   google_assistant: true
 light.hall_ceiling_light:

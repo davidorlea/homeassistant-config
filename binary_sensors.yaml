@@ -19,6 +19,11 @@
   payload_on: 'true'
   payload_off: 'false'
 - platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$online'
+  name: 'Kitchen Cabinet Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
+- platform: mqtt
   state_topic: 'smarty/esp8266-826269/$online'
   name: 'Living Room Ceiling Light Connectivity'
   payload_on: 'true'
@@ -26,11 +31,6 @@
 - platform: mqtt
   state_topic: 'smarty/esp8266-afc031/$online'
   name: 'Living Room Sofa Light Connectivity'
-  payload_on: 'true'
-  payload_off: 'false'
-- platform: mqtt
-  state_topic: 'smarty/esp8266-f94d00/$online'
-  name: 'Bedroom Ambience Light Connectivity'
   payload_on: 'true'
   payload_off: 'false'
 - platform: mqtt

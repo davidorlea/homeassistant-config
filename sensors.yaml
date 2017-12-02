@@ -110,6 +110,28 @@
   value_template: '{{ value_json["wifi"]["ip"] }}'
 
 - platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Cabinet Light Uptime'
+  expire_after: '660'
+  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Cabinet Light Firmware'
+  expire_after: '660'
+  value_template: '{{ value_json["firmware"]["version"] }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Cabinet Light WiFi RSSI'
+  unit_of_measurement: '%'
+  expire_after: '660'
+  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
+- platform: mqtt
+  state_topic: 'smarty/esp8266-f94d00/$system'
+  name: 'Kitchen Cabinet Light WiFi IP'
+  expire_after: '660'
+  value_template: '{{ value_json["wifi"]["ip"] }}'
+
+- platform: mqtt
   state_topic: 'smarty/esp8266-826269/$system'
   name: 'Living Room Ceiling Light Uptime'
   expire_after: '660'
@@ -150,28 +172,6 @@
 - platform: mqtt
   state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light WiFi IP'
-  expire_after: '660'
-  value_template: '{{ value_json["wifi"]["ip"] }}'
-
-- platform: mqtt
-  state_topic: 'smarty/esp8266-f94d00/$system'
-  name: 'Bedroom Ambience Light Uptime'
-  expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
-- platform: mqtt
-  state_topic: 'smarty/esp8266-f94d00/$system'
-  name: 'Bedroom Ambience Light Firmware'
-  expire_after: '660'
-  value_template: '{{ value_json["firmware"]["version"] }}'
-- platform: mqtt
-  state_topic: 'smarty/esp8266-f94d00/$system'
-  name: 'Bedroom Ambience Light WiFi RSSI'
-  unit_of_measurement: '%'
-  expire_after: '660'
-  value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
-- platform: mqtt
-  state_topic: 'smarty/esp8266-f94d00/$system'
-  name: 'Bedroom Ambience Light WiFi IP'
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'
 

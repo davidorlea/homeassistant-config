@@ -29,6 +29,7 @@ kitchen_lights:
   entities:
     - light.kitchen_ceiling_light
     - light.kitchen_sideboard_light
+    - light.kitchen_cabinet_light
 living_room_lights:
   name: Living Room Lights
   entities:
@@ -39,7 +40,6 @@ bedroom_lights:
   entities:
     - light.bedroom_ceiling_light
     - light.bedroom_bed_light
-    - light.bedroom_ambience_light
 hall_lights:
   name: Hall Lights
   entities:
@@ -55,6 +55,7 @@ kitchen:
   entities:
     - light.kitchen_ceiling_light
     - light.kitchen_sideboard_light
+    - light.kitchen_cabinet_light
 living_room:
   name: Living Room
   entities:
@@ -65,7 +66,6 @@ bedroom:
   entities:
     - light.bedroom_ceiling_light
     - light.bedroom_bed_light
-    - light.bedroom_ambience_light
 hall:
   name: Hall
   entities:
@@ -128,6 +128,11 @@ smarty:
     - sensor.kitchen_sideboard_light_firmware
     - sensor.kitchen_sideboard_light_wifi_ip
     - sensor.kitchen_sideboard_light_wifi_rssi
+    - binary_sensor.kitchen_cabinet_light_connectivity
+    - sensor.kitchen_cabinet_light_uptime
+    - sensor.kitchen_cabinet_light_firmware
+    - sensor.kitchen_cabinet_light_wifi_ip
+    - sensor.kitchen_cabinet_light_wifi_rssi
     - binary_sensor.living_room_ceiling_light_connectivity
     - sensor.living_room_ceiling_light_uptime
     - sensor.living_room_ceiling_light_firmware
@@ -138,11 +143,6 @@ smarty:
     - sensor.living_room_sofa_light_firmware
     - sensor.living_room_sofa_light_wifi_ip
     - sensor.living_room_sofa_light_wifi_rssi
-    - binary_sensor.bedroom_ambience_light_connectivity
-    - sensor.bedroom_ambience_light_uptime
-    - sensor.bedroom_ambience_light_firmware
-    - sensor.bedroom_ambience_light_wifi_ip
-    - sensor.bedroom_ambience_light_wifi_rssi
     - binary_sensor.hall_ceiling_light_connectivity
     - sensor.hall_ceiling_light_uptime
     - sensor.hall_ceiling_light_firmware
