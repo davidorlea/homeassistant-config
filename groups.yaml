@@ -77,6 +77,7 @@ weather:
     - sun.sun
     - sensor.moon
     - sensor.owm_condition
+    - sensor.owm_forecast
     - sensor.owm_temperature
     - sensor.owm_humidity
     - sensor.owm_cloud_coverage

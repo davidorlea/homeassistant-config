@@ -48,6 +48,8 @@ sensor.fritz_bytes_sent:
   icon: mdi:upload-network
 sensor.owm_condition:
   icon: mdi:earth
+sensor.owm_forecast:
+  icon: mdi:eye
 sensor.owm_cloud_coverage:
   icon: mdi:weather-cloudy
 sensor.owm_humidity:
