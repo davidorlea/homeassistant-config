@@ -33,8 +33,6 @@ http:
 updater:
   reporting: false
 
-conversation:
-
 influxdb:
   host: !secret influxdb_host
   username: !secret influxdb_username
