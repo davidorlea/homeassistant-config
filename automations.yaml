@@ -144,27 +144,33 @@
       data:
         entity_id: script.occupancy_simulation_start
 
-- alias: 'Stop Occupancy Simulation'
+- alias: 'Stop Occupancy Simulation at Night'
   trigger:
-    - platform: state
-      entity_id: input_boolean.away_mode
-      from: 'on'
-      to: 'off'
-    - platform: time
-      at: '01:00:00'
+    platform: time
+    at: '01:00:00'
   condition:
-    condition: and
+    condition: state
+    entity_id: input_boolean.away_mode
+    state: 'on'
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.occupancy_simulation_stop
+
+- alias: 'Stop Occupancy Simulation at Away Mode'
+  trigger:
+    platform: state
+    entity_id: input_boolean.away_mode
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: or
     conditions:
-      - condition: state
-        entity_id: input_boolean.away_mode
-        state: 'off'
-      - condition: or
-        conditions:
-          - condition: sun
-            after: sunset
-            after_offset: '-02:00:00'
-          - condition: time
-            before: '01:00:00'
+      - condition: sun
+        after: sunset
+        after_offset: '-02:00:00'
+      - condition: time
+        before: '01:00:00'
   action:
     - service: script.turn_on
       data:
