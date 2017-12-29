@@ -40,11 +40,14 @@ influxdb:
   database: !secret influxdb_database
   include:
     entities:
+      - sensor.fritz_netmonitor
       - sensor.owm_temperature
       - sensor.owm_humidity
       - sensor.owm_cloud_coverage
       - sensor.owm_pressure
   component_config:
+    sensor.fritz_netmonitor:
+      override_measurement: 'sensor.fritz_netmonitor'
     sensor.owm_temperature:
       override_measurement: 'sensor.owm_temperature'
     sensor.owm_humidity:
