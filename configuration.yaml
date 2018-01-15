@@ -178,6 +178,27 @@ google_assistant:
   client_id: !secret google_assistant_client_id
   access_token: !secret google_assistant_access_token
   expose_by_default: false
+  entity_config:
+    light.outdoor_frontdoor_light:
+      expose: true
+    light.outdoor_backdoor_light:
+      expose: true
+    light.kitchen_ceiling_light:
+      expose: true
+    light.kitchen_sideboard_light:
+      expose: true
+    light.kitchen_cabinet_light:
+      expose: true
+    light.living_room_ceiling_light:
+      expose: true
+    light.living_room_sofa_light:
+      expose: true
+    light.bedroom_ceiling_light:
+      expose: true
+    light.bedroom_bed_light:
+      expose: true
+    light.hall_ceiling_light:
+      expose: true
 
 automation: !include automations.yaml
 
