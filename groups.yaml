@@ -93,12 +93,12 @@ internet:
 raspberry_pi:
   name: Raspberry Pi
   entities:
-    - sensor.average_load_1m
-    - sensor.average_load_5m
-    - sensor.average_load_15m
-    - sensor.cpu_used
-    - sensor.ram_used
-    - sensor.disk_used_
+    - sensor.load_1m
+    - sensor.load_5m
+    - sensor.load_15m
+    - sensor.processor_use
+    - sensor.memory_use_percent
+    - sensor.disk_use_percent_
     - sensor.since_last_boot
 
 homeassistant:
