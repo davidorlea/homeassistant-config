@@ -152,6 +152,7 @@ smarty:
 
 default_view:
   view: yes
+  icon: mdi:home
   entities:
     - updater.updater
     - sensor.owm_temperature
