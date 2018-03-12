@@ -107,6 +107,7 @@ recorder:
       - sensor.hall_ceiling_light_firmware
       - sensor.hall_ceiling_light_wifi_ip
       - switch.development_module_relay
+      - updater.updater
 
 history:
   exclude:
