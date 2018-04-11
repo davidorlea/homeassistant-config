@@ -201,7 +201,29 @@
   sensors:
     fritz_bytes_received:
       value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_received | filesizeformat }}'
+      icon_template: mdi:download-network
 - platform: template
   sensors:
     fritz_bytes_sent:
       value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
+      icon_template: mdi:upload-network
+
+- platform: template
+  sensors:
+    period_of_day:
+      value_template: >-
+        {% if (as_timestamp(states.sun.sun.attributes.next_dusk)) - (as_timestamp(states.sun.sun.attributes.next_setting)) < 0 %}
+          dusk
+        {% elif (as_timestamp(states.sun.sun.attributes.next_rising)) - (as_timestamp(states.sun.sun.attributes.next_dawn)) < 0 %}
+          dawn
+        {% elif (states.sun.sun.attributes.elevation) < 0 %}
+          night
+        {% else %}
+          day
+        {% endif %}
+      icon_template: >-
+        {% if is_state('sun.sun', 'above_horizon') %}
+          mdi:weather-sunny
+        {% else %}
+          mdi:weather-night
+        {% endif %}

@@ -69,6 +69,7 @@ recorder:
       - script.occupancy_simulation_start
       - script.occupancy_simulation_stop
       - script.occupancy_simulation_loop
+      - sensor.period_of_day
       - sensor.moon
       - sensor.load_1m
       - sensor.load_5m

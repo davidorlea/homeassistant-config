@@ -32,10 +32,10 @@ sensor.fritz_netmonitor:
   friendly_name: 'Fritz!Box'
 sensor.fritz_bytes_received:
   friendly_name: 'Received'
-  icon: mdi:download-network
 sensor.fritz_bytes_sent:
   friendly_name: 'Sent'
-  icon: mdi:upload-network
+sensor.period_of_day:
+  friendly_name: 'Period of Day'
 sensor.owm_condition:
   icon: mdi:earth
 sensor.owm_forecast:

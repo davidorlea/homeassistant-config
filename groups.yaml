@@ -71,11 +71,16 @@ hall:
   entities:
     - light.hall_ceiling_light
 
-weather:
-  name: Weather
+astronomy:
+  name: Astronomy
   entities:
+    - sensor.period_of_day
     - sun.sun
     - sensor.moon
+
+meteorology:
+  name: Meteorology
+  entities:
     - sensor.owm_condition
     - sensor.owm_forecast
     - sensor.owm_temperature
@@ -174,7 +179,8 @@ environment_view:
   name: Environment
   view: yes
   entities:
-    - group.weather
+    - group.astronomy
+    - group.meteorology
 
 system_view:
   name: System
