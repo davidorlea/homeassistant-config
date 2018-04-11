@@ -167,7 +167,6 @@ device_tracker:
 
 media_player:
   - platform: sonos
-    scan_interval: 20
     hosts:
       - 192.168.178.22
       - 192.168.178.30
