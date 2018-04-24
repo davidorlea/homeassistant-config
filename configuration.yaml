@@ -20,6 +20,8 @@ map:
 
 config:
 
+cloud:
+
 http:
   server_port: !secret http_server_port
   api_password: !secret http_api_password
