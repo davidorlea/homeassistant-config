@@ -26,6 +26,8 @@ http:
   server_port: !secret http_server_port
   api_password: !secret http_api_password
   use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
   trusted_networks:
     - 127.0.0.1
     - 192.168.178.0/24
