@@ -88,6 +88,20 @@ meteorology:
     - sensor.owm_cloud_coverage
     - sensor.owm_pressure
 
+uv_index:
+  name: UV Index
+  entities:
+    - binary_sensor.protection_window
+    - sensor.current_ozone_level
+    - sensor.current_uv_index
+    - sensor.max_uv_index
+    - sensor.skin_type_1_safe_exposure_time
+    - sensor.skin_type_2_safe_exposure_time
+    - sensor.skin_type_3_safe_exposure_time
+    - sensor.skin_type_4_safe_exposure_time
+    - sensor.skin_type_5_safe_exposure_time
+    - sensor.skin_type_6_safe_exposure_time
+
 raspberry_pi:
   name: Raspberry Pi
   entities:
@@ -174,6 +188,7 @@ environment_view:
   entities:
     - group.astronomy
     - group.meteorology
+    - group.uv_index
 
 system_view:
   name: System
