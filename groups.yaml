@@ -88,13 +88,6 @@ meteorology:
     - sensor.owm_cloud_coverage
     - sensor.owm_pressure
 
-internet:
-  name: Internet
-  entities:
-    - sensor.fritz_netmonitor
-    - sensor.fritz_bytes_received
-    - sensor.fritz_bytes_sent
-
 raspberry_pi:
   name: Raspberry Pi
   entities:
@@ -161,7 +154,6 @@ default_view:
   entities:
     - updater.updater
     - sensor.owm_temperature
-    - device_tracker.david_nexus5x
     - device_tracker.owntracksdavid1_nexus5x
     - input_boolean.away_mode
     - script.bedtime
@@ -187,7 +179,6 @@ system_view:
   name: System
   view: yes
   entities:
-    - group.internet
     - group.raspberry_pi
     - group.homeassistant
     - group.smarty

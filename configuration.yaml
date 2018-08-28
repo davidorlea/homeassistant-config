@@ -42,14 +42,11 @@ influxdb:
   database: !secret influxdb_database
   include:
     entities:
-      - sensor.fritz_netmonitor
       - sensor.owm_temperature
       - sensor.owm_humidity
       - sensor.owm_cloud_coverage
       - sensor.owm_pressure
   component_config:
-    sensor.fritz_netmonitor:
-      override_measurement: 'sensor.fritz_netmonitor'
     sensor.owm_temperature:
       override_measurement: 'sensor.owm_temperature'
     sensor.owm_humidity:
@@ -83,8 +80,6 @@ recorder:
       - sensor.uptime
       - sensor.owm_condition
       - sensor.owm_forecast
-      - sensor.fritz_bytes_received
-      - sensor.fritz_bytes_sent
       - sensor.outdoor_frontdoor_light_uptime
       - sensor.outdoor_frontdoor_light_firmware
       - sensor.outdoor_frontdoor_light_wifi_ip
@@ -158,10 +153,6 @@ mqtt_eventstream:
   subscribe_topic: 'home-assistant-1/$eventstream/subscribe'
 
 device_tracker:
-  - platform: fritz
-    interval_seconds: 15
-    consider_home: 300
-    track_new_devices: false
   - platform: owntracks
     max_gps_accuracy: 100
   - platform: owntracks_http

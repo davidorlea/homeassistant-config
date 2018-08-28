@@ -28,12 +28,6 @@ light.bedroom_bed_light:
 light.hall_ceiling_light:
   icon: mdi:ceiling-light
 
-sensor.fritz_netmonitor:
-  friendly_name: 'Fritz!Box'
-sensor.fritz_bytes_received:
-  friendly_name: 'Received'
-sensor.fritz_bytes_sent:
-  friendly_name: 'Sent'
 sensor.period_of_day:
   friendly_name: 'Period of Day'
 sensor.owm_condition:

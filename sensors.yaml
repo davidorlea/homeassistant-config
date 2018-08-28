@@ -8,7 +8,6 @@
     - pressure
     - temperature
     - weather
-- platform: fritzbox_netmonitor
 - platform: systemmonitor
   resources:
     - type: load_1m
@@ -196,17 +195,6 @@
   name: 'Hall Ceiling Light WiFi IP'
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'
-
-- platform: template
-  sensors:
-    fritz_bytes_received:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_received | filesizeformat }}'
-      icon_template: mdi:download-network
-- platform: template
-  sensors:
-    fritz_bytes_sent:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
-      icon_template: mdi:upload-network
 
 - platform: template
   sensors:
