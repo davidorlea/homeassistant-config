@@ -177,6 +177,7 @@
         entity_id: script.occupancy_simulation_stop
 
 - alias: 'Enable: Say Good Morning'
+  initial_state: false
   trigger:
     - platform: time
       at: '06:00:00'
@@ -186,6 +187,7 @@
         entity_id: automation.say_good_morning
 
 - alias: 'Disable: Say Good Morning'
+  initial_state: false
   trigger:
     - platform: time
       at: '12:00:00'
@@ -195,6 +197,7 @@
         entity_id: automation.say_good_morning
 
 - alias: 'Say Good Morning'
+  initial_state: false
   trigger:
     - platform: mqtt
       topic: 'smarty/esp8266-376566/button1'
