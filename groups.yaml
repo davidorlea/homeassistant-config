@@ -206,9 +206,3 @@ configuration_view:
     - group.all_input_booleans
     - group.all_scenes
     - group.all_scripts
-
-development_view:
-  name: Development
-  view: yes
-  entities:
-    - switch.development_module_relay
