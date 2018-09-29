@@ -1,7 +1,7 @@
 - platform: mqtt
   name: 'Outdoor Frontdoor Light'
-  state_topic: 'smarty/esp8266-3db1ec/relay1'
-  command_topic: 'smarty/esp8266-3db1ec/relay1/set'
+  state_topic: 'smarty/esp8266-377332/relay1'
+  command_topic: 'smarty/esp8266-377332/relay1/set'
   payload_on: '1'
   payload_off: '0'
 - platform: mqtt

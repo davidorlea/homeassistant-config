@@ -21,23 +21,23 @@
 - platform: uptime
 
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3db1ec/$system'
+  state_topic: 'smarty/esp8266-377332/$system'
   name: 'Outdoor Frontdoor Light Uptime'
   expire_after: '660'
   value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3db1ec/$system'
+  state_topic: 'smarty/esp8266-377332/$system'
   name: 'Outdoor Frontdoor Light Firmware'
   expire_after: '660'
   value_template: '{{ value_json["firmware"]["version"] }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3db1ec/$system'
+  state_topic: 'smarty/esp8266-377332/$system'
   name: 'Outdoor Frontdoor Light WiFi RSSI'
   unit_of_measurement: '%'
   expire_after: '660'
   value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3db1ec/$system'
+  state_topic: 'smarty/esp8266-377332/$system'
   name: 'Outdoor Frontdoor Light WiFi IP'
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'

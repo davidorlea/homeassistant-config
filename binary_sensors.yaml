@@ -1,5 +1,5 @@
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3db1ec/$online'
+  state_topic: 'smarty/esp8266-377332/$online'
   name: 'Outdoor Frontdoor Light Connectivity'
   payload_on: 'true'
   payload_off: 'false'
