@@ -166,7 +166,6 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - updater.updater
     - sensor.owm_temperature
     - device_tracker.owntracksdavid1_nexus5x
     - input_boolean.away_mode
