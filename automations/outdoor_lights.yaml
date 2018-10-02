@@ -37,3 +37,14 @@
     - service: light.turn_off
       data:
         entity_id: group.outdoor_lights
+
+- alias: 'Turn Outdoor Lights off on Sunrise'
+    trigger:
+    platform: sun
+    event: sunrise
+    offset: '00:20:00'
+  action:
+    - delay: '00:{{ (range(0, 11) | random) }}:00'
+    - service: light.turn_off
+      data:
+        entity_id: group.outdoor_lights
