@@ -39,7 +39,7 @@
         entity_id: group.outdoor_lights
 
 - alias: 'Turn Outdoor Lights off on Sunrise'
-    trigger:
+  trigger:
     platform: sun
     event: sunrise
     offset: '00:20:00'
