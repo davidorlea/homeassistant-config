@@ -1,0 +1,50 @@
+- alias: 'Turn Outdoor Lights on at Sunset when Away'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:20:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.away_mode
+    state: 'on'
+  action:
+    - delay: '00:{{ (range(0, 11) | random) }}:00'
+    - service: light.turn_on
+      data:
+        entity_id: light.outdoor_frontdoor_light
+
+- alias: 'Turn Outdoor Lights on at Sunset when Home'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:20:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.away_mode
+    state: 'off'
+  action:
+    - delay: '00:{{ (range(0, 11) | random) }}:00'
+    - service: light.turn_on
+      data:
+        entity_id: group.outdoor_lights
+
+- alias: 'Turn Outdoor Lights off in the Night'
+  trigger:
+    platform: time
+    at: '00:00:00'
+  action:
+    - delay: '00:{{ (range(0, 60) | random) }}:00'
+    - service: light.turn_off
+      data:
+        entity_id: group.outdoor_lights
+
+- alias: 'Turn Outdoor Lights off on Sunrise'
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '00:20:00'
+  action:
+    - delay: '00:{{ (range(0, 11) | random) }}:00'
+    - service: light.turn_off
+      data:
+        entity_id: group.outdoor_lights

@@ -1,0 +1,91 @@
+- alias: 'Arrive Home at Day'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunrise
+        after_offset: '2:00:00'
+      - condition: sun
+        before: sunset
+        before_offset: '-2:00:00'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away_mode
+    - service: scene.turn_on
+      data:
+        entity_id: scene.arrive_home_at_day
+
+- alias: 'Arrive Home at Night'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-2:00:00'
+      - condition: sun
+        before: sunrise
+        before_offset: '2:00:00'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away_mode
+    - service: scene.turn_on
+      data:
+        entity_id: scene.arrive_home_at_night
+
+- alias: 'Leave Home at Day'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    from: 'home'
+    to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunrise
+        after_offset: '2:00:00'
+      - condition: sun
+        before: sunset
+        before_offset: '-2:00:00'
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.leave_home_at_day
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.away_mode
+
+- alias: 'Leave Home at Night'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    from: 'home'
+    to: 'not_home'
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-2:00:00'
+      - condition: sun
+        before: sunrise
+        before_offset: '2:00:00'
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.leave_home_at_night
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.away_mode
