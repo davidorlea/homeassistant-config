@@ -1,0 +1,20 @@
+- alias: 'Turn Outdoor Frontdoor Light on at Sunset'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:20:00'
+  action:
+    - delay: '00:{{ (range(0, 11) | random) }}:00'
+    - service: light.turn_on
+      data:
+        entity_id: light.outdoor_frontdoor_light
+
+- alias: 'Turn Outdoor Lights off in the Night'
+  trigger:
+    platform: time
+    at: '00:00:00'
+  action:
+    - delay: '00:{{ (range(0, 60) | random) }}:00'
+    - service: light.turn_off
+      data:
+        entity_id: group.outdoor_lights
