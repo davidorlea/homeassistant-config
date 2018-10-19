@@ -167,7 +167,6 @@ default_view:
   icon: mdi:home
   entities:
     - sensor.owm_temperature
-    - device_tracker.owntracksdavid1_nexus5x
     - input_boolean.away_mode
     - script.bedtime
 
