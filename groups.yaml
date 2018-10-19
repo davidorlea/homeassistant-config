@@ -202,6 +202,7 @@ configuration_view:
   view: yes
   entities:
     - group.all_automations
+    - group.all_devices
     - group.all_input_booleans
     - group.all_scenes
     - group.all_scripts
