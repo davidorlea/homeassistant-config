@@ -164,12 +164,6 @@ mqtt_eventstream:
   publish_topic: 'home-assistant-1/$eventstream/publish'
   subscribe_topic: 'home-assistant-1/$eventstream/subscribe'
 
-device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 100
-  - platform: owntracks_http
-    max_gps_accuracy: 100
-
 media_player:
   - platform: sonos
     hosts:
