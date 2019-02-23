@@ -46,8 +46,6 @@ influxdb:
       - sensor.owm_humidity
       - sensor.owm_cloud_coverage
       - sensor.owm_pressure
-      - sensor.current_ozone_level
-      - sensor.current_uv_index
   component_config:
     sensor.owm_temperature:
       override_measurement: 'sensor.owm_temperature'
@@ -57,10 +55,6 @@ influxdb:
       override_measurement: 'sensor.owm_cloud_coverage'
     sensor.owm_pressure:
       override_measurement: 'sensor.owm_pressure'
-    sensor.current_ozone_level:
-      override_measurement: 'sensor.current_ozone_level'
-    sensor.current_uv_index:
-      override_measurement: 'sensor.current_uv_index'
 
 recorder:
   db_url: !secret recorder_db_url
@@ -86,13 +80,6 @@ recorder:
       - sensor.uptime
       - sensor.owm_condition
       - sensor.owm_forecast
-      - sensor.max_uv_index
-      - sensor.skin_type_1_safe_exposure_time
-      - sensor.skin_type_2_safe_exposure_time
-      - sensor.skin_type_3_safe_exposure_time
-      - sensor.skin_type_4_safe_exposure_time
-      - sensor.skin_type_5_safe_exposure_time
-      - sensor.skin_type_6_safe_exposure_time
       - sensor.outdoor_frontdoor_light_uptime
       - sensor.outdoor_frontdoor_light_firmware
       - sensor.outdoor_frontdoor_light_wifi_ip
@@ -170,10 +157,6 @@ media_player:
       - 192.168.178.22
       - 192.168.178.30
     entity_namespace: 'sonos_device'
-
-openuv:
-  api_key: !secret openuv_api_key
-  scan_interval: 600
 
 ios:
 
