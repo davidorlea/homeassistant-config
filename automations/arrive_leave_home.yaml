@@ -2,8 +2,7 @@
   trigger:
     platform: state
     entity_id:
-      - device_tracker.davids_iphone_x
-      - device_tracker.davids_iphone_5s
+      - device_tracker.davids_iphone_xs
     from: 'not_home'
     to: 'home'
   condition:
@@ -27,8 +26,7 @@
   trigger:
     platform: state
     entity_id:
-      - device_tracker.davids_iphone_x
-      - device_tracker.davids_iphone_5s
+      - device_tracker.davids_iphone_xs
     from: 'not_home'
     to: 'home'
   condition:
@@ -52,8 +50,7 @@
   trigger:
     platform: state
     entity_id:
-      - device_tracker.davids_iphone_x
-      - device_tracker.davids_iphone_5s
+      - device_tracker.davids_iphone_xs
     from: 'home'
     to: 'not_home'
   condition:
@@ -77,8 +74,7 @@
   trigger:
     platform: state
     entity_id:
-      - device_tracker.davids_iphone_x
-      - device_tracker.davids_iphone_5s
+      - device_tracker.davids_iphone_xs
     from: 'home'
     to: 'not_home'
   condition:
