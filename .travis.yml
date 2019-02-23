@@ -3,7 +3,7 @@ python:
   - '3.5'
   - '3.6'
 env:
-  - HASS=0.85.1
+  - HASS=0.88.1
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
 install:
