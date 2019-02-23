@@ -17,7 +17,7 @@
     - type: memory_use_percent
     - type: disk_use_percent
       arg: /
-    - type: since_last_boot
+    - type: last_boot
 - platform: uptime
 
 - platform: mqtt

@@ -110,8 +110,8 @@ raspberry_pi:
     - sensor.load_15m
     - sensor.processor_use
     - sensor.memory_use_percent
-    - sensor.disk_use_percent_
-    - sensor.since_last_boot
+    - sensor.disk_use_percent
+    - sensor.last_boot
 
 homeassistant:
   name: Home Assistant

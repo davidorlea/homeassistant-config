@@ -42,5 +42,5 @@ sensor.owm_humidity:
   icon: mdi:water
 sensor.owm_pressure:
   icon: mdi:buffer
-sensor.since_last_boot:
+sensor.last_boot:
   friendly_name: 'Uptime'

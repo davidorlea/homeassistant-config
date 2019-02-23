@@ -81,8 +81,8 @@ recorder:
       - sensor.load_15m
       - sensor.processor_use
       - sensor.memory_use_percent
-      - sensor.disk_use_percent_
-      - sensor.since_last_boot
+      - sensor.disk_use_percent
+      - sensor.last_boot
       - sensor.uptime
       - sensor.owm_condition
       - sensor.owm_forecast
@@ -163,12 +163,6 @@ mqtt:
 mqtt_eventstream:
   publish_topic: 'home-assistant-1/$eventstream/publish'
   subscribe_topic: 'home-assistant-1/$eventstream/subscribe'
-
-device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 100
-  - platform: owntracks_http
-    max_gps_accuracy: 100
 
 media_player:
   - platform: sonos
