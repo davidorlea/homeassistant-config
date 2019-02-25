@@ -152,8 +152,8 @@ mqtt_eventstream:
   publish_topic: 'home-assistant-1/$eventstream/publish'
   subscribe_topic: 'home-assistant-1/$eventstream/subscribe'
 
-media_player:
-  - platform: sonos
+sonos:
+  media_player:
     hosts:
       - 192.168.178.22
       - 192.168.178.30
