@@ -1,8 +1,7 @@
 #!/bin/bash
 
-if [ $# -lt 1 ]
-then
-    echo "Usage: $0 [all|automations|groups|scripts]"
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <all | automations | groups | scripts>"
     exit 1
 fi
 
@@ -50,7 +49,7 @@ case "$1" in
         echo "done."
         ;;
     *)
-        echo "Usage: $0 [all|automations|groups|scripts]"
+        echo "Usage: $0 <all | automations | groups | scripts>"
         exit 1
         ;;
 esac
