@@ -19,7 +19,7 @@ fi
 case "$1" in
     "all" )
         echo -n "Deploying everything... "
-        scp -q *.yaml "$HASS_SSH_URL"
+        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf . "$HASS_SSH_URL"
         echo "done."
         echo -n "Restarting Home Assistant... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/homeassistant/restart
@@ -27,7 +27,7 @@ case "$1" in
         ;;
     "automations" )
         echo -n "Deploying automations... "
-        scp -q automations.yaml "$HASS_SSH_URL"
+        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf automations/ "$HASS_SSH_URL"
         echo "done."
         echo -n "Reloading automations... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/automation/reload
@@ -35,7 +35,7 @@ case "$1" in
         ;;
     "groups" )
         echo -n "Deploying groups... "
-        scp -q groups.yaml "$HASS_SSH_URL"
+        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf groups.yaml "$HASS_SSH_URL"
         echo "done."
         echo -n "Reloading groups... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/group/reload
@@ -43,7 +43,7 @@ case "$1" in
         ;;
     "scripts" )
         echo -n "Deploying scripts... "
-        scp -q scripts.yaml "$HASS_SSH_URL"
+        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf scripts/ "$HASS_SSH_URL"
         echo "done."
         echo -n "Reloading scripts... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/script/reload
