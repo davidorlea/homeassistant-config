@@ -1,0 +1,27 @@
+occupancy_simulation_start:
+  alias: Occupancy Simulation Start
+  sequence:
+    - service: scene.turn_on
+      data_template:
+        entity_id: 'scene.occupancy_simulation_{{ (range(1, 4) | random) }}'
+    - service: script.turn_on
+      data:
+        entity_id: script.occupancy_simulation_loop
+
+occupancy_simulation_stop:
+  alias: Occupancy Simulation Stop
+  sequence:
+    - service: script.turn_off
+      data:
+        entity_id: script.occupancy_simulation_loop
+    - service: scene.turn_on
+      data:
+        entity_id: 'scene.occupancy_simulation_0'
+
+occupancy_simulation_loop:
+  alias: Occupancy Simulation Loop
+  sequence:
+    - delay: '00:{{ (range(20, 41) | random) }}:00'
+    - service: script.turn_on
+      data:
+        entity_id: script.occupancy_simulation_start

@@ -1,0 +1,18 @@
+bedtime:
+  alias: Go to bed
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: group.hall_lights
+    - delay: '00:10:00'
+    - service: light.turn_off
+      data:
+        entity_id:
+          - group.kitchen_lights
+          - group.living_room_lights
+    - delay: '00:30:00'
+    - service: light.turn_off
+      data:
+        entity_id:
+          - group.hall_lights
+          - group.outdoor_lights
