@@ -7,6 +7,12 @@ homeassistant:
   time_zone: !secret homeassistant_time_zone
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - !secret homeassistant_auth_providers_trusted_networks_1
+        - !secret homeassistant_auth_providers_trusted_networks_2
 
 logger:
   default: warning
@@ -24,10 +30,7 @@ http:
   server_port: !secret http_server_port
   use_x_forwarded_for: true
   trusted_proxies:
-    - 127.0.0.1
-  trusted_networks:
-    - 127.0.0.1
-    - 192.168.178.0/24
+    - !secret http_trusted_proxies_1
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
