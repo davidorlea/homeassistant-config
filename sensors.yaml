@@ -43,23 +43,23 @@
   value_template: '{{ value_json["wifi"]["ip"] }}'
 
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3e7098/$system'
+  state_topic: 'smarty/esp8266-3dbc1d/$system'
   name: 'Outdoor Backdoor Light Uptime'
   expire_after: '660'
   value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3e7098/$system'
+  state_topic: 'smarty/esp8266-3dbc1d/$system'
   name: 'Outdoor Backdoor Light Firmware'
   expire_after: '660'
   value_template: '{{ value_json["firmware"]["version"] }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3e7098/$system'
+  state_topic: 'smarty/esp8266-3dbc1d/$system'
   name: 'Outdoor Backdoor Light WiFi RSSI'
   unit_of_measurement: '%'
   expire_after: '660'
   value_template: '{{ (float(value_json["wifi"]["rssi"]) + 100) * 2 }}'
 - platform: mqtt
-  state_topic: 'smarty/esp8266-3e7098/$system'
+  state_topic: 'smarty/esp8266-3dbc1d/$system'
   name: 'Outdoor Backdoor Light WiFi IP'
   expire_after: '660'
   value_template: '{{ value_json["wifi"]["ip"] }}'
