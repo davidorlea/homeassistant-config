@@ -4,6 +4,11 @@ bedtime:
     - service: light.turn_on
       data:
         entity_id: group.hall_lights
+    - service: media_player.media_pause
+      data:
+        entity_id:
+          - media_player.sonos_device_wohnzimmer
+          - media_player.sonos_device_kuche
     - delay: '00:10:00'
     - service: light.turn_off
       data:
