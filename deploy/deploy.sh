@@ -26,7 +26,7 @@ case "$1" in
         ;;
     "automations" )
         echo -n "Deploying automations... "
-        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf automations/ "$HASS_SSH_URL"
+        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf automations/ "$HASS_SSH_URL"/automations
         echo "done."
         echo -n "Reloading automations... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/automation/reload
@@ -42,7 +42,7 @@ case "$1" in
         ;;
     "scripts" )
         echo -n "Deploying scripts... "
-        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf scripts/ "$HASS_SSH_URL"
+        rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf scripts/ "$HASS_SSH_URL"/scripts
         echo "done."
         echo -n "Reloading scripts... "
         curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" "$HASS_WEB_URL"/api/services/script/reload
