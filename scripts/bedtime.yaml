@@ -3,7 +3,10 @@ bedtime:
   sequence:
     - service: light.turn_on
       data:
-        entity_id: group.hall_lights
+        entity_id:
+          - group.hall_lights
+          - light.bedroom_bed_light
+          - light.bedroom_ambient_light
     - service: media_player.media_pause
       data:
         entity_id:
@@ -19,5 +22,8 @@ bedtime:
     - service: light.turn_off
       data:
         entity_id:
-          - group.hall_lights
           - group.outdoor_lights
+          - group.kitchen_lights
+          - group.living_room_lights
+          - group.hall_lights
+          - light.bedroom_ambient_light

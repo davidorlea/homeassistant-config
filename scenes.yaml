@@ -56,23 +56,23 @@
 - name: Occupancy Simulation 0
   entities:
     light.kitchen_sideboard_light: off
-    light.kitchen_cabinet_light: off
     light.living_room_sofa_light: off
+    light.bedroom_ambient_light: off
 
 - name: Occupancy Simulation 1
   entities:
     light.kitchen_sideboard_light: on
-    light.kitchen_cabinet_light: on
     light.living_room_sofa_light: off
+    light.bedroom_ambient_light: on
 
 - name: Occupancy Simulation 2
   entities:
     light.kitchen_sideboard_light: on
-    light.kitchen_cabinet_light: off
     light.living_room_sofa_light: on
+    light.bedroom_ambient_light: off
 
 - name: Occupancy Simulation 3
   entities:
     light.kitchen_sideboard_light: off
-    light.kitchen_cabinet_light: on
     light.living_room_sofa_light: on
+    light.bedroom_ambient_light: on
