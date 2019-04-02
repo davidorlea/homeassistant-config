@@ -34,6 +34,11 @@
   payload_on: 'true'
   payload_off: 'false'
 - platform: mqtt
+  state_topic: 'smarty/esp8266-95d69b/$online'
+  name: 'Bedroom Ambient Light Connectivity'
+  payload_on: 'true'
+  payload_off: 'false'
+- platform: mqtt
   state_topic: 'smarty/esp8266-121bb3/$online'
   name: 'Hall Ceiling Light Connectivity'
   payload_on: 'true'

@@ -40,6 +40,7 @@ bedroom_lights:
   entities:
     - light.bedroom_ceiling_light
     - light.bedroom_bed_light
+    - light.bedroom_ambient_light
 hall_lights:
   name: Hall Lights
   entities:
@@ -66,6 +67,7 @@ bedroom:
   entities:
     - light.bedroom_ceiling_light
     - light.bedroom_bed_light
+    - light.bedroom_ambient_light
 hall:
   name: Hall
   entities:
@@ -142,6 +144,11 @@ smarty:
     - sensor.living_room_sofa_light_firmware
     - sensor.living_room_sofa_light_wifi_ip
     - sensor.living_room_sofa_light_wifi_rssi
+    - binary_sensor.bedroom_ambient_light_connectivity
+    - sensor.bedroom_ambient_light_uptime
+    - sensor.bedroom_ambient_light_firmware
+    - sensor.bedroom_ambient_light_wifi_ip
+    - sensor.bedroom_ambient_light_wifi_rssi
     - binary_sensor.hall_ceiling_light_connectivity
     - sensor.hall_ceiling_light_uptime
     - sensor.hall_ceiling_light_firmware
