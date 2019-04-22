@@ -144,6 +144,11 @@ smarty:
     - sensor.living_room_sofa_light_firmware
     - sensor.living_room_sofa_light_wifi_ip
     - sensor.living_room_sofa_light_wifi_rssi
+    - binary_sensor.bedroom_bed_light_connectivity
+    - sensor.bedroom_bed_light_uptime
+    - sensor.bedroom_bed_light_firmware
+    - sensor.bedroom_bed_light_wifi_ip
+    - sensor.bedroom_bed_light_wifi_rssi
     - binary_sensor.bedroom_ambient_light_connectivity
     - sensor.bedroom_ambient_light_uptime
     - sensor.bedroom_ambient_light_firmware
