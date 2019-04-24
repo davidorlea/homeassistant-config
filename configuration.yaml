@@ -103,6 +103,9 @@ recorder:
       - sensor.living_room_sofa_light_uptime
       - sensor.living_room_sofa_light_firmware
       - sensor.living_room_sofa_light_wifi_ip
+      - sensor.bedroom_ceiling_light_uptime
+      - sensor.bedroom_ceiling_light_firmware
+      - sensor.bedroom_ceiling_light_wifi_ip
       - sensor.bedroom_bed_light_uptime
       - sensor.bedroom_bed_light_firmware
       - sensor.bedroom_bed_light_wifi_ip
