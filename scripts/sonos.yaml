@@ -56,7 +56,7 @@ sonos_say:
           - media_player.sonos_device_wohnzimmer
           - media_player.sonos_device_kuche
         volume_level: '{{ sonos_say_volume }}'
-    - service: tts.google_say
+    - service: tts.google_translate_say
       data_template:
         entity_id: media_player.sonos_device_wohnzimmer
         message: '{{ sonos_say_message }}'
