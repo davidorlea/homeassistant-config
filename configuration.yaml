@@ -169,7 +169,6 @@ sonos:
     hosts:
       - 192.168.178.22
       - 192.168.178.30
-    entity_namespace: 'sonos_device'
 
 ios:
 
