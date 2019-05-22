@@ -20,7 +20,6 @@ logger:
     homeassistant.components.http.ban: warning
 
 frontend:
-  javascript_version: latest
 
 map:
 
@@ -130,7 +129,7 @@ system_health:
 sun:
 
 tts:
-  platform: google
+  platform: google_translate
   cache: true
   cache_dir: /tmp/tts
   time_memory: 300
@@ -169,7 +168,6 @@ sonos:
     hosts:
       - 192.168.178.22
       - 192.168.178.30
-    entity_namespace: 'sonos_device'
 
 ios:
 
