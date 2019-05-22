@@ -44,5 +44,17 @@ sensor.owm_humidity:
   icon: mdi:water
 sensor.owm_pressure:
   icon: mdi:buffer
+sensor.dwd_pollen_41_today_avg:
+  friendly_name: 'DWD Pollen Today (Avg)'
+sensor.dwd_pollen_41_today_min:
+  friendly_name: 'DWD Pollen Today (Min)'
+sensor.dwd_pollen_41_today_max:
+  friendly_name: 'DWD Pollen Today (Max)'
+sensor.dwd_pollen_41_tomorrow_avg:
+  friendly_name: 'DWD Pollen Tomorrow (Avg)'
+sensor.dwd_pollen_41_tomorrow_min:
+  friendly_name: 'DWD Pollen Tomorrow (Min)'
+sensor.dwd_pollen_41_tomorrow_max:
+  friendly_name: 'DWD Pollen Tomorrow (Max)'
 sensor.last_boot:
   friendly_name: 'Uptime'

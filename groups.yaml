@@ -90,6 +90,32 @@ meteorology:
     - sensor.owm_cloud_coverage
     - sensor.owm_pressure
 
+pollen:
+  name: Pollen
+  entities:
+    - sensor.dwd_pollen_41_today_avg
+    - sensor.dwd_pollen_41_today_min
+    - sensor.dwd_pollen_41_today_max
+    - sensor.dwd_pollen_41_tomorrow_avg
+    - sensor.dwd_pollen_41_tomorrow_min
+    - sensor.dwd_pollen_41_tomorrow_max
+    # - sensor.dwd_pollen_41_today_ambrosia
+    # - sensor.dwd_pollen_41_today_beifuss
+    # - sensor.dwd_pollen_41_today_birke
+    # - sensor.dwd_pollen_41_today_erle
+    # - sensor.dwd_pollen_41_today_esche
+    # - sensor.dwd_pollen_41_today_graeser
+    # - sensor.dwd_pollen_41_today_hasel
+    # - sensor.dwd_pollen_41_today_roggen
+    # - sensor.dwd_pollen_41_tomorrow_ambrosia
+    # - sensor.dwd_pollen_41_tomorrow_beifuss
+    # - sensor.dwd_pollen_41_tomorrow_birke
+    # - sensor.dwd_pollen_41_tomorrow_erle
+    # - sensor.dwd_pollen_41_tomorrow_esche
+    # - sensor.dwd_pollen_41_tomorrow_graeser
+    # - sensor.dwd_pollen_41_tomorrow_hasel
+    # - sensor.dwd_pollen_41_tomorrow_roggen
+
 raspberry_pi:
   name: Raspberry Pi
   entities:
@@ -170,6 +196,8 @@ default_view:
   icon: mdi:home
   entities:
     - sensor.owm_temperature
+    - sensor.dwd_pollen_41_today_avg
+    - sensor.dwd_pollen_41_today_max
     - input_boolean.away_mode
     - script.bedtime
 
@@ -189,6 +217,7 @@ environment_view:
   entities:
     - group.astronomy
     - group.meteorology
+    - group.pollen
 
 system_view:
   name: System

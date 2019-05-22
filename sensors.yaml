@@ -8,6 +8,13 @@
     - pressure
     - temperature
     - weather
+- platform: dwd_pollen
+  partregion_ids:
+    - 41
+  include_days:
+    - today
+    - tomorrow
+
 - platform: systemmonitor
   resources:
     - type: load_1m
