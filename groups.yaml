@@ -93,28 +93,12 @@ meteorology:
 pollen:
   name: Pollen
   entities:
-    - sensor.dwd_pollen_41_today_avg
-    - sensor.dwd_pollen_41_today_min
-    - sensor.dwd_pollen_41_today_max
-    - sensor.dwd_pollen_41_tomorrow_avg
-    - sensor.dwd_pollen_41_tomorrow_min
-    - sensor.dwd_pollen_41_tomorrow_max
-    # - sensor.dwd_pollen_41_today_ambrosia
-    # - sensor.dwd_pollen_41_today_beifuss
-    # - sensor.dwd_pollen_41_today_birke
-    # - sensor.dwd_pollen_41_today_erle
-    # - sensor.dwd_pollen_41_today_esche
-    # - sensor.dwd_pollen_41_today_graeser
-    # - sensor.dwd_pollen_41_today_hasel
-    # - sensor.dwd_pollen_41_today_roggen
-    # - sensor.dwd_pollen_41_tomorrow_ambrosia
-    # - sensor.dwd_pollen_41_tomorrow_beifuss
-    # - sensor.dwd_pollen_41_tomorrow_birke
-    # - sensor.dwd_pollen_41_tomorrow_erle
-    # - sensor.dwd_pollen_41_tomorrow_esche
-    # - sensor.dwd_pollen_41_tomorrow_graeser
-    # - sensor.dwd_pollen_41_tomorrow_hasel
-    # - sensor.dwd_pollen_41_tomorrow_roggen
+    - sensor.dwd_pollen_today_41_ambrosia
+    - sensor.dwd_pollen_today_41_grass
+    - sensor.dwd_pollen_today_41_tree
+    - sensor.dwd_pollen_tomorrow_41_ambrosia
+    - sensor.dwd_pollen_tomorrow_41_grass
+    - sensor.dwd_pollen_tomorrow_41_tree
 
 raspberry_pi:
   name: Raspberry Pi
@@ -196,8 +180,9 @@ default_view:
   icon: mdi:home
   entities:
     - sensor.owm_temperature
-    - sensor.dwd_pollen_41_today_avg
-    - sensor.dwd_pollen_41_today_max
+    - sensor.dwd_pollen_today_41_ambrosia
+    - sensor.dwd_pollen_today_41_grass
+    - sensor.dwd_pollen_today_41_tree
     - input_boolean.away_mode
     - script.bedtime
 

@@ -32,6 +32,18 @@ light.bedroom_ambient_light:
 light.hall_ceiling_light:
   icon: mdi:ceiling-light
 
+sensor.dwd_pollen_today_41_ambrosia:
+  friendly_name: 'DWD Pollen Ambrosia Today'
+sensor.dwd_pollen_today_41_grass:
+  friendly_name: 'DWD Pollen Grass Today'
+sensor.dwd_pollen_today_41_tree:
+  friendly_name: 'DWD Pollen Tree Today'
+sensor.dwd_pollen_tomorrow_41_ambrosia:
+  friendly_name: 'DWD Pollen Ambrosia Tomorrow'
+sensor.dwd_pollen_tomorrow_41_grass:
+  friendly_name: 'DWD Pollen Grass Tomorrow'
+sensor.dwd_pollen_tomorrow_41_tree:
+  friendly_name: 'DWD Pollen Tree Tomorrow'
 sensor.period_of_day:
   friendly_name: 'Period of Day'
 sensor.owm_condition:
@@ -44,17 +56,5 @@ sensor.owm_humidity:
   icon: mdi:water
 sensor.owm_pressure:
   icon: mdi:buffer
-sensor.dwd_pollen_41_today_avg:
-  friendly_name: 'DWD Pollen Today (Avg)'
-sensor.dwd_pollen_41_today_min:
-  friendly_name: 'DWD Pollen Today (Min)'
-sensor.dwd_pollen_41_today_max:
-  friendly_name: 'DWD Pollen Today (Max)'
-sensor.dwd_pollen_41_tomorrow_avg:
-  friendly_name: 'DWD Pollen Tomorrow (Avg)'
-sensor.dwd_pollen_41_tomorrow_min:
-  friendly_name: 'DWD Pollen Tomorrow (Min)'
-sensor.dwd_pollen_41_tomorrow_max:
-  friendly_name: 'DWD Pollen Tomorrow (Max)'
 sensor.last_boot:
   friendly_name: 'Uptime'
