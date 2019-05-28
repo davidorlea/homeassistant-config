@@ -43,11 +43,20 @@ influxdb:
   database: !secret influxdb_database
   include:
     entities:
+      - sensor.dwd_pollen_today_41_ambrosia
+      - sensor.dwd_pollen_today_41_grass
+      - sensor.dwd_pollen_today_41_tree
       - sensor.owm_temperature
       - sensor.owm_humidity
       - sensor.owm_cloud_coverage
       - sensor.owm_pressure
   component_config:
+    sensor.dwd_pollen_today_41_ambrosia:
+      override_measurement: 'sensor.dwd_pollen_today_41_ambrosia'
+    sensor.dwd_pollen_today_41_grass:
+      override_measurement: 'sensor.dwd_pollen_today_41_grass'
+    sensor.dwd_pollen_today_41_tree:
+      override_measurement: 'sensor.dwd_pollen_today_41_tree'
     sensor.owm_temperature:
       override_measurement: 'sensor.owm_temperature'
     sensor.owm_humidity:
