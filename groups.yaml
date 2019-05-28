@@ -83,12 +83,14 @@ astronomy:
 meteorology:
   name: Meteorology
   entities:
-    - sensor.owm_condition
-    - sensor.owm_forecast
-    - sensor.owm_temperature
-    - sensor.owm_humidity
-    - sensor.owm_cloud_coverage
-    - sensor.owm_pressure
+    - sensor.dark_sky_condition
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_pressure
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_wind_bearing
+    - sensor.dark_sky_visibility
+    - sensor.dark_sky_ozone
 
 pollen:
   name: Pollen
@@ -179,10 +181,11 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - sensor.owm_temperature
+    - sensor.dark_sky_temperature
     - sensor.dwd_pollen_today_41_ambrosia
     - sensor.dwd_pollen_today_41_grass
     - sensor.dwd_pollen_today_41_tree
+    - weather.dark_sky
     - input_boolean.away_mode
     - script.bedtime
 

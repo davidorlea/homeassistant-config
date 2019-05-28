@@ -43,28 +43,37 @@ influxdb:
   database: !secret influxdb_database
   include:
     entities:
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_pressure
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_visibility
+      - sensor.dark_sky_ozone
       - sensor.dwd_pollen_today_41_ambrosia
       - sensor.dwd_pollen_today_41_grass
       - sensor.dwd_pollen_today_41_tree
-      - sensor.owm_temperature
-      - sensor.owm_humidity
-      - sensor.owm_cloud_coverage
-      - sensor.owm_pressure
   component_config:
+    sensor.dark_sky_temperature:
+      override_measurement: 'sensor.dark_sky_temperature'
+    sensor.dark_sky_humidity:
+      override_measurement: 'sensor.dark_sky_humidity'
+    sensor.dark_sky_pressure:
+      override_measurement: 'sensor.dark_sky_pressure'
+    sensor.dark_sky_wind_speed:
+      override_measurement: 'sensor.dark_sky_wind_speed'
+    sensor.dark_sky_wind_bearing:
+      override_measurement: 'sensor.dark_sky_wind_bearing'
+    sensor.dark_sky_visibility:
+      override_measurement: 'sensor.dark_sky_visibility'
+    sensor.dark_sky_ozone:
+      override_measurement: 'sensor.dark_sky_ozone'
     sensor.dwd_pollen_today_41_ambrosia:
       override_measurement: 'sensor.dwd_pollen_today_41_ambrosia'
     sensor.dwd_pollen_today_41_grass:
       override_measurement: 'sensor.dwd_pollen_today_41_grass'
     sensor.dwd_pollen_today_41_tree:
       override_measurement: 'sensor.dwd_pollen_today_41_tree'
-    sensor.owm_temperature:
-      override_measurement: 'sensor.owm_temperature'
-    sensor.owm_humidity:
-      override_measurement: 'sensor.owm_humidity'
-    sensor.owm_cloud_coverage:
-      override_measurement: 'sensor.owm_cloud_coverage'
-    sensor.owm_pressure:
-      override_measurement: 'sensor.owm_pressure'
 
 recorder:
   db_url: !secret recorder_db_url
@@ -88,8 +97,6 @@ recorder:
       - sensor.disk_use_percent
       - sensor.last_boot
       - sensor.uptime
-      - sensor.owm_condition
-      - sensor.owm_forecast
       - sensor.outdoor_frontdoor_light_uptime
       - sensor.outdoor_frontdoor_light_firmware
       - sensor.outdoor_frontdoor_light_wifi_ip
@@ -195,3 +202,5 @@ sensor: !include_dir_merge_list sensors
 scene: !include scenes.yaml
 
 script: !include_dir_merge_named scripts
+
+weather: !include weather.yaml

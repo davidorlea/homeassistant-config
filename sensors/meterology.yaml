@@ -1,9 +1,28 @@
-- platform: openweathermap
-  api_key: !secret openweathermap_api_key
-  forecast: true
-  monitored_conditions:
-    - clouds
-    - humidity
-    - pressure
-    - temperature
-    - weather
+- platform: template
+  sensors:
+    dark_sky_condition:
+      value_template: "{{ states('weather.dark_sky') }}"
+    dark_sky_temperature:
+      value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
+      unit_of_measurement: '°C'
+      device_class: temperature
+    dark_sky_humidity:
+      value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
+      unit_of_measurement: '%'
+      device_class: humidity
+    dark_sky_pressure:
+      value_template: "{{ state_attr('weather.dark_sky', 'pressure') }}"
+      unit_of_measurement: 'hPa'
+      device_class: pressure
+    dark_sky_wind_speed:
+      value_template: "{{ state_attr('weather.dark_sky', 'wind_speed') }}"
+      unit_of_measurement: 'km/h'
+    dark_sky_wind_bearing:
+      value_template: "{{ state_attr('weather.dark_sky', 'wind_bearing') }}"
+      unit_of_measurement: '°'
+    dark_sky_visibility:
+      value_template: "{{ state_attr('weather.dark_sky', 'visibility') }}"
+      unit_of_measurement: 'km'
+    dark_sky_ozone:
+      value_template: "{{ state_attr('weather.dark_sky', 'ozone') }}"
+      unit_of_measurement: 'DU'

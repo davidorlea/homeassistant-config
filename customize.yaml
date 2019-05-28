@@ -32,6 +32,30 @@ light.bedroom_ambient_light:
 light.hall_ceiling_light:
   icon: mdi:ceiling-light
 
+sensor.dark_sky_condition:
+  friendly_name: 'DS Condition'
+  icon: mdi:earth
+sensor.dark_sky_temperature:
+  friendly_name: 'DS Temperature'
+  icon: mdi:thermometer
+sensor.dark_sky_humidity:
+  friendly_name: 'DS Humidity'
+  icon: mdi:water
+sensor.dark_sky_pressure:
+  friendly_name: 'DS Pressure'
+  icon: mdi:gauge
+sensor.dark_sky_wind_speed:
+  friendly_name: 'DS Wind Speed'
+  icon: mdi:weather-windy
+sensor.dark_sky_wind_bearing:
+  friendly_name: 'DS Wind Bearing'
+  icon: mdi:compass
+sensor.dark_sky_visibility:
+  friendly_name: 'DS Visibility'
+  icon: mdi:eye
+sensor.dark_sky_ozone:
+  friendly_name: 'DS Ozone'
+  icon: mdi:buffer
 sensor.dwd_pollen_today_41_ambrosia:
   friendly_name: 'DWD Pollen Ambrosia Today'
 sensor.dwd_pollen_today_41_grass:
@@ -46,15 +70,5 @@ sensor.dwd_pollen_tomorrow_41_tree:
   friendly_name: 'DWD Pollen Tree Tomorrow'
 sensor.period_of_day:
   friendly_name: 'Period of Day'
-sensor.owm_condition:
-  icon: mdi:earth
-sensor.owm_forecast:
-  icon: mdi:eye
-sensor.owm_cloud_coverage:
-  icon: mdi:weather-cloudy
-sensor.owm_humidity:
-  icon: mdi:water
-sensor.owm_pressure:
-  icon: mdi:buffer
 sensor.last_boot:
   friendly_name: 'Uptime'
