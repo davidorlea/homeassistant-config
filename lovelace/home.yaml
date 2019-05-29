@@ -1,5 +1,6 @@
 title: Home
 icon: mdi:home
+path: home
 cards:
   - type: horizontal-stack
     cards:

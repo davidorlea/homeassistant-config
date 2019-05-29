@@ -1,4 +1,5 @@
 title: System
+path: system
 cards:
   - type: entities
     title: Home Assistant
