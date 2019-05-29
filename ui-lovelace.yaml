@@ -1,8 +1,4 @@
-title: My Awesome Home
+title: MuffetNet
 views:
-  - title: Example
-    cards:
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
+  - !include lovelace/home.yaml
+  - !include lovelace/dummy.yaml
