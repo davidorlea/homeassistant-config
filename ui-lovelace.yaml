@@ -2,4 +2,5 @@ title: MuffetNet
 views:
   - !include lovelace/home.yaml
   - !include lovelace/environment.yaml
+  - !include lovelace/system.yaml
   - !include lovelace/dummy.yaml
