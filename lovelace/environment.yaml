@@ -1,0 +1,31 @@
+title: Environment
+cards:
+  - type: entities
+    title: Astronomy
+    show_header_toggle: false
+    entities:
+      - sensor.period_of_day
+      - sun.sun
+      - sensor.moon
+  - type: entities
+    title: Meteorology
+    show_header_toggle: false
+    entities:
+      - sensor.dark_sky_condition
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_pressure
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_visibility
+      - sensor.dark_sky_ozone
+  - type: entities
+    title: Pollen
+    show_header_toggle: false
+    entities:
+      - sensor.dwd_pollen_today_41_ambrosia
+      - sensor.dwd_pollen_today_41_grass
+      - sensor.dwd_pollen_today_41_tree
+      - sensor.dwd_pollen_tomorrow_41_ambrosia
+      - sensor.dwd_pollen_tomorrow_41_grass
+      - sensor.dwd_pollen_tomorrow_41_tree
