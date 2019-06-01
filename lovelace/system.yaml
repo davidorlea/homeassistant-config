@@ -1,0 +1,78 @@
+title: System
+path: system
+cards:
+  - type: entities
+    title: Home Assistant
+    show_header_toggle: false
+    entities:
+      - sensor.uptime
+  - type: entities
+    title: Raspberry Pi
+    show_header_toggle: false
+    entities:
+      - sensor.load_1m
+      - sensor.load_5m
+      - sensor.load_15m
+      - sensor.processor_use
+      - sensor.memory_use_percent
+      - sensor.disk_use_percent
+      - sensor.last_boot
+  - type: entities
+    title: Smarty Devices
+    show_header_toggle: false
+    entities:
+      - binary_sensor.outdoor_frontdoor_light_connectivity
+      - sensor.outdoor_frontdoor_light_uptime
+      - sensor.outdoor_frontdoor_light_firmware
+      - sensor.outdoor_frontdoor_light_wifi_ip
+      - sensor.outdoor_frontdoor_light_wifi_rssi
+      - binary_sensor.outdoor_backdoor_light_connectivity
+      - sensor.outdoor_backdoor_light_uptime
+      - sensor.outdoor_backdoor_light_firmware
+      - sensor.outdoor_backdoor_light_wifi_ip
+      - sensor.outdoor_backdoor_light_wifi_rssi
+      - binary_sensor.kitchen_ceiling_light_connectivity
+      - sensor.kitchen_ceiling_light_uptime
+      - sensor.kitchen_ceiling_light_firmware
+      - sensor.kitchen_ceiling_light_wifi_ip
+      - sensor.kitchen_ceiling_light_wifi_rssi
+      - binary_sensor.kitchen_sideboard_light_connectivity
+      - sensor.kitchen_sideboard_light_uptime
+      - sensor.kitchen_sideboard_light_firmware
+      - sensor.kitchen_sideboard_light_wifi_ip
+      - sensor.kitchen_sideboard_light_wifi_rssi
+      - binary_sensor.kitchen_cabinet_light_connectivity
+      - sensor.kitchen_cabinet_light_uptime
+      - sensor.kitchen_cabinet_light_firmware
+      - sensor.kitchen_cabinet_light_wifi_ip
+      - sensor.kitchen_cabinet_light_wifi_rssi
+      - binary_sensor.living_room_ceiling_light_connectivity
+      - sensor.living_room_ceiling_light_uptime
+      - sensor.living_room_ceiling_light_firmware
+      - sensor.living_room_ceiling_light_wifi_ip
+      - sensor.living_room_ceiling_light_wifi_rssi
+      - binary_sensor.living_room_sofa_light_connectivity
+      - sensor.living_room_sofa_light_uptime
+      - sensor.living_room_sofa_light_firmware
+      - sensor.living_room_sofa_light_wifi_ip
+      - sensor.living_room_sofa_light_wifi_rssi
+      - binary_sensor.bedroom_ceiling_light_connectivity
+      - sensor.bedroom_ceiling_light_uptime
+      - sensor.bedroom_ceiling_light_firmware
+      - sensor.bedroom_ceiling_light_wifi_ip
+      - sensor.bedroom_ceiling_light_wifi_rssi
+      - binary_sensor.bedroom_bed_light_connectivity
+      - sensor.bedroom_bed_light_uptime
+      - sensor.bedroom_bed_light_firmware
+      - sensor.bedroom_bed_light_wifi_ip
+      - sensor.bedroom_bed_light_wifi_rssi
+      - binary_sensor.bedroom_ambient_light_connectivity
+      - sensor.bedroom_ambient_light_uptime
+      - sensor.bedroom_ambient_light_firmware
+      - sensor.bedroom_ambient_light_wifi_ip
+      - sensor.bedroom_ambient_light_wifi_rssi
+      - binary_sensor.hall_ceiling_light_connectivity
+      - sensor.hall_ceiling_light_uptime
+      - sensor.hall_ceiling_light_firmware
+      - sensor.hall_ceiling_light_wifi_ip
+      - sensor.hall_ceiling_light_wifi_rssi

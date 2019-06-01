@@ -1,0 +1,26 @@
+title: Home
+icon: mdi:home
+path: home
+cards:
+  - type: entity-button
+    entity: script.bedtime
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        name: Pollen Grass
+        unit: '%'
+        entity: sensor.dwd_pollen_today_41_grass
+        severity:
+          green: 0
+          yellow: 30
+          red: 70
+      - type: gauge
+        name: Pollen Tree
+        unit: '%'
+        entity: sensor.dwd_pollen_today_41_tree
+        severity:
+          green: 0
+          yellow: 30
+          red: 70
+  - type: weather-forecast
+    entity: weather.dark_sky

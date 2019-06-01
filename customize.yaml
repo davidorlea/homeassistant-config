@@ -1,14 +1,3 @@
-group.all_automations:
-  friendly_name: 'All Automations'
-group.all_devices:
-  friendly_name: 'All Devices'
-group.all_input_booleans:
-  friendly_name: 'All Input Booleans'
-group.all_scenes:
-  friendly_name: 'All Scenes'
-group.all_scripts:
-  friendly_name: 'All Scripts'
-
 light.outdoor_frontdoor_light:
   icon: mdi:spotlight-beam
 light.outdoor_backdoor_light:

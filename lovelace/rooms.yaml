@@ -1,0 +1,34 @@
+title: Rooms
+path: rooms
+cards:
+  - type: entities
+    title: Outdoor
+    show_header_toggle: true
+    entities:
+      - light.outdoor_frontdoor_light
+      - light.outdoor_backdoor_light
+  - type: entities
+    title: Kitchen
+    show_header_toggle: true
+    entities:
+      - light.kitchen_ceiling_light
+      - light.kitchen_sideboard_light
+      - light.kitchen_cabinet_light
+  - type: entities
+    title: Living Room
+    show_header_toggle: true
+    entities:
+      - light.living_room_ceiling_light
+      - light.living_room_sofa_light
+  - type: entities
+    title: Bedroom
+    show_header_toggle: true
+    entities:
+      - light.bedroom_ceiling_light
+      - light.bedroom_bed_light
+      - light.bedroom_ambient_light
+  - type: entities
+    title: Hall
+    show_header_toggle: true
+    entities:
+      - light.hall_ceiling_light

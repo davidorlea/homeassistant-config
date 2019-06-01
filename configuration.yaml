@@ -21,6 +21,9 @@ logger:
 
 frontend:
 
+lovelace:
+  mode: yaml
+
 map:
 
 config:
