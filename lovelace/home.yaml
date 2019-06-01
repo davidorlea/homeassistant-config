@@ -3,7 +3,6 @@ icon: mdi:home
 path: home
 cards:
   - type: entity-button
-    name: Turn Off Lights
     entity: script.bedtime
   - type: horizontal-stack
     cards:
