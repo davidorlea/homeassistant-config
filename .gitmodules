@@ -1,3 +1,3 @@
 [submodule "custom_components/dwd_pollen"]
 	path = custom_components/dwd_pollen
-	url = git@github.com:marcschumacher/dwd_pollen.git
+	url = https://github.com/marcschumacher/dwd_pollen.git
