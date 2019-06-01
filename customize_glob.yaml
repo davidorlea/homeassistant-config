@@ -2,9 +2,6 @@
   device_class: connectivity
   icon: mdi:wifi
 
-"group.all_*":
-  hidden: false
-
 "media_player.sonos_device_*":
   hidden: true
 
