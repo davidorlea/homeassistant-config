@@ -2,8 +2,32 @@ title: Home
 icon: mdi:home
 path: home
 cards:
-  - type: entity-button
-    entity: script.bedtime
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: script.bedtime
+        icon: mdi:bed-empty
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.bedtime
+      - type: entity-button
+        entity: script.dogbark
+        icon: mdi:dog-side
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.dogbark
+      - type: entity-button
+        entity: script.alarm
+        icon: mdi:alarm-light
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.alarm
   - type: horizontal-stack
     cards:
       - type: gauge
