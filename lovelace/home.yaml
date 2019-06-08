@@ -6,6 +6,7 @@ cards:
     cards:
       - type: entity-button
         entity: script.bedtime
+        name: Bedtime
         icon: mdi:bed-empty
         tap_action:
           action: call-service
@@ -14,6 +15,7 @@ cards:
             entity_id: script.bedtime
       - type: entity-button
         entity: script.dogbark
+        name: Dog bark
         icon: mdi:dog-side
         tap_action:
           action: call-service
@@ -22,6 +24,7 @@ cards:
             entity_id: script.dogbark
       - type: entity-button
         entity: script.alarm
+        name: Alarm
         icon: mdi:alarm-light
         tap_action:
           action: call-service
