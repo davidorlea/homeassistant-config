@@ -57,7 +57,7 @@ sensor.dwd_pollen_tomorrow_41_grass:
   friendly_name: 'DWD Pollen Grass Tomorrow'
 sensor.dwd_pollen_tomorrow_41_tree:
   friendly_name: 'DWD Pollen Tree Tomorrow'
-sensor.period_of_day:
-  friendly_name: 'Period of Day'
 sensor.last_boot:
   friendly_name: 'Uptime'
+sensor.period_of_day:
+  friendly_name: 'Period of Day'
