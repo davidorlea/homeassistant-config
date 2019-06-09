@@ -31,6 +31,12 @@ cards:
           service: script.turn_on
           service_data:
             entity_id: script.alarm
+  - type: entities
+    title: Travel
+    show_header_toggle: false
+    entities:
+      - sensor.next_bus_time
+      - sensor.next_bus_destination
   - type: horizontal-stack
     cards:
       - type: gauge
