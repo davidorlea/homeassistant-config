@@ -90,6 +90,7 @@ recorder:
       - script.occupancy_simulation_start
       - script.occupancy_simulation_stop
       - script.occupancy_simulation_loop
+      - sensor.aseag_next_bus_100621_1
       - sensor.period_of_day
       - sensor.moon
       - sensor.load_1m

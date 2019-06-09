@@ -1,0 +1,28 @@
+- platform: aseag_next_bus
+  stop_id: 100621
+  direction_id: 1
+
+- platform: template
+  sensors:
+    next_bus_time:
+      unit_of_measurement: min
+      value_template: >
+        {% set state = states("sensor.aseag_next_bus_100621_1") %}
+        {% if state != "unknown" %}
+          {{ ((as_timestamp(state) - as_timestamp(now())) / 60) | int }}
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:bus-clock
+    next_bus_destination:
+      value_template: >
+        {% set destination = state_attr('sensor.aseag_next_bus_100621_1', 'destination') %}
+        {% set line = state_attr('sensor.aseag_next_bus_100621_1', 'line') %}
+        {% if destination != None and line != None %}
+          {{ destination }} ({{ line }})
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:bus-clock
