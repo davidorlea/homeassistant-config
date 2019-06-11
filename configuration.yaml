@@ -40,94 +40,11 @@ http:
 updater:
   reporting: false
 
-influxdb:
-  host: !secret influxdb_host
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  database: !secret influxdb_database
-  include:
-    entities:
-      - sensor.dark_sky_humidity
-      - sensor.dark_sky_ozone
-      - sensor.dark_sky_pressure
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_visibility
-      - sensor.dark_sky_wind_bearing
-      - sensor.dark_sky_wind_speed
-      - sensor.dwd_pollen_today_41_ambrosia
-      - sensor.dwd_pollen_today_41_grass
-      - sensor.dwd_pollen_today_41_tree
-  component_config:
-    sensor.dark_sky_humidity:
-      override_measurement: 'sensor.dark_sky_humidity'
-    sensor.dark_sky_ozone:
-      override_measurement: 'sensor.dark_sky_ozone'
-    sensor.dark_sky_pressure:
-      override_measurement: 'sensor.dark_sky_pressure'
-    sensor.dark_sky_temperature:
-      override_measurement: 'sensor.dark_sky_temperature'
-    sensor.dark_sky_visibility:
-      override_measurement: 'sensor.dark_sky_visibility'
-    sensor.dark_sky_wind_bearing:
-      override_measurement: 'sensor.dark_sky_wind_bearing'
-    sensor.dark_sky_wind_speed:
-      override_measurement: 'sensor.dark_sky_wind_speed'
-    sensor.dwd_pollen_today_41_ambrosia:
-      override_measurement: 'sensor.dwd_pollen_today_41_ambrosia'
-    sensor.dwd_pollen_today_41_grass:
-      override_measurement: 'sensor.dwd_pollen_today_41_grass'
-    sensor.dwd_pollen_today_41_tree:
-      override_measurement: 'sensor.dwd_pollen_today_41_tree'
+influxdb: !include influxdb.yaml
 
-recorder:
-  db_url: !secret recorder_db_url
-  include:
-    domains:
-      - automation
-      - device_tracker
-      - input_boolean
-      - light
-      - person
-      - scene
-      - script
-      - sun
-    entities:
-      - binary_sensor.bedroom_ambient_light_connectivity
-      - binary_sensor.bedroom_bed_light_connectivity
-      - binary_sensor.bedroom_ceiling_light_connectivity
-      - binary_sensor.hall_ceiling_light_connectivity
-      - binary_sensor.kitchen_cabinet_light_connectivity
-      - binary_sensor.kitchen_ceiling_light_connectivity
-      - binary_sensor.kitchen_sideboard_light_connectivity
-      - binary_sensor.living_room_ceiling_light_connectivity
-      - binary_sensor.living_room_sofa_light_connectivity
-      - binary_sensor.outdoor_backdoor_light_connectivity
-      - binary_sensor.outdoor_frontdoor_light_connectivity
-      - sensor.davids_iphone_xs_battery_state
-      - sensor.davids_iphone_xs_battery_level
-      - sensor.dark_sky_condition
-      - sensor.dark_sky_humidity
-      - sensor.dark_sky_ozone
-      - sensor.dark_sky_pressure
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_visibility
-      - sensor.dark_sky_wind_bearing
-      - sensor.dark_sky_wind_speed
-      - sensor.dwd_pollen_today_41_ambrosia
-      - sensor.dwd_pollen_today_41_grass
-      - sensor.dwd_pollen_today_41_tree
-      - sensor.period_of_day
-  exclude:
-    entities:
-      - script.occupancy_simulation_start
-      - script.occupancy_simulation_stop
-      - script.occupancy_simulation_loop
+recorder: !include recorder.yaml
 
-history:
-  exclude:
-    domains:
-      - automation
-      - script
+history: !include history.yaml
 
 logbook:
 

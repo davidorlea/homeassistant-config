@@ -1,0 +1,4 @@
+exclude:
+  domains:
+    - automation
+    - script
