@@ -34,6 +34,7 @@ include:
     - sensor.dwd_pollen_today_41_ambrosia
     - sensor.dwd_pollen_today_41_grass
     - sensor.dwd_pollen_today_41_tree
+    - sensor.moon
     - sensor.period_of_day
 exclude:
   entities:
