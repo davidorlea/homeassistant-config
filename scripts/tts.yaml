@@ -1,5 +1,5 @@
-ttstest:
-  alias: Test the TTS
+tts_test:
+  alias: "TTS Test"
   sequence:
     - service: script.sonos_say
       data_template:
