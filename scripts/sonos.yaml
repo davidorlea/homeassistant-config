@@ -1,5 +1,5 @@
 sonos_play:
-  alias: "Sonos Play Script"
+  alias: Sonos Play
   sequence:
     - service: sonos.snapshot
       data:
@@ -34,7 +34,7 @@ sonos_play:
           - media_player.sonos_device_kuche
 
 sonos_say:
-  alias: "Sonos TTS Script"
+  alias: Sonos Say
   sequence:
     - service: sonos.snapshot
       data:
