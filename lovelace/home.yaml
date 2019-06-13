@@ -37,6 +37,7 @@ cards:
     entities:
       - sensor.next_bus_time
       - sensor.next_bus_destination
+      - script.next_bus
   - type: horizontal-stack
     cards:
       - type: gauge

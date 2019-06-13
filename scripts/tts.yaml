@@ -6,3 +6,31 @@ tts_test:
         sonos_say_volume: '0.4'
         sonos_say_message: 'Hallo, das ist ein Test.'
         sonos_say_delay: '00:00:03'
+
+tts_watch_the_next_bus:
+  alias: "TTS Watch the Next Bus"
+  sequence:
+    - service: script.sonos_say
+      data_template:
+        sonos_say_volume: '0.4'
+        sonos_say_message: 'Ich werde dich nun über den nächsten Bus informieren.'
+        sonos_say_delay: '00:00:06'
+
+tts_time_to_next_bus:
+  alias: "TTS Time to Next Bus"
+  sequence:
+    - service: script.sonos_say
+      data_template:
+        sonos_say_volume: '0.4'
+        sonos_say_message: >-
+          {% set state = states("sensor.next_bus_time") | int(-1) %}
+          {% if state >= 2 %}
+            Der nächste Bus fährt in {{ state }} Minuten ab.
+          {% elif state == 1 %}
+            Der nächste Bus fährt in einer Minute ab.
+          {% elif state == 0 %}
+            Der nächste Bus fährt jeden Moment ab.
+          {% else %}
+            Über den nächsten Bus ist nichts bekannt.
+          {% endif %}
+        sonos_say_delay: '00:00:05'

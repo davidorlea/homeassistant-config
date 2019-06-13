@@ -21,6 +21,10 @@ light.bedroom_ambient_light:
 light.hall_ceiling_light:
   icon: mdi:ceiling-light
 
+script.next_bus:
+  icon: mdi:voice
+  can_cancel: false
+
 sensor.dark_sky_condition:
   friendly_name: 'DS Condition'
   icon: mdi:earth
