@@ -8,6 +8,8 @@ cards:
       - sensor.period_of_day
       - sun.sun
       - sensor.moon
+      - sensor.date
+      - sensor.time
   - type: entities
     title: Meteorology
     show_header_toggle: false
