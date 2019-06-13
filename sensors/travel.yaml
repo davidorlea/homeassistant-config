@@ -6,6 +6,9 @@
   sensors:
     next_bus_time:
       unit_of_measurement: min
+      entity_id:
+        - sensor.aseag_next_bus_100621_1
+        - sensor.time
       value_template: >
         {% set state = states("sensor.aseag_next_bus_100621_1") %}
         {% if state != "unknown" %}
@@ -16,6 +19,9 @@
       icon_template: >-
         mdi:bus-clock
     next_bus_destination:
+      entity_id:
+        - sensor.aseag_next_bus_100621_1
+        - sensor.time
       value_template: >
         {% set destination = state_attr('sensor.aseag_next_bus_100621_1', 'destination') %}
         {% set line = state_attr('sensor.aseag_next_bus_100621_1', 'line') %}
