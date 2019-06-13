@@ -30,7 +30,7 @@
     - service: script.sonos_say
       data_template:
         sonos_say_volume: '0.3'
-        sonos_say_message: >
+        sonos_say_message: >-
           {{ [
           "Einen guten Morgen David!",
           "Guten Morgen David!",

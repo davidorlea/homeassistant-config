@@ -9,7 +9,7 @@
       entity_id:
         - sensor.aseag_next_bus_100621_1
         - sensor.time
-      value_template: >
+      value_template: >-
         {% set state = states("sensor.aseag_next_bus_100621_1") %}
         {% if state != "unknown" %}
           {{ ((as_timestamp(state) - as_timestamp(now())) / 60) | int }}
@@ -22,7 +22,7 @@
       entity_id:
         - sensor.aseag_next_bus_100621_1
         - sensor.time
-      value_template: >
+      value_template: >-
         {% set destination = state_attr('sensor.aseag_next_bus_100621_1', 'destination') %}
         {% set line = state_attr('sensor.aseag_next_bus_100621_1', 'line') %}
         {% if destination != None and line != None %}
