@@ -5,14 +5,14 @@ cards:
   - type: horizontal-stack
     cards:
       - type: entity-button
-        entity: script.bedtime
-        name: Bedtime
-        icon: mdi:bed-empty
+        entity: script.tts_weather
+        name: Weather
+        icon: mdi:weather-partlycloudy
         tap_action:
           action: call-service
           service: script.turn_on
           service_data:
-            entity_id: script.bedtime
+            entity_id: script.tts_weather
       - type: entity-button
         entity: script.dogbark
         name: Dog bark
@@ -23,14 +23,14 @@ cards:
           service_data:
             entity_id: script.dogbark
       - type: entity-button
-        entity: script.alarm
-        name: Alarm
-        icon: mdi:alarm-light
+        entity: script.bedtime
+        name: Bedtime
+        icon: mdi:bed-empty
         tap_action:
           action: call-service
           service: script.turn_on
           service_data:
-            entity_id: script.alarm
+            entity_id: script.bedtime
   - type: entities
     title: Travel
     show_header_toggle: false

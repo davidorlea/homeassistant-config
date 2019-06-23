@@ -28,3 +28,41 @@ tts_time_to_next_bus:
           {% else %}
             Über den nächsten Bus ist nichts bekannt.
           {% endif %}
+
+tts_weather:
+  alias: "TTS Weather"
+  sequence:
+    - service: script.sonos_say
+      data_template:
+        sonos_say_message: >-
+          {% if states.weather.dark_sky.state == 'cloudy' %}
+            Aktuell ist es bewölkt
+          {% elif states.weather.dark_sky.state == 'fog' %}
+            Aktuell ist es nebelig
+          {% elif states.weather.dark_sky.state == 'hail' %}
+            Aktuell hagelt es
+          {% elif states.weather.dark_sky.state == 'lightning' %}
+            Aktuell gewittert es
+          {% elif states.weather.dark_sky.state == 'lightning-rainy' %}
+            Aktuell gewittert es
+          {% elif states.weather.dark_sky.state == 'partlycloudy' %}
+            Aktuell ist es teilweise bewölkt
+          {% elif states.weather.dark_sky.state == 'pouring' %}
+            Aktuell is es regnerisch
+          {% elif states.weather.dark_sky.state == 'rainy' %}
+            Aktuell is es regnerisch
+          {% elif states.weather.dark_sky.state == 'snowy' %}
+            Aktuell schneit es
+          {% elif states.weather.dark_sky.state == 'snowy-rainy' %}
+            Aktuell schneit es
+          {% elif states.weather.dark_sky.state == 'sunny' %}
+            Aktuell ist es sonnig
+          {% elif states.weather.dark_sky.state == 'windy' %}
+            Aktuell ist es windig
+          {% elif states.weather.dark_sky.state == 'windy-variant' %}
+            Aktuell ist es windig
+          {% endif %}
+          und die Temperaturen liegen bei {{ states.weather.dark_sky.attributes.temperature | int }} Grad. Tagsüber
+          erreichen sie heute Höchstwerte um {{ states.weather.dark_sky.attributes.forecast[0].temperature | int }} Grad
+          und nachts sinken sie auf Tiefstwerte um {{ states.weather.dark_sky.attributes.forecast[0].templow | int }}
+          Grad.
