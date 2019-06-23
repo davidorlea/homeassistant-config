@@ -20,13 +20,23 @@ sonos_play:
         entity_id:
           - media_player.sonos_device_wohnzimmer
           - media_player.sonos_device_kuche
-        volume_level: '{{ sonos_play_volume }}'
+        volume_level: '{{ sonos_play_volume | default(0.4) }}'
     - service: media_player.play_media
       data_template:
         entity_id: media_player.sonos_device_wohnzimmer
         media_content_id: '{{ sonos_play_media_id }}'
         media_content_type: '{{ sonos_play_media_type }}'
-    - delay: '{{ sonos_play_delay }}'
+    - delay:
+        seconds: 1
+    - delay: >-
+        {% set duration = states.media_player.sonos_device_wohnzimmer.attributes.media_duration %}
+        {% if duration > 0 %}
+          {% set duration = duration - 1 %}
+        {% endif %}
+        {% set seconds = (duration % 60) %}
+        {% set minutes = (duration / 60) | int % 60 %}
+        {% set hours = (duration / 3600) | int %}
+        {{ [hours, minutes, seconds] | join(':') }}
     - service: sonos.restore
       data:
         entity_id:
@@ -55,12 +65,22 @@ sonos_say:
         entity_id:
           - media_player.sonos_device_wohnzimmer
           - media_player.sonos_device_kuche
-        volume_level: '{{ sonos_say_volume }}'
+        volume_level: '{{ sonos_say_volume | default(0.4) }}'
     - service: tts.google_translate_say
       data_template:
         entity_id: media_player.sonos_device_wohnzimmer
         message: '{{ sonos_say_message }}'
-    - delay: '{{ sonos_say_delay }}'
+    - delay:
+        seconds: 1
+    - delay: >-
+        {% set duration = states.media_player.sonos_device_wohnzimmer.attributes.media_duration %}
+        {% if duration > 0 %}
+          {% set duration = duration - 1 %}
+        {% endif %}
+        {% set seconds = (duration % 60) %}
+        {% set minutes = (duration / 60) | int % 60 %}
+        {% set hours = (duration / 3600) | int %}
+        {{ [hours, minutes, seconds] | join(':') }}
     - service: sonos.restore
       data:
         entity_id:
