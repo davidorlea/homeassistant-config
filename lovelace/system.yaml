@@ -18,6 +18,13 @@ cards:
       - sensor.disk_use_percent
       - sensor.last_boot
   - type: entities
+    title: Internet
+    show_header_toggle: false
+    entities:
+      - sensor.fritz_netmonitor
+      - sensor.fritz_bytes_received
+      - sensor.fritz_bytes_sent
+  - type: entities
     title: Smarty Devices
     show_header_toggle: false
     entities:

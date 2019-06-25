@@ -10,3 +10,15 @@
     - type: disk_use_percent
       arg: /
     - type: last_boot
+
+- platform: fritzbox_netmonitor
+
+- platform: template
+  sensors:
+    fritz_bytes_received:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_received | filesizeformat }}'
+      icon_template: mdi:download-network
+    fritz_bytes_sent:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
+      icon_template: mdi:upload-network
+

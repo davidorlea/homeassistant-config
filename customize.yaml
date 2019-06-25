@@ -61,6 +61,12 @@ sensor.dwd_pollen_tomorrow_41_grass:
   friendly_name: 'DWD Pollen Grass Tomorrow'
 sensor.dwd_pollen_tomorrow_41_tree:
   friendly_name: 'DWD Pollen Tree Tomorrow'
+sensor.fritz_netmonitor:
+  friendly_name: 'Fritz!Box'
+sensor.fritz_bytes_received:
+  friendly_name: 'Received'
+sensor.fritz_bytes_sent:
+  friendly_name: 'Sent'
 sensor.last_boot:
   friendly_name: 'Uptime'
 sensor.next_bus_destination:
