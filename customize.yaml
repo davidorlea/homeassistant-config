@@ -63,10 +63,18 @@ sensor.dwd_pollen_tomorrow_41_tree:
   friendly_name: 'DWD Pollen Tree Tomorrow'
 sensor.fritz_netmonitor:
   friendly_name: 'Fritz!Box'
+sensor.fritz_last_reconnect:
+  friendly_name: 'Last Reconnect'
+sensor.fritz_external_ip:
+  friendly_name: 'External IP Address'
 sensor.fritz_bytes_received:
-  friendly_name: 'Received'
+  friendly_name: 'Total Bytes Received'
 sensor.fritz_bytes_sent:
-  friendly_name: 'Sent'
+  friendly_name: 'Total Bytes Sent'
+sensor.fritz_transmission_rate_down:
+  friendly_name: 'Transmission Rate Down'
+sensor.fritz_transmission_rate_up:
+  friendly_name: 'Transmission Rate Up'
 sensor.last_boot:
   friendly_name: 'Uptime'
 sensor.next_bus_destination:

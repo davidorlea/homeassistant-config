@@ -15,10 +15,23 @@
 
 - platform: template
   sensors:
+    fritz_last_reconnect:
+      value_template: '{{ (as_timestamp(now()) - states.sensor.fritz_netmonitor.attributes.uptime) | timestamp_local }}'
+      icon_template: mdi:clock
+      device_class: timestamp
+    fritz_external_ip:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.external_ip }}'
+      icon_template: mdi:wan
     fritz_bytes_received:
       value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_received | filesizeformat }}'
       icon_template: mdi:download-network
     fritz_bytes_sent:
       value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
+      icon_template: mdi:upload-network
+    fritz_transmission_rate_down:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.transmission_rate_down | filesizeformat }}'
+      icon_template: mdi:download-network
+    fritz_transmission_rate_up:
+      value_template: '{{ states.sensor.fritz_netmonitor.attributes.transmission_rate_up | filesizeformat}}'
       icon_template: mdi:upload-network
 
