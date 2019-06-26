@@ -34,4 +34,3 @@
     fritz_transmission_rate_up:
       value_template: '{{ states.sensor.fritz_netmonitor.attributes.transmission_rate_up | filesizeformat}}'
       icon_template: mdi:upload-network
-
