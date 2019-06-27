@@ -5,7 +5,7 @@
 "media_player.sonos_device_*":
   hidden: true
 
-"sensor.*_uptime":
+"sensor.*_last_boot":
   icon: mdi:clock
 "sensor.*_firmware":
   icon: mdi:settings
