@@ -2,7 +2,8 @@
   state_topic: 'smarty/esp8266-377332/$system'
   name: 'Outdoor Frontdoor Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-377332/$system'
   name: 'Outdoor Frontdoor Light Firmware'
@@ -24,7 +25,8 @@
   state_topic: 'smarty/esp8266-3dbc1d/$system'
   name: 'Outdoor Backdoor Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-3dbc1d/$system'
   name: 'Outdoor Backdoor Light Firmware'
@@ -46,7 +48,8 @@
   state_topic: 'smarty/esp8266-376566/$system'
   name: 'Kitchen Ceiling Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-376566/$system'
   name: 'Kitchen Ceiling Light Firmware'
@@ -68,7 +71,8 @@
   state_topic: 'smarty/esp8266-9541f4/$system'
   name: 'Kitchen Sideboard Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-9541f4/$system'
   name: 'Kitchen Sideboard Light Firmware'
@@ -90,7 +94,8 @@
   state_topic: 'smarty/esp8266-f94d00/$system'
   name: 'Kitchen Cabinet Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-f94d00/$system'
   name: 'Kitchen Cabinet Light Firmware'
@@ -112,7 +117,8 @@
   state_topic: 'smarty/esp8266-826269/$system'
   name: 'Living Room Ceiling Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-826269/$system'
   name: 'Living Room Ceiling Light Firmware'
@@ -134,7 +140,8 @@
   state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-afc031/$system'
   name: 'Living Room Sofa Light Firmware'
@@ -156,7 +163,8 @@
   state_topic: 'smarty/esp8266-3e7098/$system'
   name: 'Bedroom Ceiling Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-3e7098/$system'
   name: 'Bedroom Ceiling Light Firmware'
@@ -178,7 +186,8 @@
   state_topic: 'smarty/esp8266-95791a/$system'
   name: 'Bedroom Bed Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-95791a/$system'
   name: 'Bedroom Bed Light Firmware'
@@ -200,7 +209,8 @@
   state_topic: 'smarty/esp8266-95d69b/$system'
   name: 'Bedroom Ambient Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-95d69b/$system'
   name: 'Bedroom Ambient Light Firmware'
@@ -222,7 +232,8 @@
   state_topic: 'smarty/esp8266-121bb3/$system'
   name: 'Hall Ceiling Light Uptime'
   expire_after: '660'
-  value_template: '{{now().replace(tzinfo=None) - now().fromtimestamp(as_timestamp(now()) - float(value_json.uptime)) }}'
+  value_template: "{{ (as_timestamp(now()) - value_json.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+  device_class: timestamp
 - platform: mqtt
   state_topic: 'smarty/esp8266-121bb3/$system'
   name: 'Hall Ceiling Light Firmware'

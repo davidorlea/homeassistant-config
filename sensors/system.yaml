@@ -16,7 +16,7 @@
 - platform: template
   sensors:
     fritz_last_reconnect:
-      value_template: '{{ (as_timestamp(now()) - states.sensor.fritz_netmonitor.attributes.uptime) | timestamp_local }}'
+      value_template: "{{ (as_timestamp(now()) - states.sensor.fritz_netmonitor.attributes.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
       icon_template: mdi:clock
       device_class: timestamp
     fritz_external_ip:
