@@ -1,4 +1,5 @@
 - platform: uptime
+  unit_of_measurement: minutes
 
 - platform: systemmonitor
   resources:
@@ -12,6 +13,13 @@
     - type: last_boot
 
 - platform: fritzbox_netmonitor
+
+- platform: template
+  sensors:
+    hass_last_boot:
+      value_template: "{{ (as_timestamp(now()) - (states.sensor.uptime.state | float * 60) ) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+      icon_template: mdi:clock
+      device_class: timestamp
 
 - platform: template
   sensors:
