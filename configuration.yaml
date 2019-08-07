@@ -60,11 +60,14 @@ person:
 sun:
 
 tts:
-  platform: google_translate
-  cache: true
-  cache_dir: /tmp/tts
-  time_memory: 300
-  language: 'de'
+  - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    language: 'de'
+  - platform: google_cloud
+    key_file: googlecloud.json
+    voice: de-DE-Wavenet-B
 
 zone:
   name: Home
