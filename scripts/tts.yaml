@@ -35,34 +35,112 @@ tts_weather:
     - service: script.sonos_say
       data_template:
         sonos_say_message: >-
+          Aktuell
           {% if states.weather.dark_sky.state == 'cloudy' %}
-            Aktuell ist es bewölkt
+            ist es bewölkt
           {% elif states.weather.dark_sky.state == 'fog' %}
-            Aktuell ist es nebelig
+            ist es nebelig
           {% elif states.weather.dark_sky.state == 'hail' %}
-            Aktuell hagelt es
+            hagelt es
           {% elif states.weather.dark_sky.state == 'lightning' %}
-            Aktuell gewittert es
+            gewittert es
           {% elif states.weather.dark_sky.state == 'lightning-rainy' %}
-            Aktuell gewittert es
+            gewittert und regnet es
           {% elif states.weather.dark_sky.state == 'partlycloudy' %}
-            Aktuell ist es teilweise bewölkt
+            ist es teilweise bewölkt
           {% elif states.weather.dark_sky.state == 'pouring' %}
-            Aktuell is es regnerisch
+            regnet es stark
           {% elif states.weather.dark_sky.state == 'rainy' %}
-            Aktuell is es regnerisch
+            is es regnerisch
           {% elif states.weather.dark_sky.state == 'snowy' %}
-            Aktuell schneit es
+            schneit es
           {% elif states.weather.dark_sky.state == 'snowy-rainy' %}
-            Aktuell schneit es
+            schneit es
           {% elif states.weather.dark_sky.state == 'sunny' %}
-            Aktuell ist es sonnig
+            ist es sonnig
           {% elif states.weather.dark_sky.state == 'windy' %}
-            Aktuell ist es windig
+            ist es windig
           {% elif states.weather.dark_sky.state == 'windy-variant' %}
-            Aktuell ist es windig
+            ist es windig
           {% endif %}
           und die Temperaturen liegen bei {{ states.weather.dark_sky.attributes.temperature | int }} Grad. Tagsüber
           erreichen sie heute Höchstwerte um {{ states.weather.dark_sky.attributes.forecast[0].temperature | int }} Grad
           und nachts sinken sie auf Tiefstwerte um {{ states.weather.dark_sky.attributes.forecast[0].templow | int }}
-          Grad.
+          Grad. Der Wind weht dabei
+          {% if states.weather.dark_sky.attributes.wind_speed >= 117 %}
+            orkanartig
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 102 %}
+            orkanartig
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 88 %}
+            schwer
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 74 %}
+            stürmisch bis schwer
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 61 %}
+            stürmisch
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 49 %}
+            stark bis stürmisch
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 38 %}
+            stark
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 28 %}
+            mäßig bis stark
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 19 %}
+            mäßig
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 11 %}
+            schwach
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 5 %}
+            leicht bis schwach
+          {% elif states.weather.dark_sky.attributes.wind_speed >= 0 %}
+            leicht
+          {% endif %}
+          aus
+          {% if states.weather.dark_sky.attributes.wind_bearing >= 337.5 %}
+            nördlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 292.5 %}
+            nordwestlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 247.5 %}
+            westlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 202.5 %}
+            südwestlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 157.5 %}
+            südlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 112.5 %}
+            südöstlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 67.5 %}
+            östlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 22.5 %}
+            nördöstlicher
+          {% elif states.weather.dark_sky.attributes.wind_bearing >= 0 %}
+            nördlicher
+          {% endif %}
+          Richtung. Der Pollenflug ist heute für Gräser
+          {% if states.sensor.dwd_pollen_today_41_grass.state | int == 0 %}
+            unauffällig
+          {% elif states.sensor.dwd_pollen_today_41_grass.state | int == 17 %}
+            unauffällig bis gering
+          {% elif states.sensor.dwd_pollen_today_41_grass.state | int == 33 %}
+            gering
+          {% elif states.sensor.dwd_pollen_today_41_grass.state | int == 50 %}
+            gering bis mittel
+          {% elif states.sensor.dwd_pollen_today_41_grass.state | int == 67 %}
+            mittel
+          {% elif states.sensor.dwd_pollen_today_41_grass.state | int == 83 %}
+            mittel bis hoch
+          {% elif states.sensor.dwd_pollen_today_41_grass.state | int == 100 %}
+            hoch
+          {% endif %}
+          und für Bäume
+          {% if states.sensor.dwd_pollen_today_41_tree.state | int == 0 %}
+            unauffällig.
+          {% elif states.sensor.dwd_pollen_today_41_tree.state | int == 17 %}
+            unauffällig bis gering.
+          {% elif states.sensor.dwd_pollen_today_41_tree.state | int == 33 %}
+            gering.
+          {% elif states.sensor.dwd_pollen_today_41_tree.state | int == 50 %}
+            gering bis mittel.
+          {% elif states.sensor.dwd_pollen_today_41_tree.state | int == 67 %}
+            mittel.
+          {% elif states.sensor.dwd_pollen_today_41_tree.state | int == 83 %}
+            mittel bis hoch.
+          {% elif states.sensor.dwd_pollen_today_41_tree.state | int == 100 %}
+            hoch.
+          {% endif %}
