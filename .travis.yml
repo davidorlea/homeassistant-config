@@ -8,5 +8,6 @@ before_install:
   - mv secrets_dummy.yaml secrets.yaml
 install:
   - pip3 install homeassistant==$HASS
+  - pip3 install google-cloud-texttospeech==0.4.0
 script:
   - hass -c . --script check_config
