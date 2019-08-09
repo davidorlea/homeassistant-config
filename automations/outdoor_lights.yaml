@@ -9,10 +9,14 @@
       data:
         entity_id: group.outdoor_lights
 
-- alias: 'Turn Outdoor Lights off in the Night'
+- alias: 'Turn Outdoor Lights off in the Night when Away'
   trigger:
     platform: time
     at: '00:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.away_mode
+    state: 'on'
   action:
     - delay: '00:{{ (range(0, 60) | random) }}:00'
     - service: light.turn_off
