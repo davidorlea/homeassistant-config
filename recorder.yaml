@@ -8,7 +8,6 @@ include:
     - person
     - scene
     - script
-    - sun
   entities:
     - binary_sensor.bedroom_ambient_light_connectivity
     - binary_sensor.bedroom_bed_light_connectivity
