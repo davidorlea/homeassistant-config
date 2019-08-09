@@ -1,8 +1,8 @@
 - alias: 'Start Occupancy Simulation at Sunset'
   trigger:
-    platform: sun
-    event: sunset
-    offset: '-02:00:00'
+    platform: state
+    entity_id: sensor.period_of_day
+    to: 'Sunset'
   condition:
     condition: state
     entity_id: input_boolean.away_mode
@@ -21,9 +21,8 @@
   condition:
     condition: or
     conditions:
-      - condition: sun
-        after: sunset
-        after_offset: '-02:00:00'
+      - condition: template
+        value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
       - condition: time
         before: '01:00:00'
   action:
@@ -53,9 +52,8 @@
   condition:
     condition: or
     conditions:
-      - condition: sun
-        after: sunset
-        after_offset: '-02:00:00'
+      - condition: template
+        value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
       - condition: time
         before: '01:00:00'
   action:
