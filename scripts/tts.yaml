@@ -51,7 +51,7 @@ tts_weather:
           {% elif states.weather.dark_sky.state == 'pouring' %}
             regnet es stark
           {% elif states.weather.dark_sky.state == 'rainy' %}
-            is es regnerisch
+            ist es regnerisch
           {% elif states.weather.dark_sky.state == 'snowy' %}
             schneit es
           {% elif states.weather.dark_sky.state == 'snowy-rainy' %}
