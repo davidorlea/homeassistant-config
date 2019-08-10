@@ -46,7 +46,7 @@ recorder: !include recorder.yaml
 
 history: !include history.yaml
 
-logbook:
+logbook: !include logbook.yaml
 
 system_health:
 
