@@ -1,0 +1,13 @@
+- alias: 'Alarm'
+  trigger:
+    platform: mqtt
+    topic: 'smarty/+/button1'
+  condition:
+    condition: state
+    entity_id: input_boolean.away_mode
+    state: 'on'
+  action:
+    service: notify.ios_davids_iphone_xs
+    data:
+      title: "Smart Home Alerts"
+      message: "Something happened at home!"
