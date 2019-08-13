@@ -12,6 +12,8 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.away_mode
+    - delay:
+        seconds: 5
     - service: scene.turn_on
       data:
         entity_id: scene.arrive_home_at_day
@@ -29,6 +31,8 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.away_mode
+    - delay:
+        seconds: 5
     - service: scene.turn_on
       data:
         entity_id: scene.arrive_home_at_night
@@ -47,6 +51,8 @@
     - service: scene.turn_on
       data:
         entity_id: scene.leave_home_at_day
+    - delay:
+        seconds: 5
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.away_mode
@@ -64,6 +70,8 @@
     - service: scene.turn_on
       data:
         entity_id: scene.leave_home_at_night
+    - delay:
+        seconds: 5
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.away_mode
