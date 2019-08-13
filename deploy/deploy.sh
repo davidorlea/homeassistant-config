@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 <all | automations | groups | scripts> [--skip-upload | --skip-reload]"
+    echo "Usage: $0 <all | automations | groups | scenes | scripts> [--skip-upload | --skip-reload]"
     exit 1
 fi
 
@@ -57,6 +57,18 @@ case "$1" in
             echo "done."
         fi
         ;;
+    "scenes" )
+        if [ "$2" != "--skip-upload" ]; then
+            echo -n "Uploading scenes... "
+            rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf scenes.yaml "$HASS_SSH_URL"
+            echo "done."
+        fi
+        if [ "$2" != "--skip-reload" ]; then
+            echo -n "Reloading scenes... "
+            curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/services/scene/reload
+            echo "done."
+        fi
+        ;;
     "scripts" )
         if [ "$2" != "--skip-upload" ]; then
             echo -n "Uploading scripts... "
@@ -70,7 +82,7 @@ case "$1" in
         fi
         ;;
     *)
-        echo "Usage: $0 <all | automations | groups | scripts> [--skip-upload | --skip-reload]"
+        echo "Usage: $0 <all | automations | groups | scenes | scripts> [--skip-upload | --skip-reload]"
         exit 1
         ;;
 esac
