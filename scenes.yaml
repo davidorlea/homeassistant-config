@@ -22,11 +22,13 @@
 
 - name: Arrive Home at Day
   entities:
+    light.kitchen_ceiling_light: on
     light.living_room_ceiling_light: on
     light.hall_ceiling_light: on
 
 - name: Arrive Home at Night
   entities:
+    light.kitchen_cabinet_light: on
     light.kitchen_sideboard_light: on
     light.living_room_sofa_light: on
     light.hall_ceiling_light: on
@@ -44,10 +46,10 @@
 
 - name: Leave Home at Night
   entities:
-    light.kitchen_ceiling_light: off
-    light.living_room_ceiling_light: off
-    light.hall_ceiling_light: off
-    light.bedroom_ceiling_light: off
+    group.kitchen_lights: off
+    group.living_room_lights: off
+    group.hall_lights: off
+    group.bedroom_lights: off
     media_player.sonos_device_kuche:
       state: paused
     media_player.sonos_device_wohnzimmer:
