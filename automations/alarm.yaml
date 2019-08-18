@@ -7,7 +7,10 @@
     entity_id: input_boolean.away_mode
     state: 'on'
   action:
-    service: notify.ios_davids_iphone_xs
-    data:
-      title: "Smart Home Alerts"
-      message: "Something happened at home!"
+    - service: notify.ios_davids_iphone_xs
+      data:
+        title: "Smart Home Alerts"
+        message: "Something happened at home!"
+    - service: script.turn_on
+      data:
+        entity_id: script.dogbark
