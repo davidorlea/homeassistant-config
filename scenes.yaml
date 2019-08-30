@@ -79,3 +79,28 @@
     light.kitchen_sideboard_light: off
     light.living_room_sofa_light: on
     light.bedroom_ambient_light: on
+
+- name: Stay Cosy
+  entities:
+    light.kitchen_ceiling_light: off
+    light.kitchen_cabinet_light: on
+    light.kitchen_sideboard_light: on
+    light.living_room_sofa_light: on
+    light.bedroom_ceiling_light: off
+    light.bedroom_bed_light: off
+
+- name: Movie Night
+  entities:
+    light.kitchen_ceiling_light: off
+    light.kitchen_cabinet_light: off
+    light.kitchen_sideboard_light: on
+    light.living_room_ceiling_light: off
+    light.living_room_sofa_light: on
+    light.hall_ceiling_light: off
+    light.bedroom_ceiling_light: off
+    light.bedroom_ambient_light: off
+    light.bedroom_bed_light: off
+    media_player.sonos_device_kuche:
+      state: paused
+    media_player.sonos_device_wohnzimmer:
+      state: paused
