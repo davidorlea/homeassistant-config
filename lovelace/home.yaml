@@ -7,7 +7,7 @@ cards:
       - type: entity-button
         entity: script.tts_weather
         name: Weather
-        icon: mdi:weather-partlycloudy
+        icon: mdi:weather-partly-cloudy
         tap_action:
           action: call-service
           service: script.turn_on
