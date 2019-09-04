@@ -1,0 +1,11 @@
+- alias: 'Update'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.updater
+    from: 'off'
+    to: 'on'
+  action:
+    service: notify.ios_davids_iphone_xs
+    data_template:
+      title: "New Version of Home Assistant"
+      message: "Version {{ states.binary_sensor.updater.attributes.newest_version }} of Home Assistant is now available."
