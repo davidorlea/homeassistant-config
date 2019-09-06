@@ -1,0 +1,16 @@
+filter:
+  include_entities:
+    - scene.movie_night
+    - scene.stay_cosy
+    - script.bedtime
+    - light.outdoor_frontdoor_light
+    - light.outdoor_backdoor_light
+    - light.kitchen_ceiling_light
+    - light.kitchen_sideboard_light
+    - light.kitchen_cabinet_light
+    - light.living_room_ceiling_light
+    - light.living_room_sofa_light
+    - light.bedroom_ceiling_light
+    - light.bedroom_ambient_light
+    - light.bedroom_bed_light
+    - light.hall_ceiling_light
