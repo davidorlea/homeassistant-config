@@ -3,13 +3,13 @@ python:
   - '3.6'
   - '3.7'
 env:
-  - HASS=0.98.2 GCTTS=0.4.0
+  - GCTTS=0.4.0 HASS=0.98.2
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
 install:
   - pip3 install yamllint
-  - pip3 install homeassistant==$HASS
   - pip3 install google-cloud-texttospeech==$GCTTS
+  - pip3 install homeassistant==$HASS
 script:
   - yamllint .
   - hass -c . --script check_config
