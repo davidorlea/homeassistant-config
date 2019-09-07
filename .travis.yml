@@ -3,7 +3,7 @@ python:
   - '3.6'
   - '3.7'
 env:
-  - GCTTS=0.4.0 HASS=0.98.2
+  - GCTTS=0.4.0 HASS=0.98.5
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
 install:
