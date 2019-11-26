@@ -20,8 +20,6 @@ include:
     - binary_sensor.living_room_sofa_light_connectivity
     - binary_sensor.outdoor_backdoor_light_connectivity
     - binary_sensor.outdoor_frontdoor_light_connectivity
-    - sensor.davids_iphone_xs_battery_state
-    - sensor.davids_iphone_xs_battery_level
     - sensor.dark_sky_condition
     - sensor.dark_sky_humidity
     - sensor.dark_sky_ozone
