@@ -103,6 +103,8 @@ sonos:
       - 192.168.178.22
       - 192.168.178.30
 
+mobile_app:
+
 ios:
 
 homekit: !include homekit.yaml
