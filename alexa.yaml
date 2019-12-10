@@ -18,3 +18,37 @@ smart_home:
       - scene.movie_night
       - scene.stay_cosy
       - script.bedtime
+  entity_config:
+    light.outdoor_frontdoor_light:
+      name: Haustürlampe
+      description: Außenlampe an der Haustür
+    light.outdoor_backdoor_light:
+      name: Terrassentürlampe
+      description: Außenlampe an der Terrassentür
+    light.kitchen_ceiling_light:
+      name: Deckenlampe
+      description: Deckenlampe in der Küche
+    light.kitchen_sideboard_light:
+      name: Anrichtenlampe
+      description: Anrichtenlampe in der Küche
+    light.kitchen_cabinet_light:
+      name: Vitrinenlampe
+      description: Vitrinenlampe in der Küche
+    light.living_room_ceiling_light:
+      name: Deckenlampe
+      description: Deckenlampe im Wohnzimmer
+    light.living_room_sofa_light:
+      name: Sofalampe
+      description: Sofalampe im Wohnzimmer
+    light.bedroom_ceiling_light:
+      name: Deckenlampe
+      description: Deckenlampe im Schlafzimmer
+    light.bedroom_ambient_light:
+      name: Umgebungslampe
+      description: Umgebungslampe im Schlafzimmer
+    light.bedroom_bed_light:
+      name: Bettlampe
+      description: Bettlampe im Schlafzimmer
+    light.hall_ceiling_light:
+      name: Deckenlampe
+      description: Deckenlampe im Flur
