@@ -20,35 +20,35 @@ smart_home:
       - script.bedtime
   entity_config:
     light.outdoor_frontdoor_light:
-      name: Haustürlampe
+      name: Haustürlampe Außen
       description: Außenlampe an der Haustür
     light.outdoor_backdoor_light:
-      name: Terrassentürlampe
+      name: Terrassentürlampe Außen
       description: Außenlampe an der Terrassentür
     light.kitchen_ceiling_light:
-      name: Deckenlampe
+      name: Deckenlampe Küche
       description: Deckenlampe in der Küche
     light.kitchen_sideboard_light:
-      name: Anrichtenlampe
+      name: Anrichtenlampe Küche
       description: Anrichtenlampe in der Küche
     light.kitchen_cabinet_light:
-      name: Vitrinenlampe
+      name: Vitrinenlampe Küche
       description: Vitrinenlampe in der Küche
     light.living_room_ceiling_light:
-      name: Deckenlampe
+      name: Deckenlampe Wohnzimmer
       description: Deckenlampe im Wohnzimmer
     light.living_room_sofa_light:
-      name: Sofalampe
+      name: Sofalampe Wohnzimmer
       description: Sofalampe im Wohnzimmer
     light.bedroom_ceiling_light:
-      name: Deckenlampe
+      name: Deckenlampe Schlafzimmer
       description: Deckenlampe im Schlafzimmer
     light.bedroom_ambient_light:
-      name: Umgebungslampe
+      name: Umgebungslampe Schlafzimmer
       description: Umgebungslampe im Schlafzimmer
     light.bedroom_bed_light:
-      name: Bettlampe
+      name: Bettlampe Schlafzimmer
       description: Bettlampe im Schlafzimmer
     light.hall_ceiling_light:
-      name: Deckenlampe
+      name: Deckenlampe Flur
       description: Deckenlampe im Flur
