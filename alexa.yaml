@@ -1,0 +1,54 @@
+smart_home:
+  endpoint: https://api.eu.amazonalexa.com/v3/events
+  client_id: !secret alexa_client_id
+  client_secret: !secret alexa_client_secret
+  filter:
+    include_entities:
+      - light.outdoor_frontdoor_light
+      - light.outdoor_backdoor_light
+      - light.kitchen_ceiling_light
+      - light.kitchen_sideboard_light
+      - light.kitchen_cabinet_light
+      - light.living_room_ceiling_light
+      - light.living_room_sofa_light
+      - light.bedroom_ceiling_light
+      - light.bedroom_ambient_light
+      - light.bedroom_bed_light
+      - light.hall_ceiling_light
+      - scene.movie_night
+      - scene.stay_cosy
+      - script.bedtime
+  entity_config:
+    light.outdoor_frontdoor_light:
+      name: Haustürlampe Außen
+      description: Außenlampe an der Haustür
+    light.outdoor_backdoor_light:
+      name: Terrassentürlampe Außen
+      description: Außenlampe an der Terrassentür
+    light.kitchen_ceiling_light:
+      name: Deckenlampe Küche
+      description: Deckenlampe in der Küche
+    light.kitchen_sideboard_light:
+      name: Anrichtenlampe Küche
+      description: Anrichtenlampe in der Küche
+    light.kitchen_cabinet_light:
+      name: Vitrinenlampe Küche
+      description: Vitrinenlampe in der Küche
+    light.living_room_ceiling_light:
+      name: Deckenlampe Wohnzimmer
+      description: Deckenlampe im Wohnzimmer
+    light.living_room_sofa_light:
+      name: Sofalampe Wohnzimmer
+      description: Sofalampe im Wohnzimmer
+    light.bedroom_ceiling_light:
+      name: Deckenlampe Schlafzimmer
+      description: Deckenlampe im Schlafzimmer
+    light.bedroom_ambient_light:
+      name: Umgebungslampe Schlafzimmer
+      description: Umgebungslampe im Schlafzimmer
+    light.bedroom_bed_light:
+      name: Bettlampe Schlafzimmer
+      description: Bettlampe im Schlafzimmer
+    light.hall_ceiling_light:
+      name: Deckenlampe Flur
+      description: Deckenlampe im Flur
