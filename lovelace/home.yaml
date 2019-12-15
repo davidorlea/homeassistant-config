@@ -65,6 +65,8 @@ cards:
       - sensor.next_bus_time
       - sensor.next_bus_destination
       - script.next_bus
+      - sensor.nearest_scooter_distance
+      - sensor.nearest_scooter_battery
   - type: horizontal-stack
     cards:
       - type: gauge
