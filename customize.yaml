@@ -77,6 +77,10 @@ sensor.fritz_transmission_rate_up:
   friendly_name: 'Transmission Rate Up'
 sensor.hass_last_boot:
   friendly_name: 'Last Boot'
+sensor.nearest_scooter_distance:
+  friendly_name: 'Nearest Scooter (Walking Distance)'
+sensor.nearest_scooter_battery:
+  friendly_name: 'Nearest Scooter (Battery)'
 sensor.next_bus_destination:
   friendly_name: 'Next Bus (Destination)'
 sensor.next_bus_time:
