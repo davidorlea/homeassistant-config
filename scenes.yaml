@@ -42,6 +42,8 @@
     group.bedroom_lights: off
     media_player.sonos_device_kuche:
       state: paused
+    media_player.sonos_device_schlafzimmer:
+      state: paused
     media_player.sonos_device_wohnzimmer:
       state: paused
 
@@ -52,6 +54,8 @@
     group.hall_lights: off
     group.bedroom_lights: off
     media_player.sonos_device_kuche:
+      state: paused
+    media_player.sonos_device_schlafzimmer:
       state: paused
     media_player.sonos_device_wohnzimmer:
       state: paused
@@ -101,6 +105,8 @@
     light.bedroom_ambient_light: off
     light.bedroom_bed_light: off
     media_player.sonos_device_kuche:
+      state: paused
+    media_player.sonos_device_schlafzimmer:
       state: paused
     media_player.sonos_device_wohnzimmer:
       state: paused
