@@ -1,7 +1,7 @@
 - alias: 'Arrive Home at Day'
   trigger:
     platform: state
-    entity_id: device_tracker.davids_iphone_xs
+    entity_id: person.david
     from: 'not_home'
     to: 'home'
   condition:
@@ -21,7 +21,7 @@
 - alias: 'Arrive Home at Night'
   trigger:
     platform: state
-    entity_id: device_tracker.davids_iphone_xs
+    entity_id: person.david
     from: 'not_home'
     to: 'home'
   condition:
@@ -40,7 +40,7 @@
 - alias: 'Leave Home at Day'
   trigger:
     platform: state
-    entity_id: device_tracker.davids_iphone_xs
+    entity_id: person.david
     from: 'home'
     to: 'not_home'
   condition:
@@ -60,7 +60,7 @@
 - alias: 'Leave Home at Night'
   trigger:
     platform: state
-    entity_id: device_tracker.davids_iphone_xs
+    entity_id: person.david
     from: 'home'
     to: 'not_home'
   condition:
