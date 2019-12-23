@@ -93,10 +93,6 @@ mqtt:
     qos: 2
     retain: false
 
-mqtt_eventstream:
-  publish_topic: 'home-assistant-1/$eventstream/publish'
-  subscribe_topic: 'home-assistant-1/$eventstream/subscribe'
-
 mobile_app:
 
 ios:
