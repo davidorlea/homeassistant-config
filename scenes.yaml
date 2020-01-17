@@ -1,10 +1,18 @@
 - name: All Lights on
   entities:
-    group.all_lights: on
+    group.outdoor_lights: on
+    group.kitchen_lights: on
+    group.living_room_lights: on
+    group.hall_lights: on
+    group.bedroom_lights: on
 
 - name: All Lights off
   entities:
-    group.all_lights: off
+    group.outdoor_lights: off
+    group.kitchen_lights: off
+    group.living_room_lights: off
+    group.hall_lights: off
+    group.bedroom_lights: off
 
 - name: All Indoor Lights on
   entities:
