@@ -1,0 +1,10 @@
+title: Travel
+path: travel
+cards:
+  - type: entities
+    title: Bus
+    show_header_toggle: false
+    entities:
+      - sensor.next_bus_time
+      - sensor.next_bus_destination
+      - script.next_bus
