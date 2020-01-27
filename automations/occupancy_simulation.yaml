@@ -19,12 +19,18 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: or
+    condition: and
     conditions:
       - condition: template
         value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
-      - condition: time
-        before: '01:00:00'
+      - condition: or
+        conditions:
+          - condition: time
+            after: '12:00:00'
+            before: '00:00:00'
+          - condition: time
+            after: '00:00:00'
+            before: '01:00:00'
   action:
     - service: script.turn_on
       data:
@@ -50,12 +56,18 @@
     from: 'on'
     to: 'off'
   condition:
-    condition: or
+    condition: and
     conditions:
       - condition: template
         value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
-      - condition: time
-        before: '01:00:00'
+      - condition: or
+        conditions:
+          - condition: time
+            after: '12:00:00'
+            before: '00:00:00'
+          - condition: time
+            after: '00:00:00'
+            before: '01:00:00'
   action:
     - service: script.turn_on
       data:
