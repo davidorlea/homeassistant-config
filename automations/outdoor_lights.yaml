@@ -9,6 +9,25 @@
       data:
         entity_id: group.outdoor_lights
 
+- alias: 'Turn Outdoor Lights on in the Night when Arriving'
+  trigger:
+    platform: state
+    entity_id: input_boolean.away_mode
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
+      - condition: time
+        after: '01:00:00'
+        before: '12:00:00'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: group.outdoor_lights
+
 - alias: 'Turn Outdoor Lights off after Sunrise'
   trigger:
     platform: state
@@ -28,6 +47,25 @@
     condition: state
     entity_id: input_boolean.away_mode
     state: 'on'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: group.outdoor_lights
+
+- alias: 'Turn Outdoor Lights off in the Night when Leaving'
+  trigger:
+    platform: state
+    entity_id: input_boolean.away_mode
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
+      - condition: time
+        after: '01:00:00'
+        before: '12:00:00'
   action:
     - service: light.turn_off
       data:
