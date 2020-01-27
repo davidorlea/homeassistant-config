@@ -9,6 +9,17 @@
       data:
         entity_id: group.outdoor_lights
 
+- alias: 'Turn Outdoor Lights off after Sunrise'
+  trigger:
+    platform: state
+    entity_id: sensor.period_of_day
+    from: 'Sunrise'
+    to: 'Day'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: group.outdoor_lights
+
 - alias: 'Turn Outdoor Lights off in the Night when Away'
   trigger:
     platform: time
@@ -17,17 +28,6 @@
     condition: state
     entity_id: input_boolean.away_mode
     state: 'on'
-  action:
-    - service: light.turn_off
-      data:
-        entity_id: group.outdoor_lights
-
-- alias: 'Turn Outdoor Lights off after Sunrise'
-  trigger:
-    platform: state
-    entity_id: sensor.period_of_day
-    from: 'Sunrise'
-    to: 'Day'
   action:
     - service: light.turn_off
       data:
