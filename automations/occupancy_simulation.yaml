@@ -1,7 +1,8 @@
-- alias: 'Start Occupancy Simulation at Sunset'
+- alias: 'Start Occupancy Simulation before Sunset when Away'
   trigger:
     platform: state
     entity_id: sensor.period_of_day
+    from: 'Day'
     to: 'Sunset'
   condition:
     condition: state
@@ -12,7 +13,7 @@
       data:
         entity_id: script.occupancy_simulation_start
 
-- alias: 'Start Occupancy Simulation at Away Mode'
+- alias: 'Start Occupancy Simulation when Leaving'
   trigger:
     platform: state
     entity_id: input_boolean.away_mode
@@ -36,7 +37,7 @@
       data:
         entity_id: script.occupancy_simulation_start
 
-- alias: 'Stop Occupancy Simulation at Night'
+- alias: 'Stop Occupancy Simulation in the Night when Away'
   trigger:
     platform: time
     at: '01:00:00'
@@ -49,7 +50,7 @@
       data:
         entity_id: script.occupancy_simulation_stop
 
-- alias: 'Stop Occupancy Simulation at Away Mode'
+- alias: 'Stop Occupancy Simulation when Arriving'
   trigger:
     platform: state
     entity_id: input_boolean.away_mode

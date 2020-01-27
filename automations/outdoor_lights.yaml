@@ -1,7 +1,8 @@
-- alias: 'Turn Outdoor Lights on at Sunset'
+- alias: 'Turn Outdoor Lights on before Sunset'
   trigger:
     platform: state
     entity_id: sensor.period_of_day
+    from: 'Day'
     to: 'Sunset'
   action:
     - service: light.turn_on
@@ -21,11 +22,12 @@
       data:
         entity_id: group.outdoor_lights
 
-- alias: 'Turn Outdoor Lights off at Sunrise'
+- alias: 'Turn Outdoor Lights off after Sunrise'
   trigger:
     platform: state
     entity_id: sensor.period_of_day
     from: 'Sunrise'
+    to: 'Day'
   action:
     - service: light.turn_off
       data:
