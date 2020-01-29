@@ -75,6 +75,12 @@ sensor.fritz_transmission_rate_down:
   friendly_name: 'Transmission Rate Down'
 sensor.fritz_transmission_rate_up:
   friendly_name: 'Transmission Rate Up'
+sensor.gas_station_address:
+  friendly_name: 'Gas Station (Address)'
+sensor.gas_station_brand:
+  friendly_name: 'Gas Station (Brand)'
+sensor.gas_station_price:
+  friendly_name: 'Gas Station (Price)'
 sensor.hass_last_boot:
   friendly_name: 'Last Boot'
 sensor.next_bus_destination:

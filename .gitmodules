@@ -4,3 +4,6 @@
 [submodule "custom_components/aseag_next_bus"]
 	path = custom_components/aseag_next_bus
 	url = https://github.com/davidorlea/homeassistant-aseag_next_bus.git
+[submodule "custom_components/tankerkoenig"]
+	path = custom_components/tankerkoenig
+	url = https://github.com/davidorlea/homeassistant-tankerkoenig.git
