@@ -8,3 +8,10 @@ cards:
       - sensor.next_bus_time
       - sensor.next_bus_destination
       - script.next_bus
+  - type: entities
+    title: Car
+    show_header_toggle: false
+    entities:
+      - sensor.gas_station_price
+      - sensor.gas_station_brand
+      - sensor.gas_station_address
