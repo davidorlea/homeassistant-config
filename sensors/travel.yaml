@@ -32,3 +32,47 @@
         {% endif %}
       icon_template: >-
         mdi:bus-clock
+
+- platform: tankerkoenig
+  api_key: !secret tankerkoenig_api_key
+  fuel_type: 'diesel'
+
+- platform: template
+  sensors:
+    gas_station_price:
+      unit_of_measurement: €
+      entity_id:
+        - sensor.tankerkoenig
+      value_template: >-
+        {% set price = states('sensor.tankerkoenig') %}
+        {% if price != "unknown" %}
+          {{ price }}
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:gas-station
+    gas_station_brand:
+      entity_id:
+        - sensor.tankerkoenig
+      value_template: >-
+        {% set brand = state_attr('sensor.tankerkoenig', 'brand') %}
+        {% if brand != None %}
+          {{ brand }}
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:gas-station
+    gas_station_address:
+      entity_id:
+        - sensor.tankerkoenig
+      value_template: >-
+        {% set address = state_attr('sensor.tankerkoenig', 'address') %}
+        {% if address != None %}
+          {{ address }}
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:gas-station

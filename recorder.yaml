@@ -32,6 +32,8 @@ include:
     - sensor.dwd_pollen_today_41_grass
     - sensor.dwd_pollen_today_41_tree
     - sensor.fritz_netmonitor
+    - sensor.gas_station_brand
+    - sensor.gas_station_price
     - sensor.moon
     - sensor.period_of_day
 exclude:
