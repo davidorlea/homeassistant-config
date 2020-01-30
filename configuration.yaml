@@ -18,7 +18,7 @@ logger:
   default: warning
   logs:
     homeassistant.components.http.ban: warning
-    custom_components.aseag_next_bus: warning
+    custom_components.aseag_next_bus: error
     custom_components.tankerkoenig: warning
 
 frontend:
