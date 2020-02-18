@@ -1,8 +1,6 @@
 - platform: uptime
   unit_of_measurement: minutes
 
-- platform: fritzbox_netmonitor
-
 - platform: influxdb
   host: !secret influxdb_host
   username: !secret influxdb_username
@@ -48,31 +46,68 @@
       field: uptime
       database: telegraf
 
+- platform: influxdb
+  host: !secret influxdb_host
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  queries:
+    - name: influxdb fritzbox link status
+      group_function: last
+      where: 'true'
+      measurement: '"fritzbox"'
+      field: physicallinkstatus
+      database: telegraf
+    - name: influxdb fritzbox connection status
+      group_function: last
+      where: 'true'
+      measurement: '"fritzbox"'
+      field: connectionstatus
+      database: telegraf
+    - name: influxdb fritzbox last reconnect
+      value_template: '{{ (as_timestamp(now()) - value | int) | timestamp_custom("%Y-%m-%dT%H:%M:%SZ", false) }}'
+      group_function: last
+      where: 'true'
+      measurement: '"fritzbox"'
+      field: uptime
+      database: telegraf
+    - name: influxdb fritzbox external ip address
+      group_function: last
+      where: 'true'
+      measurement: '"fritzbox"'
+      field: externalipaddress
+      database: telegraf
+    - name: influxdb fritzbox total bytes received
+      value_template: '{{ value | filesizeformat }}'
+      group_function: sum
+      where: 'true'
+      measurement: '(SELECT non_negative_difference("x_avm_de_totalbytesreceived64") FROM "fritzbox" WHERE time > now() - 24h)'
+      field: non_negative_difference
+      database: telegraf
+    - name: influxdb fritzbox total bytes sent
+      value_template: '{{ value | filesizeformat }}'
+      group_function: sum
+      where: 'true'
+      measurement: '(SELECT non_negative_difference("x_avm_de_totalbytessent64") FROM "fritzbox" WHERE time > now() - 24h)'
+      field: non_negative_difference
+      database: telegraf
+    - name: influxdb fritzbox transmission rate down
+      value_template: '{{ value | filesizeformat }}'
+      group_function: last
+      where: 'true'
+      measurement: '"fritzbox"'
+      field: bytereceiverate
+      database: telegraf
+    - name: influxdb fritzbox transmission rate up
+      value_template: '{{ value | filesizeformat }}'
+      group_function: last
+      where: 'true'
+      measurement: '"fritzbox"'
+      field: bytesendrate
+      database: telegraf
+
 - platform: template
   sensors:
     hass_last_boot:
       value_template: "{{ (as_timestamp(now()) - (states.sensor.uptime.state | float * 60) ) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
       icon_template: mdi:clock
       device_class: timestamp
-
-- platform: template
-  sensors:
-    fritz_last_reconnect:
-      value_template: "{{ (as_timestamp(now()) - states.sensor.fritz_netmonitor.attributes.uptime) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
-      icon_template: mdi:clock
-      device_class: timestamp
-    fritz_external_ip:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.external_ip }}'
-      icon_template: mdi:wan
-    fritz_bytes_received:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_received | filesizeformat }}'
-      icon_template: mdi:download-network
-    fritz_bytes_sent:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.bytes_sent | filesizeformat }}'
-      icon_template: mdi:upload-network
-    fritz_transmission_rate_down:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.transmission_rate_down | filesizeformat }}'
-      icon_template: mdi:download-network
-    fritz_transmission_rate_up:
-      value_template: '{{ states.sensor.fritz_netmonitor.attributes.transmission_rate_up | filesizeformat}}'
-      icon_template: mdi:upload-network

@@ -61,20 +61,6 @@ sensor.dwd_pollen_tomorrow_41_grass:
   friendly_name: 'DWD Pollen Grass Tomorrow'
 sensor.dwd_pollen_tomorrow_41_tree:
   friendly_name: 'DWD Pollen Tree Tomorrow'
-sensor.fritz_netmonitor:
-  friendly_name: 'Fritz!Box'
-sensor.fritz_last_reconnect:
-  friendly_name: 'Last Reconnect'
-sensor.fritz_external_ip:
-  friendly_name: 'External IP Address'
-sensor.fritz_bytes_received:
-  friendly_name: 'Total Bytes Received'
-sensor.fritz_bytes_sent:
-  friendly_name: 'Total Bytes Sent'
-sensor.fritz_transmission_rate_down:
-  friendly_name: 'Transmission Rate Down'
-sensor.fritz_transmission_rate_up:
-  friendly_name: 'Transmission Rate Up'
 sensor.gas_station_address:
   friendly_name: 'Gas Station (Address)'
 sensor.gas_station_brand:
@@ -83,6 +69,31 @@ sensor.gas_station_price:
   friendly_name: 'Gas Station (Price)'
 sensor.hass_last_boot:
   friendly_name: 'Last Boot'
+sensor.influxdb_fritzbox_connection_status:
+  friendly_name: 'Connection Status'
+  icon: mdi:wan
+sensor.influxdb_fritzbox_external_ip_address:
+  friendly_name: 'External IP Address'
+  icon: mdi:ip-network
+sensor.influxdb_fritzbox_last_reconnect:
+  friendly_name: 'Last Reconnect'
+  icon: mdi:clock
+  device_class: timestamp
+sensor.influxdb_fritzbox_link_status:
+  friendly_name: 'Link Status'
+  icon: mdi:wan
+sensor.influxdb_fritzbox_total_bytes_received:
+  friendly_name: 'Total Bytes Received (24h)'
+  icon: mdi:download-network
+sensor.influxdb_fritzbox_total_bytes_sent:
+  friendly_name: 'Total Bytes Sent (24h)'
+  icon: mdi:upload-network
+sensor.influxdb_fritzbox_transmission_rate_down:
+  friendly_name: 'Transmission Rate Down'
+  icon: mdi:download-network
+sensor.influxdb_fritzbox_transmission_rate_up:
+  friendly_name: 'Transmission Rate Up'
+  icon: mdi:upload-network
 sensor.influxdb_pi_load1:
   friendly_name: 'Load (1m)'
   icon: mdi:memory
