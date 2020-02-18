@@ -10,13 +10,12 @@ cards:
     title: Raspberry Pi
     show_header_toggle: false
     entities:
-      - sensor.load_1m
-      - sensor.load_5m
-      - sensor.load_15m
-      - sensor.processor_use
-      - sensor.memory_use_percent
-      - sensor.disk_use_percent
-      - sensor.last_boot
+      - sensor.influxdb_pi_load1
+      - sensor.influxdb_pi_load5
+      - sensor.influxdb_pi_load15
+      - sensor.influxdb_pi_cpu_usage
+      - sensor.influxdb_pi_memory_usage
+      - sensor.influxdb_pi_last_boot
   - type: entities
     title: Internet
     show_header_toggle: false

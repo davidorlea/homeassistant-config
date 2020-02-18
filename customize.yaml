@@ -83,6 +83,27 @@ sensor.gas_station_price:
   friendly_name: 'Gas Station (Price)'
 sensor.hass_last_boot:
   friendly_name: 'Last Boot'
+sensor.influxdb_pi_load1:
+  friendly_name: 'Load (1m)'
+  icon: mdi:memory
+sensor.influxdb_pi_load5:
+  friendly_name: 'Load (5m)'
+  icon: mdi:memory
+sensor.influxdb_pi_load15:
+  friendly_name: 'Load (15m)'
+  icon: mdi:memory
+sensor.influxdb_pi_cpu_usage:
+  friendly_name: 'CPU Usage'
+  icon: mdi:memory
+  unit_of_measurement: '%'
+sensor.influxdb_pi_memory_usage:
+  friendly_name: 'Memory Usage'
+  icon: mdi:memory
+  unit_of_measurement: '%'
+sensor.influxdb_pi_last_boot:
+  friendly_name: 'Last Boot'
+  icon: mdi:clock
+  device_class: timestamp
 sensor.next_bus_destination:
   friendly_name: 'Next Bus (Destination)'
 sensor.next_bus_time:

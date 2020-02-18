@@ -1,18 +1,52 @@
 - platform: uptime
   unit_of_measurement: minutes
 
-- platform: systemmonitor
-  resources:
-    - type: load_1m
-    - type: load_5m
-    - type: load_15m
-    - type: processor_use
-    - type: memory_use_percent
-    - type: disk_use_percent
-      arg: /
-    - type: last_boot
-
 - platform: fritzbox_netmonitor
+
+- platform: influxdb
+  host: !secret influxdb_host
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  queries:
+    - name: influxdb pi load1
+      group_function: last
+      where: '"host" = ''raspberrypi'''
+      measurement: '"system"'
+      field: load1
+      database: telegraf
+    - name: influxdb pi load5
+      group_function: last
+      where: '"host" = ''raspberrypi'''
+      measurement: '"system"'
+      field: load5
+      database: telegraf
+    - name: influxdb pi load15
+      group_function: last
+      where: '"host" = ''raspberrypi'''
+      measurement: '"system"'
+      field: load15
+      database: telegraf
+    - name: influxdb pi cpu usage
+      value_template: '{{ (100 - value | float) | round() }}'
+      group_function: last
+      where: '"host" = ''raspberrypi'' and "cpu" = ''cpu-total'''
+      measurement: '"cpu"'
+      field: usage_idle
+      database: telegraf
+    - name: influxdb pi memory usage
+      value_template: '{{ (100 - value | float) | round() }}'
+      group_function: last
+      where: '"host" = ''raspberrypi'''
+      measurement: '"mem"'
+      field: available_percent
+      database: telegraf
+    - name: influxdb pi last boot
+      value_template: '{{ (as_timestamp(now()) - value | int) | timestamp_custom("%Y-%m-%dT%H:%M:%SZ", false) }}'
+      group_function: last
+      where: '"host" = ''raspberrypi'''
+      measurement: '"system"'
+      field: uptime
+      database: telegraf
 
 - platform: template
   sensors:
