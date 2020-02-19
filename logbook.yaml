@@ -1,13 +1,3 @@
 exclude:
   entities:
-    - binary_sensor.bedroom_ambient_light_connectivity
-    - binary_sensor.bedroom_bed_light_connectivity
-    - binary_sensor.bedroom_ceiling_light_connectivity
-    - binary_sensor.hall_ceiling_light_connectivity
-    - binary_sensor.kitchen_cabinet_light_connectivity
-    - binary_sensor.kitchen_ceiling_light_connectivity
-    - binary_sensor.kitchen_sideboard_light_connectivity
-    - binary_sensor.living_room_ceiling_light_connectivity
-    - binary_sensor.living_room_sofa_light_connectivity
-    - binary_sensor.outdoor_backdoor_light_connectivity
-    - binary_sensor.outdoor_frontdoor_light_connectivity
+    - sensor.dummy

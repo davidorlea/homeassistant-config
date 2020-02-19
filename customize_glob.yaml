@@ -1,15 +1,2 @@
-"binary_sensor.*_connectivity":
-  device_class: connectivity
-  icon: mdi:wifi
-
 "media_player.sonos_device_*":
   hidden: true
-
-"sensor.*_last_boot":
-  icon: mdi:clock
-"sensor.*_firmware":
-  icon: mdi:settings
-"sensor.*_wifi_ip":
-  icon: mdi:ethernet
-"sensor.*_rssi":
-  icon: mdi:signal
