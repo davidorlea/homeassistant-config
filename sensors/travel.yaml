@@ -76,3 +76,34 @@
         {% endif %}
       icon_template: >-
         mdi:gas-station
+
+- platform: voi_nearest_scooter
+
+- platform: template
+  sensors:
+    nearest_scooter_distance:
+      unit_of_measurement: m
+      entity_id:
+        - sensor.voi_nearest_scooter
+      value_template: >-
+        {% set distance = states('sensor.voi_nearest_scooter') %}
+        {% if distance != "unknown" %}
+          {{ distance }}
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:scooter
+    nearest_scooter_battery:
+      unit_of_measurement: '%'
+      entity_id:
+        - sensor.voi_nearest_scooter
+      value_template: >-
+        {% set battery = state_attr('sensor.voi_nearest_scooter', 'battery_level') %}
+        {% if battery != None %}
+          {{ battery }}
+        {% else %}
+          unknown
+        {% endif %}
+      icon_template: >-
+        mdi:scooter

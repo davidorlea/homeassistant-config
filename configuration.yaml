@@ -20,6 +20,7 @@ logger:
     homeassistant.components.http.ban: warning
     custom_components.aseag_next_bus: error
     custom_components.tankerkoenig: warning
+    custom_components.voi_nearest_scooter: warning
 
 frontend:
 
