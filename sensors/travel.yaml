@@ -99,7 +99,7 @@
       entity_id:
         - sensor.voi_nearest_scooter
       value_template: >-
-        {% set battery = state_attr('sensor.voi_nearest_scooter', 'battery') %}
+        {% set battery = state_attr('sensor.voi_nearest_scooter', 'battery_level') %}
         {% if battery != None %}
           {{ battery }}
         {% else %}
