@@ -8,16 +8,30 @@ cards:
       - sensor.next_bus_time
       - sensor.next_bus_destination
       - script.next_bus
-  - type: entities
-    title: Scooter
-    show_header_toggle: false
-    entities:
-      - sensor.nearest_scooter_distance
-      - sensor.nearest_scooter_battery
-  - type: entities
-    title: Car
-    show_header_toggle: false
-    entities:
-      - sensor.gas_station_price
-      - sensor.gas_station_brand
-      - sensor.gas_station_address
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Scooter
+        show_header_toggle: false
+        entities:
+          - sensor.nearest_scooter_distance
+          - sensor.nearest_scooter_battery
+      - type: map
+        aspect_ratio: 16x9
+        default_zoom: 17
+        entities:
+          - sensor.voi_nearest_scooter
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Car
+        show_header_toggle: false
+        entities:
+          - sensor.gas_station_price
+          - sensor.gas_station_brand
+          - sensor.gas_station_address
+      - type: map
+        aspect_ratio: 16x9
+        default_zoom: 16
+        entities:
+          - sensor.tankerkoenig
