@@ -24,7 +24,7 @@ case "$1" in
     "all" )
         if [ "$2" != "--skip-upload" ]; then
             echo -n "Uploading everything... "
-            rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf . "$HASS_SSH_URL"
+            rsync --checksum --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf . "$HASS_SSH_URL"
             echo "done."
         fi
         if [ "$2" != "--skip-reload" ]; then
@@ -36,7 +36,7 @@ case "$1" in
     "automations" )
         if [ "$2" != "--skip-upload" ]; then
             echo -n "Uploading automations... "
-            rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf automations/ "$HASS_SSH_URL"/automations
+            rsync --checksum --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf automations/ "$HASS_SSH_URL"/automations
             echo "done."
         fi
         if [ "$2" != "--skip-reload" ]; then
@@ -48,7 +48,7 @@ case "$1" in
     "groups" )
         if [ "$2" != "--skip-upload" ]; then
             echo -n "Uploading groups... "
-            rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf groups.yaml "$HASS_SSH_URL"
+            rsync --checksum --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf groups.yaml "$HASS_SSH_URL"
             echo "done."
         fi
         if [ "$2" != "--skip-reload" ]; then
@@ -60,7 +60,7 @@ case "$1" in
     "scenes" )
         if [ "$2" != "--skip-upload" ]; then
             echo -n "Uploading scenes... "
-            rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf scenes.yaml "$HASS_SSH_URL"
+            rsync --checksum --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf scenes.yaml "$HASS_SSH_URL"
             echo "done."
         fi
         if [ "$2" != "--skip-reload" ]; then
@@ -72,7 +72,7 @@ case "$1" in
     "scripts" )
         if [ "$2" != "--skip-upload" ]; then
             echo -n "Uploading scripts... "
-            rsync --checksum --delete --human-readable --recursive --exclude-from=deploy/exclude.conf scripts/ "$HASS_SSH_URL"/scripts
+            rsync --checksum --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf scripts/ "$HASS_SSH_URL"/scripts
             echo "done."
         fi
         if [ "$2" != "--skip-reload" ]; then
