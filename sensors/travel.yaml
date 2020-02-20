@@ -82,13 +82,13 @@
 - platform: template
   sensors:
     nearest_scooter_distance:
-      unit_of_measurement: min
+      unit_of_measurement: m
       entity_id:
         - sensor.voi_nearest_scooter
       value_template: >-
-        {% set state = states('sensor.voi_nearest_scooter') %}
-        {% if state != "unknown" %}
-          {{ ((state | float) * 1.4 / 60) | round(0) }}
+        {% set distance = states('sensor.voi_nearest_scooter') %}
+        {% if distance != "unknown" %}
+          {{ distance }}
         {% else %}
           unknown
         {% endif %}
@@ -99,9 +99,9 @@
       entity_id:
         - sensor.voi_nearest_scooter
       value_template: >-
-        {% set address = state_attr('sensor.voi_nearest_scooter', 'battery') %}
-        {% if address != None %}
-          {{ address }}
+        {% set battery = state_attr('sensor.voi_nearest_scooter', 'battery') %}
+        {% if battery != None %}
+          {{ battery }}
         {% else %}
           unknown
         {% endif %}
