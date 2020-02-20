@@ -64,6 +64,7 @@ cards:
     entities:
       - sensor.next_bus_time
       - sensor.gas_station_price
+      - sensor.nearest_scooter_distance
   - type: horizontal-stack
     cards:
       - type: gauge
