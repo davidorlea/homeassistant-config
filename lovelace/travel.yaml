@@ -9,6 +9,12 @@ cards:
       - sensor.next_bus_destination
       - script.next_bus
   - type: entities
+    title: Scooter
+    show_header_toggle: false
+    entities:
+      - sensor.nearest_scooter_distance
+      - sensor.nearest_scooter_battery
+  - type: entities
     title: Car
     show_header_toggle: false
     entities:
