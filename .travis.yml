@@ -1,14 +1,18 @@
 language: python
 python:
   - '3.7'
-env:
-  - GCTTS=0.4.0 HASS=0.105.2
+cache:
+  pip: true
+  directories:
+    - $HOME/.cache/pre-commit
 before_install:
-  - mv secrets_dummy.yaml secrets.yaml
+  - python --version
+  - pip install -U pip
 install:
-  - pip3 install yamllint
-  - pip3 install google-cloud-texttospeech==$GCTTS
-  - pip3 install homeassistant==$HASS
+  - pip install -r requirements_test.txt
+before_script:
+  - mv secrets_dummy.yaml secrets.yaml
 script:
-  - yamllint .
+  - pre-commit install-hooks
+  - pre-commit run yamllint --all-files
   - hass -c . --script check_config
