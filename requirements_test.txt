@@ -1,2 +1,2 @@
-homeassistant==0.105.2
+homeassistant==0.105.5
 pre-commit==2.0.1
