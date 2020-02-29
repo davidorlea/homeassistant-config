@@ -9,10 +9,11 @@ before_install:
   - python --version
   - pip install -U pip
 install:
+  - pip install -r requirements.txt
   - pip install -r requirements_test.txt
 before_script:
   - mv secrets_dummy.yaml secrets.yaml
-script:
   - pre-commit install-hooks
+script:
   - pre-commit run yamllint --all-files
   - hass -c . --script check_config
