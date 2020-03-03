@@ -14,6 +14,7 @@ include:
     - sensor.dwd_pollen_today_41_ambrosia
     - sensor.dwd_pollen_today_41_grass
     - sensor.dwd_pollen_today_41_tree
+    - sensor.tankerkoenig
 component_config:
   sensor.dark_sky_humidity:
     override_measurement: 'sensor.dark_sky_humidity'
@@ -35,3 +36,5 @@ component_config:
     override_measurement: 'sensor.dwd_pollen_today_41_grass'
   sensor.dwd_pollen_today_41_tree:
     override_measurement: 'sensor.dwd_pollen_today_41_tree'
+  sensor.tankerkoenig:
+    override_measurement: 'sensor.tankerkoenig'
