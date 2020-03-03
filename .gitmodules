@@ -1,6 +1,6 @@
 [submodule "custom_components/dwd_pollen"]
 	path = custom_components/dwd_pollen
-	url = https://github.com/marcschumacher/dwd_pollen.git
+	url = https://github.com/davidorlea/homeassistant-dwd_pollen.git
 [submodule "custom_components/aseag_next_bus"]
 	path = custom_components/aseag_next_bus
 	url = https://github.com/davidorlea/homeassistant-aseag_next_bus.git
