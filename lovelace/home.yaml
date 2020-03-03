@@ -67,3 +67,11 @@ cards:
               green: 0
               yellow: 30
               red: 70
+      - type: entities
+        title: Coronavirus
+        show_header_toggle: false
+        entities:
+          - sensor.coronavirus_germany_confirmed
+          - sensor.coronavirus_germany_current
+          - sensor.coronavirus_germany_recovered
+          - sensor.coronavirus_germany_deaths
