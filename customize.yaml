@@ -76,6 +76,9 @@ sensor.coronavirus_germany_current:
 sensor.coronavirus_germany_deaths:
   friendly_name: Coronavirus Germany Deaths
   icon: mdi:biohazard
+sensor.coronavirus_germany_mortality:
+  friendly_name: Coronavirus Germany Mortality
+  icon: mdi:biohazard
 sensor.coronavirus_germany_recovered:
   friendly_name: Coronavirus Germany Recovered
   icon: mdi:biohazard

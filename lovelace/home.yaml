@@ -75,3 +75,4 @@ cards:
           - sensor.coronavirus_germany_current
           - sensor.coronavirus_germany_recovered
           - sensor.coronavirus_germany_deaths
+          - sensor.coronavirus_germany_mortality
