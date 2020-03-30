@@ -104,6 +104,8 @@ homekit: !include homekit.yaml
 
 input_boolean: !include input_boolean.yaml
 
+intent_script: !include_dir_merge_named alexa/intent_scripts
+
 light: !include_dir_merge_list lights
 
 sensor: !include_dir_merge_list sensors

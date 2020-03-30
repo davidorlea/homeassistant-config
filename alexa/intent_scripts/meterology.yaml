@@ -1,0 +1,79 @@
+WeatherIntent:
+  speech:
+    type: plain
+    text: >-
+      Aktuell
+      {% if states("weather.dark_sky") == "cloudy" %}
+      ist es bewölkt
+      {% elif states("weather.dark_sky") == "fog" %}
+      ist es nebelig
+      {% elif states("weather.dark_sky") == "hail" %}
+      hagelt es
+      {% elif states("weather.dark_sky") == "lightning" %}
+      gewittert es
+      {% elif states("weather.dark_sky") == "lightning-rainy" %}
+      gewittert und regnet es
+      {% elif states("weather.dark_sky") == "partlycloudy" %}
+      ist es teilweise bewölkt
+      {% elif states("weather.dark_sky") == "pouring" %}
+      regnet es stark
+      {% elif states("weather.dark_sky") == "rainy" %}
+      ist es regnerisch
+      {% elif states("weather.dark_sky") == "snowy" %}
+      schneit es
+      {% elif states("weather.dark_sky") == "snowy-rainy" %}
+      schneit es
+      {% elif states("weather.dark_sky") == "sunny" %}
+      ist es sonnig
+      {% elif states("weather.dark_sky") == "windy" %}
+      ist es windig
+      {% elif states("weather.dark_sky") == "windy-variant" %}
+      ist es windig
+      {% endif %}
+      und die Temperaturen liegen bei {{ state_attr("weather.dark_sky", "temperature") | round }} Grad. Tagsüber erreichen sie heute Höchstwerte um {{ state_attr("weather.dark_sky", "forecast")[0].temperature | round }} Grad und nachts sinken sie auf Tiefstwerte um {{ state_attr("weather.dark_sky", "forecast")[0].templow | round }} Grad. Der Wind weht dabei
+      {% if state_attr("weather.dark_sky", "wind_speed") >= 117 %}
+      orkanartig
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 102 %}
+      orkanartig
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 88 %}
+      schwer
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 74 %}
+      stürmisch bis schwer
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 61 %}
+      stürmisch
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 49 %}
+      stark bis stürmisch
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 38 %}
+      stark
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 28 %}
+      mäßig bis stark
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 19 %}
+      mäßig
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 11 %}
+      schwach
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 5 %}
+      leicht bis schwach
+      {% elif state_attr("weather.dark_sky", "wind_speed") >= 0 %}
+      leicht
+      {% endif %}
+      aus
+      {% if state_attr("weather.dark_sky", "wind_bearing") >= 337.5 %}
+      nördlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 292.5 %}
+      nordwestlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 247.5 %}
+      westlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 202.5 %}
+      südwestlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 157.5 %}
+      südlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 112.5 %}
+      südöstlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 67.5 %}
+      östlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 22.5 %}
+      nördöstlicher
+      {% elif state_attr("weather.dark_sky", "wind_bearing") >= 0 %}
+      nördlicher
+      {% endif %}
+      Richtung.
