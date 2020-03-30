@@ -1,0 +1,49 @@
+GasStationIntent:
+  speech:
+    type: plain
+    text: >-
+      {% set price = states("sensor.gas_station_price") %}
+      {% set brand = states("sensor.gas_station_brand") %}
+      {% set address = states("sensor.gas_station_address") %}
+      {% if price == "unknown" or brand == "unknown" or address == "unknown" %}
+      {{ [
+        "Das weiß ich leider gerade nicht.",
+        "Das kann ich dir leider gerade nicht sagen."
+        ] | random }}
+      {% else %}
+      {{ [
+        "Bei %s, %s, liegt der Preis für einen Liter Diesel gerade bei %s Euro." | format(brand, address, price | round(2)),
+        "Bei %s, %s, kostet ein Liter Diesel gerade %s Euro." | format(brand, address, price | round(2))
+        ] | random }}
+      {% endif %}
+NearestScooterIntent:
+  speech:
+    type: plain
+    text: >-
+      {% set distance = states("sensor.nearest_scooter_distance") %}
+      {% set battery = states("nearest_scooter_battery") %}
+      {% if distance == "unknown" or battery == "unknown" %}
+      {{ [
+        "Das weiß ich leider gerade nicht.",
+        "Das kann ich dir leider gerade nicht sagen."
+        ] | random }}
+      {% else %}
+      Der nächste Scooter steht {{ distance }} Meter entfernt und ist zu {{ battery }} Prozent geladen.
+      {% endif %}
+NextBusIntent:
+  speech:
+    type: plain
+    text: >-
+      {% set time = states("sensor.next_bus_time") %}
+      {% if time == "unknown" %}
+      {{ [
+        "Das weiß ich leider gerade nicht.",
+        "Das kann ich dir leider gerade nicht sagen."
+        ] | random }}
+      {% elif time == "0" %}
+      Der nächste Bus fährt in diesem Moment ab.
+      {% elif time == "1" %}
+      Der nächste Bus fährt in einer Minute ab.
+      {% else %}
+      Der nächste Bus fährt in {{ time }} Minuten ab.
+      {% endif %}
