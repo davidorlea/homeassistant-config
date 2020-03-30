@@ -1,0 +1,5 @@
+GuestIntent:
+  speech:
+    type: plain
+    text: >-
+      Alles klar, der Gast-Modus ist aktiviert. Habt eine gute Zeit!
