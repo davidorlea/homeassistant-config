@@ -7,7 +7,6 @@ cards:
     entities:
       - sensor.next_bus_time
       - sensor.next_bus_destination
-      - script.next_bus
   - type: vertical-stack
     cards:
       - type: entities

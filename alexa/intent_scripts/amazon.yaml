@@ -1,0 +1,25 @@
+AMAZON.FallbackIntent:
+  speech:
+    type: plain
+    text: >-
+      Das kann ich leider nicht tun.
+AMAZON.CancelIntent:
+  speech:
+    type: plain
+    text: >-
+      Okay
+AMAZON.HelpIntent:
+  speech:
+    type: plain
+    text: >-
+      Ich bin eine Open Source Hausautomation, bei der lokale Kontrolle und Datenschutz an erster Stelle stehen. Angetrieben von einer weltweiten Community von Bastlern und Heimwerkern.
+AMAZON.StopIntent:
+  speech:
+    type: plain
+    text: >-
+      Okay
+AMAZON.NavigateHomeIntent:
+  speech:
+    type: plain
+    text: >-
+      Okay

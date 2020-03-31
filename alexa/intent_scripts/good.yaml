@@ -1,0 +1,25 @@
+GoodMorningIntent:
+  speech:
+    type: plain
+    text: >-
+      {{ [
+        "Einen guten Morgen David!",
+        "Guten Morgen David!",
+        "Einen guten Morgen!",
+        "Guten Morgen!"
+        ] | random }}
+
+GoodNightIntent:
+  action:
+    service: script.turn_on
+    data:
+      entity_id: script.bedtime
+  speech:
+    type: plain
+    text: >-
+      {{ [
+        "Eine gute Nacht David!",
+        "Gute Nacht David!",
+        "Eine gute Nacht!",
+        "Gute Nacht!"
+        ] | random }}

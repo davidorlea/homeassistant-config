@@ -1,0 +1,9 @@
+LetTheDogsOutIntent:
+  action:
+    service: script.turn_on
+    data:
+      entity_id: script.dogbark
+  speech:
+    type: plain
+    text: >-
+      Okay, lassen wir sie raus!
