@@ -17,45 +17,45 @@ PollenIntent:
   speech:
     type: plain
     text: >-
-        {% set grass = states("sensor.dwd_pollen_today_41_grass") | int(-1) %}
-        {% set tree = states("sensor.dwd_pollen_today_41_tree") | int(-1) %}
-        {% if grass == -1 or tree == -1 %}
-        {{ [
-          "Das weiß ich leider gerade nicht.",
-          "Das kann ich dir leider gerade nicht sagen."
-        ] | random }}
-        {% else %}
-        Der Pollenflug ist heute für Gräser
-        {% if grass == 0 %}
-        unauffällig
-        {% elif grass == 17 %}
-        unauffällig bis gering
-        {% elif grass == 33 %}
-        gering
-        {% elif grass == 50 %}
-        gering bis mittel
-        {% elif grass == 67 %}
-        mittel
-        {% elif grass == 83 %}
-        mittel bis hoch
-        {% elif grass == 100 %}
-        hoch
-        {% endif %}
-        und für Bäume
-        {% if tree == 0 %}
-        unauffällig
-        {% elif tree == 17 %}
-        unauffällig bis gering
-        {% elif tree == 33 %}
-        gering
-        {% elif tree == 50 %}
-        gering bis mittel
-        {% elif tree == 67 %}
-        mittel
-        {% elif tree == 83 %}
-        mittel bis hoch
-        {% elif tree == 100 %}
-        hoch
-        {% endif %}
-        .
-        {% endif %}
+      {% set grass = states("sensor.dwd_pollen_today_41_grass") | int(-1) %}
+      {% set tree = states("sensor.dwd_pollen_today_41_tree") | int(-1) %}
+      {% if grass == -1 or tree == -1 %}
+      {{ [
+        "Das weiß ich leider gerade nicht.",
+        "Das kann ich dir leider gerade nicht sagen."
+      ] | random }}
+      {% else %}
+      Der Pollenflug ist heute für Gräser
+      {% if grass == 0 %}
+      unauffällig
+      {% elif grass == 17 %}
+      unauffällig bis gering
+      {% elif grass == 33 %}
+      gering
+      {% elif grass == 50 %}
+      gering bis mittel
+      {% elif grass == 67 %}
+      mittel
+      {% elif grass == 83 %}
+      mittel bis hoch
+      {% elif grass == 100 %}
+      hoch
+      {% endif %}
+      und für Bäume
+      {% if tree == 0 %}
+      unauffällig
+      {% elif tree == 17 %}
+      unauffällig bis gering
+      {% elif tree == 33 %}
+      gering
+      {% elif tree == 50 %}
+      gering bis mittel
+      {% elif tree == 67 %}
+      mittel
+      {% elif tree == 83 %}
+      mittel bis hoch
+      {% elif tree == 100 %}
+      hoch
+      {% endif %}
+      .
+      {% endif %}
