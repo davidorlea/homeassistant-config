@@ -5,4 +5,4 @@ dogbark:
       data_template:
         sonos_play_volume: '0.5'
         sonos_play_media_id: 'http://192.168.178.10:8123/local/sounds/dog_barking.mp3'
-        sonos_play_media_type: 'audio/mp4'
+        sonos_play_media_type: 'music'
