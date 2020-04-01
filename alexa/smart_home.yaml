@@ -17,7 +17,8 @@ smart_home:
       - light.hall_ceiling_light
       - scene.movie_night
       - scene.stay_cosy
-      - script.bedtime
+      - script.good_morning
+      - script.good_night
   entity_config:
     light.outdoor_frontdoor_light:
       name: Haustürlampe Außen

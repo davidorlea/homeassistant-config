@@ -1,5 +1,20 @@
-bedtime:
-  alias: Go to bed
+good_morning:
+  alias: Good Morning
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights
+          - group.hall_lights
+          - light.living_room_ceiling_light
+    - delay: '00:30:00'
+    - service: light.turn_off
+      data:
+        entity_id:
+          - group.bedroom_lights
+
+good_night:
+  alias: Good Night
   sequence:
     - service: light.turn_on
       data:
