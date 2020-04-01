@@ -1,5 +1,5 @@
 alarm:
-  alias: Ring the alarm
+  alias: Ring The Alarm
   sequence:
     - service: script.sonos_play
       data_template:

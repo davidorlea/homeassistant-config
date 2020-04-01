@@ -1,5 +1,5 @@
 dogbark:
-  alias: Let the dogs out
+  alias: Let The Dogs Out
   sequence:
     - service: script.sonos_play
       data_template:
