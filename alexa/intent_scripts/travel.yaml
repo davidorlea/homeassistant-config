@@ -21,7 +21,7 @@ NearestScooterIntent:
     type: plain
     text: >-
       {% set distance = states("sensor.nearest_scooter_distance") %}
-      {% set battery = states("nearest_scooter_battery") %}
+      {% set battery = states("sensor.nearest_scooter_battery") %}
       {% if distance == "unknown" or battery == "unknown" %}
       {{ [
         "Das weiß ich leider gerade nicht.",
