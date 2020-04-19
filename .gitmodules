@@ -10,3 +10,6 @@
 [submodule "custom_components/voi_nearest_scooter"]
 	path = custom_components/voi_nearest_scooter
 	url = https://github.com/davidorlea/homeassistant-voi_nearest_scooter.git
+[submodule "custom_components/tier_nearest_scooter"]
+	path = custom_components/tier_nearest_scooter
+	url = https://github.com/davidorlea/homeassistant-tier_nearest_scooter.git
