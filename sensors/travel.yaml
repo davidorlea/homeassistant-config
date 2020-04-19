@@ -87,9 +87,9 @@
     nearest_scooter_distance:
       unit_of_measurement: m
       entity_id:
-        - sensor.voi_nearest_scooter
+        - sensor.tier_nearest_scooter
       value_template: >-
-        {% set distance = states('sensor.voi_nearest_scooter') %}
+        {% set distance = states('sensor.tier_nearest_scooter') %}
         {% if distance != "unknown" %}
           {{ distance }}
         {% else %}
@@ -100,9 +100,9 @@
     nearest_scooter_battery:
       unit_of_measurement: '%'
       entity_id:
-        - sensor.voi_nearest_scooter
+        - sensor.tier_nearest_scooter
       value_template: >-
-        {% set battery = state_attr('sensor.voi_nearest_scooter', 'battery_level') %}
+        {% set battery = state_attr('sensor.tier_nearest_scooter', 'battery_level') %}
         {% if battery != None %}
           {{ battery }}
         {% else %}
