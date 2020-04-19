@@ -80,8 +80,6 @@
 - platform: tier_nearest_scooter
   api_key: !secret tier_api_key
 
-- platform: voi_nearest_scooter
-
 - platform: template
   sensors:
     nearest_scooter_distance:
