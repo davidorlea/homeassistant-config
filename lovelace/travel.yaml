@@ -19,7 +19,7 @@ cards:
         aspect_ratio: 16x9
         default_zoom: 17
         entities:
-          - sensor.voi_nearest_scooter
+          - sensor.tier_nearest_scooter
   - type: vertical-stack
     cards:
       - type: entities
