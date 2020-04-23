@@ -15,6 +15,8 @@ smart_home:
       - light.bedroom_ambient_light
       - light.bedroom_bed_light
       - light.hall_ceiling_light
+      - sensor.living_room_multisensor_temperature
+      - sensor.bedroom_multisensor_temperature
       - scene.movie_night
       - scene.stay_cosy
       - script.good_morning
@@ -53,3 +55,9 @@ smart_home:
     light.hall_ceiling_light:
       name: Deckenlampe Flur
       description: Deckenlampe im Flur
+    sensor.living_room_multisensor_temperature:
+      name: Temperatur Wohnzimmer
+      description: Temperatur im Wohnzimmer
+    sensor.bedroom_multisensor_temperature:
+      name: Temperatur Schlafzimmer
+      description: Temperatur im Schlafzimmer

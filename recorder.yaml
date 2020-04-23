@@ -9,6 +9,9 @@ include:
     - scene
     - script
   entities:
+    - sensor.bedroom_multisensor_humidity
+    - sensor.bedroom_multisensor_pressure
+    - sensor.bedroom_multisensor_temperature
     - sensor.dark_sky_condition
     - sensor.dark_sky_humidity
     - sensor.dark_sky_ozone
@@ -22,6 +25,9 @@ include:
     - sensor.dwd_pollen_today_41_tree
     - sensor.gas_station_brand
     - sensor.gas_station_price
+    - sensor.living_room_multisensor_humidity
+    - sensor.living_room_multisensor_pressure
+    - sensor.living_room_multisensor_temperature
     - sensor.moon
     - sensor.period_of_day
 exclude:
