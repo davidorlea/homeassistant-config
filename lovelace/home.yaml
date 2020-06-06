@@ -31,6 +31,31 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.all_indoor_lights_off
+      - type: entity-filter
+        entities:
+          - entity: binary_sensor.contact_sensor_1
+            name: Outdoor Frontdoor
+            icon: mdi:door-open
+            state_color: true
+          - entity: binary_sensor.contact_sensor_2
+            name: Outdoor Backdoor
+            icon: mdi:door-open
+            state_color: true
+          - entity: binary_sensor.contact_sensor_4
+            name: Bedroom Window Left
+            icon: mdi:window-open-variant
+            state_color: true
+          - entity: binary_sensor.contact_sensor_3
+            name: Bedroom Window Right
+            icon: mdi:window-open-variant
+            state_color: true
+        state_filter:
+          - "on"
+        card:
+          type: entities
+          title: Open
+          show_header_toggle: false
+        show_empty: false
   - type: vertical-stack
     cards:
       - type: entities
