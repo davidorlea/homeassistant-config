@@ -7,11 +7,29 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - entity: binary_sensor.contact_sensor_1
+            name: Outdoor Frontdoor
+            icon: mdi:door
+            state_color: true
+          - entity: binary_sensor.contact_sensor_2
+            name: Outdoor Backdoor
+            icon: mdi:door
+            state_color: true
+      - type: entities
+        show_header_toggle: false
+        entities:
           - light.outdoor_frontdoor_light
           - light.outdoor_backdoor_light
   - type: vertical-stack
     title: Kitchen
     cards:
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.motion_sensor_1
+            name: Kitchen Motion
+            icon: mdi:motion-sensor
+            state_color: true
       - type: entities
         show_header_toggle: false
         entities:
@@ -38,6 +56,13 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - entity: binary_sensor.motion_sensor_4
+            name: Living Room Motion
+            icon: mdi:motion-sensor
+            state_color: true
+      - type: entities
+        show_header_toggle: false
+        entities:
           - light.living_room_ceiling_light
           - light.living_room_sofa_light
   - type: vertical-stack
@@ -60,12 +85,37 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - entity: binary_sensor.contact_sensor_4
+            name: Bedroom Window Left
+            icon: mdi:window-closed-variant
+            state_color: true
+          - entity: binary_sensor.contact_sensor_3
+            name: Bedroom Window Right
+            icon: mdi:window-closed-variant
+            state_color: true
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.motion_sensor_2
+            name: Bedroom Motion
+            icon: mdi:motion-sensor
+            state_color: true
+      - type: entities
+        show_header_toggle: false
+        entities:
           - light.bedroom_ceiling_light
           - light.bedroom_bed_light
           - light.bedroom_ambient_light
   - type: vertical-stack
     title: Hall
     cards:
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.motion_sensor_3
+            name: Hall Motion
+            icon: mdi:motion-sensor
+            state_color: true
       - type: entities
         show_header_toggle: false
         entities:
