@@ -7,6 +7,8 @@ good_morning:
           - group.kitchen_lights
           - group.hall_lights
           - light.living_room_ceiling_light
+          - light.bedroom_bed_light
+          - light.bedroom_ambient_light
     - delay: '00:30:00'
     - service: light.turn_off
       data:
@@ -19,7 +21,6 @@ good_night:
     - service: light.turn_on
       data:
         entity_id:
-          - group.hall_lights
           - light.bedroom_bed_light
           - light.bedroom_ambient_light
     - service: media_player.media_pause
@@ -41,4 +42,5 @@ good_night:
           - group.kitchen_lights
           - group.living_room_lights
           - group.hall_lights
+          - light.bedroom_ceiling_light
           - light.bedroom_ambient_light
