@@ -104,10 +104,9 @@
 - name: Movie Night
   entities:
     light.kitchen_ceiling_light: off
-    light.kitchen_cabinet_light: off
-    light.kitchen_sideboard_light: on
+    light.kitchen_cabinet_light: on
+    light.kitchen_sideboard_light: off
     light.living_room_ceiling_light: off
-    light.living_room_sofa_light: on
     light.hall_ceiling_light: off
     light.bedroom_ceiling_light: off
     light.bedroom_ambient_light: off
