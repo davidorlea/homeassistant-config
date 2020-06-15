@@ -25,8 +25,11 @@
     from: 'not_home'
     to: 'home'
   condition:
-    condition: template
-    value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: sensor.period_of_day
+        state: 'Day'
   action:
     - service: input_boolean.turn_off
       data:
@@ -64,8 +67,11 @@
     from: 'home'
     to: 'not_home'
   condition:
-    condition: template
-    value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: sensor.period_of_day
+        state: 'Day'
   action:
     - service: scene.turn_on
       data:

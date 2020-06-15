@@ -18,8 +18,11 @@
   condition:
     condition: and
     conditions:
-      - condition: template
-        value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.period_of_day
+            state: 'Day'
       - condition: time
         after: '01:00:00'
         before: '12:00:00'
@@ -61,8 +64,11 @@
   condition:
     condition: and
     conditions:
-      - condition: template
-        value_template: "{{ not is_state ('sensor.period_of_day', 'Day') }}"
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.period_of_day
+            state: 'Day'
       - condition: time
         after: '01:00:00'
         before: '12:00:00'
