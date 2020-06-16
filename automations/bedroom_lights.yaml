@@ -1,0 +1,87 @@
+- alias: 'Turn Bedroom Ceiling Light on when there is Movement'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_2
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.period_of_day
+        state: 'Day'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.contact_sensor_3
+            state: 'off'
+          - condition: state
+            entity_id: binary_sensor.contact_sensor_4
+            state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.bedroom_ceiling_light
+
+- alias: 'Turn Bedroom Ceiling Light off after last Movement'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_2
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 1
+      seconds: 30
+  action:
+    service: light.turn_off
+    entity_id: light.bedroom_ceiling_light
+
+- alias: 'Turn Bedroom Ceiling Light on when closing Windows and there is Movement'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.contact_sensor_3
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.contact_sensor_4
+      from: 'on'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_3
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_4
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_2
+        state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.bedroom_ceiling_light
+
+- alias: 'Turn Bedroom Ceiling Light off when opening Windows and there is Movement'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.contact_sensor_3
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.contact_sensor_4
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.period_of_day
+            state: 'Day'
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_2
+        state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.bedroom_ceiling_light
