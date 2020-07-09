@@ -4,6 +4,20 @@ cards:
   - type: vertical-stack
     title: Outdoor
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            name: Temperature
+            graph: line
+            entity: sensor.dark_sky_temperature
+          - type: sensor
+            name: Humidity
+            graph: line
+            entity: sensor.dark_sky_humidity
+          - type: sensor
+            name: Pressue
+            graph: line
+            entity: sensor.dark_sky_pressure
       - type: entities
         show_header_toggle: false
         entities:
