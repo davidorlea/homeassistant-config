@@ -7,7 +7,7 @@
     entity_id: input_boolean.away_mode
     state: 'on'
   action:
-    - service: notify.mobile_app_davids_iphone_xs
+    - service: notify.mobile_app_iphone_von_david
       data:
         title: "Smart Home Alerts"
         message: "Something happened at home!"

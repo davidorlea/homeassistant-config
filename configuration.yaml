@@ -57,7 +57,7 @@ person:
     id: 78a185ec8193455c9a6c003f20b0b8fa
     user_id: ec480b5767924246a8f1532f585ae2ef
     device_trackers:
-      - device_tracker.davids_iphone_xs
+      - device_tracker.iphone_von_david
 
 sun:
 
