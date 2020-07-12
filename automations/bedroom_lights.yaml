@@ -1,7 +1,7 @@
 - alias: 'Turn Bedroom Ceiling Light on when there is Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_2
+    entity_id: binary_sensor.bedroom_motion
     from: 'off'
     to: 'on'
   condition:
@@ -13,10 +13,10 @@
       - condition: and
         conditions:
           - condition: state
-            entity_id: binary_sensor.contact_sensor_3
+            entity_id: binary_sensor.bedroom_window_right
             state: 'off'
           - condition: state
-            entity_id: binary_sensor.contact_sensor_4
+            entity_id: binary_sensor.bedroom_window_left
             state: 'off'
   action:
     service: light.turn_on
@@ -25,7 +25,7 @@
 - alias: 'Turn Bedroom Ceiling Light off after last Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_2
+    entity_id: binary_sensor.bedroom_motion
     from: 'on'
     to: 'off'
     for:
@@ -38,24 +38,24 @@
 - alias: 'Turn Bedroom Ceiling Light on when closing Windows and there is Movement'
   trigger:
     - platform: state
-      entity_id: binary_sensor.contact_sensor_3
+      entity_id: binary_sensor.bedroom_window_right
       from: 'on'
       to: 'off'
     - platform: state
-      entity_id: binary_sensor.contact_sensor_4
+      entity_id: binary_sensor.bedroom_window_left
       from: 'on'
       to: 'off'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: binary_sensor.contact_sensor_3
+        entity_id: binary_sensor.bedroom_window_right
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_4
+        entity_id: binary_sensor.bedroom_window_left
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.motion_sensor_2
+        entity_id: binary_sensor.bedroom_motion
         state: 'on'
   action:
     service: light.turn_on
@@ -64,11 +64,11 @@
 - alias: 'Turn Bedroom Ceiling Light off when opening Windows and there is Movement'
   trigger:
     - platform: state
-      entity_id: binary_sensor.contact_sensor_3
+      entity_id: binary_sensor.bedroom_window_right
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.contact_sensor_4
+      entity_id: binary_sensor.bedroom_window_left
       from: 'off'
       to: 'on'
   condition:
@@ -80,7 +80,7 @@
             entity_id: sensor.period_of_day
             state: 'Day'
       - condition: state
-        entity_id: binary_sensor.motion_sensor_2
+        entity_id: binary_sensor.bedroom_motion
         state: 'on'
   action:
     service: light.turn_off

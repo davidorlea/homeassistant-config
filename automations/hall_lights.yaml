@@ -1,7 +1,7 @@
 - alias: 'Turn Hall Ceiling Light on when there is Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_3
+    entity_id: binary_sensor.hall_motion
     from: 'off'
     to: 'on'
   condition:
@@ -11,7 +11,7 @@
         entity_id: sensor.period_of_day
         state: 'Day'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_1
+        entity_id: binary_sensor.outdoor_frontdoor
         state: 'off'
   action:
     service: light.turn_on
@@ -20,7 +20,7 @@
 - alias: 'Turn Hall Ceiling Light off after last Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_3
+    entity_id: binary_sensor.hall_motion
     from: 'on'
     to: 'off'
     for:
@@ -33,12 +33,12 @@
 - alias: 'Turn Hall Ceiling Light on when closing Door and there is Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.contact_sensor_1
+    entity_id: binary_sensor.outdoor_frontdoor
     from: 'on'
     to: 'off'
   condition:
     condition: state
-    entity_id: binary_sensor.motion_sensor_3
+    entity_id: binary_sensor.hall_motion
     state: 'on'
   action:
     service: light.turn_on
@@ -47,7 +47,7 @@
 - alias: 'Turn Hall Ceiling Light off when opening Door and there is Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.contact_sensor_1
+    entity_id: binary_sensor.outdoor_frontdoor
     from: 'off'
     to: 'on'
   condition:
@@ -59,7 +59,7 @@
             entity_id: sensor.period_of_day
             state: 'Day'
       - condition: state
-        entity_id: binary_sensor.motion_sensor_3
+        entity_id: binary_sensor.hall_motion
         state: 'on'
   action:
     service: light.turn_off

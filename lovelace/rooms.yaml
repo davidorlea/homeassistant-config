@@ -21,11 +21,11 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.contact_sensor_1
+          - entity: binary_sensor.outdoor_frontdoor
             name: Outdoor Frontdoor
             icon: mdi:door
             state_color: true
-          - entity: binary_sensor.contact_sensor_2
+          - entity: binary_sensor.outdoor_backdoor
             name: Outdoor Backdoor
             icon: mdi:door
             state_color: true
@@ -40,7 +40,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.motion_sensor_1
+          - entity: binary_sensor.kitchen_motion
             name: Kitchen Motion
             icon: mdi:motion-sensor
             state_color: true
@@ -70,7 +70,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.motion_sensor_4
+          - entity: binary_sensor.living_room_motion
             name: Living Room Motion
             icon: mdi:motion-sensor
             state_color: true
@@ -99,18 +99,18 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.contact_sensor_4
+          - entity: binary_sensor.bedroom_window_left
             name: Bedroom Window Left
             icon: mdi:window-closed-variant
             state_color: true
-          - entity: binary_sensor.contact_sensor_3
+          - entity: binary_sensor.bedroom_window_right
             name: Bedroom Window Right
             icon: mdi:window-closed-variant
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.motion_sensor_2
+          - entity: binary_sensor.bedroom_motion
             name: Bedroom Motion
             icon: mdi:motion-sensor
             state_color: true
@@ -126,7 +126,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.motion_sensor_3
+          - entity: binary_sensor.hall_motion
             name: Hall Motion
             icon: mdi:motion-sensor
             state_color: true

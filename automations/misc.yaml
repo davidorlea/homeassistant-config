@@ -8,16 +8,16 @@
     condition: or
     conditions:
       - condition: state
-        entity_id: binary_sensor.contact_sensor_1
+        entity_id: binary_sensor.outdoor_frontdoor
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_2
+        entity_id: binary_sensor.outdoor_backdoor
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_3
+        entity_id: binary_sensor.bedroom_window_right
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_4
+        entity_id: binary_sensor.bedroom_window_left
         state: 'on'
   action:
     service: notify.mobile_app_iphone_von_david
@@ -47,10 +47,10 @@
         entity_id: sensor.dark_sky_humidity
         below: 60
       - condition: state
-        entity_id: binary_sensor.contact_sensor_1
+        entity_id: binary_sensor.outdoor_frontdoor
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_2
+        entity_id: binary_sensor.outdoor_backdoor
         state: 'off'
   action:
     service: notify.mobile_app_iphone_von_david
@@ -80,10 +80,10 @@
         entity_id: sensor.dark_sky_humidity
         below: 60
       - condition: state
-        entity_id: binary_sensor.contact_sensor_3
+        entity_id: binary_sensor.bedroom_window_right
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.contact_sensor_4
+        entity_id: binary_sensor.bedroom_window_left
         state: 'off'
   action:
     service: notify.mobile_app_iphone_von_david
