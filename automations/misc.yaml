@@ -1,0 +1,26 @@
+- alias: 'Send Notification about Open Doors and Windows at Sunset'
+  trigger:
+    platform: state
+    entity_id: sensor.period_of_day
+    from: 'Day'
+    to: 'Sunset'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_1
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_2
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_3
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_4
+        state: 'on'
+  action:
+    - service: notify.mobile_app_iphone_von_david
+      data:
+        title: "Open doors and windows"
+        message: "Close doors and windows to keep bugs out!"
