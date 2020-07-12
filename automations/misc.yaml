@@ -27,15 +27,31 @@
 
 - alias: 'Send Notification about high Living Room Humdity'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.living_room_multisensor_temperature
-    above: 60
-    for:
-      minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.living_room_multisensor_temperature
+      above: 60
+      for:
+        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_humidity
+      below: 60
+      for:
+        minutes: 30
   condition:
-    condition: numeric_state
-    entity_id: sensor.dark_sky_humidity
-    below: 60
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.living_room_multisensor_temperature
+        above: 60
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_humidity
+        below: 60
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_1
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_2
+        state: 'off'
   action:
     service: notify.mobile_app_iphone_von_david
     data:
@@ -44,15 +60,31 @@
 
 - alias: 'Send Notification about high Bedroom Humdity'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.bedroom_multisensor_temperature
-    above: 60
-    for:
-      minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.bedroom_multisensor_temperature
+      above: 60
+      for:
+        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_humidity
+      below: 60
+      for:
+        minutes: 30
   condition:
-    condition: numeric_state
-    entity_id: sensor.dark_sky_humidity
-    below: 60
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.bedroom_multisensor_temperature
+        above: 60
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_humidity
+        below: 60
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_3
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.contact_sensor_4
+        state: 'off'
   action:
     service: notify.mobile_app_iphone_von_david
     data:
