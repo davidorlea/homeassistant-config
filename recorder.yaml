@@ -9,6 +9,14 @@ include:
     - scene
     - script
   entities:
+    - binary_sensor.bedroom_motion
+    - binary_sensor.bedroom_window_left
+    - binary_sensor.bedroom_window_right
+    - binary_sensor.hall_motion
+    - binary_sensor.kitchen_motion
+    - binary_sensor.living_room_motion
+    - binary_sensor.outdoor_frontdoor
+    - binary_sensor.outdoor_backdoor
     - sensor.bedroom_multisensor_humidity
     - sensor.bedroom_multisensor_pressure
     - sensor.bedroom_multisensor_temperature
