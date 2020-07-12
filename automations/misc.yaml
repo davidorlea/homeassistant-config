@@ -20,7 +20,41 @@
         entity_id: binary_sensor.contact_sensor_4
         state: 'on'
   action:
-    - service: notify.mobile_app_iphone_von_david
-      data:
-        title: "Open doors and windows"
-        message: "Close doors and windows to keep bugs out!"
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Open doors and windows"
+      message: "Close doors and windows to keep bugs out!"
+
+- alias: 'Send Notification about high Living Room Humdity'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.living_room_multisensor_temperature
+    above: 60
+    for:
+      minutes: 30
+  condition:
+    condition: numeric_state
+    entity_id: sensor.dark_sky_humidity
+    below: 60
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Humdity in living room too high"
+      message: "Open doors or windows to reduce humdity!"
+
+- alias: 'Send Notification about high Bedroom Humdity'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.bedroom_multisensor_temperature
+    above: 60
+    for:
+      minutes: 30
+  condition:
+    condition: numeric_state
+    entity_id: sensor.dark_sky_humidity
+    below: 60
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Humdity in bedroom too high"
+      message: "Open doors or windows to reduce humdity!"
