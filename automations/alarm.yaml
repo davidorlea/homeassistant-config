@@ -1,7 +1,37 @@
 - alias: 'Alarm'
   trigger:
-    platform: mqtt
-    topic: 'smarty/+/button1'
+    - platform: state
+      entity_id: binary_sensor.bedroom_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.hall_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.living_room_motion
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.outdoor_frontdoor
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.outdoor_backdoor
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_left
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_right
+      from: 'off'
+      to: 'on'
   condition:
     condition: state
     entity_id: input_boolean.away_mode
