@@ -5,19 +5,24 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: or
+    condition: and
     conditions:
       - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
-      - condition: and
+        entity_id: input_boolean.bed_mode
+        state: 'off'
+      - condition: or
         conditions:
           - condition: state
-            entity_id: binary_sensor.bedroom_window_right
-            state: 'off'
-          - condition: state
-            entity_id: binary_sensor.bedroom_window_left
-            state: 'off'
+            entity_id: sensor.period_of_day
+            state: 'Day'
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.bedroom_window_right
+                state: 'off'
+              - condition: state
+                entity_id: binary_sensor.bedroom_window_left
+                state: 'off'
   action:
     service: light.turn_on
     entity_id: light.bedroom_ceiling_light
@@ -49,14 +54,17 @@
     condition: and
     conditions:
       - condition: state
+        entity_id: input_boolean.bed_mode
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.bedroom_motion
+        state: 'on'
+      - condition: state
         entity_id: binary_sensor.bedroom_window_right
         state: 'off'
       - condition: state
         entity_id: binary_sensor.bedroom_window_left
         state: 'off'
-      - condition: state
-        entity_id: binary_sensor.bedroom_motion
-        state: 'on'
   action:
     service: light.turn_on
     entity_id: light.bedroom_ceiling_light
