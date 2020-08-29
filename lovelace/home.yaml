@@ -56,6 +56,14 @@ cards:
           title: Open
           show_header_toggle: false
         show_empty: false
+      - type: entities
+        title: Alarm Clock
+        show_header_toggle: false
+        entities:
+          - entity: input_datetime.alarm_clock
+            name: Alarm Clock Time
+          - entity: input_boolean.alarm_clock
+            name: Alarm Clock Status
   - type: vertical-stack
     cards:
       - type: entities

@@ -1,6 +1,9 @@
 good_morning:
   alias: Good Morning
   sequence:
+    - condition: state
+      entity_id: input_boolean.bed_mode
+      state: 'on'
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.bed_mode
@@ -21,6 +24,9 @@ good_morning:
 good_night:
   alias: Good Night
   sequence:
+    - condition: state
+      entity_id: input_boolean.bed_mode
+      state: 'off'
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.bed_mode

@@ -1,0 +1,28 @@
+# See https://www.reddit.com/r/homeassistant/comments/f34lbx/home_assistant_alarm_clock/
+
+- alias: 'Alarm Clock'
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 300) | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.alarm_clock
+    state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.alarm_clock
+    - condition: state
+      entity_id: input_boolean.bed_mode
+      state: 'on'
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.bedroom_bed_light
+          - light.bedroom_ambient_light
+        brightness_pct: 80
+        transition: 300
+    - delay: '00:05:00'
+    - service: script.turn_on
+      data:
+        entity_id: script.good_morning

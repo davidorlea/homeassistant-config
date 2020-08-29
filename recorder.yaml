@@ -4,6 +4,7 @@ include:
     - automation
     - device_tracker
     - input_boolean
+    - input_datetime
     - light
     - person
     - scene

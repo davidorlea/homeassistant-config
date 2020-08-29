@@ -1,3 +1,8 @@
+input_boolean.alarm_clock:
+  icon: mdi:alarm-check
+input_datetime.alarm_clock:
+  icon: mdi:alarm
+
 light.outdoor_frontdoor_light:
   icon: mdi:spotlight-beam
 light.outdoor_backdoor_light:
