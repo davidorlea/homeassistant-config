@@ -2,9 +2,6 @@
   sensors:
     coronavirus_germany_mortality:
       unit_of_measurement: "%"
-      entity_id:
-        - sensor.coronavirus_germany_confirmed
-        - sensor.coronavirus_germany_deaths
       value_template: >-
         {% set confirmed = states("sensor.coronavirus_germany_confirmed") %}
         {% set deaths = states("sensor.coronavirus_germany_deaths") %}
