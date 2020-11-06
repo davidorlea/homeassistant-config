@@ -33,7 +33,7 @@
 - alias: 'Send Notification about high Living Room Humdity'
   trigger:
     - platform: numeric_state
-      entity_id: sensor.living_room_multisensor_temperature
+      entity_id: sensor.living_room_multisensor_humidity
       above: 60
       for:
         minutes: 30
@@ -49,7 +49,7 @@
         entity_id: input_boolean.away_mode
         state: 'off'
       - condition: numeric_state
-        entity_id: sensor.living_room_multisensor_temperature
+        entity_id: sensor.living_room_multisensor_humidity
         above: 60
       - condition: numeric_state
         entity_id: sensor.dark_sky_humidity
@@ -69,7 +69,7 @@
 - alias: 'Send Notification about high Bedroom Humdity'
   trigger:
     - platform: numeric_state
-      entity_id: sensor.bedroom_multisensor_temperature
+      entity_id: sensor.bedroom_multisensor_humidity
       above: 60
       for:
         minutes: 30
@@ -85,7 +85,7 @@
         entity_id: input_boolean.away_mode
         state: 'off'
       - condition: numeric_state
-        entity_id: sensor.bedroom_multisensor_temperature
+        entity_id: sensor.bedroom_multisensor_humidity
         above: 60
       - condition: numeric_state
         entity_id: sensor.dark_sky_humidity
