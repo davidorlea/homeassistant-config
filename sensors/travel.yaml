@@ -7,7 +7,6 @@
     next_bus_time:
       unit_of_measurement: min
       value_template: >-
-        {% set dummy = states("sensor.time") %}
         {% set state = states("sensor.aseag_next_bus_100621_1") %}
         {% if state != "unknown" %}
           {{ ((as_timestamp(state) - as_timestamp(now())) / 60) | int }}

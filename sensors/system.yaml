@@ -38,8 +38,7 @@
       measurement: '"mem"'
       field: available_percent
       database: telegraf
-    - name: influxdb pi last boot
-      value_template: '{{ (as_timestamp(now()) - value | int) | timestamp_custom("%Y-%m-%dT%H:%M:%SZ", false) }}'
+    - name: influxdb pi uptime
       group_function: last
       where: '"host" = ''raspberrypi'''
       measurement: '"system"'
@@ -63,8 +62,7 @@
       measurement: '"fritzbox"'
       field: connectionstatus
       database: telegraf
-    - name: influxdb fritzbox last reconnect
-      value_template: '{{ (as_timestamp(now()) - value | int) | timestamp_custom("%Y-%m-%dT%H:%M:%SZ", false) }}'
+    - name: influxdb fritzbox uptime
       group_function: last
       where: 'true'
       measurement: '"fritzbox"'
@@ -107,7 +105,15 @@
 
 - platform: template
   sensors:
-    hass_last_boot:
-      value_template: "{{ (as_timestamp(now()) - (states.sensor.uptime.state | float * 60) ) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+    hass_last_start:
+      value_template: "{{ (as_timestamp(states.sensor.uptime.last_changed) - (states.sensor.uptime.state | float) * 60) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+      icon_template: mdi:clock
+      device_class: timestamp
+    influxdb_fritzbox_last_reconnect:
+      value_template: "{{ (as_timestamp(states.sensor.influxdb_fritzbox_uptime.last_changed) - states.sensor.influxdb_fritzbox_uptime.state | float) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
+      icon_template: mdi:clock
+      device_class: timestamp
+    influxdb_pi_last_boot:
+      value_template: "{{ (as_timestamp(states.sensor.influxdb_pi_uptime.last_changed) - states.sensor.influxdb_pi_uptime.state | float) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
       icon_template: mdi:clock
       device_class: timestamp
