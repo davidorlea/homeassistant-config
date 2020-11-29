@@ -83,8 +83,8 @@ sensor.coronavirus_germany_mortality:
 sensor.coronavirus_germany_recovered:
   friendly_name: Coronavirus Germany Recovered
   icon: mdi:biohazard
-sensor.hass_last_boot:
-  friendly_name: 'Last Boot'
+sensor.hass_last_start:
+  friendly_name: 'Last Start'
 sensor.influxdb_fritzbox_connection_status:
   friendly_name: 'Connection Status'
   icon: mdi:wan

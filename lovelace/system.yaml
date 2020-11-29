@@ -5,7 +5,7 @@ cards:
     title: Home Assistant
     show_header_toggle: false
     entities:
-      - sensor.hass_last_boot
+      - sensor.hass_last_start
   - type: entities
     title: Raspberry Pi
     show_header_toggle: false
