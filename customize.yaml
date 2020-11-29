@@ -110,6 +110,8 @@ sensor.influxdb_fritzbox_transmission_rate_down:
 sensor.influxdb_fritzbox_transmission_rate_up:
   friendly_name: 'Transmission Rate Up'
   icon: mdi:upload-network
+sensor.influxdb_fritzbox_uptime:
+  friendly_name: 'Uptime'
 sensor.influxdb_pi_load1:
   friendly_name: 'Load (1m)'
   icon: mdi:memory
@@ -131,6 +133,8 @@ sensor.influxdb_pi_last_boot:
   friendly_name: 'Last Boot'
   icon: mdi:clock
   device_class: timestamp
+sensor.influxdb_pi_uptime:
+  friendly_name: 'Uptime'
 sensor.nearest_scooter_distance:
   friendly_name: 'Nearest Scooter (Walking Distance)'
 sensor.nearest_scooter_battery:
