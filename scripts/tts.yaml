@@ -1,6 +1,0 @@
-tts_test:
-  alias: TTS Test
-  sequence:
-    - service: script.sonos_say
-      data_template:
-        sonos_say_message: 'Hallo, das ist ein Test.'

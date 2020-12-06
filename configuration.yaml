@@ -60,11 +60,6 @@ person:
 
 sun:
 
-tts:
-  - platform: google_cloud
-    key_file: googlecloud.json
-    voice: de-DE-Wavenet-B
-
 zone:
   name: Home
   latitude: !secret homeassistant_latitude
