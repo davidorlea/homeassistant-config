@@ -1,5 +1,4 @@
 - platform: uptime
-  unit_of_measurement: minutes
 
 - platform: influxdb
   host: !secret influxdb_host
@@ -105,10 +104,6 @@
 
 - platform: template
   sensors:
-    hass_last_start:
-      value_template: "{{ (as_timestamp(states.sensor.uptime.last_changed) - (states.sensor.uptime.state | float) * 60) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
-      icon_template: mdi:clock
-      device_class: timestamp
     influxdb_fritzbox_last_reconnect:
       value_template: "{{ (as_timestamp(states.sensor.influxdb_fritzbox_uptime.last_changed) - states.sensor.influxdb_fritzbox_uptime.state | float) | timestamp_custom('%Y-%m-%dT%H:%M:%SZ', false) }}"
       icon_template: mdi:clock

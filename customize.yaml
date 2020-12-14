@@ -83,8 +83,6 @@ sensor.coronavirus_germany_mortality:
 sensor.coronavirus_germany_recovered:
   friendly_name: Coronavirus Germany Recovered
   icon: mdi:biohazard
-sensor.hass_last_start:
-  friendly_name: 'Last Start'
 sensor.influxdb_fritzbox_connection_status:
   friendly_name: 'Connection Status'
   icon: mdi:wan
@@ -145,3 +143,7 @@ sensor.next_bus_time:
   friendly_name: 'Next Bus (Remaining Time)'
 sensor.period_of_day:
   friendly_name: 'Period of Day'
+sensor.uptime:
+  friendly_name: 'Last Start'
+  # icon_template: mdi:clock
+  # device_class: timestamp
