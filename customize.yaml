@@ -145,5 +145,3 @@ sensor.period_of_day:
   friendly_name: 'Period of Day'
 sensor.uptime:
   friendly_name: 'Last Start'
-  # icon_template: mdi:clock
-  # device_class: timestamp
