@@ -19,7 +19,7 @@ bedroom_lights:
   entities:
     - light.bedroom_ceiling_light
     - light.bedroom_bed_light
-    - light.bedroom_ambient_light
+    - light.bedroom_dresser_light
 hall_lights:
   name: Hall Lights
   entities:

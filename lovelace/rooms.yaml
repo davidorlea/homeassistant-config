@@ -119,7 +119,7 @@ cards:
         entities:
           - light.bedroom_ceiling_light
           - light.bedroom_bed_light
-          - light.bedroom_ambient_light
+          - light.bedroom_dresser_light
   - type: vertical-stack
     title: Hall
     cards:

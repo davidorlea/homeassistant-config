@@ -12,7 +12,7 @@ smart_home:
       - light.living_room_ceiling_light
       - light.living_room_sofa_light
       - light.bedroom_ceiling_light
-      - light.bedroom_ambient_light
+      - light.bedroom_dresser_light
       - light.bedroom_bed_light
       - light.hall_ceiling_light
       - sensor.living_room_multisensor_temperature
@@ -46,9 +46,9 @@ smart_home:
     light.bedroom_ceiling_light:
       name: Deckenlampe Schlafzimmer
       description: Deckenlampe im Schlafzimmer
-    light.bedroom_ambient_light:
-      name: Umgebungslampe Schlafzimmer
-      description: Umgebungslampe im Schlafzimmer
+    light.bedroom_dresser_light:
+      name: Kommodenlampe Schlafzimmer
+      description: Kommodenlampe im Schlafzimmer
     light.bedroom_bed_light:
       name: Bettlampe Schlafzimmer
       description: Bettlampe im Schlafzimmer

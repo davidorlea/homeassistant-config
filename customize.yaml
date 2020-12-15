@@ -21,7 +21,7 @@ light.bedroom_ceiling_light:
   icon: mdi:ceiling-light
 light.bedroom_bed_light:
   icon: mdi:lamp
-light.bedroom_ambient_light:
+light.bedroom_dresser_light:
   icon: mdi:lamp
 light.hall_ceiling_light:
   icon: mdi:ceiling-light

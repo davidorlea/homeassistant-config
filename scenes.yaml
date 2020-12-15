@@ -72,25 +72,25 @@
   entities:
     light.kitchen_sideboard_light: off
     light.living_room_sofa_light: off
-    light.bedroom_ambient_light: off
+    light.bedroom_dresser_light: off
 
 - name: Occupancy Simulation 1
   entities:
     light.kitchen_sideboard_light: on
     light.living_room_sofa_light: off
-    light.bedroom_ambient_light: on
+    light.bedroom_dresser_light: on
 
 - name: Occupancy Simulation 2
   entities:
     light.kitchen_sideboard_light: on
     light.living_room_sofa_light: on
-    light.bedroom_ambient_light: off
+    light.bedroom_dresser_light: off
 
 - name: Occupancy Simulation 3
   entities:
     light.kitchen_sideboard_light: off
     light.living_room_sofa_light: on
-    light.bedroom_ambient_light: on
+    light.bedroom_dresser_light: on
 
 - name: Stay Cosy
   entities:
@@ -109,7 +109,7 @@
     light.living_room_ceiling_light: off
     light.hall_ceiling_light: off
     light.bedroom_ceiling_light: off
-    light.bedroom_ambient_light: off
+    light.bedroom_dresser_light: off
     light.bedroom_bed_light: off
     media_player.sonos_device_kuche:
       state: paused

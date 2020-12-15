@@ -19,7 +19,7 @@
       data:
         entity_id:
           - light.bedroom_bed_light
-          - light.bedroom_ambient_light
+          - light.bedroom_dresser_light
         brightness_pct: 80
         transition: 300
     - delay: '00:05:00'
