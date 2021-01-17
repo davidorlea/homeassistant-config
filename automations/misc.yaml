@@ -60,10 +60,10 @@
             entity_id: binary_sensor.outdoor_backdoor
             state: 'on'
           - condition: state
-            entity_id: binary_sensor.bedroom_window_right
+            entity_id: binary_sensor.bedroom_window_left
             state: 'on'
           - condition: state
-            entity_id: binary_sensor.bedroom_window_left
+            entity_id: binary_sensor.bedroom_window_right
             state: 'on'
   action:
     service: notify.mobile_app_iphone_von_david
@@ -132,10 +132,10 @@
         entity_id: sensor.dark_sky_humidity
         below: 60
       - condition: state
-        entity_id: binary_sensor.bedroom_window_right
+        entity_id: binary_sensor.bedroom_window_left
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.bedroom_window_left
+        entity_id: binary_sensor.bedroom_window_right
         state: 'off'
   action:
     service: notify.mobile_app_iphone_von_david
