@@ -1,3 +1,44 @@
+- alias: 'Send Notification about Open Doors and Windows in Winter'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.outdoor_frontdoor
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.outdoor_backdoor
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_left
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_right
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 10
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.away_mode
+        state: 'off'
+      - condition: state
+        entity_id: sensor.season
+        state: 'winter'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Open doors and windows"
+      message: "Close doors or windows to keep it warm!"
+
 - alias: 'Send Notification about Open Doors and Windows at Sunset'
   trigger:
     platform: state
