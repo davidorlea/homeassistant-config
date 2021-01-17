@@ -8,6 +8,7 @@ cards:
       - sensor.period_of_day
       - sun.sun
       - sensor.moon
+      - sensor.season
       - sensor.date
       - sensor.time
   - type: entities

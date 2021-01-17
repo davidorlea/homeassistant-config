@@ -3,6 +3,8 @@
     - 'date'
     - 'time'
 
+- platform: season
+
 - platform: moon
 
 - platform: template

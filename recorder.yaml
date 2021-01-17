@@ -39,6 +39,7 @@ include:
     - sensor.living_room_multisensor_temperature
     - sensor.moon
     - sensor.period_of_day
+    - sensor.season
 exclude:
   entities:
     - script.occupancy_simulation_start
