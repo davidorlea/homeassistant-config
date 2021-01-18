@@ -1,4 +1,4 @@
-- alias: 'Send Notification about Open Doors and Windows in Winter'
+- alias: 'Send Notification about open Doors and Windows in Winter'
   trigger:
     - platform: state
       entity_id: binary_sensor.outdoor_frontdoor
@@ -63,9 +63,9 @@
     service: notify.mobile_app_iphone_von_david
     data:
       title: "Open doors and windows"
-      message: "Close doors or windows to keep it warm!"
+      message: "Close doors and windows to keep it warm!"
 
-- alias: 'Send Notification about Open Doors and Windows at Sunset'
+- alias: 'Send Notification about open Doors and Windows at Sunset'
   trigger:
     platform: state
     entity_id: sensor.period_of_day
@@ -97,7 +97,7 @@
       title: "Open doors and windows"
       message: "Close doors and windows to keep bugs out!"
 
-- alias: 'Send Notification about high Living Room Humdity'
+- alias: 'Send Notification about high Living Room Humidity'
   trigger:
     - platform: numeric_state
       entity_id: sensor.living_room_multisensor_humidity
@@ -130,10 +130,10 @@
   action:
     service: notify.mobile_app_iphone_von_david
     data:
-      title: "Humdity in living room too high"
-      message: "Open doors or windows to reduce humdity!"
+      title: "Humidity in living room too high"
+      message: "Open doors or windows to reduce humidity!"
 
-- alias: 'Send Notification about high Bedroom Humdity'
+- alias: 'Send Notification about high Bedroom Humidity'
   trigger:
     - platform: numeric_state
       entity_id: sensor.bedroom_multisensor_humidity
@@ -166,5 +166,5 @@
   action:
     service: notify.mobile_app_iphone_von_david
     data:
-      title: "Humdity in bedroom too high"
-      message: "Open doors or windows to reduce humdity!"
+      title: "Humidity in bedroom too high"
+      message: "Open doors or windows to reduce humidity!"
