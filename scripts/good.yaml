@@ -19,7 +19,8 @@ good_morning:
     - service: light.turn_off
       data:
         entity_id:
-          - group.bedroom_lights
+          - light.bedroom_bed_light
+          - light.bedroom_dresser_light
 
 good_night:
   alias: Good Night
