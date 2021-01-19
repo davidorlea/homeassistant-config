@@ -89,6 +89,9 @@
       - condition: state
         entity_id: input_boolean.away_mode
         state: 'off'
+      - condition: state
+        entity_id: input_boolean.bed_mode
+        state: 'off'
       - condition: numeric_state
         entity_id: sensor.living_room_multisensor_humidity
         above: 60
@@ -124,6 +127,9 @@
     conditions:
       - condition: state
         entity_id: input_boolean.away_mode
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.bed_mode
         state: 'off'
       - condition: numeric_state
         entity_id: sensor.bedroom_multisensor_humidity
