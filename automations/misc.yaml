@@ -33,32 +33,6 @@
       - condition: state
         entity_id: sensor.season
         state: 'winter'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id:
-              - binary_sensor.outdoor_backdoor
-              - binary_sensor.bedroom_window_left
-              - binary_sensor.bedroom_window_right
-            state: 'off'
-          - condition: state
-            entity_id:
-              - binary_sensor.outdoor_frontdoor
-              - binary_sensor.bedroom_window_left
-              - binary_sensor.bedroom_window_right
-            state: 'off'
-          - condition: state
-            entity_id:
-              - binary_sensor.outdoor_frontdoor
-              - binary_sensor.outdoor_backdoor
-              - binary_sensor.bedroom_window_right
-            state: 'off'
-          - condition: state
-            entity_id:
-              - binary_sensor.outdoor_frontdoor
-              - binary_sensor.outdoor_backdoor
-              - binary_sensor.bedroom_window_left
-            state: 'off'
   action:
     service: notify.mobile_app_iphone_von_david
     data:
