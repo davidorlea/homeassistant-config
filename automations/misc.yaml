@@ -2,25 +2,18 @@
   trigger:
     - platform: state
       entity_id: input_boolean.away_mode
-      from: 'on'
       to: 'off'
       for:
         minutes: 10
     - platform: state
       entity_id: input_boolean.bed_mode
-      from: 'on'
       to: 'off'
       for:
         minutes: 30
     - platform: state
-      entity_id: binary_sensor.bedroom_window_left
-      from: 'on'
-      to: 'off'
-      for:
-        hours: 5
-    - platform: state
-      entity_id: binary_sensor.bedroom_window_right
-      from: 'on'
+      entity_id:
+        - binary_sensor.bedroom_window_left
+        - binary_sensor.bedroom_window_right
       to: 'off'
       for:
         hours: 5
@@ -38,12 +31,9 @@
         for:
           minutes: 30
       - condition: state
-        entity_id: binary_sensor.bedroom_window_left
-        state: 'off'
-        for:
-          hours: 5
-      - condition: state
-        entity_id: binary_sensor.bedroom_window_right
+        entity_id:
+          - binary_sensor.bedroom_window_left
+          - binary_sensor.bedroom_window_right
         state: 'off'
         for:
           hours: 5
@@ -56,26 +46,11 @@
 - alias: 'Send Notification about open Doors and Windows in Winter'
   trigger:
     - platform: state
-      entity_id: binary_sensor.outdoor_frontdoor
-      from: 'off'
-      to: 'on'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.outdoor_backdoor
-      from: 'off'
-      to: 'on'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.bedroom_window_left
-      from: 'off'
-      to: 'on'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.bedroom_window_right
-      from: 'off'
+      entity_id:
+        - binary_sensor.outdoor_frontdoor
+        - binary_sensor.outdoor_backdoor
+        - binary_sensor.bedroom_window_left
+        - binary_sensor.bedroom_window_right
       to: 'on'
       for:
         minutes: 10
