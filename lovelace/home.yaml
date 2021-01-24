@@ -104,8 +104,15 @@ cards:
         title: Coronavirus
         show_header_toggle: false
         entities:
-          - sensor.coronavirus_germany_confirmed
-          - sensor.coronavirus_germany_current
-          - sensor.coronavirus_germany_recovered
-          - sensor.coronavirus_germany_deaths
-          - sensor.coronavirus_germany_mortality
+          - entity: sensor.coronavirus_aachen_7day_incidence
+            name: Aachen 7-Day Incidence
+          - entity: sensor.coronavirus_germany_confirmed
+            name: Germany Confirmed
+          - entity: sensor.coronavirus_germany_current
+            name: Germany Current
+          - entity: sensor.coronavirus_germany_recovered
+            name: Germany Recovered
+          - entity: sensor.coronavirus_germany_deaths
+            name: Germany Deaths
+          - entity: sensor.coronavirus_germany_mortality
+            name: Germany Mortality

@@ -10,3 +10,9 @@
         {% else %}
           unknown
         {% endif %}
+
+- platform: rest
+  name: Coronavirus Aachen 7Day Incidence
+  resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=OBJECTID%20%3D%20%2782%27&outFields=cases7_per_100k&returnGeometry=false&outSR=4326&f=json"
+  value_template: '{{ value_json.features[0].attributes.cases7_per_100k | round(1) }}'
+  scan_interval: 3600

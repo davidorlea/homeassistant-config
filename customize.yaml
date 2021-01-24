@@ -68,6 +68,9 @@ sensor.gas_station_brand:
   friendly_name: 'Gas Station (Brand)'
 sensor.gas_station_price:
   friendly_name: 'Gas Station (Price)'
+sensor.coronavirus_aachen_7day_incidence:
+  friendly_name: Coronavirus Aachen 7-Day Incidence
+  icon: mdi:biohazard
 sensor.coronavirus_germany_confirmed:
   friendly_name: Coronavirus Germany Confirmed
   icon: mdi:biohazard
