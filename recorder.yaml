@@ -21,6 +21,12 @@ include:
     - sensor.bedroom_multisensor_humidity
     - sensor.bedroom_multisensor_pressure
     - sensor.bedroom_multisensor_temperature
+    - sensor.coronavirus_aachen_7day_incidence
+    - sensor.coronavirus_germany_confirmed
+    - sensor.coronavirus_germany_current
+    - sensor.coronavirus_germany_deaths
+    - sensor.coronavirus_germany_mortality
+    - sensor.coronavirus_germany_recovered
     - sensor.dark_sky_condition
     - sensor.dark_sky_humidity
     - sensor.dark_sky_ozone
