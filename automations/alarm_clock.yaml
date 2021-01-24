@@ -41,3 +41,7 @@
       data:
         entity_id: media_player.sonos_device_schlafzimmer
         source: "Pillow Talk"
+    - delay: '00:30:00'
+    - service: media_player.media_pause
+      data:
+        entity_id: media_player.sonos_device_schlafzimmer
