@@ -1,3 +1,58 @@
+- alias: 'Send Notification to ventilate the Bedroom'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away_mode
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_boolean.bed_mode
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 30
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_left
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 5
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_right
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.away_mode
+        state: 'off'
+        for:
+          minutes: 10
+      - condition: state
+        entity_id: input_boolean.bed_mode
+        state: 'off'
+        for:
+          minutes: 30
+      - condition: state
+        entity_id: binary_sensor.bedroom_window_left
+        state: 'off'
+        for:
+          hours: 5
+      - condition: state
+        entity_id: binary_sensor.bedroom_window_right
+        state: 'off'
+        for:
+          hours: 5
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Ventilate the Bedroom"
+      message: "Open doors and windows to get some fresh air!"
+
 - alias: 'Send Notification about open Doors and Windows in Winter'
   trigger:
     - platform: state
