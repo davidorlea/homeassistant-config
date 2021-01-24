@@ -1,0 +1,47 @@
+- platform: history_stats
+  name: history stats away mode
+  entity_id: input_boolean.away_mode
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: history stats bed mode
+  entity_id: input_boolean.bed_mode
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: history stats bedroom window left
+  entity_id: binary_sensor.bedroom_window_left
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: history stats bedroom window right
+  entity_id: binary_sensor.bedroom_window_right
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: history stats outdoor frontdoor
+  entity_id: binary_sensor.outdoor_frontdoor
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: history stats outdoor backdoor
+  entity_id: binary_sensor.outdoor_backdoor
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
