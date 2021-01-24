@@ -14,7 +14,20 @@ include:
     - sensor.dwd_pollen_today_41_ambrosia
     - sensor.dwd_pollen_today_41_grass
     - sensor.dwd_pollen_today_41_tree
+    - sensor.history_stats_away_mode
+    - sensor.history_stats_bed_mode
+    - sensor.history_stats_bedroom_window_left
+    - sensor.history_stats_bedroom_window_right
+    - sensor.history_stats_outdoor_frontdoor
+    - sensor.history_stats_outdoor_backdoor
     - sensor.tankerkoenig
+ignore_attributes:
+  - attribution
+  - device_class
+  - domain
+  - entity_id
+  - friendly_name
+  - icon
 component_config:
   sensor.dark_sky_humidity:
     override_measurement: 'sensor.dark_sky_humidity'
@@ -36,5 +49,29 @@ component_config:
     override_measurement: 'sensor.dwd_pollen_today_41_grass'
   sensor.dwd_pollen_today_41_tree:
     override_measurement: 'sensor.dwd_pollen_today_41_tree'
+  sensor.history_stats_away_mode:
+    override_measurement: 'sensor.history_stats_away_mode'
+    ignore_attributes:
+      - value
+  sensor.history_stats_bed_mode:
+    override_measurement: 'sensor.history_stats_bed_mode'
+    ignore_attributes:
+      - value
+  sensor.history_stats_bedroom_window_left:
+    override_measurement: 'sensor.history_stats_bedroom_window_left'
+    ignore_attributes:
+      - value
+  sensor.history_stats_bedroom_window_right:
+    override_measurement: 'sensor.history_stats_bedroom_window_right'
+    ignore_attributes:
+      - value
+  sensor.history_stats_outdoor_frontdoor:
+    override_measurement: 'sensor.history_stats_outdoor_frontdoor'
+    ignore_attributes:
+      - value
+  sensor.history_stats_outdoor_backdoor:
+    override_measurement: 'sensor.history_stats_outdoor_backdoor'
+    ignore_attributes:
+      - value
   sensor.tankerkoenig:
     override_measurement: 'sensor.tankerkoenig'
