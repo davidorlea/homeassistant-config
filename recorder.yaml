@@ -10,6 +10,7 @@ include:
     - scene
     - script
   entities:
+    - binary_sensor.bedroom_bed_occupancy
     - binary_sensor.bedroom_motion
     - binary_sensor.bedroom_window_left
     - binary_sensor.bedroom_window_right
