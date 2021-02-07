@@ -5,6 +5,7 @@ include:
     - device_tracker
     - input_boolean
     - input_datetime
+    - input_select
     - light
     - person
     - scene

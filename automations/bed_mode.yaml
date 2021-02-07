@@ -1,0 +1,89 @@
+- alias: 'Transition Bed Mode From Just On to On'
+  trigger:
+    platform: state
+    entity_id: input_select.bed_mode
+    to: 'just on'
+    for:
+      minutes: 5
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.bed_mode
+      option: 'on'
+
+- alias: 'Transition Bed Mode From Just Off to Off'
+  trigger:
+    platform: state
+    entity_id: input_select.bed_mode
+    to: 'just off'
+    for:
+      minutes: 5
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.bed_mode
+      option: 'off'
+
+- alias: 'Transition Bed Mode From Off to Just On'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_bed_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_select.bed_mode
+    state: 'off'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.bed_mode
+      option: 'just on'
+
+- alias: 'Transition Bed Mode From Just Off to On'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_bed_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_select.bed_mode
+    state: 'just off'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.bed_mode
+      option: 'on'
+
+- alias: 'Transition Bed Mode From On to Just Off'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_bed_occupancy
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: input_select.bed_mode
+    state: 'on'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.bed_mode
+      option: 'just off'
+
+- alias: 'Transition Bed Mode From Just On to Off'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_bed_occupancy
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: input_select.bed_mode
+    state: 'just on'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.bed_mode
+      option: 'off'
