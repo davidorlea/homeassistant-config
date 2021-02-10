@@ -5,16 +5,20 @@
     platform: template
     value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 300) | timestamp_custom('%H:%M', False)) }}"
   condition:
-    condition: state
-    entity_id: input_boolean.alarm_clock
-    state: 'on'
-  action:
-    - service: input_boolean.turn_off
-      data:
+    condition: and
+    conditions:
+      - condition: state
         entity_id: input_boolean.alarm_clock
-    - condition: state
-      entity_id: input_boolean.bed_mode
-      state: 'on'
+        state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.bed_mode
+            state: 'on'
+          - condition: state
+            entity_id: input_select.bed_mode
+            state: 'just on'
+  action:
     - service: light.turn_on
       data:
         entity_id:
@@ -23,9 +27,6 @@
         brightness_pct: 80
         transition: 300
     - delay: '00:05:00'
-    - service: script.turn_on
-      data:
-        entity_id: script.good_morning
     - service: sonos.unjoin
       data:
         entity_id: media_player.sonos_device_schlafzimmer

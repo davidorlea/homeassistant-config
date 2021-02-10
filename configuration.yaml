@@ -98,6 +98,8 @@ input_boolean: !include input_boolean.yaml
 
 input_datetime: !include input_datetime.yaml
 
+input_select: !include input_select.yaml
+
 intent_script: !include_dir_merge_named alexa/intent_scripts
 
 light: !include_dir_merge_list lights

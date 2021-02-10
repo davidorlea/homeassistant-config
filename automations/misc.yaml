@@ -6,7 +6,7 @@
       for:
         minutes: 10
     - platform: state
-      entity_id: input_boolean.bed_mode
+      entity_id: input_select.bed_mode
       to: 'off'
       for:
         minutes: 30
@@ -26,7 +26,7 @@
         for:
           minutes: 10
       - condition: state
-        entity_id: input_boolean.bed_mode
+        entity_id: input_select.bed_mode
         state: 'off'
         for:
           minutes: 30
@@ -120,7 +120,7 @@
         entity_id: input_boolean.away_mode
         state: 'off'
       - condition: state
-        entity_id: input_boolean.bed_mode
+        entity_id: input_select.bed_mode
         state: 'off'
       - condition: numeric_state
         entity_id: sensor.living_room_multisensor_humidity
@@ -159,7 +159,7 @@
         entity_id: input_boolean.away_mode
         state: 'off'
       - condition: state
-        entity_id: input_boolean.bed_mode
+        entity_id: input_select.bed_mode
         state: 'off'
       - condition: numeric_state
         entity_id: sensor.bedroom_multisensor_humidity

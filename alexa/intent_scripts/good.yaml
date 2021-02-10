@@ -1,8 +1,4 @@
 GoodMorningIntent:
-  action:
-    service: script.turn_on
-    data:
-      entity_id: script.good_morning
   speech:
     type: plain
     text: >-
@@ -14,10 +10,6 @@ GoodMorningIntent:
         ] | random }}
 
 GoodNightIntent:
-  action:
-    service: script.turn_on
-    data:
-      entity_id: script.good_night
   speech:
     type: plain
     text: >-

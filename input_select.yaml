@@ -1,0 +1,7 @@
+bed_mode:
+  name: Bed Mode
+  options:
+    - 'on'
+    - 'just on'
+    - 'just off'
+    - 'off'

@@ -117,6 +117,13 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - entity: binary_sensor.bedroom_bed_occupancy
+            name: Bedroom Bed Occupancy
+            icon: mdi:bed
+            state_color: true
+      - type: entities
+        show_header_toggle: false
+        entities:
           - light.bedroom_ceiling_light
           - light.bedroom_bed_light
           - light.bedroom_dresser_light
