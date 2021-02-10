@@ -8,7 +8,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.bed_mode
+        entity_id: input_select.bed_mode
         state: 'off'
       - condition: or
         conditions:
@@ -54,7 +54,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.bed_mode
+        entity_id: input_select.bed_mode
         state: 'off'
       - condition: state
         entity_id: binary_sensor.bedroom_motion
@@ -93,3 +93,37 @@
   action:
     service: light.turn_off
     entity_id: light.bedroom_ceiling_light
+
+- alias: 'Turn Bedroom Bed and Dresser Lights on when going to Bed in the Night'
+  trigger:
+    platform: state
+    entity_id: input_select.bed_mode
+    from: 'off'
+    to: 'just on'
+  condition:
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: sensor.period_of_day
+        state: 'Day'
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.bedroom_bed_light
+      - light.bedroom_dresser_light
+
+- alias: 'Turn Bedroom Bed and Dresser Lights off when getting out of Bed'
+  trigger:
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just on'
+      to: 'off'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just off'
+      to: 'off'
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.bedroom_bed_light
+      - light.bedroom_dresser_light

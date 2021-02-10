@@ -3,6 +3,3 @@ alarm_clock:
 
 away_mode:
   name: Away Mode
-
-bed_mode:
-  name: Bed Mode

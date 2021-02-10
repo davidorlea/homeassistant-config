@@ -42,14 +42,19 @@
       data:
         entity_id: group.outdoor_lights
 
-- alias: 'Turn Outdoor Lights off in the Night when Away'
+- alias: 'Turn Outdoor Lights off in the Night when Away or in Bed'
   trigger:
     platform: time
     at: '01:00:00'
   condition:
-    condition: state
-    entity_id: input_boolean.away_mode
-    state: 'on'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_boolean.away_mode
+        state: 'on'
+      - condition: state
+        entity_id: input_select.bed_mode
+        state: 'on'
   action:
     - service: light.turn_off
       data:
@@ -76,3 +81,16 @@
     - service: light.turn_off
       data:
         entity_id: group.outdoor_lights
+
+- alias: 'Turn Outdoor Lights off when going to Bed late'
+  trigger:
+    platform: state
+    entity_id: input_select.bed_mode
+    from: 'just on'
+    to: 'on'
+  condition:
+    condition: time
+    after: '01:00:00'
+  action:
+    service: light.turn_off
+    entity_id: group.outdoor_lights
