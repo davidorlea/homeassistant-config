@@ -4,7 +4,7 @@
     entity_id: input_select.bed_mode
     to: 'just on'
     for:
-      minutes: 5
+      minutes: 15
   action:
     service: input_select.select_option
     data:
