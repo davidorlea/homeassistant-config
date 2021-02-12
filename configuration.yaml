@@ -67,23 +67,6 @@ zone:
   radius: 100
   icon: mdi:home
 
-mqtt:
-  broker: !secret mqtt_broker
-  port: !secret mqtt_port
-  client_id: !secret mqtt_client_id
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  birth_message:
-    topic: 'home-assistant-1/$online'
-    payload: 'true'
-    qos: 2
-    retain: false
-  will_message:
-    topic: 'home-assistant-1/$online'
-    payload: 'false'
-    qos: 2
-    retain: false
-
 mobile_app:
 
 ios:
