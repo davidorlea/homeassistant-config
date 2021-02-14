@@ -5,9 +5,14 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: state
-    entity_id: input_select.bed_mode
-    state: 'on'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.bed_mode
+        state: 'on'
+      - condition: state
+        entity_id: input_select.bed_mode
+        state: 'just on'
   action:
     service: light.turn_on
     entity_id: light.living_room_ceiling_light
@@ -21,9 +26,14 @@
     for:
       minutes: 5
   condition:
-    condition: state
-    entity_id: input_select.bed_mode
-    state: 'on'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.bed_mode
+        state: 'on'
+      - condition: state
+        entity_id: input_select.bed_mode
+        state: 'just on'
   action:
     service: light.turn_off
     entity_id: light.living_room_ceiling_light
