@@ -5,19 +5,14 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: and
+    condition: or
     conditions:
       - condition: state
-        entity_id: input_select.bed_mode
+        entity_id: sensor.period_of_day
+        state: 'Day'
+      - condition: state
+        entity_id: binary_sensor.outdoor_frontdoor
         state: 'off'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-          - condition: state
-            entity_id: binary_sensor.outdoor_frontdoor
-            state: 'off'
   action:
     service: light.turn_on
     entity_id: light.hall_ceiling_light
@@ -31,9 +26,6 @@
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'off'
       - condition: state
         entity_id: sensor.period_of_day
         state: 'Day'
@@ -63,14 +55,9 @@
     from: 'on'
     to: 'off'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.hall_motion
-        state: 'on'
+    condition: state
+    entity_id: binary_sensor.hall_motion
+    state: 'on'
   action:
     service: light.turn_on
     entity_id: light.hall_ceiling_light
@@ -105,9 +92,6 @@
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'off'
       - condition: state
         entity_id: sensor.period_of_day
         state: 'Day'
