@@ -15,8 +15,7 @@
     from: 'on'
     to: 'off'
     for:
-      minutes: 3
-      seconds: 30
+      minutes: 5
   action:
     service: light.turn_off
     entity_id: light.kitchen_ceiling_light

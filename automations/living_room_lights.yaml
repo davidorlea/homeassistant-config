@@ -19,8 +19,7 @@
     from: 'on'
     to: 'off'
     for:
-      minutes: 3
-      seconds: 30
+      minutes: 5
   condition:
     condition: state
     entity_id: input_select.bed_mode

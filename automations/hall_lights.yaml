@@ -52,7 +52,6 @@
     to: 'off'
     for:
       minutes: 3
-      seconds: 30
   action:
     service: light.turn_off
     entity_id: light.hall_ceiling_light
