@@ -116,3 +116,5 @@ cards:
             name: Germany Deaths
           - entity: sensor.coronavirus_germany_mortality
             name: Germany Mortality
+      - type: markdown
+        content: '[Corona-Dashboard for Aachen City Region](https://oecher.info)'
