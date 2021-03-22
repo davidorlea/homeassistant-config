@@ -3,28 +3,39 @@ input_boolean.alarm_clock:
 input_datetime.alarm_clock:
   icon: mdi:alarm
 
-light.outdoor_frontdoor_light:
-  icon: mdi:spotlight-beam
-light.outdoor_backdoor_light:
-  icon: mdi:spotlight-beam
-light.kitchen_ceiling_light:
-  icon: mdi:ceiling-light
-light.kitchen_sideboard_light:
-  icon: mdi:lamp
-light.kitchen_cabinet_light:
-  icon: mdi:lamp
-light.living_room_ceiling_light:
-  icon: mdi:ceiling-light
-light.living_room_sofa_light:
+light.bedroom_bed_light:
+  friendly_name: 'Bedroom Bed Light'
   icon: mdi:lamp
 light.bedroom_ceiling_light:
+  friendly_name: 'Bedroom Ceiling Light'
   icon: mdi:ceiling-light
-light.bedroom_bed_light:
-  icon: mdi:lamp
 light.bedroom_dresser_light:
+  friendly_name: 'Bedroom Dresser Light'
   icon: mdi:lamp
 light.hall_ceiling_light:
+  friendly_name: 'Hall Ceiling Light'
   icon: mdi:ceiling-light
+light.kitchen_cabinet_light:
+  friendly_name: 'Kitchen Cabinet Light'
+  icon: mdi:lamp
+light.kitchen_ceiling_light:
+  friendly_name: 'Kitchen Ceiling Light'
+  icon: mdi:ceiling-light
+light.kitchen_sideboard_light:
+  friendly_name: 'Kitchen Sideboard Light'
+  icon: mdi:lamp
+light.living_room_ceiling_light:
+  friendly_name: 'Living Room Ceiling Light'
+  icon: mdi:ceiling-light
+light.living_room_sofa_light:
+  friendly_name: 'Living Room Sofa Light'
+  icon: mdi:lamp
+light.outdoor_backdoor_light:
+  friendly_name: 'Outdoor Backdoor Light'
+  icon: mdi:spotlight-beam
+light.outdoor_frontdoor_light:
+  friendly_name: 'Outdoor Frontdoor Light'
+  icon: mdi:spotlight-beam
 
 sensor.dark_sky_condition:
   friendly_name: 'DS Condition'

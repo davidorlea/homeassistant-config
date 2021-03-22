@@ -21,11 +21,11 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.outdoor_frontdoor
+          - entity: binary_sensor.outdoor_frontdoor_contact
             name: Outdoor Frontdoor
             icon: mdi:door
             state_color: true
-          - entity: binary_sensor.outdoor_backdoor
+          - entity: binary_sensor.outdoor_backdoor_contact
             name: Outdoor Backdoor
             icon: mdi:door
             state_color: true
@@ -40,7 +40,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.kitchen_motion
+          - entity: binary_sensor.kitchen_motion_sensor_occupancy
             name: Kitchen Motion
             icon: mdi:motion-sensor
             state_color: true
@@ -58,19 +58,19 @@ cards:
           - type: sensor
             name: Temperature
             graph: line
-            entity: sensor.living_room_multisensor_temperature
+            entity: sensor.living_room_multi_sensor_temperature
           - type: sensor
             name: Humidity
             graph: line
-            entity: sensor.living_room_multisensor_humidity
+            entity: sensor.living_room_multi_sensor_humidity
           - type: sensor
             name: Pressue
             graph: line
-            entity: sensor.living_room_multisensor_pressure
+            entity: sensor.living_room_multi_sensor_pressure
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.living_room_motion
+          - entity: binary_sensor.living_room_motion_sensor_occupancy
             name: Living Room Motion
             icon: mdi:motion-sensor
             state_color: true
@@ -87,30 +87,30 @@ cards:
           - type: sensor
             name: Temperature
             graph: line
-            entity: sensor.bedroom_multisensor_temperature
+            entity: sensor.bedroom_multi_sensor_temperature
           - type: sensor
             name: Humidity
             graph: line
-            entity: sensor.bedroom_multisensor_humidity
+            entity: sensor.bedroom_multi_sensor_humidity
           - type: sensor
             name: Pressue
             graph: line
-            entity: sensor.bedroom_multisensor_pressure
+            entity: sensor.bedroom_multi_sensor_pressure
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.bedroom_window_left
+          - entity: binary_sensor.bedroom_window_left_contact
             name: Bedroom Window Left
             icon: mdi:window-closed-variant
             state_color: true
-          - entity: binary_sensor.bedroom_window_right
+          - entity: binary_sensor.bedroom_window_right_contact
             name: Bedroom Window Right
             icon: mdi:window-closed-variant
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.bedroom_motion
+          - entity: binary_sensor.bedroom_motion_sensor_occupancy
             name: Bedroom Motion
             icon: mdi:motion-sensor
             state_color: true
@@ -133,7 +133,7 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.hall_motion
+          - entity: binary_sensor.hall_motion_sensor_occupancy
             name: Hall Motion
             icon: mdi:motion-sensor
             state_color: true

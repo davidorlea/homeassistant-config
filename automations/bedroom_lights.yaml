@@ -1,7 +1,7 @@
 - alias: 'Turn Bedroom Ceiling Light on when there is Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.bedroom_motion
+    entity_id: binary_sensor.bedroom_motion_sensor_occupancy
     from: 'off'
     to: 'on'
   condition:
@@ -18,10 +18,10 @@
           - condition: and
             conditions:
               - condition: state
-                entity_id: binary_sensor.bedroom_window_left
+                entity_id: binary_sensor.bedroom_window_left_contact
                 state: 'off'
               - condition: state
-                entity_id: binary_sensor.bedroom_window_right
+                entity_id: binary_sensor.bedroom_window_right_contact
                 state: 'off'
   action:
     service: light.turn_on
@@ -30,7 +30,7 @@
 - alias: 'Turn Bedroom Ceiling Light off after last Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.bedroom_motion
+    entity_id: binary_sensor.bedroom_motion_sensor_occupancy
     from: 'on'
     to: 'off'
     for:
@@ -43,11 +43,11 @@
 - alias: 'Turn Bedroom Ceiling Light on when closing Windows and there is Movement'
   trigger:
     - platform: state
-      entity_id: binary_sensor.bedroom_window_left
+      entity_id: binary_sensor.bedroom_window_left_contact
       from: 'on'
       to: 'off'
     - platform: state
-      entity_id: binary_sensor.bedroom_window_right
+      entity_id: binary_sensor.bedroom_window_right_contact
       from: 'on'
       to: 'off'
   condition:
@@ -57,13 +57,13 @@
         entity_id: input_select.bed_mode
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.bedroom_motion
+        entity_id: binary_sensor.bedroom_motion_sensor_occupancy
         state: 'on'
       - condition: state
-        entity_id: binary_sensor.bedroom_window_left
+        entity_id: binary_sensor.bedroom_window_left_contact
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.bedroom_window_right
+        entity_id: binary_sensor.bedroom_window_right_contact
         state: 'off'
   action:
     service: light.turn_on
@@ -72,11 +72,11 @@
 - alias: 'Turn Bedroom Ceiling Light off when opening Windows and there is Movement'
   trigger:
     - platform: state
-      entity_id: binary_sensor.bedroom_window_left
+      entity_id: binary_sensor.bedroom_window_left_contact
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.bedroom_window_right
+      entity_id: binary_sensor.bedroom_window_right_contact
       from: 'off'
       to: 'on'
   condition:
@@ -88,7 +88,7 @@
             entity_id: sensor.period_of_day
             state: 'Day'
       - condition: state
-        entity_id: binary_sensor.bedroom_motion
+        entity_id: binary_sensor.bedroom_motion_sensor_occupancy
         state: 'on'
   action:
     service: light.turn_off

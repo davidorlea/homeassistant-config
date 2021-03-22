@@ -1,7 +1,7 @@
 - alias: 'Turn Living Room Ceiling Light on when there is Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.living_room_motion
+    entity_id: binary_sensor.living_room_motion_sensor_occupancy
     from: 'off'
     to: 'on'
   condition:
@@ -20,7 +20,7 @@
 - alias: 'Turn Living Room Ceiling Light off after last Movement'
   trigger:
     platform: state
-    entity_id: binary_sensor.living_room_motion
+    entity_id: binary_sensor.living_room_motion_sensor_occupancy
     from: 'on'
     to: 'off'
     for:

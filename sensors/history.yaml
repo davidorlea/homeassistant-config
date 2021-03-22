@@ -18,7 +18,7 @@
 
 - platform: history_stats
   name: history stats bedroom window left
-  entity_id: binary_sensor.bedroom_window_left
+  entity_id: binary_sensor.bedroom_window_left_contact
   state: 'on'
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
@@ -26,7 +26,7 @@
 
 - platform: history_stats
   name: history stats bedroom window right
-  entity_id: binary_sensor.bedroom_window_right
+  entity_id: binary_sensor.bedroom_window_right_contact
   state: 'on'
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
@@ -34,7 +34,7 @@
 
 - platform: history_stats
   name: history stats outdoor frontdoor
-  entity_id: binary_sensor.outdoor_frontdoor
+  entity_id: binary_sensor.outdoor_frontdoor_contact
   state: 'on'
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
@@ -42,7 +42,7 @@
 
 - platform: history_stats
   name: history stats outdoor backdoor
-  entity_id: binary_sensor.outdoor_backdoor
+  entity_id: binary_sensor.outdoor_backdoor_contact
   state: 'on'
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'

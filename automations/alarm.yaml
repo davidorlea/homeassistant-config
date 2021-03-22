@@ -2,14 +2,14 @@
   trigger:
     platform: state
     entity_id:
-      - binary_sensor.bedroom_motion
-      - binary_sensor.bedroom_window_left
-      - binary_sensor.bedroom_window_right
-      - binary_sensor.hall_motion
-      - binary_sensor.kitchen_motion
-      - binary_sensor.living_room_motion
-      - binary_sensor.outdoor_frontdoor
-      - binary_sensor.outdoor_backdoor
+      - binary_sensor.bedroom_motion_sensor_occupancy
+      - binary_sensor.bedroom_window_left_contact
+      - binary_sensor.bedroom_window_right_contact
+      - binary_sensor.hall_motion_sensor_occupancy
+      - binary_sensor.kitchen_motion_sensor_occupancy
+      - binary_sensor.living_room_motion_sensor_occupancy
+      - binary_sensor.outdoor_frontdoor_contact
+      - binary_sensor.outdoor_backdoor_contact
     from: 'off'
     to: 'on'
   condition:

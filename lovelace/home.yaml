@@ -33,19 +33,19 @@ cards:
                 entity_id: scene.all_indoor_lights_off
       - type: entity-filter
         entities:
-          - entity: binary_sensor.outdoor_frontdoor
+          - entity: binary_sensor.outdoor_frontdoor_contact
             name: Outdoor Frontdoor
             icon: mdi:door-open
             state_color: true
-          - entity: binary_sensor.outdoor_backdoor
+          - entity: binary_sensor.outdoor_backdoor_contact
             name: Outdoor Backdoor
             icon: mdi:door-open
             state_color: true
-          - entity: binary_sensor.bedroom_window_left
+          - entity: binary_sensor.bedroom_window_left_contact
             name: Bedroom Window Left
             icon: mdi:window-open-variant
             state_color: true
-          - entity: binary_sensor.bedroom_window_right
+          - entity: binary_sensor.bedroom_window_right_contact
             name: Bedroom Window Right
             icon: mdi:window-open-variant
             state_color: true
