@@ -94,6 +94,21 @@ sensor.coronavirus_aachen_incidence:
 sensor.coronavirus_aachen_recovered:
   friendly_name: Coronavirus Aachen Recovered
   icon: mdi:biohazard
+sensor.coronavirus_aachen_cityregion_confirmed:
+  friendly_name: Coronavirus Aachen CityRegion Confirmed
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_cityregion_current:
+  friendly_name: Coronavirus Aachen CityRegion Current
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_cityregion_deaths:
+  friendly_name: Coronavirus Aachen CityRegion Deaths
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_cityregion_incidence:
+  friendly_name: Coronavirus Aachen CityRegion Incidence
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_cityregion_recovered:
+  friendly_name: Coronavirus Aachen CityRegion Recovered
+  icon: mdi:biohazard
 sensor.coronavirus_germany_confirmed:
   friendly_name: Coronavirus Germany Confirmed
   icon: mdi:biohazard
