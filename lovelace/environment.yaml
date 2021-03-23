@@ -33,3 +33,16 @@ cards:
       - sensor.dwd_pollen_tomorrow_41_ambrosia
       - sensor.dwd_pollen_tomorrow_41_grass
       - sensor.dwd_pollen_tomorrow_41_tree
+  - type: entities
+    title: Coronavirus
+    show_header_toggle: false
+    entities:
+      - sensor.coronavirus_germany_confirmed
+      - sensor.coronavirus_germany_current
+      - sensor.coronavirus_germany_deaths
+      - sensor.coronavirus_germany_recovered
+      - sensor.coronavirus_aachen_confirmed
+      - sensor.coronavirus_aachen_current
+      - sensor.coronavirus_aachen_recovered
+      - sensor.coronavirus_aachen_deaths
+      - sensor.coronavirus_aachen_incidence

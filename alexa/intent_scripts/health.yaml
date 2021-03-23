@@ -2,23 +2,22 @@ CoronaVirusIntent:
   speech:
     type: plain
     text: >-
-      {% set confirmed = states("sensor.coronavirus_germany_confirmed") | int(-1) %}
-      {% set recovered = states("sensor.coronavirus_germany_recovered") | int(-1) %}
-      {% set deaths = states("sensor.coronavirus_germany_deaths") | int(-1) %}
-      {% if confirmed == -1 or recovered == -1 or deaths == -1 %}
+      {% set current = states("sensor.coronavirus_aachen_current") | int(-1) %}
+      {% set incidence = states("sensor.coronavirus_aachen_incidence") | int(-1) %}
+      {% if current == -1 or incidence == -1 %}
       {{ [
         "Das weiß ich leider gerade nicht.",
         "Das kann ich dir leider gerade nicht sagen."
         ] | random }}
       {% else %}
-      In Deutschland haben sich bislang {{ confirmed }} Menschen mit dem Virus infiziert, von denen aktuell {{ recovered }} wieder gesund und {{ deaths }} gestorben sind.
+      In Aachen sind derzeit {{ current }} Menschen nachweislich mit dem Virus infiziert. Die 7-Tage-Inzidenz liegt damit bei {{ incidence }}.
       {% endif %}
 PollenIntent:
   speech:
     type: plain
     text: >-
-      {% set grass = states("sensor.dwd_pollen_today_41_grass") | int(-1) %}
-      {% set tree = states("sensor.dwd_pollen_today_41_tree") | int(-1) %}
+      {% set grass = states("sensor.dwd_pollen_41_grass") | int(-1) %}
+      {% set tree = states("sensor.dwd_pollen_41_tree") | int(-1) %}
       {% if grass == -1 or tree == -1 %}
       {{ [
         "Das weiß ich leider gerade nicht.",

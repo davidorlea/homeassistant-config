@@ -79,8 +79,20 @@ sensor.gas_station_brand:
   friendly_name: 'Gas Station (Brand)'
 sensor.gas_station_price:
   friendly_name: 'Gas Station (Price)'
-sensor.coronavirus_aachen_7day_incidence:
-  friendly_name: Coronavirus Aachen 7-Day Incidence
+sensor.coronavirus_aachen_confirmed:
+  friendly_name: Coronavirus Aachen Confirmed
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_current:
+  friendly_name: Coronavirus Aachen Current
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_deaths:
+  friendly_name: Coronavirus Aachen Deaths
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_incidence:
+  friendly_name: Coronavirus Aachen Incidence
+  icon: mdi:biohazard
+sensor.coronavirus_aachen_recovered:
+  friendly_name: Coronavirus Aachen Recovered
   icon: mdi:biohazard
 sensor.coronavirus_germany_confirmed:
   friendly_name: Coronavirus Germany Confirmed
@@ -90,9 +102,6 @@ sensor.coronavirus_germany_current:
   icon: mdi:biohazard
 sensor.coronavirus_germany_deaths:
   friendly_name: Coronavirus Germany Deaths
-  icon: mdi:biohazard
-sensor.coronavirus_germany_mortality:
-  friendly_name: Coronavirus Germany Mortality
   icon: mdi:biohazard
 sensor.coronavirus_germany_recovered:
   friendly_name: Coronavirus Germany Recovered
