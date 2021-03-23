@@ -20,6 +20,9 @@ include:
     - binary_sensor.living_room_motion_sensor_occupancy
     - binary_sensor.outdoor_frontdoor_contact
     - binary_sensor.outdoor_backdoor_contact
+    - sensor.bathroom_multi_sensor_humidity
+    - sensor.bathroom_multi_sensor_pressure
+    - sensor.bathroom_multi_sensor_temperature
     - sensor.bedroom_multi_sensor_humidity
     - sensor.bedroom_multi_sensor_pressure
     - sensor.bedroom_multi_sensor_temperature

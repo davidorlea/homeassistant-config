@@ -128,6 +128,23 @@ cards:
           - light.bedroom_bed_light
           - light.bedroom_dresser_light
   - type: vertical-stack
+    title: Bathroom
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            name: Temperature
+            graph: line
+            entity: sensor.bathroom_multi_sensor_temperature
+          - type: sensor
+            name: Humidity
+            graph: line
+            entity: sensor.bathroom_multi_sensor_humidity
+          - type: sensor
+            name: Pressue
+            graph: line
+            entity: sensor.bathroom_multi_sensor_pressure
+  - type: vertical-stack
     title: Hall
     cards:
       - type: entities
