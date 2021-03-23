@@ -1,0 +1,35 @@
+title: Health
+path: health
+cards:
+  - type: entities
+    title: Pollen
+    show_header_toggle: false
+    entities:
+      - sensor.dwd_pollen_41_grass
+      - sensor.dwd_pollen_41_tree
+  - type: entities
+    title: Coronavirus Germany
+    show_header_toggle: false
+    entities:
+      - sensor.coronavirus_germany_confirmed
+      - sensor.coronavirus_germany_current
+      - sensor.coronavirus_germany_deaths
+      - sensor.coronavirus_germany_recovered
+  - type: entities
+    title: Coronavirus Aachen CityRegion
+    show_header_toggle: false
+    entities:
+      - sensor.coronavirus_aachen_cityregion_confirmed
+      - sensor.coronavirus_aachen_cityregion_current
+      - sensor.coronavirus_aachen_cityregion_recovered
+      - sensor.coronavirus_aachen_cityregion_deaths
+      - sensor.coronavirus_aachen_cityregion_incidence
+  - type: entities
+    title: Coronavirus Aachen
+    show_header_toggle: false
+    entities:
+      - sensor.coronavirus_aachen_confirmed
+      - sensor.coronavirus_aachen_current
+      - sensor.coronavirus_aachen_recovered
+      - sensor.coronavirus_aachen_deaths
+      - sensor.coronavirus_aachen_incidence
