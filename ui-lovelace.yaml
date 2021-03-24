@@ -2,7 +2,7 @@ title: MuffetNet
 views:
   - !include lovelace/home.yaml
   - !include lovelace/rooms.yaml
+  - !include lovelace/travel.yaml
   - !include lovelace/environment.yaml
   - !include lovelace/health.yaml
-  - !include lovelace/travel.yaml
   - !include lovelace/system.yaml
