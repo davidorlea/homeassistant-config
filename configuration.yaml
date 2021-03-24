@@ -22,6 +22,7 @@ logger:
     custom_components.tier_nearest_scooter: warning
 
 frontend:
+  themes: !include_dir_merge_named themes
 
 lovelace:
   mode: yaml
