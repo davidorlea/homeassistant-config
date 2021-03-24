@@ -1,3 +1,9 @@
+- platform: dwd_pollen
+  partregion_id: 41
+  pollen_types:
+    - grass
+    - tree
+
 - platform: rest
   name: Coronavirus Aachen
   scan_interval: 3600

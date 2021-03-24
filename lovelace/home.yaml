@@ -87,7 +87,7 @@ cards:
           - type: gauge
             name: Pollen Grass
             unit: '%'
-            entity: sensor.dwd_pollen_today_41_grass
+            entity: sensor.dwd_pollen_41_grass
             severity:
               green: 0
               yellow: 30
@@ -95,7 +95,7 @@ cards:
           - type: gauge
             name: Pollen Tree
             unit: '%'
-            entity: sensor.dwd_pollen_today_41_tree
+            entity: sensor.dwd_pollen_41_tree
             severity:
               green: 0
               yellow: 30
