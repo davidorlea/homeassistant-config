@@ -48,9 +48,8 @@ include:
     - sensor.dark_sky_visibility
     - sensor.dark_sky_wind_bearing
     - sensor.dark_sky_wind_speed
-    - sensor.dwd_pollen_today_41_ambrosia
-    - sensor.dwd_pollen_today_41_grass
-    - sensor.dwd_pollen_today_41_tree
+    - sensor.dwd_pollen_41_grass
+    - sensor.dwd_pollen_41_tree
     - sensor.gas_station_brand
     - sensor.gas_station_price
     - sensor.living_room_multi_sensor_humidity
