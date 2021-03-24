@@ -1,5 +1,6 @@
 title: System
 path: system
+icon: mdi:raspberry-pi
 cards:
   - type: entities
     title: Home Assistant

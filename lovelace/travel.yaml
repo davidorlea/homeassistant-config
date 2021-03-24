@@ -1,5 +1,6 @@
 title: Travel
 path: travel
+icon: mdi:train-car
 cards:
   - type: entities
     title: Bus

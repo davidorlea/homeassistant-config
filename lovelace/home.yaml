@@ -1,6 +1,6 @@
 title: Home
-icon: mdi:home
 path: home
+icon: mdi:home
 cards:
   - type: vertical-stack
     cards:

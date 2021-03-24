@@ -1,5 +1,6 @@
 title: Health
 path: health
+icon: mdi:medical-bag
 cards:
   - type: entities
     title: Pollen

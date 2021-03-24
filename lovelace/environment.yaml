@@ -1,5 +1,6 @@
 title: Environment
 path: environment
+icon: mdi:earth
 cards:
   - type: entities
     title: Astronomy

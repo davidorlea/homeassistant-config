@@ -1,5 +1,6 @@
 title: Rooms
 path: rooms
+icon: mdi:floor-plan
 cards:
   - type: vertical-stack
     title: Outdoor
