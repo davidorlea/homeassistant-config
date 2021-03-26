@@ -1,0 +1,19 @@
+- platform: mqtt
+  schema: json
+  name: bedroom_bed_light
+  command_topic: "zigbee2mqtt/bedroom_bed_light/set"
+  state_topic: "zigbee2mqtt/bedroom_bed_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  brightness_scale: 254
+  color_temp: true
+  min_mireds: 250
+  max_mireds: 454
+  effect: true
+  effect_list:
+    - blink
+    - breathe
+    - okay
+    - channel_change
+    - finish_effect
+    - stop_effect
