@@ -6,7 +6,7 @@
     to: 'Sunset'
   action:
     - service: light.turn_on
-      data:
+      target:
         entity_id: group.outdoor_lights
 
 - alias: 'Turn Outdoor Lights on in the Night when Arriving'
@@ -28,7 +28,7 @@
         before: '12:00:00'
   action:
     - service: light.turn_on
-      data:
+      target:
         entity_id: group.outdoor_lights
 
 - alias: 'Turn Outdoor Lights off after Sunrise'
@@ -39,7 +39,7 @@
     to: 'Day'
   action:
     - service: light.turn_off
-      data:
+      target:
         entity_id: group.outdoor_lights
 
 - alias: 'Turn Outdoor Lights off in the Night when Away or in Bed'
@@ -57,7 +57,7 @@
         state: 'on'
   action:
     - service: light.turn_off
-      data:
+      target:
         entity_id: group.outdoor_lights
 
 - alias: 'Turn Outdoor Lights off in the Night when Leaving'
@@ -79,7 +79,7 @@
         before: '12:00:00'
   action:
     - service: light.turn_off
-      data:
+      target:
         entity_id: group.outdoor_lights
 
 - alias: 'Turn Outdoor Lights off when going to Bed late'
@@ -93,4 +93,5 @@
     after: '01:00:00'
   action:
     service: light.turn_off
-    entity_id: group.outdoor_lights
+    target:
+      entity_id: group.outdoor_lights

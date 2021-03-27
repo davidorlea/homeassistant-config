@@ -16,14 +16,16 @@ sonos_play:
         entity_id: media_player.sonos_device_kuche
         master: media_player.sonos_device_wohnzimmer
     - service: media_player.volume_set
-      data_template:
+      target:
         entity_id:
           - media_player.sonos_device_wohnzimmer
           - media_player.sonos_device_kuche
+      data_template:
         volume_level: '{{ sonos_play_volume | default(0.4) }}'
     - service: media_player.play_media
-      data_template:
+      target:
         entity_id: media_player.sonos_device_wohnzimmer
+      data_template:
         media_content_id: '{{ sonos_play_media_id }}'
         media_content_type: '{{ sonos_play_media_type }}'
     - delay:

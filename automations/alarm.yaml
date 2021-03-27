@@ -22,5 +22,5 @@
         title: "Smart Home Alerts"
         message: "Something happened at home!"
     - service: script.turn_on
-      data:
+      target:
         entity_id: script.dogbark

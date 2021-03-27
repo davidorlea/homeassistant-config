@@ -20,10 +20,11 @@
             state: 'just on'
   action:
     - service: light.turn_on
-      data:
+      target:
         entity_id:
           - light.bedroom_bed_light
           - light.bedroom_dresser_light
+      data:
         brightness_pct: 80
         transition: 300
     - delay: '00:05:00'
@@ -31,18 +32,21 @@
       data:
         entity_id: media_player.sonos_device_schlafzimmer
     - service: media_player.volume_set
-      data:
+      target:
         entity_id: media_player.sonos_device_schlafzimmer
+      data:
         volume_level: 0.10
     - service: media_player.shuffle_set
-      data:
+      target:
         entity_id: media_player.sonos_device_schlafzimmer
+      data:
         shuffle: true
     - service: media_player.select_source
-      data:
+      target:
         entity_id: media_player.sonos_device_schlafzimmer
+      data:
         source: "Pillow Talk"
     - delay: '00:30:00'
     - service: media_player.media_pause
-      data:
+      target:
         entity_id: media_player.sonos_device_schlafzimmer

@@ -7,8 +7,9 @@
       minutes: 15
   action:
     service: input_select.select_option
-    data:
+    target:
       entity_id: input_select.bed_mode
+    data:
       option: 'on'
 
 - alias: 'Transition Bed Mode From Just Off to Off'
@@ -20,8 +21,9 @@
       minutes: 5
   action:
     service: input_select.select_option
-    data:
+    target:
       entity_id: input_select.bed_mode
+    data:
       option: 'off'
 
 - alias: 'Transition Bed Mode From Off to Just On'
@@ -36,8 +38,9 @@
     state: 'off'
   action:
     service: input_select.select_option
-    data:
+    target:
       entity_id: input_select.bed_mode
+    data:
       option: 'just on'
 
 - alias: 'Transition Bed Mode From Just Off to On'
@@ -52,8 +55,9 @@
     state: 'just off'
   action:
     service: input_select.select_option
-    data:
+    target:
       entity_id: input_select.bed_mode
+    data:
       option: 'on'
 
 - alias: 'Transition Bed Mode From On to Just Off'
@@ -68,8 +72,9 @@
     state: 'on'
   action:
     service: input_select.select_option
-    data:
+    target:
       entity_id: input_select.bed_mode
+    data:
       option: 'just off'
 
 - alias: 'Transition Bed Mode From Just On to Off'
@@ -84,6 +89,7 @@
     state: 'just on'
   action:
     service: input_select.select_option
-    data:
+    target:
       entity_id: input_select.bed_mode
+    data:
       option: 'off'

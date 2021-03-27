@@ -10,12 +10,12 @@
     state: 'Day'
   action:
     - service: input_boolean.turn_off
-      data:
+      target:
         entity_id: input_boolean.away_mode
     - delay:
         seconds: 5
     - service: scene.turn_on
-      data:
+      target:
         entity_id: scene.arrive_home_at_day
 
 - alias: 'Arrive Home at Night'
@@ -32,12 +32,12 @@
         state: 'Day'
   action:
     - service: input_boolean.turn_off
-      data:
+      target:
         entity_id: input_boolean.away_mode
     - delay:
         seconds: 5
     - service: scene.turn_on
-      data:
+      target:
         entity_id: scene.arrive_home_at_night
 
 - alias: 'Leave Home at Day'
@@ -52,12 +52,12 @@
     state: 'Day'
   action:
     - service: scene.turn_on
-      data:
+      target:
         entity_id: scene.leave_home_at_day
     - delay:
         seconds: 5
     - service: input_boolean.turn_on
-      data:
+      target:
         entity_id: input_boolean.away_mode
 
 - alias: 'Leave Home at Night'
@@ -74,10 +74,10 @@
         state: 'Day'
   action:
     - service: scene.turn_on
-      data:
+      target:
         entity_id: scene.leave_home_at_night
     - delay:
         seconds: 5
     - service: input_boolean.turn_on
-      data:
+      target:
         entity_id: input_boolean.away_mode

@@ -15,7 +15,8 @@
         state: 'off'
   action:
     service: light.turn_on
-    entity_id: light.hall_ceiling_light
+    target:
+      entity_id: light.hall_ceiling_light
 
 - alias: 'Turn Hall Ceiling Light on when opening Door without Movement'
   trigger:
@@ -34,7 +35,8 @@
         state: 'off'
   action:
     service: light.turn_on
-    entity_id: light.hall_ceiling_light
+    target:
+      entity_id: light.hall_ceiling_light
 
 - alias: 'Turn Hall Ceiling Light off after last Movement'
   trigger:
@@ -46,7 +48,8 @@
       minutes: 3
   action:
     service: light.turn_off
-    entity_id: light.hall_ceiling_light
+    target:
+      entity_id: light.hall_ceiling_light
 
 - alias: 'Turn Hall Ceiling Light on when closing Door and there is Movement'
   trigger:
@@ -60,7 +63,8 @@
     state: 'on'
   action:
     service: light.turn_on
-    entity_id: light.hall_ceiling_light
+    target:
+      entity_id: light.hall_ceiling_light
 
 - alias: 'Turn Hall Ceiling Light off when opening Door and there is Movement'
   trigger:
@@ -81,7 +85,8 @@
         state: 'on'
   action:
     service: light.turn_off
-    entity_id: light.hall_ceiling_light
+    target:
+      entity_id: light.hall_ceiling_light
 
 - alias: 'Turn Hall Ceiling Light off when closing Door without Movement'
   trigger:
@@ -100,4 +105,5 @@
         state: 'off'
   action:
     service: light.turn_off
-    entity_id: light.hall_ceiling_light
+    target:
+      entity_id: light.hall_ceiling_light

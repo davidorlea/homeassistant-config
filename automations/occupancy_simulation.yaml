@@ -10,7 +10,7 @@
     state: 'on'
   action:
     - service: script.turn_on
-      data:
+      target:
         entity_id: script.occupancy_simulation_start
 
 - alias: 'Start Occupancy Simulation when Leaving'
@@ -37,7 +37,7 @@
             before: '01:00:00'
   action:
     - service: script.turn_on
-      data:
+      target:
         entity_id: script.occupancy_simulation_start
 
 - alias: 'Stop Occupancy Simulation in the Night when Away'
@@ -50,7 +50,7 @@
     state: 'on'
   action:
     - service: script.turn_on
-      data:
+      target:
         entity_id: script.occupancy_simulation_stop
 
 - alias: 'Stop Occupancy Simulation when Arriving'
@@ -77,5 +77,5 @@
             before: '01:00:00'
   action:
     - service: script.turn_on
-      data:
+      target:
         entity_id: script.occupancy_simulation_stop

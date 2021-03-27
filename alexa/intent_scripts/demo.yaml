@@ -3,7 +3,7 @@ LetTheDogsOutIntent:
     - delay:
         seconds: 2
     - service: script.turn_on
-      data:
+      target:
         entity_id: script.dogbark
   speech:
     type: plain
