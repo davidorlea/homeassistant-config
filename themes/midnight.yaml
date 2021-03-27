@@ -1,5 +1,6 @@
 midnight:
   accent-color: "#E45E65"
+  lovelace-background: center / cover no-repeat url("/local/backgrounds/midnight.jpg") fixed
   card-background-color: "var(--primary-background-color)"
   dark-primary-color: "var(--accent-color)"
   disabled-text-color: "#7F848E"
