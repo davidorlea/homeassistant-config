@@ -1,5 +1,3 @@
-# See https://www.reddit.com/r/homeassistant/comments/f34lbx/home_assistant_alarm_clock/
-
 - alias: 'Alarm Clock'
   trigger:
     platform: template
@@ -21,13 +19,9 @@
   action:
     - service: light.turn_on
       target:
-        entity_id:
-          - light.bedroom_bed_light
-          - light.bedroom_dresser_light
-      data:
-        brightness_pct: 80
-        transition: 300
-    - delay: '00:05:00'
+        entity_id: light.bedroom_dresser_light
+    - delay:
+        seconds: 300
     - service: sonos.unjoin
       data:
         entity_id: media_player.sonos_device_schlafzimmer
@@ -46,7 +40,3 @@
         entity_id: media_player.sonos_device_schlafzimmer
       data:
         source: "Pillow Talk"
-    - delay: '00:30:00'
-    - service: media_player.media_pause
-      target:
-        entity_id: media_player.sonos_device_schlafzimmer
