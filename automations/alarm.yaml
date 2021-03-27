@@ -21,6 +21,11 @@
       data:
         title: "Smart Home Alerts"
         message: "Something happened at home!"
-    - service: script.turn_on
-      target:
-        entity_id: script.dogbark
+    - service: script.sonos_play
+      data:
+        devices:
+          - media_player.sonos_device_wohnzimmer
+          - media_player.sonos_device_kuche
+          - media_player.sonos_device_schlafzimmer
+        source: http://192.168.178.10:8123/local/sounds/alarm_siren.mp3
+        volume: 0.2

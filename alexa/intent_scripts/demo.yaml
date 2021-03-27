@@ -2,9 +2,13 @@ LetTheDogsOutIntent:
   action:
     - delay:
         seconds: 2
-    - service: script.turn_on
-      target:
-        entity_id: script.dogbark
+    - service: script.sonos_play
+      data:
+        devices:
+          - media_player.sonos_device_wohnzimmer
+          - media_player.sonos_device_kuche
+        source: http://192.168.178.10:8123/local/sounds/dog_barking.mp3
+        volume: 0.3
   speech:
     type: plain
     text: >-

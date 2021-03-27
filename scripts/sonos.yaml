@@ -1,46 +1,60 @@
 sonos_play:
   alias: Sonos Play
+  description: Plays media on multiple Sonos devices
+  mode: single
+
+  fields:
+    devices:
+      description: The devices to play the media on (required, list)
+      example: "[media_player.kitchen, media_player.living_room]"
+    source:
+      description: The media source to play (required)
+      example: https://example.com/music.mp3
+    type:
+      description: The media type to play (optional, default music)
+      example: music
+    volume:
+      description: The volume (optional, default 0.4)
+      example: 0.4
+
+  variables:
+    type: "{{ type | default('music') }}"
+    volume: "{{ volume | default(0.4) }}"
+    master: "{{ devices.pop(0) }}"
+    slaves: "{{ devices }}"
+
   sequence:
     - service: sonos.snapshot
       data:
-        entity_id:
-          - media_player.sonos_device_wohnzimmer
-          - media_player.sonos_device_kuche
+        entity_id: "{{ [master] + slaves }} "
     - service: sonos.unjoin
       data:
-        entity_id:
-          - media_player.sonos_device_wohnzimmer
-          - media_player.sonos_device_kuche
-    - service: sonos.join
-      data:
-        entity_id: media_player.sonos_device_kuche
-        master: media_player.sonos_device_wohnzimmer
+        entity_id: "{{ [master] + slaves }}"
+    - choose:
+        - conditions: "{{ slaves | length >= 1 }}"
+          sequence:
+            - service: sonos.join
+              data:
+                entity_id: "{{ slaves }}"
+                master: "{{ master }}"
     - service: media_player.volume_set
       target:
-        entity_id:
-          - media_player.sonos_device_wohnzimmer
-          - media_player.sonos_device_kuche
+        entity_id: "{{ [master] + slaves }}"
       data_template:
-        volume_level: '{{ sonos_play_volume | default(0.4) }}'
+        volume_level: "{{ volume }}"
     - service: media_player.play_media
       target:
-        entity_id: media_player.sonos_device_wohnzimmer
+        entity_id: "{{ master }}"
       data_template:
-        media_content_id: '{{ sonos_play_media_id }}'
-        media_content_type: '{{ sonos_play_media_type }}'
-    - delay:
-        seconds: 1
-    - delay: >-
-        {% set duration = states.media_player.sonos_device_wohnzimmer.attributes.media_duration %}
-        {% if duration > 0 %}
-          {% set duration = duration - 1 %}
-        {% endif %}
-        {% set seconds = (duration % 60) %}
-        {% set minutes = (duration / 60) | int % 60 %}
-        {% set hours = (duration / 3600) | int %}
-        {{ [hours, minutes, seconds] | join(':') }}
+        media_content_id: "{{ source }}"
+        media_content_type: "{{ type }}"
+    - wait_template: "{{ is_state(master, 'playing') }}"
+      timeout: 5
+      continue_on_timeout: true
+    - choose:
+        - conditions: "{{ wait.completed }}"
+          sequence:
+            - wait_template: "{{ is_state(master, 'paused') }}"
     - service: sonos.restore
       data:
-        entity_id:
-          - media_player.sonos_device_wohnzimmer
-          - media_player.sonos_device_kuche
+        entity_id: "{{ [master] + slaves }}"

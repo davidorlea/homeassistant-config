@@ -1,8 +1,0 @@
-alarm:
-  alias: Ring The Alarm
-  sequence:
-    - service: script.sonos_play
-      data_template:
-        sonos_play_volume: '0.2'
-        sonos_play_media_id: 'http://192.168.178.10:8123/local/sounds/alarm_siren.mp3'
-        sonos_play_media_type: 'music'
