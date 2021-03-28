@@ -1,27 +1,18 @@
 - alias: 'Send Notification about unclosed Outdoor Doors'
   trigger:
-    - platform: state
-      entity_id:
-        - input_boolean.away_mode
-        - input_select.bed_mode
-      to: 'off'
-      for:
-        minutes: 30
-    - platform: state
-      entity_id:
-        - binary_sensor.outdoor_frontdoor_contact
-        - binary_sensor.outdoor_backdoor_contact
-      to: 'on'
-      for:
-        minutes: 10
+    platform: state
+    entity_id:
+      - binary_sensor.outdoor_frontdoor_contact
+      - binary_sensor.outdoor_backdoor_contact
+    to: 'on'
+    for:
+      minutes: 10
   condition:
     - condition: state
       entity_id:
         - input_boolean.away_mode
         - input_select.bed_mode
       state: 'off'
-      for:
-        minutes: 30
     - condition: not
       conditions:
         - condition: state
@@ -39,28 +30,19 @@
 
 - alias: 'Send Notification about unclosed Bedroom Windows'
   trigger:
-    - platform: state
-      entity_id:
-        - input_boolean.away_mode
-        - input_select.bed_mode
-      to: 'off'
-      for:
-        minutes: 30
-    - platform: state
-      entity_id:
-        - binary_sensor.bedroom_window_left_contact
-        - binary_sensor.bedroom_window_right_contact
-      to: 'on'
-      for:
-        minutes: 10
+    platform: state
+    entity_id:
+      - binary_sensor.bedroom_window_left_contact
+      - binary_sensor.bedroom_window_right_contact
+    to: 'on'
+    for:
+      minutes: 10
   condition:
     - condition: state
       entity_id:
         - input_boolean.away_mode
         - input_select.bed_mode
       state: 'off'
-      for:
-        minutes: 30
     - condition: not
       conditions:
         - condition: state
