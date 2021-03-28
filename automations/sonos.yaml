@@ -1,0 +1,16 @@
+- alias: 'Reset Sonos Volume'
+  trigger:
+    platform: state
+    entity_id:
+      - media_player.sonos_device_kuche
+      - media_player.sonos_device_schlafzimmer
+      - media_player.sonos_device_wohnzimmer
+    to: 'paused'
+    for:
+      minutes: 5
+  action:
+    service: media_player.volume_set
+    target:
+      entity_id: "{{ trigger.entity_id }}"
+    data_template:
+      volume_level: 0.1
