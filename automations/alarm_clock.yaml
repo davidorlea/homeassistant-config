@@ -29,7 +29,12 @@
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:
-        volume_level: 0.10
+        volume_level: 0.04
+    - service: media_player.volume_mute
+      target:
+        entity_id: media_player.sonos_device_schlafzimmer
+      data:
+        is_volume_muted: false
     - service: media_player.shuffle_set
       target:
         entity_id: media_player.sonos_device_schlafzimmer

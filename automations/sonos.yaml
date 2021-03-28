@@ -10,8 +10,13 @@
     for:
       minutes: 5
   action:
-    service: media_player.volume_set
-    target:
-      entity_id: "{{ trigger.entity_id }}"
-    data_template:
-      volume_level: 0.1
+    - service: media_player.volume_set
+      target:
+        entity_id: "{{ trigger.entity_id }}"
+      data:
+        volume_level: 0.06
+    - service: media_player.volume_mute
+      target:
+        entity_id: "{{ trigger.entity_id }}"
+      data:
+        is_volume_muted: false
