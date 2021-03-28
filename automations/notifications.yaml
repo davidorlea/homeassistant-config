@@ -1,0 +1,188 @@
+- alias: 'Send Notification about unclosed Outdoor Doors'
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.away_mode
+        - input_select.bed_mode
+      to: 'off'
+      for:
+        minutes: 30
+    - platform: state
+      entity_id:
+        - binary_sensor.outdoor_frontdoor_contact
+        - binary_sensor.outdoor_backdoor_contact
+      to: 'on'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id:
+        - input_boolean.away_mode
+        - input_select.bed_mode
+      state: 'off'
+      for:
+        minutes: 30
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id:
+            - binary_sensor.outdoor_frontdoor_contact
+            - binary_sensor.outdoor_backdoor_contact
+          state: 'on'
+          for:
+            minutes: 10
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Outdoor doors unclosed"
+      message: "Close outdoor doors to keep it warm."
+
+- alias: 'Send Notification about unclosed Bedroom Windows'
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.away_mode
+        - input_select.bed_mode
+      to: 'off'
+      for:
+        minutes: 30
+    - platform: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      to: 'on'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id:
+        - input_boolean.away_mode
+        - input_select.bed_mode
+      state: 'off'
+      for:
+        minutes: 30
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id:
+            - binary_sensor.bedroom_window_left_contact
+            - binary_sensor.bedroom_window_right_contact
+          state: 'on'
+          for:
+            minutes: 10
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Bedroom windows unclosed"
+      message: "Close bedroom windows to keep it warm."
+
+- alias: 'Send Notification about pending Bedroom Ventilation'
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.away_mode
+        - input_select.bed_mode
+      to: 'off'
+      for:
+        minutes: 30
+    - platform: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      to: 'off'
+      for:
+        hours: 6
+  condition:
+    - condition: state
+      entity_id:
+        - input_boolean.away_mode
+        - input_select.bed_mode
+      state: 'off'
+      for:
+        minutes: 30
+    - condition: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      state: 'off'
+      for:
+        hours: 6
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Bedroom ventilation pending"
+      message: "Open bedroom windows to get some fresh air."
+
+- alias: 'Send Notification about high Living Room Humidity'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.living_room_multi_sensor_humidity
+      above: 60
+      for:
+        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_humidity
+      below: 60
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.away_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.living_room_multi_sensor_humidity
+      above: 60
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_humidity
+      below: 60
+    - condition: state
+      entity_id: binary_sensor.outdoor_frontdoor_contact
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.outdoor_backdoor_contact
+      state: 'off'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Humidity in living room too high"
+      message: "Open doors or windows to reduce humidity."
+
+- alias: 'Send Notification about high Bedroom Humidity'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.bedroom_multi_sensor_humidity
+      above: 60
+      for:
+        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_humidity
+      below: 60
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.away_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.bedroom_multi_sensor_humidity
+      above: 60
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_humidity
+      below: 60
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_left_contact
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_right_contact
+      state: 'off'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Humidity in bedroom too high"
+      message: "Open doors or windows to reduce humidity."
