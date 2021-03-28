@@ -64,4 +64,3 @@ exclude:
     - script.occupancy_simulation_stop
     - script.occupancy_simulation_loop
     - script.sonos_play
-    - script.sonos_say
