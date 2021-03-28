@@ -1,4 +1,5 @@
 - alias: 'Reset Sonos Volume'
+  mode: queued
   trigger:
     platform: state
     entity_id:
