@@ -5,7 +5,7 @@ input_datetime.alarm_clock:
 
 light.bedroom_bed_light:
   friendly_name: 'Bedroom Bed Light'
-  icon: mdi:lamp
+  icon: mdi:spotlight-beam
 light.bedroom_ceiling_light:
   friendly_name: 'Bedroom Ceiling Light'
   icon: mdi:ceiling-light
@@ -23,7 +23,7 @@ light.kitchen_ceiling_light:
   icon: mdi:ceiling-light
 light.kitchen_counter_light:
   friendly_name: 'Kitchen Counter Light'
-  icon: mdi:lamp
+  icon: mdi:spotlight-beam
 light.kitchen_sideboard_light:
   friendly_name: 'Kitchen Sideboard Light'
   icon: mdi:lamp
@@ -32,13 +32,13 @@ light.living_room_ceiling_light:
   icon: mdi:ceiling-light
 light.living_room_sofa_light:
   friendly_name: 'Living Room Sofa Light'
-  icon: mdi:lamp
+  icon: mdi:floor-lamp-dual
 light.outdoor_backdoor_light:
   friendly_name: 'Outdoor Backdoor Light'
-  icon: mdi:spotlight-beam
+  icon: mdi:outdoor-lamp
 light.outdoor_frontdoor_light:
   friendly_name: 'Outdoor Frontdoor Light'
-  icon: mdi:spotlight-beam
+  icon: mdi:outdoor-lamp
 
 sensor.dark_sky_condition:
   friendly_name: 'DS Condition'
