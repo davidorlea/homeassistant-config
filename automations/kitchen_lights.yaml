@@ -1,4 +1,4 @@
-- alias: 'Turn Kitchen Ceiling Light on when there is Movement'
+- alias: 'Turn Kitchen Ceiling and Counter Light on when there is Movement'
   trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion_sensor_occupancy
@@ -7,9 +7,11 @@
   action:
     service: light.turn_on
     target:
-      entity_id: light.kitchen_ceiling_light
+      entity_id:
+        - light.kitchen_ceiling_light
+        - light.kitchen_counter_light
 
-- alias: 'Turn Kitchen Ceiling Light off after last Movement'
+- alias: 'Turn Kitchen Ceiling and Counter Light off after last Movement'
   trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion_sensor_occupancy
@@ -20,7 +22,9 @@
   action:
     service: light.turn_off
     target:
-      entity_id: light.kitchen_ceiling_light
+      entity_id:
+        - light.kitchen_ceiling_light
+        - light.kitchen_counter_light
 
 - alias: 'Turn Kitchen Lights off when going to Bed'
   trigger:
