@@ -49,6 +49,7 @@ cards:
         show_header_toggle: false
         entities:
           - light.kitchen_ceiling_light
+          - light.kitchen_counter_light
           - light.kitchen_sideboard_light
           - light.kitchen_cabinet_light
   - type: vertical-stack

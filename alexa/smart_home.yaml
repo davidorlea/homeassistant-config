@@ -7,6 +7,7 @@ smart_home:
       - light.outdoor_frontdoor_light
       - light.outdoor_backdoor_light
       - light.kitchen_ceiling_light
+      - light.kitchen_counter_light
       - light.kitchen_sideboard_light
       - light.kitchen_cabinet_light
       - light.living_room_ceiling_light
@@ -30,6 +31,9 @@ smart_home:
     light.kitchen_ceiling_light:
       name: Deckenlampe Küche
       description: Deckenlampe in der Küche
+    light.kitchen_counter_light:
+      name: Thekenlampe Küche
+      description: Thekenlampe in der Küche
     light.kitchen_sideboard_light:
       name: Anrichtenlampe Küche
       description: Anrichtenlampe in der Küche

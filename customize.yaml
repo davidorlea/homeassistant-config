@@ -21,6 +21,9 @@ light.kitchen_cabinet_light:
 light.kitchen_ceiling_light:
   friendly_name: 'Kitchen Ceiling Light'
   icon: mdi:ceiling-light
+light.kitchen_counter_light:
+  friendly_name: 'Kitchen Counter Light'
+  icon: mdi:lamp
 light.kitchen_sideboard_light:
   friendly_name: 'Kitchen Sideboard Light'
   icon: mdi:lamp
