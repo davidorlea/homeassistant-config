@@ -52,6 +52,10 @@ include:
     - sensor.dwd_pollen_41_tree
     - sensor.gas_station_brand
     - sensor.gas_station_price
+    - sensor.kitchen_fridge_current
+    - sensor.kitchen_fridge_power
+    - sensor.kitchen_fridge_total_daily_energy
+    - sensor.kitchen_fridge_voltage
     - sensor.living_room_multi_sensor_humidity
     - sensor.living_room_multi_sensor_pressure
     - sensor.living_room_multi_sensor_temperature
@@ -60,6 +64,7 @@ include:
     - sensor.season
 exclude:
   entities:
+    - script.circadian_lighting
     - script.occupancy_simulation_start
     - script.occupancy_simulation_stop
     - script.occupancy_simulation_loop
