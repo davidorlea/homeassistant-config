@@ -64,7 +64,6 @@ include:
     - sensor.season
 exclude:
   entities:
-    - script.circadian_lighting
     - script.occupancy_simulation_start
     - script.occupancy_simulation_stop
     - script.occupancy_simulation_loop
