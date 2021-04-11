@@ -67,11 +67,6 @@ zone:
   radius: 100
   icon: mdi:home
 
-circadian_lighting:
-  interval: 300
-  min_colortemp: 2200
-  max_colortemp: 4000
-
 mobile_app:
 
 ios:
