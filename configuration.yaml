@@ -40,7 +40,6 @@ http:
   login_attempts_threshold: 5
 
 updater:
-  reporting: false
 
 influxdb: !include influxdb.yaml
 
@@ -67,6 +66,11 @@ zone:
   longitude: !secret homeassistant_longitude
   radius: 100
   icon: mdi:home
+
+circadian_lighting:
+  interval: 300
+  min_colortemp: 2200
+  max_colortemp: 4000
 
 mobile_app:
 
