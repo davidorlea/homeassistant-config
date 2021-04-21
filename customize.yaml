@@ -33,6 +33,9 @@ light.living_room_ceiling_light:
 light.living_room_sofa_light:
   friendly_name: 'Living Room Sofa Light'
   icon: mdi:floor-lamp-dual
+light.living_room_tv_light:
+  friendly_name: 'Living Room TV Light'
+  icon: mdi:led-strip-variant
 light.outdoor_backdoor_light:
   friendly_name: 'Outdoor Backdoor Light'
   icon: mdi:outdoor-lamp

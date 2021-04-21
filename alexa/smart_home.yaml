@@ -12,6 +12,7 @@ smart_home:
       - light.kitchen_cabinet_light
       - light.living_room_ceiling_light
       - light.living_room_sofa_light
+      - light.living_room_tv_light
       - light.bedroom_ceiling_light
       - light.bedroom_dresser_light
       - light.bedroom_bed_light
@@ -46,6 +47,9 @@ smart_home:
     light.living_room_sofa_light:
       name: Sofalampe Wohnzimmer
       description: Sofalampe im Wohnzimmer
+    light.living_room_tv_light:
+      name: Fernsehlampe Wohnzimmer
+      description: Fernsehlampe im Wohnzimmer
     light.bedroom_ceiling_light:
       name: Deckenlampe Schlafzimmer
       description: Deckenlampe im Schlafzimmer

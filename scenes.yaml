@@ -40,6 +40,7 @@
     light.kitchen_sideboard_light: on
     light.living_room_ceiling_light: on
     light.living_room_sofa_light: on
+    light.living_room_tv_light: on
     light.hall_ceiling_light: on
 
 - name: Leave Home at Day
@@ -98,6 +99,7 @@
     light.kitchen_cabinet_light: on
     light.kitchen_sideboard_light: on
     light.living_room_sofa_light: on
+    light.living_room_tv_light: on
     light.bedroom_ceiling_light: off
     light.bedroom_bed_light: off
 
