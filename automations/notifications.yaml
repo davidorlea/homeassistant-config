@@ -1,3 +1,43 @@
+- alias: 'Send Notification about Stay-at-Home Order'
+  trigger:
+    - platform: state
+      entity_id: person.david
+      from: 'home'
+      to: 'not_home'
+    - platform: time
+      at: '21:00:00'
+  condition:
+    - condition: state
+      entity_id: person.david
+      state: 'not_home'
+    - condition: or
+      conditions:
+        - condition: time
+          after: '21:00:00'
+          before: '00:00:00'
+        - condition: time
+          after: '00:00:00'
+          before: '05:00:00'
+    - condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.coronavirus_aachen_incidence
+          above: 100
+        - condition: numeric_state
+          entity_id: sensor.coronavirus_aachen_cityregion_incidence
+          above: 100
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      title: "Stay-at-home order in force"
+      message: "Mind the stay-at-home order. The 7-day incidence in Aachen is above 100."
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1.0
+
 - alias: 'Send Notification about unclosed Outdoor Doors'
   trigger:
     platform: state
