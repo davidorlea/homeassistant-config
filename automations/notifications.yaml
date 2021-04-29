@@ -53,6 +53,9 @@
         - input_boolean.away_mode
         - input_select.bed_mode
       state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 16
     - condition: not
       conditions:
         - condition: state
@@ -83,6 +86,9 @@
         - input_boolean.away_mode
         - input_select.bed_mode
       state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.dark_sky_temperature
+      below: 16
     - condition: not
       conditions:
         - condition: state
