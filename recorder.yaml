@@ -36,6 +36,7 @@ include:
     - sensor.coronavirus_aachen_cityregion_deaths
     - sensor.coronavirus_aachen_cityregion_incidence
     - sensor.coronavirus_aachen_cityregion_recovered
+    - sensor.coronavirus_aachen_cityregion_rki_incidence
     - sensor.coronavirus_germany_confirmed
     - sensor.coronavirus_germany_current
     - sensor.coronavirus_germany_deaths
