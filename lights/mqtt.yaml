@@ -6,9 +6,9 @@
   schema: json
   brightness: true
   brightness_scale: 254
-  color_temp: true
-  xy: false
-  hs: false
+  color_mode: true
+  supported_color_modes:
+    - "color_temp"
   max_mireds: 500
   min_mireds: 150
   effect: true
@@ -28,11 +28,11 @@
   schema: json
   brightness: true
   brightness_scale: 254
-  color_temp: true
+  color_mode: true
+  supported_color_modes:
+    - "color_temp"
   max_mireds: 454
   min_mireds: 250
-  xy: false
-  hs: false
   effect: true
   effect_list:
     - blink
@@ -50,11 +50,12 @@
   schema: json
   brightness: true
   brightness_scale: 254
-  color_temp: true
+  color_mode: true
+  supported_color_modes:
+    - "color_temp"
+    - "xy"
   max_mireds: 500
   min_mireds: 150
-  xy: true
-  hs: false
   effect: true
   effect_list:
     - blink
