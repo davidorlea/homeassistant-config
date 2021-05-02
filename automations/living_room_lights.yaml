@@ -1,4 +1,5 @@
 - alias: 'Turn Living Room Ceiling Light on when there is Movement'
+  id: a9166a79-028c-40d2-b157-7dd6ec3189cb
   trigger:
     platform: state
     entity_id: binary_sensor.living_room_motion_sensor_occupancy
@@ -19,6 +20,7 @@
       entity_id: light.living_room_ceiling_light
 
 - alias: 'Turn Living Room Ceiling Light off after last Movement'
+  id: 8de09585-9311-457c-be0b-84f7c8142d41
   trigger:
     platform: state
     entity_id: binary_sensor.living_room_motion_sensor_occupancy
@@ -41,6 +43,7 @@
       entity_id: light.living_room_ceiling_light
 
 - alias: 'Turn Living Room Lights off when going to Bed'
+  id: 30efc83b-a870-48bb-8341-28d821a5a33d
   trigger:
     platform: state
     entity_id: input_select.bed_mode

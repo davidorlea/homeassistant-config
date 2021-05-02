@@ -1,4 +1,5 @@
 - alias: 'Alarm Clock'
+  id: 5bed22d4-e379-4d9e-9363-4c7717c6358b
   trigger:
     platform: template
     value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 300) | timestamp_custom('%H:%M', False)) }}"

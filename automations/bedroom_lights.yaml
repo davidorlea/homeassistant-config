@@ -1,4 +1,5 @@
 - alias: 'Turn Bedroom Ceiling Light on when there is Movement'
+  id: ca2eea25-0572-478b-a3c1-1463663224e5
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_motion_sensor_occupancy
@@ -29,6 +30,7 @@
       entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light off after last Movement'
+  id: 4ae96393-de19-4df4-a54f-b0a886e51b39
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_motion_sensor_occupancy
@@ -43,6 +45,7 @@
       entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light on when closing Windows and there is Movement'
+  id: 4176c9f3-b6c3-4662-9574-d3898f678db1
   trigger:
     - platform: state
       entity_id: binary_sensor.bedroom_window_left_contact
@@ -73,6 +76,7 @@
       entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light off when opening Windows and there is Movement'
+  id: 13b59629-0bf4-4582-998d-68c72b7abf7c
   trigger:
     - platform: state
       entity_id: binary_sensor.bedroom_window_left_contact
@@ -99,6 +103,7 @@
       entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Bed and Dresser Lights on when going to Bed in the Night'
+  id: 7b35e327-0f6a-4395-9dbd-82af35052d3c
   trigger:
     platform: state
     entity_id: input_select.bed_mode
@@ -118,6 +123,7 @@
         - light.bedroom_dresser_light
 
 - alias: 'Turn Bedroom Bed and Dresser Lights off when getting out of Bed'
+  id: be121c48-e608-4bf3-901c-3eaf9157b734
   trigger:
     - platform: state
       entity_id: input_select.bed_mode
@@ -135,6 +141,7 @@
         - light.bedroom_dresser_light
 
 - alias: 'Turn Bedroom Dresser Light on when briefly leaving the Bed in the Night'
+  id: 7bfaf448-83e4-4000-b302-8bcd249c08bd
   trigger:
     platform: state
     entity_id: input_select.bed_mode
@@ -152,6 +159,7 @@
       entity_id: light.bedroom_dresser_light
 
 - alias: 'Turn Bedroom Dresser Light off when returning to Bed'
+  id: 728c9cba-d013-4be9-aedd-2c4529e0e916
   trigger:
     platform: state
     entity_id: input_select.bed_mode

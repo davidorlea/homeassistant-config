@@ -1,4 +1,5 @@
 - alias: 'Send Notification about Stay-at-Home Order'
+  id: 12159f5c-0c00-41de-9353-feac3b9754de
   trigger:
     - platform: state
       entity_id: person.david
@@ -34,6 +35,7 @@
             volume: 1.0
 
 - alias: 'Send Notification about unclosed Outdoor Doors'
+  id: 75546147-378a-4dbc-b2ca-f4d4f707da15
   trigger:
     platform: state
     entity_id:
@@ -67,6 +69,7 @@
       message: "Close outdoor doors to keep it warm."
 
 - alias: 'Send Notification about unclosed Bedroom Windows'
+  id: 0c534f2d-72da-42fb-86e3-034ba16a16f0
   trigger:
     platform: state
     entity_id:
@@ -100,6 +103,7 @@
       message: "Close bedroom windows to keep it warm."
 
 - alias: 'Send Notification about pending Bedroom Ventilation'
+  id: 09ac3a7a-e198-4bd6-8892-6320aa9be819
   trigger:
     - platform: state
       entity_id:
@@ -137,6 +141,7 @@
       message: "Open bedroom windows to get some fresh air."
 
 - alias: 'Send Notification about high Living Room Humidity'
+  id: aeed2bd9-99ca-4bd2-804d-f2208050903b
   trigger:
     - platform: numeric_state
       entity_id: sensor.living_room_multi_sensor_humidity
@@ -174,6 +179,7 @@
       message: "Open doors or windows to reduce humidity."
 
 - alias: 'Send Notification about high Bedroom Humidity'
+  id: c08a8d01-d3f8-4292-aaad-6ab596009916
   trigger:
     - platform: numeric_state
       entity_id: sensor.bedroom_multi_sensor_humidity

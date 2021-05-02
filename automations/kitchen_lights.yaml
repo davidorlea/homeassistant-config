@@ -1,4 +1,5 @@
 - alias: 'Turn Kitchen Ceiling and Counter Light on when there is Movement'
+  id: 763269a9-c70f-4ae5-877e-fa35acea16fa
   trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion_sensor_occupancy
@@ -12,6 +13,7 @@
         - light.kitchen_counter_light
 
 - alias: 'Turn Kitchen Ceiling and Counter Light off after last Movement'
+  id: 57517167-d96e-4ba2-ab26-b050d4084689
   trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion_sensor_occupancy
@@ -27,6 +29,7 @@
         - light.kitchen_counter_light
 
 - alias: 'Turn Kitchen Lights off when going to Bed'
+  id: 213a5359-2fc3-47bd-9876-5dc402cbd7bd
   trigger:
     platform: state
     entity_id: input_select.bed_mode

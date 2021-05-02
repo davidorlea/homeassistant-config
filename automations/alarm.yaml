@@ -1,4 +1,5 @@
 - alias: 'Alarm'
+  id: 496e0316-b945-4f9c-a7dc-cb025d4971a9
   trigger:
     platform: state
     entity_id:

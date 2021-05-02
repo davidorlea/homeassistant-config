@@ -1,4 +1,5 @@
 - alias: 'Reset Sonos Volume'
+  id: cef75154-16bc-4990-b1d8-00d7fe5b13d2
   mode: queued
   trigger:
     platform: state

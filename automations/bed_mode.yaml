@@ -1,4 +1,5 @@
 - alias: 'Transition Bed Mode From Just On to On'
+  id: 70f1accf-baed-461a-8ce5-d98ef1caa656
   trigger:
     platform: state
     entity_id: input_select.bed_mode
@@ -13,6 +14,7 @@
       option: 'on'
 
 - alias: 'Transition Bed Mode From Just Off to Off'
+  id: aac75176-cda4-4715-832a-1296b9e010f8
   trigger:
     platform: state
     entity_id: input_select.bed_mode
@@ -27,6 +29,7 @@
       option: 'off'
 
 - alias: 'Transition Bed Mode From Off to Just On'
+  id: ce393b1a-b360-41d6-a527-1763128657cb
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_bed_occupancy
@@ -44,6 +47,7 @@
       option: 'just on'
 
 - alias: 'Transition Bed Mode From Just Off to On'
+  id: 3053b38a-cc3f-4543-81cf-cd39430631a7
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_bed_occupancy
@@ -61,6 +65,7 @@
       option: 'on'
 
 - alias: 'Transition Bed Mode From On to Just Off'
+  id: 70baf7e8-3309-495e-9b69-694de5346f39
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_bed_occupancy
@@ -78,6 +83,7 @@
       option: 'just off'
 
 - alias: 'Transition Bed Mode From Just On to Off'
+  id: 5b8858ea-4e4a-40c7-959a-8d86b4a0beaf
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_bed_occupancy

@@ -1,4 +1,5 @@
 - alias: 'Arrive Home at Day'
+  id: 75338738-61ad-44f7-bc30-d2fc8597a3df
   trigger:
     platform: state
     entity_id: person.david
@@ -19,6 +20,7 @@
         entity_id: scene.arrive_home_at_day
 
 - alias: 'Arrive Home at Night'
+  id: 70598e56-bba5-41fc-bc07-eb87e3e721ee
   trigger:
     platform: state
     entity_id: person.david
@@ -41,6 +43,7 @@
         entity_id: scene.arrive_home_at_night
 
 - alias: 'Leave Home at Day'
+  id: 033f2144-834c-4b2a-871e-990ccc56a0c7
   trigger:
     platform: state
     entity_id: person.david
@@ -61,6 +64,7 @@
         entity_id: input_boolean.away_mode
 
 - alias: 'Leave Home at Night'
+  id: 84792438-aba4-4be5-a18c-66b51052014d
   trigger:
     platform: state
     entity_id: person.david
