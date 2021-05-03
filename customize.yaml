@@ -104,11 +104,11 @@ sensor.coronavirus_aachen_cityregion_deaths:
 sensor.coronavirus_aachen_cityregion_incidence:
   friendly_name: Coronavirus Aachen CityRegion Incidence
   icon: mdi:biohazard
+sensor.coronavirus_aachen_cityregion_incidence_rki:
+  friendly_name: Coronavirus Aachen CityRegion Incidence (RKI)
+  icon: mdi:biohazard
 sensor.coronavirus_aachen_cityregion_recovered:
   friendly_name: Coronavirus Aachen CityRegion Recovered
-  icon: mdi:biohazard
-sensor.coronavirus_aachen_cityregion_rki_incidence:
-  friendly_name: Coronavirus Aachen CityRegion RKI Incidence
   icon: mdi:biohazard
 sensor.coronavirus_germany_confirmed:
   friendly_name: Coronavirus Germany Confirmed

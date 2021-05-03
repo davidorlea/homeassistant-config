@@ -5,12 +5,6 @@
     - tree
 
 - platform: rest
-  name: Coronavirus Aachen CityRegion RKI Incidence
-  resource: 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=OBJECTID%20%3D%20%2782%27&outFields=cases7_per_100k&returnGeometry=false&outSR=4326&f=json'
-  value_template: '{{ value_json.features[0].attributes.cases7_per_100k | round(0) }}'
-  scan_interval: 3600
-
-- platform: rest
   name: Coronavirus Aachen
   scan_interval: 3600
   resource: "https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/arcgis/rest/services/CoronavirusFallzahlen_%C3%B6ffentlich/FeatureServer/1/query?where=Kommune%20%3D%20%27AACHEN%27&outFields=Meldedatum,Positiv,Genesen,Tote,Aktiv,Inzidenz&outSR=4326&f=json"
@@ -101,3 +95,9 @@
       attribute_templates:
         attribution: 'Data provided by Stadt Aachen'
         last_updated: '{{ (states.sensor.coronavirus_aachen_cityregion.attributes["Meldedatum"] / 1000) | timestamp_local }}'
+
+- platform: rest
+  name: Coronavirus Aachen CityRegion Incidence RKI
+  resource: 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=OBJECTID%20%3D%20%2782%27&outFields=cases7_per_100k&returnGeometry=false&outSR=4326&f=json'
+  value_template: '{{ value_json.features[0].attributes.cases7_per_100k | round(0) }}'
+  scan_interval: 3600
