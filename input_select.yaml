@@ -1,3 +1,11 @@
+away_mode:
+  name: Away Mode
+  options:
+    - 'on'
+    - 'just on'
+    - 'just off'
+    - 'off'
+
 bed_mode:
   name: Bed Mode
   options:

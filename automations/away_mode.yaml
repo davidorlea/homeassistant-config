@@ -1,0 +1,101 @@
+- alias: 'Transition Away Mode From Just On to On'
+  id: c4c3fa9d-454a-4761-b34f-3b55ce72e22a
+  trigger:
+    platform: state
+    entity_id: input_select.away_mode
+    to: 'just on'
+    for:
+      minutes: 30
+  action:
+    service: input_select.select_option
+    target:
+      entity_id: input_select.away_mode
+    data:
+      option: 'on'
+
+- alias: 'Transition Away Mode From Just Off to Off'
+  id: 0f672737-6463-4eb3-aecd-63e7f7791b24
+  trigger:
+    platform: state
+    entity_id: input_select.away_mode
+    to: 'just off'
+    for:
+      minutes: 5
+  action:
+    service: input_select.select_option
+    target:
+      entity_id: input_select.away_mode
+    data:
+      option: 'off'
+
+- alias: 'Transition Away Mode From Off to Just On'
+  id: 8c9f579e-effb-4bdf-babe-70e3a3736cbc
+  trigger:
+    platform: state
+    entity_id: person.david
+    from: 'home'
+    to: 'not_home'
+  condition:
+    condition: state
+    entity_id: input_select.away_mode
+    state: 'off'
+  action:
+    service: input_select.select_option
+    target:
+      entity_id: input_select.away_mode
+    data:
+      option: 'just on'
+
+- alias: 'Transition Away Mode From Just Off to On'
+  id: 6b6c2087-cd67-4be6-b02d-caae12729c42
+  trigger:
+    platform: state
+    entity_id: person.david
+    from: 'home'
+    to: 'not_home'
+  condition:
+    condition: state
+    entity_id: input_select.away_mode
+    state: 'just off'
+  action:
+    service: input_select.select_option
+    target:
+      entity_id: input_select.away_mode
+    data:
+      option: 'on'
+
+- alias: 'Transition Away Mode From On to Just Off'
+  id: e7be0f56-70a8-4a21-9f97-1f65bbb08489
+  trigger:
+    platform: state
+    entity_id: person.david
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: input_select.away_mode
+    state: 'on'
+  action:
+    service: input_select.select_option
+    target:
+      entity_id: input_select.away_mode
+    data:
+      option: 'just off'
+
+- alias: 'Transition Away Mode From Just On to Off'
+  id: cf3dfc60-ac0c-4f64-940d-80d47f7986e0
+  trigger:
+    platform: state
+    entity_id: person.david
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: input_select.away_mode
+    state: 'just on'
+  action:
+    service: input_select.select_option
+    target:
+      entity_id: input_select.away_mode
+    data:
+      option: 'off'
