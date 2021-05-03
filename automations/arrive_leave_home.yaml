@@ -1,4 +1,4 @@
-- alias: 'Arrive Home at Day'
+- alias: 'Arrive Home'
   id: 75338738-61ad-44f7-bc30-d2fc8597a3df
   trigger:
     platform: state
@@ -10,78 +10,18 @@
     entity_id: sensor.period_of_day
     state: 'Day'
   action:
-    - service: input_boolean.turn_off
-      target:
-        entity_id: input_boolean.away_mode
-    - delay:
-        seconds: 5
-    - service: scene.turn_on
-      target:
-        entity_id: scene.arrive_home_at_day
+    service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.away_mode
 
-- alias: 'Arrive Home at Night'
-  id: 70598e56-bba5-41fc-bc07-eb87e3e721ee
-  trigger:
-    platform: state
-    entity_id: person.david
-    from: 'not_home'
-    to: 'home'
-  condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
-  action:
-    - service: input_boolean.turn_off
-      target:
-        entity_id: input_boolean.away_mode
-    - delay:
-        seconds: 5
-    - service: scene.turn_on
-      target:
-        entity_id: scene.arrive_home_at_night
-
-- alias: 'Leave Home at Day'
+- alias: 'Leave Home'
   id: 033f2144-834c-4b2a-871e-990ccc56a0c7
   trigger:
     platform: state
     entity_id: person.david
     from: 'home'
     to: 'not_home'
-  condition:
-    condition: state
-    entity_id: sensor.period_of_day
-    state: 'Day'
   action:
-    - service: scene.turn_on
-      target:
-        entity_id: scene.leave_home_at_day
-    - delay:
-        seconds: 5
-    - service: input_boolean.turn_on
-      target:
-        entity_id: input_boolean.away_mode
-
-- alias: 'Leave Home at Night'
-  id: 84792438-aba4-4be5-a18c-66b51052014d
-  trigger:
-    platform: state
-    entity_id: person.david
-    from: 'home'
-    to: 'not_home'
-  condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
-  action:
-    - service: scene.turn_on
-      target:
-        entity_id: scene.leave_home_at_night
-    - delay:
-        seconds: 5
-    - service: input_boolean.turn_on
-      target:
-        entity_id: input_boolean.away_mode
+    service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.away_mode
