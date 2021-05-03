@@ -10,7 +10,13 @@
     conditions:
       - condition: state
         entity_id: sensor.period_of_day
+        state: 'Sunrise'
+      - condition: state
+        entity_id: sensor.period_of_day
         state: 'Day'
+      - condition: state
+        entity_id: sensor.period_of_day
+        state: 'Sunset'
       - condition: state
         entity_id: binary_sensor.outdoor_frontdoor_contact
         state: 'off'
@@ -27,9 +33,17 @@
     from: 'off'
     to: 'on'
   condition:
-    - condition: state
-      entity_id: sensor.period_of_day
-      state: 'Day'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Sunrise'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Sunset'
     - condition: state
       entity_id: binary_sensor.hall_motion_sensor_occupancy
       state: 'off'
@@ -80,7 +94,13 @@
       conditions:
         - condition: state
           entity_id: sensor.period_of_day
+          state: 'Sunrise'
+        - condition: state
+          entity_id: sensor.period_of_day
           state: 'Day'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Sunset'
     - condition: state
       entity_id: binary_sensor.hall_motion_sensor_occupancy
       state: 'on'
@@ -97,9 +117,17 @@
     from: 'on'
     to: 'off'
   condition:
-    - condition: state
-      entity_id: sensor.period_of_day
-      state: 'Day'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Sunrise'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Sunset'
     - condition: state
       entity_id: binary_sensor.hall_motion_sensor_occupancy
       state: 'off'
