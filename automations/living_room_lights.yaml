@@ -42,7 +42,7 @@
     target:
       entity_id: light.living_room_ceiling_light
 
-- alias: 'Turn Living Room Lights off when going to Bed'
+- alias: 'Turn Living Room Ceiling Light off when going to Bed'
   id: 30efc83b-a870-48bb-8341-28d821a5a33d
   trigger:
     platform: state
@@ -52,4 +52,76 @@
   action:
     service: light.turn_off
     target:
-      entity_id: group.living_room_lights
+      entity_id: light.living_room_ceiling_light
+
+- alias: 'Turn Living Room Sofa and TV Light on'
+  id: 861debaa-4310-4053-b98b-2275847691bb
+  trigger:
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Sunset'
+      to: 'Dusk'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'on'
+      to: 'just off'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'on'
+      to: 'just off'
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Dusk'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Night'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Dawn'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'just off'
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'just off'
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'off'
+  action:
+    service: light.turn_on
+    target:
+      entity_id:
+        - light.living_room_sofa_light
+        - light.living_room_tv_light
+
+- alias: 'Turn Living Room Sofa and TV Light off'
+  id: c3dda693-5c89-453b-8ca0-647e86f7b0ba
+  trigger:
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Dawn'
+      to: 'Sunrise'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'just on'
+      to: 'on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just on'
+      to: 'on'
+  action:
+    service: light.turn_off
+    target:
+      entity_id:
+        - light.living_room_sofa_light
+        - light.living_room_tv_light

@@ -28,14 +28,74 @@
         - light.kitchen_ceiling_light
         - light.kitchen_counter_light
 
-- alias: 'Turn Kitchen Lights off when going to Bed'
+- alias: 'Turn Kitchen Cabinet and Sideboard Light on'
+  id: 912dcf60-5a35-4f9e-934b-c33fc5bdd16d
+  trigger:
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Sunset'
+      to: 'Dusk'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'on'
+      to: 'just off'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'on'
+      to: 'just off'
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Dusk'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Night'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Dawn'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'just off'
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'just off'
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'off'
+  action:
+    service: light.turn_on
+    target:
+      entity_id:
+        - light.kitchen_cabinet_light
+        - light.kitchen_sideboard_light
+
+- alias: 'Turn Kitchen Cabinet and Sideboard Light off'
   id: 213a5359-2fc3-47bd-9876-5dc402cbd7bd
   trigger:
-    platform: state
-    entity_id: input_select.bed_mode
-    from: 'just on'
-    to: 'on'
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Dawn'
+      to: 'Sunrise'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'just on'
+      to: 'on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just on'
+      to: 'on'
   action:
     service: light.turn_off
     target:
-      entity_id: group.kitchen_lights
+      entity_id:
+        - light.kitchen_cabinet_light
+        - light.kitchen_sideboard_light
