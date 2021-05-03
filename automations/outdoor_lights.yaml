@@ -1,115 +1,64 @@
-- alias: 'Turn Outdoor Lights on after Sunset'
+- alias: 'Turn Outdoor Frontdoor Light on'
   id: d5cb8c07-9327-4859-8381-783801d076fa
   trigger:
-    platform: state
-    entity_id: sensor.period_of_day
-    from: 'Sunset'
-    to: 'Dusk'
-  action:
-    - service: light.turn_on
-      target:
-        entity_id: group.outdoor_lights
-
-- alias: 'Turn Outdoor Lights on in the Night when Arriving'
-  id: bad6f0f8-e8f8-4c79-9ef1-2361bad357f7
-  trigger:
-    platform: state
-    entity_id: input_boolean.away_mode
-    from: 'on'
-    to: 'off'
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Sunset'
+      to: 'Dusk'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'on'
+      to: 'just off'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just off'
+      to: 'off'
   condition:
-    condition: and
-    conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Sunrise'
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Sunset'
-      - condition: time
-        after: '01:00:00'
-        before: '12:00:00'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Dusk'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Night'
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Dawn'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'just off'
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'off'
   action:
-    - service: light.turn_on
-      target:
-        entity_id: group.outdoor_lights
+    service: light.turn_on
+    target:
+      entity_id: light.outdoor_frontdoor_light
 
-- alias: 'Turn Outdoor Lights off before Sunrise'
+- alias: 'Turn Outdoor Frontdoor and Backdoor Light off '
   id: c3dda693-5c89-453b-8ca0-647e86f7b0ba
   trigger:
-    platform: state
-    entity_id: sensor.period_of_day
-    from: 'Dawn'
-    to: 'Sunrise'
-  action:
-    - service: light.turn_off
-      target:
-        entity_id: group.outdoor_lights
-
-- alias: 'Turn Outdoor Lights off in the Night when Away or in Bed'
-  id: 60ef79ec-e371-48bc-8102-6fdefe5f9cc0
-  trigger:
-    platform: time
-    at: '01:00:00'
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_boolean.away_mode
-        state: 'on'
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'on'
-  action:
-    - service: light.turn_off
-      target:
-        entity_id: group.outdoor_lights
-
-- alias: 'Turn Outdoor Lights off in the Night when Leaving'
-  id: f6ff9134-22a4-4890-999e-ad4dad122234
-  trigger:
-    platform: state
-    entity_id: input_boolean.away_mode
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Sunrise'
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Sunset'
-      - condition: time
-        after: '01:00:00'
-        before: '12:00:00'
-  action:
-    - service: light.turn_off
-      target:
-        entity_id: group.outdoor_lights
-
-- alias: 'Turn Outdoor Lights off when going to Bed late'
-  id: bfd6058d-44dd-4c58-bd47-8348371a26e8
-  trigger:
-    platform: state
-    entity_id: input_select.bed_mode
-    from: 'just on'
-    to: 'on'
-  condition:
-    condition: time
-    after: '01:00:00'
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Dawn'
+      to: 'Sunrise'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'just on'
+      to: 'on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just on'
+      to: 'on'
   action:
     service: light.turn_off
     target:
-      entity_id: group.outdoor_lights
+      entity_id:
+        - light.outdoor_frontdoor_light
+        - light.outdoor_backdoor_light
