@@ -22,21 +22,19 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-      - condition: or
-        conditions:
-          - condition: time
-            after: '12:00:00'
-            before: '00:00:00'
-          - condition: time
-            after: '00:00:00'
-            before: '01:00:00'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+    - condition: or
+      conditions:
+        - condition: time
+          after: '12:00:00'
+          before: '00:00:00'
+        - condition: time
+          after: '00:00:00'
+          before: '01:00:00'
   action:
     - service: script.turn_on
       target:
@@ -64,21 +62,19 @@
     from: 'on'
     to: 'off'
   condition:
-    condition: and
-    conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-      - condition: or
-        conditions:
-          - condition: time
-            after: '12:00:00'
-            before: '00:00:00'
-          - condition: time
-            after: '00:00:00'
-            before: '01:00:00'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+    - condition: or
+      conditions:
+        - condition: time
+          after: '12:00:00'
+          before: '00:00:00'
+        - condition: time
+          after: '00:00:00'
+          before: '01:00:00'
   action:
     - service: script.turn_on
       target:

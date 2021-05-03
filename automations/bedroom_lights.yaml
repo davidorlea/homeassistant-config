@@ -6,24 +6,22 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'off'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-          - condition: and
-            conditions:
-              - condition: state
-                entity_id: binary_sensor.bedroom_window_left_contact
-                state: 'off'
-              - condition: state
-                entity_id: binary_sensor.bedroom_window_right_contact
-                state: 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.bedroom_window_left_contact
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.bedroom_window_right_contact
+              state: 'off'
   action:
     service: light.turn_on
     target:
@@ -56,20 +54,18 @@
       from: 'on'
       to: 'off'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.bedroom_motion_sensor_occupancy
-        state: 'on'
-      - condition: state
-        entity_id: binary_sensor.bedroom_window_left_contact
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.bedroom_window_right_contact
-        state: 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_motion_sensor_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_left_contact
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_right_contact
+      state: 'off'
   action:
     service: light.turn_on
     target:
@@ -87,16 +83,14 @@
       from: 'off'
       to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-      - condition: state
-        entity_id: binary_sensor.bedroom_motion_sensor_occupancy
-        state: 'on'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+    - condition: state
+      entity_id: binary_sensor.bedroom_motion_sensor_occupancy
+      state: 'on'
   action:
     service: light.turn_off
     target:

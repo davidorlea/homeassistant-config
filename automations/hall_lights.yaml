@@ -27,14 +27,12 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
-      - condition: state
-        entity_id: binary_sensor.hall_motion_sensor_occupancy
-        state: 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state: 'Day'
+    - condition: state
+      entity_id: binary_sensor.hall_motion_sensor_occupancy
+      state: 'off'
   action:
     service: light.turn_on
     target:
@@ -78,16 +76,14 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: sensor.period_of_day
-            state: 'Day'
-      - condition: state
-        entity_id: binary_sensor.hall_motion_sensor_occupancy
-        state: 'on'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.period_of_day
+          state: 'Day'
+    - condition: state
+      entity_id: binary_sensor.hall_motion_sensor_occupancy
+      state: 'on'
   action:
     service: light.turn_off
     target:
@@ -101,14 +97,12 @@
     from: 'on'
     to: 'off'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
-      - condition: state
-        entity_id: binary_sensor.hall_motion_sensor_occupancy
-        state: 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state: 'Day'
+    - condition: state
+      entity_id: binary_sensor.hall_motion_sensor_occupancy
+      state: 'off'
   action:
     service: light.turn_off
     target:

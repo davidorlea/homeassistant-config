@@ -4,19 +4,17 @@
     platform: template
     value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 300) | timestamp_custom('%H:%M', False)) }}"
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.alarm_clock
-        state: 'on'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_select.bed_mode
-            state: 'on'
-          - condition: state
-            entity_id: input_select.bed_mode
-            state: 'just on'
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: 'on'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'on'
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'just on'
   action:
     - service: light.turn_on
       target:
