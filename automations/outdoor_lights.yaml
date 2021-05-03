@@ -41,8 +41,8 @@
     target:
       entity_id: light.outdoor_frontdoor_light
 
-- alias: 'Turn Outdoor Frontdoor and Backdoor Light off '
-  id: c3dda693-5c89-453b-8ca0-647e86f7b0ba
+- alias: 'Turn Outdoor Frontdoor and Backdoor Light off'
+  id: 20b82cc6-4c54-4ac0-b938-4659dc4a3bcd
   trigger:
     - platform: state
       entity_id: sensor.period_of_day
