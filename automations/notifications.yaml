@@ -47,7 +47,7 @@
   condition:
     - condition: state
       entity_id:
-        - input_boolean.away_mode
+        - input_select.away_mode
         - input_select.bed_mode
       state: 'off'
     - condition: numeric_state
@@ -81,7 +81,7 @@
   condition:
     - condition: state
       entity_id:
-        - input_boolean.away_mode
+        - input_select.away_mode
         - input_select.bed_mode
       state: 'off'
     - condition: numeric_state
@@ -107,7 +107,7 @@
   trigger:
     - platform: state
       entity_id:
-        - input_boolean.away_mode
+        - input_select.away_mode
         - input_select.bed_mode
       to: 'off'
       for:
@@ -122,7 +122,7 @@
   condition:
     - condition: state
       entity_id:
-        - input_boolean.away_mode
+        - input_select.away_mode
         - input_select.bed_mode
       state: 'off'
       for:
@@ -155,7 +155,7 @@
         minutes: 30
   condition:
     - condition: state
-      entity_id: input_boolean.away_mode
+      entity_id: input_select.away_mode
       state: 'off'
     - condition: state
       entity_id: input_select.bed_mode
@@ -193,7 +193,7 @@
         minutes: 30
   condition:
     - condition: state
-      entity_id: input_boolean.away_mode
+      entity_id: input_select.away_mode
       state: 'off'
     - condition: state
       entity_id: input_select.bed_mode
