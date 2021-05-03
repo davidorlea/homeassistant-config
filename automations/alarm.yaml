@@ -14,9 +14,14 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: state
-    entity_id: input_boolean.away_mode
-    state: 'on'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.away_mode
+        state: 'just on'
+      - condition: state
+        entity_id: input_select.away_mode
+        state: 'on'
   action:
     - service: notify.mobile_app_iphone_von_david
       data:
