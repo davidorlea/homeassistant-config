@@ -28,11 +28,28 @@
       title: "Stay-at-home order in force"
       message: "Mind the stay-at-home order. The 7-day incidence in Aachen is above 100."
       data:
+        tag: "stay-at-home-order"
         push:
           sound:
             name: default
             critical: 1
             volume: 1.0
+
+- alias: 'Clear Notification about Stay-at-Home Order'
+  id: 6635de6b-4e49-4426-bf3c-a6ca7093a04e
+  trigger:
+    - platform: state
+      entity_id: person.david
+      from: 'not_home'
+      to: 'home'
+    - platform: time
+      at: '5:00:00'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      message: "clear_notification"
+      data:
+        tag: "stay-at-home-order"
 
 - alias: 'Send Notification about unclosed Outdoor Doors'
   id: 75546147-378a-4dbc-b2ca-f4d4f707da15
@@ -67,6 +84,29 @@
     data:
       title: "Outdoor doors unclosed"
       message: "Close outdoor doors to keep it warm."
+      data:
+        tag: "unclosed-outdoor-doors"
+
+- alias: 'Clear Notification about unclosed Outdoor Doors'
+  id: 98cd6b76-8b4c-48f2-82c5-73d3e492e426
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.outdoor_frontdoor_contact
+      - binary_sensor.outdoor_backdoor_contact
+    to: 'off'
+  condition:
+    condition: state
+    entity_id:
+      - binary_sensor.outdoor_frontdoor_contact
+      - binary_sensor.outdoor_backdoor_contact
+    state: 'off'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      message: "clear_notification"
+      data:
+        tag: "unclosed-outdoor-doors"
 
 - alias: 'Send Notification about unclosed Bedroom Windows'
   id: 0c534f2d-72da-42fb-86e3-034ba16a16f0
@@ -101,6 +141,29 @@
     data:
       title: "Bedroom windows unclosed"
       message: "Close bedroom windows to keep it warm."
+      data:
+        tag: "unclosed-bedroom-windows"
+
+- alias: 'Clear Notification about unclosed Bedroom Windows'
+  id: e77baedc-3316-4650-9565-82049ec3ace4
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.bedroom_window_left_contact
+      - binary_sensor.bedroom_window_right_contact
+    to: 'off'
+  condition:
+    condition: state
+    entity_id:
+      - binary_sensor.bedroom_window_left_contact
+      - binary_sensor.bedroom_window_right_contact
+    state: 'off'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      message: "clear_notification"
+      data:
+        tag: "unclosed-bedroom-windows"
 
 - alias: 'Send Notification about pending Bedroom Ventilation'
   id: 09ac3a7a-e198-4bd6-8892-6320aa9be819
@@ -139,6 +202,23 @@
     data:
       title: "Bedroom ventilation pending"
       message: "Open bedroom windows to get some fresh air."
+      data:
+        tag: "pending-bedroom-venatilation"
+
+- alias: 'Clear Notification about pending Bedroom Ventilation'
+  id: 279a2bf7-b4cc-4095-a3d4-b3b6e10619bc
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.bedroom_window_left_contact
+      - binary_sensor.bedroom_window_right_contact
+    to: 'on'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      message: "clear_notification"
+      data:
+        tag: "pending-bedroom-venatilation"
 
 - alias: 'Send Notification about high Living Room Humidity'
   id: aeed2bd9-99ca-4bd2-804d-f2208050903b
