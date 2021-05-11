@@ -7,10 +7,14 @@
       to: 'not_home'
     - platform: time
       at: '21:00:00'
+    - platform: template
+      value_template: "{{ distance(states.person.david) < 15 }}"
   condition:
     - condition: state
       entity_id: person.david
       state: 'not_home'
+    - condition: template
+      value_template: "{{ distance(states.person.david) < 15 }}"
     - condition: or
       conditions:
         - condition: time
