@@ -21,3 +21,28 @@
         entity_id: "{{ trigger.entity_id }}"
       data:
         is_volume_muted: false
+
+- alias: 'Pause Sonos'
+  id: 6729b4c3-631f-4211-917b-9d110f94de0c
+  mode: queued
+  trigger:
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'off'
+      to: 'just on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'off'
+      to: 'just on'
+  action:
+    - service: media_player.media_pause
+      target:
+        entity_id:
+          - media_player.sonos_device_kuche
+          - media_player.sonos_device_wohnzimmer
+    - condition: state
+      entity_id: input_select.away_mode
+      state: 'just on'
+    - service: media_player.media_pause
+      target:
+        entity_id: media_player.sonos_device_schlafzimmer
