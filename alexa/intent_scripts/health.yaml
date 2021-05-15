@@ -12,6 +12,7 @@ CoronaVirusIntent:
       {% else %}
       In Aachen sind derzeit {{ current }} Menschen nachweislich mit dem Virus infiziert. Die 7-Tage-Inzidenz liegt damit bei {{ incidence }}.
       {% endif %}
+
 PollenIntent:
   speech:
     type: plain

@@ -1,4 +1,8 @@
 LetTheDogsOutIntent:
+  speech:
+    type: plain
+    text: >-
+      Okay, lassen wir sie raus!
   action:
     - delay:
         seconds: 2
@@ -9,7 +13,3 @@ LetTheDogsOutIntent:
           - media_player.sonos_device_kuche
         source: http://192.168.178.10:8123/local/sounds/dog_barking.mp3
         volume: 0.3
-  speech:
-    type: plain
-    text: >-
-      Okay, lassen wir sie raus!

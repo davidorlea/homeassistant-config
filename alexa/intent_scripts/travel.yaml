@@ -16,6 +16,7 @@ GasStationIntent:
         "Bei %s, %s, kostet ein Liter Diesel gerade %s Euro." | format(brand, address, price | round(2))
         ] | random }}
       {% endif %}
+
 NearestScooterIntent:
   speech:
     type: plain
@@ -30,6 +31,7 @@ NearestScooterIntent:
       {% else %}
       Der nächste Scooter steht {{ distance }} Meter entfernt und ist zu {{ battery }} Prozent geladen.
       {% endif %}
+
 NextBusIntent:
   speech:
     type: plain
