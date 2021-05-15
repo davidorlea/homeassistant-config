@@ -28,9 +28,9 @@
       above: 100
   action:
     service: notify.mobile_app_iphone_von_david
-    data:
+    data_template:
       title: "Stay-at-home order in force"
-      message: "Mind the stay-at-home order. The 7-day incidence in Aachen is above 100."
+      message: "Mind the stay-at-home order. The current 7-day incidence in Aachen is {{ states.sensor.coronavirus_aachen_cityregion_incidence_rki.state }}."
       data:
         tag: "stay-at-home-order"
         push:

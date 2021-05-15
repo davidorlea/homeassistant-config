@@ -1,4 +1,4 @@
-- alias: 'Update'
+- alias: 'Update Home Assistant'
   id: cb5fe1c6-5f65-497b-91b8-514828b0f377
   trigger:
     platform: state
@@ -10,3 +10,5 @@
     data_template:
       title: "New Version of Home Assistant"
       message: "Version {{ states.binary_sensor.updater.attributes.newest_version }} of Home Assistant is now available."
+      data:
+        tag: "update-home-assistant"
