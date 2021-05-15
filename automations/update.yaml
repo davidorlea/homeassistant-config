@@ -1,4 +1,4 @@
-- alias: 'Update Home Assistant'
+- alias: 'Send Notification to Update Home Assistant'
   id: cb5fe1c6-5f65-497b-91b8-514828b0f377
   trigger:
     platform: state
@@ -10,5 +10,19 @@
     data_template:
       title: "New Version of Home Assistant"
       message: "Version {{ states.binary_sensor.updater.attributes.newest_version }} of Home Assistant is now available."
+      data:
+        tag: "update-home-assistant"
+
+- alias: 'Clear Notification to update Home Assistant'
+  id: 4001d0c1-234b-4c5a-904a-eb96863d6f43
+  trigger:
+    platform: state
+    entity_id: binary_sensor.updater
+    from: 'on'
+    to: 'off'
+  action:
+    service: notify.mobile_app_iphone_von_david
+    data:
+      message: "clear_notification"
       data:
         tag: "update-home-assistant"
