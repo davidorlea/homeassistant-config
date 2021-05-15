@@ -11,15 +11,15 @@
   sensors:
     period_of_day:
       value_template: >-
-        {% if states.sun.sun.attributes.elevation < -6 %}
+        {% if state_attr('sun.sun', 'elevation') < -6 %}
           Night
-        {% elif states.sun.sun.attributes.elevation < 0 and states.sun.sun.attributes.rising %}
+        {% elif state_attr('sun.sun', 'elevation') < 0 and state_attr('sun.sun', 'rising') %}
           Dawn
-        {% elif states.sun.sun.attributes.elevation < 0 and not states.sun.sun.attributes.rising %}
+        {% elif state_attr('sun.sun', 'elevation') < 0 and not state_attr('sun.sun', 'rising') %}
           Dusk
-        {% elif states.sun.sun.attributes.elevation < 6 and states.sun.sun.attributes.rising %}
+        {% elif state_attr('sun.sun', 'elevation') < 6 and state_attr('sun.sun', 'rising') %}
           Sunrise
-        {% elif states.sun.sun.attributes.elevation < 6 and not states.sun.sun.attributes.rising %}
+        {% elif state_attr('sun.sun', 'elevation') < 6 and not state_attr('sun.sun', 'rising') %}
           Sunset
         {% else %}
           Day

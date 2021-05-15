@@ -9,7 +9,7 @@
     service: notify.mobile_app_iphone_von_david
     data_template:
       title: "New Version of Home Assistant"
-      message: "Version {{ states.binary_sensor.updater.attributes.newest_version }} of Home Assistant is now available."
+      message: "Version {{ state_attr('binary_sensor.updater', 'newest_version') }} of Home Assistant is now available."
       data:
         tag: "update-home-assistant"
 
