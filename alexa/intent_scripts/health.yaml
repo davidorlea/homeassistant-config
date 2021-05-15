@@ -3,16 +3,15 @@ CoronaVirusIntent:
     type: ssml
     text: >-
       <speak>
-        {% set current = states("sensor.coronavirus_aachen_cityregion_current") | int(-1) %}
-        {% set incidence = states("sensor.coronavirus_aachen_cityregion_incidence") | int(-1) %}
-        {% set incidence_rki = states("sensor.coronavirus_aachen_cityregion_incidence_rki") | int(-1) %}
-        {% if current == -1 or incidence == -1 or incidence_rki == -1 %}
+        {% set cases7 = states("sensor.coronavirus_aachen_cityregion_rki_cases7") | int(-1) %}
+        {% set incidence7 = states("sensor.coronavirus_aachen_cityregion_rki_incidence7") | int(-1) %}
+        {% if cases7 == -1 or deaths7 == -1 or incidence7 == -1 %}
         {{ [
           "Das weiß ich leider gerade nicht.",
           "Das kann ich dir leider gerade nicht sagen."
           ] | random }}
         {% else %}
-        In der Städteregion Aachen sind derzeit <say-as interpret-as="cardinal">{{ current }}</say-as> Menschen nachweislich mit dem Virus infiziert. Die errechnete 7-Tage-Inzidenz liegt damit bei <say-as interpret-as="cardinal">{{ incidence }}</say-as>. Das RKI weist für heute eine 7-Tage-Inzidenz von <say-as interpret-as="cardinal">{{ incidence_rki }}</say-as> aus.
+        Laut <sub alias="Robert Koch-Institut">RKI</sub> haben sich in der Städteregion Aachen in den letzten 7 Tagen nachweislich <say-as interpret-as="cardinal">{{ cases7 }}</say-as> Menschen mit dem Virus infiziert. Die 7-Tage-Inzidenz liegt heute bei <say-as interpret-as="cardinal">{{ incidence7 }}</say-as>.
         {% endif %}
       </speak>
 

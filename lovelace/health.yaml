@@ -12,25 +12,39 @@ cards:
     title: Coronavirus Germany
     show_header_toggle: false
     entities:
-      - sensor.coronavirus_germany_confirmed
-      - sensor.coronavirus_germany_current
-      - sensor.coronavirus_germany_deaths
-      - sensor.coronavirus_germany_recovered
-  - type: entities
-    title: Coronavirus Aachen CityRegion
-    show_header_toggle: false
-    entities:
-      - sensor.coronavirus_aachen_cityregion_confirmed
-      - sensor.coronavirus_aachen_cityregion_current
-      - sensor.coronavirus_aachen_cityregion_recovered
-      - sensor.coronavirus_aachen_cityregion_deaths
-      - sensor.coronavirus_aachen_cityregion_incidence
-  - type: entities
-    title: Coronavirus Aachen
-    show_header_toggle: false
-    entities:
-      - sensor.coronavirus_aachen_confirmed
-      - sensor.coronavirus_aachen_current
-      - sensor.coronavirus_aachen_recovered
-      - sensor.coronavirus_aachen_deaths
-      - sensor.coronavirus_aachen_incidence
+      - entity: sensor.coronavirus_germany_confirmed
+        name: Germany Confirmed
+      - entity: sensor.coronavirus_germany_current
+        name: Germany Current
+      - entity: sensor.coronavirus_germany_deaths
+        name: Germany Deaths
+      - entity: sensor.coronavirus_germany_recovered
+        name: Germany Recovered
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Coronavirus Aachen (RKI)
+        show_header_toggle: false
+        entities:
+          - entity: sensor.coronavirus_aachen_cityregion_rki_cases
+            name: Aachen CityRegion Cases
+          - entity: sensor.coronavirus_aachen_cityregion_rki_deaths
+            name: Aachen CityRegion Deaths
+          - entity: sensor.coronavirus_aachen_cityregion_rki_cases7
+            name: Aachen CityRegion 7-Day Cases
+          - entity: sensor.coronavirus_aachen_cityregion_rki_deaths7
+            name: Aachen CityRegion 7-Day Deaths
+          - entity: sensor.coronavirus_aachen_cityregion_rki_incidence7
+            name: Aachen CityRegion 7-Day Incidence
+      - type: entities
+        title: Coronavirus Aachen (Public Health Office)
+        show_header_toggle: false
+        entities:
+          - entity: sensor.coronavirus_aachen_cityregion_pho_current
+            name: Aachen CityRegion Current
+          - entity: sensor.coronavirus_aachen_cityregion_pho_incidence7
+            name: Aachen CityRegion 7-Day Incidence
+          - entity: sensor.coronavirus_aachen_pho_current
+            name: Aachen Current
+          - entity: sensor.coronavirus_aachen_pho_incidence7
+            name: Aachen 7-Day Incidence

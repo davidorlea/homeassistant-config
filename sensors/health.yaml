@@ -4,100 +4,101 @@
     - grass
     - tree
 
+# See https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/ArcGIS/rest/services/CoronavirusFallzahlen_öffentlich/FeatureServer/1
 - platform: rest
-  name: Coronavirus Aachen
+  name: Coronavirus Aachen PHO
   scan_interval: 3600
-  resource: "https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/arcgis/rest/services/CoronavirusFallzahlen_%C3%B6ffentlich/FeatureServer/1/query?where=Kommune%20%3D%20%27AACHEN%27&outFields=Meldedatum,Positiv,Genesen,Tote,Aktiv,Inzidenz&outSR=4326&f=json"
+  resource: "https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/arcgis/rest/services/CoronavirusFallzahlen_%C3%B6ffentlich/FeatureServer/1/query?where=Kommune%20%3D%20%27AACHEN%27&outFields=Meldedatum,Positiv,Genesen,Tote,Aktiv,Inzidenz&f=json"
   json_attributes_path: "$..features[-1:].attributes"
   json_attributes:
     - Aktiv
-    - Genesen
     - Inzidenz
     - Meldedatum
-    - Positiv
-    - Tote
   value_template: OK
 
 - platform: template
   sensors:
-    coronavirus_aachen_confirmed:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen', 'Positiv') }}"
+    coronavirus_aachen_pho_current:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_pho', 'Aktiv') }}"
       unit_of_measurement: "people"
       attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_current:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen', 'Aktiv') }}"
-      unit_of_measurement: "people"
+        attribution: "Data provided by StädteRegion Aachen"
+        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_pho', 'Meldedatum') / 1000) | timestamp_local }}"
+    coronavirus_aachen_pho_incidence7:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_pho', 'Inzidenz') | round(0) }}"
       attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_deaths:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen', 'Tote') }}"
-      unit_of_measurement: "people"
-      attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_incidence:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen', 'Inzidenz') | round(0) }}"
-      attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_recovered:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen', 'Genesen') }}"
-      unit_of_measurement: "people"
-      attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen', 'Meldedatum') / 1000) | timestamp_local }}"
+        attribution: "Data provided by StädteRegion Aachen"
+        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_pho', 'Meldedatum') / 1000) | timestamp_local }}"
 
+# See https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/ArcGIS/rest/services/CoronavirusFallzahlen_öffentlich/FeatureServer/1
 - platform: rest
-  name: Coronavirus Aachen CityRegion
+  name: Coronavirus Aachen CityRegion PHO
   scan_interval: 3600
-  resource: "https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/arcgis/rest/services/CoronavirusFallzahlen_%C3%B6ffentlich/FeatureServer/1/query?where=Kommune%20%3D%20%27ST%C3%84DTEREGION%27&outFields=Meldedatum,Positiv,Genesen,Tote,Aktiv,Inzidenz&outSR=4326&f=json"
+  resource: "https://services-eu1.arcgis.com/2ypUQspLVcN0KOBE/arcgis/rest/services/CoronavirusFallzahlen_%C3%B6ffentlich/FeatureServer/1/query?where=Kommune%20%3D%20%27ST%C3%84DTEREGION%27&outFields=Meldedatum,Positiv,Genesen,Tote,Aktiv,Inzidenz&f=json"
   json_attributes_path: "$..features[-1:].attributes"
   json_attributes:
     - Aktiv
-    - Genesen
     - Inzidenz
     - Meldedatum
-    - Positiv
-    - Tote
   value_template: OK
 
 - platform: template
   sensors:
-    coronavirus_aachen_cityregion_confirmed:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion', 'Positiv') }}"
+    coronavirus_aachen_cityregion_pho_current:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_pho', 'Aktiv') }}"
       unit_of_measurement: "people"
       attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_cityregion_current:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion', 'Aktiv') }}"
-      unit_of_measurement: "people"
+        attribution: "Data provided by StädteRegion Aachen"
+        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion_pho', 'Meldedatum') / 1000) | timestamp_local }}"
+    coronavirus_aachen_cityregion_pho_incidence7:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_pho', 'Inzidenz') | round(0) }}"
       attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_cityregion_deaths:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion', 'Tote') }}"
-      unit_of_measurement: "people"
-      attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_cityregion_incidence:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion', 'Inzidenz') | round(0) }}"
-      attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion', 'Meldedatum') / 1000) | timestamp_local }}"
-    coronavirus_aachen_cityregion_recovered:
-      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion', 'Genesen') }}"
-      unit_of_measurement: "people"
-      attribute_templates:
-        attribution: "Data provided by Stadt Aachen"
-        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion', 'Meldedatum') / 1000) | timestamp_local }}"
+        attribution: "Data provided by StädteRegion Aachen"
+        last_updated: "{{ (state_attr('sensor.coronavirus_aachen_cityregion_pho', 'Meldedatum') / 1000) | timestamp_local }}"
 
+# See https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/RKI_Landkreisdaten/FeatureServer/0
 - platform: rest
-  name: Coronavirus Aachen CityRegion Incidence RKI
-  resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=OBJECTID%20%3D%20%2782%27&outFields=cases7_per_100k&returnGeometry=false&outSR=4326&f=json"
-  value_template: "{{ value_json.features[0].attributes.cases7_per_100k | round(0) }}"
+  name: Coronavirus Aachen CityRegion RKI
   scan_interval: 3600
+  resource: "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=OBJECTID%20%3D%20%2782%27&outFields=&outFields=cases,cases7_lk,cases7_per_100k,deaths,death7_lk,last_update&returnGeometry=false&f=json"
+  json_attributes_path: "$.features[0].attributes"
+  json_attributes:
+    - cases
+    - cases7_lk
+    - cases7_per_100k
+    - deaths
+    - death7_lk
+    - last_update
+  value_template: OK
+
+- platform: template
+  sensors:
+    coronavirus_aachen_cityregion_rki_cases:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases') | round(0) }}"
+      unit_of_measurement: "people"
+      attribute_templates:
+        attribution: "Data provided by RKI"
+        last_updated: "{{ as_timestamp(strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr')) | timestamp_local }}"
+    coronavirus_aachen_cityregion_rki_cases7:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases7_lk') | round(0) }}"
+      unit_of_measurement: "people"
+      attribute_templates:
+        attribution: "Data provided by RKI"
+        last_updated: "{{ as_timestamp(strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr')) | timestamp_local }}"
+    coronavirus_aachen_cityregion_rki_deaths:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'deaths') | round(0) }}"
+      unit_of_measurement: "people"
+      attribute_templates:
+        attribution: "Data provided by RKI"
+        last_updated: "{{ as_timestamp(strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr')) | timestamp_local }}"
+    coronavirus_aachen_cityregion_rki_deaths7:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'death7_lk') | round(0) }}"
+      unit_of_measurement: "people"
+      attribute_templates:
+        attribution: "Data provided by RKI"
+        last_updated: "{{ as_timestamp(strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr')) | timestamp_local }}"
+    coronavirus_aachen_cityregion_rki_incidence7:
+      value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases7_per_100k') | round(0) }}"
+      attribute_templates:
+        attribution: "Data provided by RKI"
+        last_updated: "{{ as_timestamp(strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr')) | timestamp_local }}"

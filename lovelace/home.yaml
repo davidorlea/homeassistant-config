@@ -104,9 +104,11 @@ cards:
         title: Coronavirus
         show_header_toggle: false
         entities:
-          - entity: sensor.coronavirus_aachen_cityregion_incidence_rki
-            name: Aachen CityRegion Incidence (RKI)
-          - entity: sensor.coronavirus_aachen_cityregion_incidence
-            name: Aachen CityRegion Incidence (Corrected)
+          - entity: sensor.coronavirus_aachen_cityregion_rki_incidence7
+            name: Aachen CityRegion 7-Day Incidence
+          - entity: sensor.coronavirus_aachen_cityregion_rki_cases7
+            name: Aachen CityRegion 7-Day Cases
+          - entity: sensor.coronavirus_aachen_cityregion_rki_deaths7
+            name: Aachen CityRegion 7-Day Deaths
       - type: markdown
         content: '[Corona-Dashboard for Aachen CityRegion](https://oecher.info)'
