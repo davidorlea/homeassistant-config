@@ -8,6 +8,15 @@ GoodMorningIntent:
         "Einen guten Morgen!",
         "Guten Morgen!"
         ] | random }}
+  action:
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'on'
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.bed_mode
+      data:
+        option: 'just off'
 
 GoodNightIntent:
   speech:
@@ -19,3 +28,12 @@ GoodNightIntent:
         "Eine gute Nacht!",
         "Gute Nacht!"
         ] | random }}
+  action:
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'off'
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.bed_mode
+      data:
+        option: 'just on'
