@@ -207,7 +207,7 @@
       title: "Bedroom ventilation pending"
       message: "Open bedroom windows to get some fresh air."
       data:
-        tag: "pending-bedroom-venatilation"
+        tag: "pending-bedroom-ventilation"
 
 - alias: 'Clear Notification about pending Bedroom Ventilation'
   id: 279a2bf7-b4cc-4095-a3d4-b3b6e10619bc
@@ -222,7 +222,7 @@
     data:
       message: "clear_notification"
       data:
-        tag: "pending-bedroom-venatilation"
+        tag: "pending-bedroom-ventilation"
 
 - alias: 'Send Notification about high Living Room Humidity'
   id: aeed2bd9-99ca-4bd2-804d-f2208050903b
