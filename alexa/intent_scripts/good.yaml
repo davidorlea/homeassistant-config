@@ -9,14 +9,27 @@ GoodMorningIntent:
         "Guten Morgen!"
         ] | random }}
   action:
-    - condition: state
-      entity_id: input_select.bed_mode
-      state: 'on'
-    - service: input_select.select_option
-      target:
-        entity_id: input_select.bed_mode
-      data:
-        option: 'just off'
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.bed_mode
+              state: 'on'
+          sequence:
+            - service: input_select.select_option
+              target:
+                entity_id: input_select.bed_mode
+              data:
+                option: 'just off'
+        - conditions:
+            - condition: state
+              entity_id: input_select.bed_mode
+              state: 'just on'
+          sequence:
+            - service: input_select.select_option
+              target:
+                entity_id: input_select.bed_mode
+              data:
+                option: 'off'
 
 GoodNightIntent:
   speech:
@@ -29,11 +42,24 @@ GoodNightIntent:
         "Gute Nacht!"
         ] | random }}
   action:
-    - condition: state
-      entity_id: input_select.bed_mode
-      state: 'off'
-    - service: input_select.select_option
-      target:
-        entity_id: input_select.bed_mode
-      data:
-        option: 'just on'
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.bed_mode
+              state: 'off'
+          sequence:
+            - service: input_select.select_option
+              target:
+                entity_id: input_select.bed_mode
+              data:
+                option: 'just on'
+        - conditions:
+            - condition: state
+              entity_id: input_select.bed_mode
+              state: 'just off'
+          sequence:
+            - service: input_select.select_option
+              target:
+                entity_id: input_select.bed_mode
+              data:
+                option: 'on'
