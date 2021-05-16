@@ -15,7 +15,7 @@
       target:
         entity_id: "{{ trigger.entity_id }}"
       data:
-        volume_level: 0.06
+        volume_level: 0.1
     - service: media_player.volume_mute
       target:
         entity_id: "{{ trigger.entity_id }}"
