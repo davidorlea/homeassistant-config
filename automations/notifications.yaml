@@ -23,9 +23,6 @@
         - condition: time
           after: '00:00:00'
           before: '05:00:00'
-    - condition: numeric_state
-      entity_id: sensor.coronavirus_aachen_cityregion_rki_incidence7
-      above: 100
   action:
     service: notify.mobile_app_iphone_von_david
     data_template:
