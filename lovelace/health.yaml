@@ -8,22 +8,22 @@ cards:
     entities:
       - sensor.dwd_pollen_41_grass
       - sensor.dwd_pollen_41_tree
-  - type: entities
-    title: Coronavirus Germany
-    show_header_toggle: false
-    entities:
-      - entity: sensor.coronavirus_germany_confirmed
-        name: Germany Confirmed
-      - entity: sensor.coronavirus_germany_current
-        name: Germany Current
-      - entity: sensor.coronavirus_germany_deaths
-        name: Germany Deaths
-      - entity: sensor.coronavirus_germany_recovered
-        name: Germany Recovered
   - type: vertical-stack
     cards:
       - type: entities
-        title: Coronavirus Aachen (RKI)
+        title: Coronavirus Germany
+        show_header_toggle: false
+        entities:
+          - entity: sensor.coronavirus_germany_confirmed
+            name: Germany Confirmed
+          - entity: sensor.coronavirus_germany_current
+            name: Germany Current
+          - entity: sensor.coronavirus_germany_deaths
+            name: Germany Deaths
+          - entity: sensor.coronavirus_germany_recovered
+            name: Germany Recovered
+      - type: entities
+        title: Coronavirus Aachen
         show_header_toggle: false
         entities:
           - entity: sensor.coronavirus_aachen_cityregion_rki_cases
@@ -36,15 +36,3 @@ cards:
             name: Aachen CityRegion 7-Day Deaths
           - entity: sensor.coronavirus_aachen_cityregion_rki_incidence7
             name: Aachen CityRegion 7-Day Incidence
-      - type: entities
-        title: Coronavirus Aachen (Public Health Office)
-        show_header_toggle: false
-        entities:
-          - entity: sensor.coronavirus_aachen_cityregion_pho_current
-            name: Aachen CityRegion Current
-          - entity: sensor.coronavirus_aachen_cityregion_pho_incidence7
-            name: Aachen CityRegion 7-Day Incidence
-          - entity: sensor.coronavirus_aachen_pho_current
-            name: Aachen Current
-          - entity: sensor.coronavirus_aachen_pho_incidence7
-            name: Aachen 7-Day Incidence

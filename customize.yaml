@@ -78,31 +78,19 @@ sensor.gas_station_brand:
 sensor.gas_station_price:
   friendly_name: 'Gas Station (Price)'
 sensor.coronavirus_aachen_cityregion_rki_cases:
-  friendly_name: Coronavirus Aachen CityRegion Cases (RKI)
+  friendly_name: Coronavirus Aachen CityRegion Cases
   icon: mdi:biohazard
 sensor.coronavirus_aachen_cityregion_rki_cases7:
-  friendly_name: Coronavirus Aachen CityRegion 7-Day Cases (RKI)
+  friendly_name: Coronavirus Aachen CityRegion 7-Day Cases
   icon: mdi:biohazard
 sensor.coronavirus_aachen_cityregion_rki_deaths:
-  friendly_name: Coronavirus Aachen CityRegion Deaths (RKI)
+  friendly_name: Coronavirus Aachen CityRegion Deaths
   icon: mdi:biohazard
 sensor.coronavirus_aachen_cityregion_rki_deaths7:
-  friendly_name: Coronavirus Aachen CityRegion 7-Day Deaths (RKI)
+  friendly_name: Coronavirus Aachen CityRegion 7-Day Deaths
   icon: mdi:biohazard
 sensor.coronavirus_aachen_cityregion_rki_incidence7:
-  friendly_name: Coronavirus Aachen CityRegion 7-Day Incidence (RKI)
-  icon: mdi:biohazard
-sensor.coronavirus_aachen_cityregion_pho_current:
-  friendly_name: Coronavirus Aachen CityRegion Current (PHO)
-  icon: mdi:biohazard
-sensor.coronavirus_aachen_cityregion_pho_incidence7:
-  friendly_name: Coronavirus Aachen CityRegion 7-Day Incidence (PHO)
-  icon: mdi:biohazard
-sensor.coronavirus_aachen_pho_current:
-  friendly_name: Coronavirus Aachen Current (PHO)
-  icon: mdi:biohazard
-sensor.coronavirus_aachen_pho_incidence7:
-  friendly_name: Coronavirus Aachen 7-Day Incidence (PHO)
+  friendly_name: Coronavirus Aachen CityRegion 7-Day Incidence
   icon: mdi:biohazard
 sensor.coronavirus_germany_confirmed:
   friendly_name: Coronavirus Germany Confirmed
