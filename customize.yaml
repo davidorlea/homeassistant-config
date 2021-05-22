@@ -93,7 +93,7 @@ sensor.coronavirus_aachen_cityregion_rki_incidence7:
   friendly_name: Coronavirus Aachen CityRegion 7-Day Incidence
   icon: mdi:biohazard
 sensor.coronavirus_germany_confirmed:
-  friendly_name: Coronavirus Germany Confirmed
+  friendly_name: Coronavirus Germany Cases
   icon: mdi:biohazard
 sensor.coronavirus_germany_current:
   friendly_name: Coronavirus Germany Current
