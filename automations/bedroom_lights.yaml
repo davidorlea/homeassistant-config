@@ -13,15 +13,15 @@
       conditions:
         - condition: state
           entity_id: sensor.period_of_day
-          state: 'Day'
-        - condition: and
-          conditions:
-            - condition: state
-              entity_id: binary_sensor.bedroom_window_left_contact
-              state: 'off'
-            - condition: state
-              entity_id: binary_sensor.bedroom_window_right_contact
-              state: 'off'
+          state:
+            - 'Sunrise'
+            - 'Day'
+            - 'Sunset'
+        - condition: state
+          entity_id:
+            - binary_sensor.bedroom_window_left_contact
+            - binary_sensor.bedroom_window_right_contact
+          state: 'off'
   action:
     service: light.turn_on
     target:
@@ -46,11 +46,9 @@
   id: 4176c9f3-b6c3-4662-9574-d3898f678db1
   trigger:
     - platform: state
-      entity_id: binary_sensor.bedroom_window_left_contact
-      from: 'on'
-      to: 'off'
-    - platform: state
-      entity_id: binary_sensor.bedroom_window_right_contact
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
       from: 'on'
       to: 'off'
   condition:
@@ -61,10 +59,9 @@
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.bedroom_window_left_contact
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.bedroom_window_right_contact
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
       state: 'off'
   action:
     service: light.turn_on
@@ -75,11 +72,9 @@
   id: 13b59629-0bf4-4582-998d-68c72b7abf7c
   trigger:
     - platform: state
-      entity_id: binary_sensor.bedroom_window_left_contact
-      from: 'off'
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.bedroom_window_right_contact
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
       from: 'off'
       to: 'on'
   condition:
@@ -87,7 +82,10 @@
       conditions:
         - condition: state
           entity_id: sensor.period_of_day
-          state: 'Day'
+          state:
+            - 'Sunrise'
+            - 'Day'
+            - 'Sunset'
     - condition: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
@@ -96,7 +94,7 @@
     target:
       entity_id: light.bedroom_ceiling_light
 
-- alias: 'Turn Bedroom Bed and Dresser Lights on when going to Bed in the Night'
+- alias: 'Turn Bedroom Bed Light on'
   id: 7b35e327-0f6a-4395-9dbd-82af35052d3c
   trigger:
     platform: state
@@ -104,61 +102,81 @@
     from: 'off'
     to: 'just on'
   condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
+    condition: state
+    entity_id: sensor.period_of_day
+    state:
+      - 'Dusk'
+      - 'Night'
+      - 'Dawn'
   action:
     service: light.turn_on
     target:
-      entity_id:
-        - light.bedroom_bed_light
-        - light.bedroom_dresser_light
+      entity_id: light.bedroom_bed_light
 
-- alias: 'Turn Bedroom Bed and Dresser Lights off when getting out of Bed'
+- alias: 'Turn Bedroom Bed Light off'
   id: be121c48-e608-4bf3-901c-3eaf9157b734
-  trigger:
-    - platform: state
-      entity_id: input_select.bed_mode
-      from: 'just on'
-      to: 'off'
-    - platform: state
-      entity_id: input_select.bed_mode
-      from: 'just off'
-      to: 'off'
-  action:
-    service: light.turn_off
-    target:
-      entity_id:
-        - light.bedroom_bed_light
-        - light.bedroom_dresser_light
-
-- alias: 'Turn Bedroom Dresser Light on when briefly leaving the Bed in the Night'
-  id: 7bfaf448-83e4-4000-b302-8bcd249c08bd
   trigger:
     platform: state
     entity_id: input_select.bed_mode
-    from: 'on'
-    to: 'just off'
+    from:
+      - 'just on'
+      - 'just off'
+    to: 'off'
+  action:
+    service: light.turn_off
+    target:
+      entity_id: light.bedroom_bed_light
+
+- alias: 'Turn Bedroom Dresser Light on'
+  id: 3a478c03-2e81-4036-9962-4ee3a7e94930
+  trigger:
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Sunset'
+      to: 'Dusk'
+    - platform: state
+      entity_id:
+        - input_select.away_mode
+        - input_select.bed_mode
+      from: 'on'
+      to: 'just off'
   condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: sensor.period_of_day
-        state: 'Day'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - 'Dusk'
+        - 'Night'
+        - 'Dawn'
+    - condition: state
+      entity_id: input_select.away_mode
+      state:
+        - 'just off'
+        - 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state:
+        - 'just off'
+        - 'off'
   action:
     service: light.turn_on
     target:
       entity_id: light.bedroom_dresser_light
 
-- alias: 'Turn Bedroom Dresser Light off when returning to Bed'
-  id: 728c9cba-d013-4be9-aedd-2c4529e0e916
+- alias: 'Turn Bedroom Dresser Light off'
+  id: cb3f2886-4522-4f12-9a29-a3b7fa902f02
   trigger:
-    platform: state
-    entity_id: input_select.bed_mode
-    from: 'just off'
-    to: 'on'
+    - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Dawn'
+      to: 'Sunrise'
+    - platform: state
+      entity_id:
+        - input_select.away_mode
+        - input_select.bed_mode
+      from:
+        - 'just on'
+        - 'just off'
+      to: 'on'
   action:
     service: light.turn_off
     target:

@@ -6,14 +6,11 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'on'
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'just on'
+    condition: state
+    entity_id: input_select.bed_mode
+    state:
+      - 'on'
+      - 'just on'
   action:
     service: light.turn_on
     target:
@@ -29,14 +26,11 @@
     for:
       minutes: 5
   condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'on'
-      - condition: state
-        entity_id: input_select.bed_mode
-        state: 'just on'
+    condition: state
+    entity_id: input_select.bed_mode
+    state:
+      - 'on'
+      - 'just on'
   action:
     service: light.turn_off
     target:
@@ -62,41 +56,28 @@
       from: 'Sunset'
       to: 'Dusk'
     - platform: state
-      entity_id: input_select.away_mode
-      from: 'on'
-      to: 'just off'
-    - platform: state
-      entity_id: input_select.bed_mode
+      entity_id:
+        - input_select.away_mode
+        - input_select.bed_mode
       from: 'on'
       to: 'just off'
   condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Dusk'
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Night'
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Dawn'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.away_mode
-          state: 'just off'
-        - condition: state
-          entity_id: input_select.away_mode
-          state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.bed_mode
-          state: 'just off'
-        - condition: state
-          entity_id: input_select.bed_mode
-          state: 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - 'Dusk'
+        - 'Night'
+        - 'Dawn'
+    - condition: state
+      entity_id: input_select.away_mode
+      state:
+        - 'just off'
+        - 'off'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state:
+        - 'just off'
+        - 'off'
   action:
     service: light.turn_on
     target:
@@ -112,12 +93,12 @@
       from: 'Dawn'
       to: 'Sunrise'
     - platform: state
-      entity_id: input_select.away_mode
-      from: 'just on'
-      to: 'on'
-    - platform: state
-      entity_id: input_select.bed_mode
-      from: 'just on'
+      entity_id:
+        - input_select.away_mode
+        - input_select.bed_mode
+      from:
+        - 'just on'
+        - 'just off'
       to: 'on'
   action:
     service: light.turn_off
