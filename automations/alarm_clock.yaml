@@ -2,7 +2,7 @@
   id: 5bed22d4-e379-4d9e-9363-4c7717c6358b
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 300) | timestamp_custom('%H:%M', False)) }}"
+    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 600) | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock
@@ -16,11 +16,12 @@
           entity_id: input_select.bed_mode
           state: 'just on'
   action:
-    - service: light.turn_on
-      target:
-        entity_id: light.bedroom_dresser_light
+    - event: alarm_clock_wake_up_started
+      event_data:
+        delay: 600
     - delay:
-        seconds: 300
+        seconds: 600
+    - event: alarm_clock_wake_up_finished
     - service: sonos.unjoin
       data:
         entity_id: media_player.sonos_device_schlafzimmer
