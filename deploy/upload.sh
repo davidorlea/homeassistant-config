@@ -20,65 +20,74 @@ if [ -z "$HASS_WEB_TOKEN" ]; then
     exit 1
 fi
 
+upload() {
+    echo -n "Uploading... "
+    rsync --checksum --times --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf . "$HASS_SSH_URL":~
+    echo "done."
+}
+
+check() {
+    echo -n "Checking... "
+    response=$(curl -s -S -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/config/core/check_config)
+    result=$(echo $response | jq -e '.result == "valid"')
+    if [ $? -eq 0 ]; then
+        echo "done."
+    else
+        echo "failed: $(echo $response | jq -e '.errors')"
+        exit 1
+    fi
+}
+
+reload() {
+    echo -n "Reloading... "
+    curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"$1
+    echo "done."
+}
+
 case "$1" in
     "all" )
         if [ "$2" != "--skip-upload" ]; then
-            echo -n "Uploading everything... "
-            rsync --checksum --times --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf . "$HASS_SSH_URL":~
-            echo "done."
+            upload
         fi
+        check
         if [ "$2" != "--skip-reload" ]; then
-            echo -n "Restarting Home Assistant... "
-            curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/services/homeassistant/restart
-            echo "done."
+            reload "/api/services/homeassistant/restart"
         fi
         ;;
     "automations" )
         if [ "$2" != "--skip-upload" ]; then
-            echo -n "Uploading automations... "
-            rsync --checksum --times --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf automations/ "$HASS_SSH_URL":~/automations
-            echo "done."
+            upload
         fi
+        check
         if [ "$2" != "--skip-reload" ]; then
-            echo -n "Reloading automations... "
-            curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/services/automation/reload
-            echo "done."
+            reload "/api/services/automation/reload"
         fi
         ;;
     "groups" )
         if [ "$2" != "--skip-upload" ]; then
-            echo -n "Uploading groups... "
-            rsync --checksum --times --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf groups.yaml "$HASS_SSH_URL":~
-            echo "done."
+            upload
         fi
+        check
         if [ "$2" != "--skip-reload" ]; then
-            echo -n "Reloading groups... "
-            curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/services/group/reload
-            echo "done."
+            reload "/api/services/group/reload"
         fi
         ;;
     "scenes" )
         if [ "$2" != "--skip-upload" ]; then
-            echo -n "Uploading scenes... "
-            rsync --checksum --times --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf scenes.yaml "$HASS_SSH_URL":~
-            echo "done."
+            upload
         fi
+        check
         if [ "$2" != "--skip-reload" ]; then
-            echo -n "Reloading scenes... "
-            curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/services/scene/reload
-            echo "done."
+            reload "/api/services/scene/reload"
         fi
         ;;
     "scripts" )
         if [ "$2" != "--skip-upload" ]; then
-            echo -n "Uploading scripts... "
-            rsync --checksum --times --delete --update --human-readable --recursive --exclude-from=deploy/exclude.conf scripts/ "$HASS_SSH_URL":~/scripts
-            echo "done."
+            upload
         fi
+        check
         if [ "$2" != "--skip-reload" ]; then
-            echo -n "Reloading scripts... "
-            curl -s -S -o /dev/null -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $HASS_WEB_TOKEN" "$HASS_WEB_URL"/api/services/script/reload
-            echo "done."
+            reload "/api/services/script/reload"
         fi
         ;;
     *)
