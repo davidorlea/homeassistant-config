@@ -31,6 +31,28 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.all_indoor_lights_off
+      - type: entities
+        title: Ambient Lights
+        show_header_toggle: false
+        entities:
+          # - entity: light.ambient_lights
+          - type: 'custom:rgb-light-card'
+            entity: light.ambient_lights
+            size: 24
+            justify: between
+            colors:
+              - rgb_color: [255, 0, 0]
+              - rgb_color: [255, 128, 0]
+              - rgb_color: [255, 255, 0]
+              - rgb_color: [128, 255, 0]
+              - rgb_color: [0, 255, 0]
+              - rgb_color: [0, 255, 128]
+              - rgb_color: [0, 255, 255]
+              - rgb_color: [0, 128, 255]
+              - rgb_color: [0, 0, 255]
+              - rgb_color: [128, 0, 255]
+              - rgb_color: [255, 0, 255]
+              - rgb_color: [255, 0, 128]
       - type: entity-filter
         entities:
           - entity: binary_sensor.outdoor_frontdoor_contact

@@ -1,4 +1,5 @@
 title: MuffetNet
+
 views:
   - !include lovelace/home.yaml
   - !include lovelace/rooms.yaml
@@ -6,3 +7,8 @@ views:
   - !include lovelace/environment.yaml
   - !include lovelace/health.yaml
   - !include lovelace/system.yaml
+
+resources:
+  # See https://github.com/bokub/rgb-light-card
+  - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+    type: module

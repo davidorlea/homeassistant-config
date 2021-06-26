@@ -1,4 +1,11 @@
 - platform: group
+  name: Ambient Lights
+  entities:
+    - light.kitchen_sideboard_light
+    - light.living_room_sofa_light
+    - light.living_room_tv_light
+
+- platform: group
   name: Bedroom Lights
   entities:
     - light.bedroom_ceiling_light
