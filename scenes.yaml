@@ -1,32 +1,32 @@
 - name: All Lights on
   entities:
-    group.outdoor_lights: on
-    group.kitchen_lights: on
-    group.living_room_lights: on
-    group.hall_lights: on
-    group.bedroom_lights: on
+    light.outdoor_lights: on
+    light.kitchen_lights: on
+    light.living_room_lights: on
+    light.hall_lights: on
+    light.bedroom_lights: on
 
 - name: All Lights off
   entities:
-    group.outdoor_lights: off
-    group.kitchen_lights: off
-    group.living_room_lights: off
-    group.hall_lights: off
-    group.bedroom_lights: off
+    light.outdoor_lights: off
+    light.kitchen_lights: off
+    light.living_room_lights: off
+    light.hall_lights: off
+    light.bedroom_lights: off
 
 - name: All Indoor Lights on
   entities:
-    group.kitchen_lights: on
-    group.living_room_lights: on
-    group.hall_lights: on
-    group.bedroom_lights: on
+    light.kitchen_lights: on
+    light.living_room_lights: on
+    light.hall_lights: on
+    light.bedroom_lights: on
 
 - name: All Indoor Lights off
   entities:
-    group.kitchen_lights: off
-    group.living_room_lights: off
-    group.hall_lights: off
-    group.bedroom_lights: off
+    light.kitchen_lights: off
+    light.living_room_lights: off
+    light.hall_lights: off
+    light.bedroom_lights: off
 
 - name: Arrive Home at Day
   entities:
@@ -45,10 +45,10 @@
 
 - name: Leave Home at Day
   entities:
-    group.kitchen_lights: off
-    group.living_room_lights: off
-    group.hall_lights: off
-    group.bedroom_lights: off
+    light.kitchen_lights: off
+    light.living_room_lights: off
+    light.hall_lights: off
+    light.bedroom_lights: off
     media_player.sonos_device_kuche:
       state: paused
     media_player.sonos_device_schlafzimmer:
@@ -58,10 +58,10 @@
 
 - name: Leave Home at Night
   entities:
-    group.kitchen_lights: off
-    group.living_room_lights: off
-    group.hall_lights: off
-    group.bedroom_lights: off
+    light.kitchen_lights: off
+    light.living_room_lights: off
+    light.hall_lights: off
+    light.bedroom_lights: off
     media_player.sonos_device_kuche:
       state: paused
     media_player.sonos_device_schlafzimmer:

@@ -75,8 +75,6 @@ alexa: !include alexa/smart_home.yaml
 
 automation: !include_dir_merge_list automations
 
-group: !include groups.yaml
-
 input_boolean: !include input_boolean.yaml
 
 input_datetime: !include input_datetime.yaml
