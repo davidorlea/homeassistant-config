@@ -35,7 +35,6 @@ cards:
         title: Ambient Lights
         show_header_toggle: false
         entities:
-          # - entity: light.ambient_lights
           - type: 'custom:rgb-light-card'
             entity: light.ambient_lights
             size: 24
