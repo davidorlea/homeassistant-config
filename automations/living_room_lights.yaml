@@ -36,12 +36,30 @@
     target:
       entity_id: light.living_room_ceiling_light
 
-- alias: 'Turn Living Room Ceiling Light off when going to Bed'
+- alias: 'Turn Living Room Ceiling Light on'
+  id: dc5d8157-3df4-47d5-9315-e4491ad42019
+  trigger:
+    platform: state
+    entity_id:
+      - input_select.away_mode
+      - input_select.bed_mode
+    from: 'on'
+    to: 'just off'
+  action:
+    service: light.turn_on
+    target:
+      entity_id: light.living_room_ceiling_light
+
+- alias: 'Turn Living Room Ceiling Light off'
   id: 30efc83b-a870-48bb-8341-28d821a5a33d
   trigger:
     platform: state
-    entity_id: input_select.bed_mode
-    from: 'just on'
+    entity_id:
+      - input_select.away_mode
+      - input_select.bed_mode
+    from:
+      - 'just on'
+      - 'just off'
     to: 'on'
   action:
     service: light.turn_off
