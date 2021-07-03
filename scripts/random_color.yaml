@@ -1,0 +1,31 @@
+random_color:
+  alias: Random Color
+  mode: parallel
+
+  fields:
+    light:
+      description: The lights that will be turned on with a random color
+      example: light.bathroom
+
+  variables:
+    colors: [
+      [255, 0, 0],
+      [255, 128, 0],
+      [255, 255, 0],
+      [128, 255, 0],
+      [0, 255, 0],
+      [0, 255, 128],
+      [0, 255, 255],
+      [0, 128, 255],
+      [0, 0, 255],
+      [128, 0, 255],
+      [255, 0, 255],
+      [255, 0, 128]
+    ]
+
+  sequence:
+    service: light.turn_on
+    target:
+      entity_id: "{{ light }}"
+    data_template:
+      rgb_color: "{{ colors | random }}"
