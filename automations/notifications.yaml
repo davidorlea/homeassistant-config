@@ -185,6 +185,12 @@
         hours: 6
   condition:
     - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - 'Sunrise'
+        - 'Day'
+        - 'Sunset'
+    - condition: state
       entity_id:
         - input_select.away_mode
         - input_select.bed_mode
