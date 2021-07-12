@@ -26,6 +26,10 @@ frontend:
 
 lovelace:
   mode: yaml
+  resources:
+    # See https://github.com/bokub/rgb-light-card
+    - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+      type: module
 
 map:
 
