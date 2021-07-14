@@ -220,6 +220,14 @@
       - binary_sensor.bedroom_window_left_contact
       - binary_sensor.bedroom_window_right_contact
     to: 'on'
+  condition:
+    condition: not
+    conditions:
+      - condition: state
+        entity_id:
+          - binary_sensor.bedroom_window_left_contact
+          - binary_sensor.bedroom_window_right_contact
+        state: 'on'
   action:
     service: notify.mobile_app_iphone_von_david
     data:
