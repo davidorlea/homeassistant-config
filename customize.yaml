@@ -66,7 +66,7 @@ sensor.dark_sky_visibility:
   icon: mdi:eye
 sensor.dark_sky_ozone:
   friendly_name: 'DS Ozone'
-  icon: mdi:buffer
+  icon: mdi:layers-triple
 sensor.dwd_pollen_41_grass:
   friendly_name: 'DWD Pollen Grass'
 sensor.dwd_pollen_41_tree:
