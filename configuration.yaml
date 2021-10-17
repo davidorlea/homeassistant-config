@@ -31,7 +31,7 @@ lovelace:
     - url: local/next-bus-card/next-bus-card.js
       type: module
     # See https://github.com/bokub/rgb-light-card
-    - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+    - url: local/rgb-light-card/rgb-light-card.js
       type: module
 
 map:
