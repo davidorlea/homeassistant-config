@@ -2,12 +2,10 @@ title: Travel
 path: travel
 icon: mdi:train-car
 cards:
-  - type: entities
+  - type: custom:next-bus-card
+    entity: sensor.aseag_next_bus_24236_h_1
     title: Bus
-    show_header_toggle: false
-    entities:
-      - sensor.next_bus_time
-      - sensor.next_bus_destination
+    size: 3
   - type: vertical-stack
     cards:
       - type: entities
