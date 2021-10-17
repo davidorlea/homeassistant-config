@@ -38,7 +38,7 @@ cards:
           - type: 'custom:rgb-light-card'
             entity: light.ambient_lights
             size: 24
-            justify: between
+            justify: around
             colors:
               - rgb_color: [255, 0, 0]
               - rgb_color: [255, 128, 0]
@@ -52,6 +52,11 @@ cards:
               - rgb_color: [128, 0, 255]
               - rgb_color: [255, 0, 255]
               - rgb_color: [255, 0, 128]
+              - type: call-service
+                service: script.random_color
+                service_data:
+                  light: light.ambient_lights
+                icon_color: 'linear-gradient(45deg, #0250c5, #d43f8d)'
       - type: entity-filter
         entities:
           - entity: binary_sensor.outdoor_frontdoor_contact
