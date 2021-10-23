@@ -52,6 +52,13 @@ cards:
           - light.kitchen_counter_light
           - light.kitchen_sideboard_light
           - light.kitchen_cabinet_light
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: switch.kitchen_coffee_maschine_relay
+            name: Kitchen Coffee Maschine
+            icon: mdi:coffee-maker
+            state_color: true
   - type: vertical-stack
     title: Living Room
     cards:
