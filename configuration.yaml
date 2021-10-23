@@ -34,6 +34,8 @@ lovelace:
     - url: local/rgb-light-card/rgb-light-card.js
       type: module
 
+energy:
+
 map:
 
 config:
