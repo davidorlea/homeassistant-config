@@ -56,9 +56,12 @@ cards:
         show_header_toggle: false
         entities:
           - entity: switch.kitchen_coffee_machine_relay
-            name: Kitchen Coffee Machine
+            name: Coffee Machine
             icon: mdi:coffee-maker
             state_color: true
+          - entity: sensor.kitchen_coffee_machine_relay_active
+            name: Coffee Machine Active
+            icon: mdi:timelapse
   - type: vertical-stack
     title: Living Room
     cards:

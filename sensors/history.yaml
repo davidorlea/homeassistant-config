@@ -47,3 +47,11 @@
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
   end: '{{ now() }}'
+
+- platform: history_stats
+  name: history stats kitchen coffee machine relay
+  entity_id: switch.kitchen_coffee_machine_relay
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'

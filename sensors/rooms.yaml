@@ -1,0 +1,12 @@
+- platform: template
+  sensors:
+    kitchen_coffee_machine_relay_active:
+      unit_of_measurement: min
+      value_template: >-
+        {% if is_state('switch.kitchen_coffee_machine_relay', 'on') %}
+          {{ ((now() - states.switch.kitchen_coffee_machine_relay.last_changed).total_seconds() / 60.0) | round }}
+        {% else %}
+          0
+        {% endif %}
+      icon_template: >-
+        mdi:timelapse
