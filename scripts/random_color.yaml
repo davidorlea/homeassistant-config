@@ -14,7 +14,7 @@ random_color:
 
   variables:
     force: "{{ force | default(false) }}"
-    colors: [
+    color: "{{ [
       [255, 0, 0],
       [255, 128, 0],
       [255, 255, 0],
@@ -27,7 +27,7 @@ random_color:
       [128, 0, 255],
       [255, 0, 255],
       [255, 0, 128]
-    ]
+    ] | random }}"
 
   sequence:
     - repeat:
@@ -41,4 +41,4 @@ random_color:
             target:
               entity_id: "{{ light }}"
             data_template:
-              rgb_color: "{{ colors | random }}"
+              rgb_color: "{{ color }}"
