@@ -99,7 +99,7 @@
   action:
     service: script.random_color
     data:
-      light:
+      lights:
         - light.living_room_sofa_light
         - light.living_room_tv_light
 

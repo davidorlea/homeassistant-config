@@ -55,7 +55,9 @@ cards:
               - type: call-service
                 service: script.random_color
                 service_data:
-                  light: light.ambient_lights
+                  lights:
+                    - light.ambient_lights
+                  force: true
                 icon_color: 'linear-gradient(45deg, #0250c5, #d43f8d)'
       - type: entity-filter
         entities:

@@ -61,7 +61,7 @@
   action:
     service: script.random_color
     data:
-      light:
+      lights:
         - light.kitchen_cabinet_light
         - light.kitchen_sideboard_light
 

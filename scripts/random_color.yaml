@@ -3,11 +3,17 @@ random_color:
   mode: parallel
 
   fields:
-    light:
-      description: The lights that will be turned on with a random color
-      example: light.bathroom
+    lights:
+      description: List of lights that will be turned on with a random color
+      example: "[light.bathroom, light.kitchen]"
+      required: true
+    force:
+      description: Set random color although light is already turned on (optional, default false)
+      example: "true"
+      default: false
 
   variables:
+    force: "{{ force | default(false) }}"
     colors: [
       [255, 0, 0],
       [255, 128, 0],
@@ -24,8 +30,15 @@ random_color:
     ]
 
   sequence:
-    service: light.turn_on
-    target:
-      entity_id: "{{ light }}"
-    data_template:
-      rgb_color: "{{ colors | random }}"
+    - repeat:
+        count: "{{ lights | length }}"
+        sequence:
+          - variables:
+              light: "{{ lights[repeat.index-1] }}"
+          - condition: template
+            value_template: "{{ force is sameas true or is_state(light, 'off') }}"
+          - service: light.turn_on
+            target:
+              entity_id: "{{ light }}"
+            data_template:
+              rgb_color: "{{ colors | random }}"
