@@ -2,7 +2,7 @@
   id: 5bed22d4-e379-4d9e-9363-4c7717c6358b
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') | int - 600) | timestamp_custom('%H:%M', False)) }}"
+    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') - 600) | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock

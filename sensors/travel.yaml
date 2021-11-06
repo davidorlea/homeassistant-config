@@ -8,7 +8,7 @@
     next_bus_time:
       unit_of_measurement: min
       value_template: >-
-        {% if (states("sensor.aseag_next_bus_24236_h_1") | int) >= 1 %}
+        {% if (states("sensor.aseag_next_bus_24236_h_1") | int(0)) >= 1 %}
           {% set departure = state_attr("sensor.aseag_next_bus_24236_h_1", "predictions")[0].departure %}
           {{ ((as_timestamp(departure) - as_timestamp(now())) / 60) | round(0) }}
         {% else %}
