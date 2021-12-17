@@ -78,8 +78,6 @@ zone:
 
 mobile_app:
 
-ios:
-
 alexa: !include alexa/smart_home.yaml
 
 automation: !include_dir_merge_list automations
