@@ -1,3 +1,5 @@
+default_config:
+
 homeassistant:
   name: !secret homeassistant_name
   latitude: !secret homeassistant_latitude
@@ -34,12 +36,6 @@ lovelace:
     - url: local/rgb-light-card/rgb-light-card.js
       type: module
 
-energy:
-
-map:
-
-config:
-
 http:
   server_port: !secret http_server_port
   use_x_forwarded_for: true
@@ -47,8 +43,6 @@ http:
     - !secret http_trusted_proxies_1
   ip_ban_enabled: true
   login_attempts_threshold: 5
-
-updater:
 
 influxdb: !include influxdb.yaml
 
@@ -58,8 +52,6 @@ history: !include history.yaml
 
 logbook: !include logbook.yaml
 
-system_health:
-
 person:
   - name: David
     id: 78a185ec8193455c9a6c003f20b0b8fa
@@ -67,16 +59,12 @@ person:
     device_trackers:
       - device_tracker.iphone_von_david
 
-sun:
-
 zone:
   name: Home
   latitude: !secret homeassistant_latitude
   longitude: !secret homeassistant_longitude
   radius: 100
   icon: mdi:home
-
-mobile_app:
 
 alexa: !include alexa/smart_home.yaml
 
