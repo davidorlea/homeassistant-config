@@ -20,6 +20,7 @@ logger:
   logs:
     homeassistant.components.http.ban: warning
     custom_components.aseag_next_bus: error
+    custom_components.dr_plano: warning
     custom_components.tankerkoenig: warning
     custom_components.tier_nearest_scooter: warning
 
@@ -31,6 +32,9 @@ lovelace:
   resources:
     # See https://github.com/davidorlea/homeassistant-next_bus_card
     - url: local/next-bus-card/next-bus-card.js
+      type: module
+    # See https://github.com/davidorlea/homeassistant-occupancy_card
+    - url: local/occupancy-card/occupancy-card.js
       type: module
     # See https://github.com/bokub/rgb-light-card
     - url: local/rgb-light-card/rgb-light-card.js
