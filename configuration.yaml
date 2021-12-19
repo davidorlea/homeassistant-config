@@ -17,12 +17,6 @@ homeassistant:
 
 logger:
   default: warning
-  logs:
-    homeassistant.components.http.ban: warning
-    custom_components.aseag_next_bus: error
-    custom_components.dr_plano: warning
-    custom_components.tankerkoenig: warning
-    custom_components.tier_nearest_scooter: warning
 
 frontend:
   themes: !include_dir_merge_named themes
