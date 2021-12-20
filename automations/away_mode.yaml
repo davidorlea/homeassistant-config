@@ -20,7 +20,7 @@
     entity_id: input_select.away_mode
     to: 'just off'
     for:
-      minutes: 5
+      minutes: 10
   action:
     service: input_select.select_option
     target:
