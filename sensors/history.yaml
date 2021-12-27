@@ -1,7 +1,9 @@
 - platform: history_stats
   name: history stats away mode
-  entity_id: input_boolean.away_mode
-  state: 'on'
+  entity_id: input_select.away_mode
+  state:
+    - 'on'
+    - 'just on'
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
   end: '{{ now() }}'
