@@ -1,3 +1,30 @@
 - platform: dr_plano
   place_id: 108189856
   total: 96
+
+- platform: scrape
+  resource: https://www.boulderado.de/boulderadoweb/gym-clientcounter/index.php?mode=get&token=eyJhbGciOiJIUzI1NiIsICJ0eXAiOiJKV1QifQ.eyJjdXN0b21lciI6IkNhbXB1c0JIIn0.ppndrOlwdq9MWNVqhKdhm4KuOXJlFi7Tld2ocLbjeMw
+  name: Boulderado Gym Slots Used
+  select: 'div.actcounter'
+  attribute: 'data-value'
+  unit_of_measurement: 'people'
+
+- platform: scrape
+  resource: https://www.boulderado.de/boulderadoweb/gym-clientcounter/index.php?mode=get&token=eyJhbGciOiJIUzI1NiIsICJ0eXAiOiJKV1QifQ.eyJjdXN0b21lciI6IkNhbXB1c0JIIn0.ppndrOlwdq9MWNVqhKdhm4KuOXJlFi7Tld2ocLbjeMw
+  name: Boulderado Gym Slots Free
+  select: 'div.freecounter'
+  attribute: 'data-value'
+  unit_of_measurement: 'people'
+
+- platform: template
+  sensors:
+    boulderado_gym_occupancy:
+      friendly_name: Boulderado Gym Occupancy
+      value_template: >-
+        {% set people = states("sensor.boulderado_gym_slots_used") | int("unknown") %}
+        {% if people != "unknown" %}
+          {{ (people / 120 * 100) | round(0) }}
+        {% else %}
+          unknown
+        {% endif %}
+      unit_of_measurement: '%'

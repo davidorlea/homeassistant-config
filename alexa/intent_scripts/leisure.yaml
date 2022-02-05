@@ -1,0 +1,15 @@
+BoulderGymIntent:
+  speech:
+    type: plain
+    text: >-
+      {% set used = states("sensor.boulderado_gym_used_slots") %}
+      {% set free = states("sensor.boulderado_gym_free_slots") %}
+      {% set occupancy = states("sensor.boulderado_gym_occupancy") %}
+      {% if used == "unknown" or free == "unknown" or occupancy == "unknown" %}
+      {{ [
+        "Das weiß ich leider gerade nicht.",
+        "Das kann ich dir leider gerade nicht sagen."
+        ] | random }}
+      {% else %}
+      In der Boulderhalle befinden sich zur Zeit {{ used }} Personen und es sind noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
+      {% endif %}
