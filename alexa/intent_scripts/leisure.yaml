@@ -10,6 +10,14 @@ BoulderGymIntent:
         "Das weiß ich leider gerade nicht.",
         "Das kann ich dir leider gerade nicht sagen."
         ] | random }}
+      {% elif occupancy == "0" %}
+      In der Boulderhalle ist gerade nichts los. Es sind alle Plätze noch frei.
+      {% elif occupancy < "33" %}
+      In der Boulderhalle ist gerade wenig los. Es sind {{ used }} Personen da und noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
+      {% elif occupancy < "67" %}
+      In der Boulderhalle ist gerade etwas los. Es sind {{ used }} Personen da und noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
+      {% elif occupancy < "100" %}
+      In der Boulderhalle ist gerade viel los. Es sind {{ used }} Personen da und noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
       {% else %}
-      In der Boulderhalle befinden sich zur Zeit {{ used }} Personen und es sind noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
+      In der Boulderhalle ist gerade sehr viel los. Es sind keine Plätze mehr frei.
       {% endif %}
