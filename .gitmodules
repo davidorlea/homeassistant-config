@@ -10,6 +10,3 @@
 [submodule "custom_components/tier_nearest_scooter"]
 	path = custom_components/tier_nearest_scooter
 	url = https://github.com/davidorlea/homeassistant-tier_nearest_scooter.git
-[submodule "custom_components/dr_plano"]
-	path = custom_components/dr_plano
-	url = https://github.com/davidorlea/homeassistant-dr_plano.git

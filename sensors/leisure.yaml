@@ -1,7 +1,3 @@
-- platform: dr_plano
-  place_id: 108189856
-  total: 96
-
 - platform: scrape
   resource: https://www.boulderado.de/boulderadoweb/gym-clientcounter/index.php?mode=get&token=eyJhbGciOiJIUzI1NiIsICJ0eXAiOiJKV1QifQ.eyJjdXN0b21lciI6IkNhbXB1c0JIIn0.ppndrOlwdq9MWNVqhKdhm4KuOXJlFi7Tld2ocLbjeMw
   name: Boulderado Gym Slots Used

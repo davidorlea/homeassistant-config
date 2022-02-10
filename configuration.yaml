@@ -27,9 +27,6 @@ lovelace:
     # See https://github.com/davidorlea/homeassistant-next_bus_card
     - url: local/next-bus-card/next-bus-card.js
       type: module
-    # See https://github.com/davidorlea/homeassistant-occupancy_card
-    - url: local/occupancy-card/occupancy-card.js
-      type: module
     # See https://github.com/bokub/rgb-light-card
     - url: local/rgb-light-card/rgb-light-card.js
       type: module
