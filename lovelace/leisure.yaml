@@ -6,12 +6,15 @@ cards:
     title: Campus Boulderhalle
     show_header_toggle: false
     entities:
+      - entity: sensor.boulderado_gym_opening
+        name: Opening
+        icon: mdi:warehouse
       - entity: sensor.boulderado_gym_slots_used
         name: Used Slots
-        icon: mdi:weight-lifter
+        icon: mdi:account-group
       - entity: sensor.boulderado_gym_slots_free
         name: Free Slots
-        icon: mdi:weight-lifter
+        icon: mdi:account-group
       - entity: sensor.boulderado_gym_occupancy
         name: Occupancy
-        icon: mdi:weight-lifter
+        icon: mdi:account-group

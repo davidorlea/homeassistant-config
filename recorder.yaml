@@ -27,6 +27,7 @@ include:
     - sensor.bedroom_multi_sensor_pressure
     - sensor.bedroom_multi_sensor_temperature
     - sensor.boulderado_gym_occupancy
+    - sensor.boulderado_gym_opening
     - sensor.boulderado_gym_slots_free
     - sensor.boulderado_gym_slots_used
     - sensor.coronavirus_aachen_cityregion_rki_cases
