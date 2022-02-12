@@ -37,3 +37,13 @@
   entities:
     - light.outdoor_frontdoor_light
     - light.outdoor_backdoor_light
+
+- platform: group
+  name: Presence Simulation Lights
+  entities:
+    - light.bedroom_ceiling_light
+    - light.hall_ceiling_light
+    - light.kitchen_ceiling_light
+    - light.living_room_ceiling_light
+    - light.outdoor_frontdoor_light
+    - light.outdoor_backdoor_light
