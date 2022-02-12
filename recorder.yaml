@@ -62,6 +62,3 @@ include:
     - sensor.period_of_day
     - sensor.season
     - switch.kitchen_coffee_machine_relay
-exclude:
-  entities:
-    - script.sonos_play
