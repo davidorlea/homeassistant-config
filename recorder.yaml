@@ -64,7 +64,4 @@ include:
     - switch.kitchen_coffee_machine_relay
 exclude:
   entities:
-    - script.occupancy_simulation_start
-    - script.occupancy_simulation_stop
-    - script.occupancy_simulation_loop
     - script.sonos_play
