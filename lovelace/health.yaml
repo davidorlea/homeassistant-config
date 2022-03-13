@@ -16,8 +16,6 @@ cards:
         entities:
           - entity: sensor.coronavirus_germany_confirmed
             name: Germany Cases
-          - entity: sensor.coronavirus_germany_current
-            name: Germany Current
           - entity: sensor.coronavirus_germany_deaths
             name: Germany Deaths
       - type: entities
