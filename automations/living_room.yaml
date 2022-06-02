@@ -1,0 +1,15 @@
+- alias: 'Turn off TV'
+  id: 61529196-14fc-4945-adc3-18902d77c5ff
+  trigger:
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'off'
+      to: 'just on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'off'
+      to: 'just on'
+  action:
+    - service: media_player.turn_off
+      target:
+        entity_id: media_player.lg_webos_tv

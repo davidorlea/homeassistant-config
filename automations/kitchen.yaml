@@ -1,0 +1,15 @@
+- alias: 'Turn off Coffee Maschine'
+  id: 8eb927c2-c053-453f-b29e-dd9724426f7a
+  trigger:
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'off'
+      to: 'just on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'off'
+      to: 'just on'
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.kitchen_coffee_machine_relay
