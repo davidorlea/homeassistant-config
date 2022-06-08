@@ -1,0 +1,21 @@
+- alias: 'Start Presence Simulation when Leaving'
+  id: 889799ce-a39e-4e9f-b296-bd39fce3859f
+  trigger:
+    platform: state
+    entity_id: input_select.away_mode
+    from: 'just on'
+    to: 'on'
+  action:
+    service: presence_simulation.start
+    data:
+      restore_states: false
+
+- alias: 'Stop Presence Simulation when Arriving'
+  id: 2dca1ca0-e890-4fc3-8262-ee36552064ef
+  trigger:
+    platform: state
+    entity_id: input_select.away_mode
+    from: 'on'
+    to: 'just off'
+  action:
+    service: presence_simulation.stop
