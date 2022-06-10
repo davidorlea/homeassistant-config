@@ -1,6 +1,8 @@
 db_url: !secret recorder_db_url
 exclude:
   entity_globs:
+    - binary_sensor.iphone_von_david*
+    - binary_sensor.macbook_pro_von_david*
     - sensor.date
     - sensor.influxdb_*
     - sensor.iphone_von_david*
