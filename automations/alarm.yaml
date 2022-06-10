@@ -1,4 +1,4 @@
-- alias: 'Alarm'
+- alias: 'Intrusion Alarm'
   id: 496e0316-b945-4f9c-a7dc-cb025d4971a9
   trigger:
     platform: state
@@ -25,8 +25,30 @@
   action:
     - service: notify.mobile_app_iphone_von_david
       data:
-        title: "Smart Home Alerts"
-        message: "Something happened at home!"
+        title: "Intrusion Alarm"
+        message: "Intrusion detected at home!"
+    - service: script.sonos_play
+      data:
+        devices:
+          - media_player.sonos_device_wohnzimmer
+          - media_player.sonos_device_kuche
+          - media_player.sonos_device_schlafzimmer
+        source: http://192.168.178.10:8123/local/sounds/alarm_siren.mp3
+        volume: 0.2
+
+- alias: 'Water Leak Alarm'
+  id: 2b33953a-560a-4344-9985-776bf654d45d
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.bathroom_water_leak_sensor_water_leak
+    from: 'off'
+    to: 'on'
+  action:
+    - service: notify.mobile_app_iphone_von_david
+      data:
+        title: "Water Leak Alarm"
+        message: "Water leak detected at home!"
     - service: script.sonos_play
       data:
         devices:

@@ -127,9 +127,6 @@ cards:
             name: Bedroom Motion
             icon: mdi:motion-sensor
             state_color: true
-      - type: entities
-        show_header_toggle: false
-        entities:
           - entity: binary_sensor.bedroom_bed_occupancy
             name: Bedroom Bed Occupancy
             icon: mdi:bed
@@ -157,6 +154,13 @@ cards:
             name: Pressue
             graph: line
             entity: sensor.bathroom_multi_sensor_pressure
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.bathroom_water_leak_sensor_water_leak
+            name: Bathroom Water Leak
+            icon: mdi:home-flood
+            state_color: true
   - type: vertical-stack
     title: Hall
     cards:
