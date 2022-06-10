@@ -26,16 +26,16 @@ sonos_play:
     - service: sonos.snapshot
       data:
         entity_id: "{{ [master] + slaves }} "
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       data:
         entity_id: "{{ [master] + slaves }}"
     - choose:
         - conditions: "{{ slaves | length >= 1 }}"
           sequence:
-            - service: sonos.join
+            - service: media_player.join
               data:
-                entity_id: "{{ slaves }}"
-                master: "{{ master }}"
+                entity_id: "{{ master }}"
+                group_members: "{{ slaves }}"
     - service: media_player.volume_set
       target:
         entity_id: "{{ [master] + slaves }}"

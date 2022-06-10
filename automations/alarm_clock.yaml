@@ -22,7 +22,7 @@
     - delay:
         seconds: 600
     - event: alarm_clock_wake_up_finished
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       data:
         entity_id: media_player.sonos_device_schlafzimmer
     - service: media_player.volume_set
