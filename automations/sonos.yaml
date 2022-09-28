@@ -7,7 +7,9 @@
       - media_player.sonos_device_kuche
       - media_player.sonos_device_schlafzimmer
       - media_player.sonos_device_wohnzimmer
-    to: 'paused'
+    to:
+      - 'idle'
+      - 'paused'
     for:
       minutes: 5
   action:
