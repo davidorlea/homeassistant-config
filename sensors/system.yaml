@@ -1,5 +1,3 @@
-- platform: uptime
-
 - platform: influxdb
   host: !secret influxdb_host
   username: !secret influxdb_username

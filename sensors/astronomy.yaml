@@ -3,10 +3,6 @@
     - 'date'
     - 'time'
 
-- platform: season
-
-- platform: moon
-
 - platform: template
   sensors:
     period_of_day:
