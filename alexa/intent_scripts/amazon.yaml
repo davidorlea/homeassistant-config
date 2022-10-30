@@ -1,3 +1,16 @@
+amzn1.ask.skill.1cc4d058-60e4-4b70-aabf-766d9a26aae1:
+  speech:
+    type: plain
+    text: >-
+      Hallo, ich bin Home Assistant. Was kann ich für dich tun?
+  reprompt:
+    type: plain
+    text: >-
+      Wie kann ich dir helfen?
+
+amzn1.ask.skill.1cc4d058-60e4-4b70-aabf-766d9a26aae1.SessionEndedRequest:
+  action:
+
 AMAZON.FallbackIntent:
   speech:
     type: plain
