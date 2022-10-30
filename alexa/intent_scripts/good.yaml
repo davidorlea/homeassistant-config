@@ -41,6 +41,21 @@ GoodNightIntent:
         "Eine gute Nacht!",
         "Gute Nacht!"
         ] | random }}
+      {% set status = states("input_boolean.alarm_clock") %}
+      {% set time = states("input_datetime.alarm_clock") %}
+      {% if not bool(status) %}
+      {{ [
+        "Ich wecke dich nicht.",
+        "Der Wecker ist nicht gestellt.",
+        "Der Wecker ist ausgeschaltet."
+        ] | random }}
+      {% else %}
+      {{ [
+        "Ich wecke dich um %s." | format(time),
+        "Der Wecker ist auf %s gestellt." | format(time),
+        "Der Wecker ist eingeschaltet auf %s." | format(time)
+        ] | random }}
+      {% endif %}
   action:
     - choose:
         - conditions:
