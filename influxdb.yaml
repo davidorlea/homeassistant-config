@@ -4,8 +4,7 @@ password: !secret influxdb_password
 database: !secret influxdb_database
 include:
   entities:
-    - sensor.boulderado_gym_slots_free
-    - sensor.boulderado_gym_slots_used
+    - sensor.boulderado_gym_occupancy
     - sensor.dark_sky_humidity
     - sensor.dark_sky_ozone
     - sensor.dark_sky_pressure
@@ -35,9 +34,7 @@ ignore_attributes:
   - friendly_name
   - icon
 component_config:
-  sensor.boulderado_gym_slots_free:
-    override_measurement: 'sensor.boulderado_gym_slots_free'
-  sensor.boulderado_gym_slots_used:
+  sensor.boulderado_gym_occupancy:
     override_measurement: 'sensor.boulderado_gym_slots_used'
   sensor.dark_sky_humidity:
     override_measurement: 'sensor.dark_sky_humidity'

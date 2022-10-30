@@ -2,25 +2,18 @@ BoulderGymIntent:
   speech:
     type: plain
     text: >-
-      {% set opening = states("sensor.boulderado_gym_opening") %}
-      {% set used = states("sensor.boulderado_gym_slots_used") %}
-      {% set free = states("sensor.boulderado_gym_slots_free") %}
       {% set occupancy = states("sensor.boulderado_gym_occupancy") %}
-      {% if opening == "unknown" or used == "unknown" or free == "unknown" or occupancy == "unknown" %}
+      {% if occupancy == "unknown" %}
       {{ [
         "Das weiß ich leider gerade nicht.",
         "Das kann ich dir leider gerade nicht sagen."
         ] | random }}
       {% elif opening == "closed" %}
       Die Boulderhalle ist zur Zeit geschlossen.
-      {% elif int(occupancy) == 0 %}
-      In der Boulderhalle ist gerade nichts los. Es sind alle Plätze noch frei.
-      {% elif int(occupancy) < 33 %}
-      In der Boulderhalle ist gerade wenig los. Es sind {{ used }} Personen da und noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
-      {% elif int(occupancy) < 67 %}
-      In der Boulderhalle ist gerade etwas los. Es sind {{ used }} Personen da und noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
+      {% elif int(occupancy) < 50 %}
+      In der Boulderhalle ist es gerade sehr leer. Es sind {{ occupancy }} Personen da.
       {% elif int(occupancy) < 100 %}
-      In der Boulderhalle ist gerade viel los. Es sind {{ used }} Personen da und noch {{ free }} Plätze frei. Das entspricht etwa {{ occupancy }} Prozent der maximalen Auslastung.
+      In der Boulderhalle ist es gerade mäßig voll. Es sind {{ occupancy }} Personen da.
       {% else %}
-      In der Boulderhalle ist gerade sehr viel los. Es sind keine Plätze mehr frei.
+      In der Boulderhalle ist es gerade sehr voll. Es sind {{ occupancy }} Personen da.
       {% endif %}
