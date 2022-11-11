@@ -2,6 +2,7 @@ dist: bionic
 language: python
 python:
   - '3.9'
+  - '3.10'
 cache:
   pip: true
   directories:
