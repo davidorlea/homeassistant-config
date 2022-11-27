@@ -6,28 +6,22 @@
       from: 'on'
       to: 'just off'
   condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Dusk'
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Night'
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Dawn'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.away_mode
-          state: 'just off'
-        - condition: state
-          entity_id: input_select.away_mode
-          state: 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - 'Dusk'
+        - 'Night'
+        - 'Dawn'
+    - condition: state
+      entity_id: input_select.away_mode
+      state:
+        - 'just off'
+        - 'off'
     - condition: state
       entity_id: input_select.bed_mode
-      state: 'off'
+      state:
+        - 'just off'
+        - 'off'
   action:
     service: light.turn_on
     target:
@@ -49,28 +43,22 @@
       from: 'just off'
       to: 'off'
   condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Dusk'
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Night'
-        - condition: state
-          entity_id: sensor.period_of_day
-          state: 'Dawn'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.away_mode
-          state: 'just off'
-        - condition: state
-          entity_id: input_select.away_mode
-          state: 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - 'Dusk'
+        - 'Night'
+        - 'Dawn'
+    - condition: state
+      entity_id: input_select.away_mode
+      state:
+        - 'just off'
+        - 'off'
     - condition: state
       entity_id: input_select.bed_mode
-      state: 'off'
+      state:
+        - 'just off'
+        - 'off'
   action:
     service: light.turn_on
     target:
