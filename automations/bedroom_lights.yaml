@@ -8,7 +8,9 @@
   condition:
     - condition: state
       entity_id: input_select.bed_mode
-      state: 'off'
+      state:
+        - 'just off'
+        - 'off'
     - condition: or
       conditions:
         - condition: state
@@ -54,7 +56,9 @@
   condition:
     - condition: state
       entity_id: input_select.bed_mode
-      state: 'off'
+      state:
+        - 'just off'
+        - 'off'
     - condition: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
