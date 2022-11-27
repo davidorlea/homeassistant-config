@@ -2,9 +2,17 @@
   id: d5cb8c07-9327-4859-8381-783801d076fa
   trigger:
     - platform: state
+      entity_id: sensor.period_of_day
+      from: 'Sunset'
+      to: 'Dusk'
+    - platform: state
       entity_id: input_select.away_mode
       from: 'on'
       to: 'just off'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just off'
+      to: 'off'
   condition:
     - condition: state
       entity_id: sensor.period_of_day
@@ -31,17 +39,9 @@
   id: d7efe2bf-f328-44ef-9ab0-98c2e5e0ba64
   trigger:
     - platform: state
-      entity_id: sensor.period_of_day
-      from: 'Sunset'
-      to: 'Dusk'
-    - platform: state
       entity_id: input_select.away_mode
       from: 'on'
       to: 'just off'
-    - platform: state
-      entity_id: input_select.bed_mode
-      from: 'just off'
-      to: 'off'
   condition:
     - condition: state
       entity_id: sensor.period_of_day
@@ -76,10 +76,6 @@
       from: 'just on'
       to: 'on'
     - platform: state
-      entity_id: input_select.away_mode
-      from: 'just off'
-      to: 'off'
-    - platform: state
       entity_id: input_select.bed_mode
       from: 'just on'
       to: 'on'
@@ -99,6 +95,10 @@
       entity_id: input_select.away_mode
       from: 'just on'
       to: 'on'
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'just off'
+      to: 'off'
     - platform: state
       entity_id: input_select.bed_mode
       from: 'just on'
