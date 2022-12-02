@@ -27,6 +27,13 @@
       data:
         title: "Intrusion Alarm"
         message: "Intrusion detected at home!"
+        data:
+          tag: "intrusion-alarm"
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
     - service: script.sonos_play
       data:
         devices:
@@ -49,6 +56,13 @@
       data:
         title: "Water Leak Alarm"
         message: "Water leak detected at home!"
+        data:
+          tag: "water-leak-alarm"
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
     - service: script.sonos_play
       data:
         devices:
