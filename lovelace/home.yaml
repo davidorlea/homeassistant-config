@@ -145,5 +145,3 @@ cards:
             name: Aachen CityRegion 7-Day Cases
           - entity: sensor.coronavirus_aachen_cityregion_rki_deaths7
             name: Aachen CityRegion 7-Day Deaths
-      - type: markdown
-        content: '[Corona-Dashboard for Aachen CityRegion](https://oecher.info)'
