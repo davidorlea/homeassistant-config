@@ -23,14 +23,6 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.movie_night
-          - entity: scene.all_indoor_lights_off
-            name: Dark Mode
-            icon: mdi:lightbulb-off
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.all_indoor_lights_off
       - type: entities
         title: Ambient Lights
         show_header_toggle: false
