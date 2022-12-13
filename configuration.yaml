@@ -5,8 +5,10 @@ homeassistant:
   latitude: !secret homeassistant_latitude
   longitude: !secret homeassistant_longitude
   elevation: !secret homeassistant_elevation
-  unit_system: metric
+  country: !secret homeassistant_country
+  unit_system: !secret homeassistant_unit_system
   time_zone: !secret homeassistant_time_zone
+  currency: !secret homeassistant_currency
   customize: !include customize.yaml
   external_url: !secret homeassistant_external_url
   auth_providers:
