@@ -1,13 +1,11 @@
 {
     "measure_description": "Streamed 'Pink noise' from https://www.genelec.com/audio-test-signals, and took average measurements over 20s. Sonos microphone (voice assistant) on.",
     "measure_method": "manual",
-    "measure_device": "TPlink HS110 (kasa)",
+    "measure_device": "TP-Link Kasa HS110",
     "name": "Sonos One",
     "standby_power": 2.92,
     "device_type": "smart_speaker",
-    "supported_modes": [
-        "linear"
-    ],
+    "calculation_strategy": "linear",
     "calculation_enabled_condition": "{{ is_state('[[entity]]', 'playing') }}",
     "linear_config": {
         "calibrate": [
@@ -26,5 +24,6 @@
     },
     "aliases": [
         "Sonos ONE"
-    ]
+    ],
+    "config_flow_discovery_remarks": "**Warning**, please verify this device is a single speaker and not part of a stereo or Home theater configuration. This powercalc profile is specifically for a single speaker, so when you accept it anyway power estimation will be way off. When this is the case for you please ignore this discovery by clicking the three dots and ignore."
 }
