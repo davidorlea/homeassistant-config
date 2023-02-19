@@ -8,12 +8,6 @@
         "SLEEP_TIME": 3,
         "VERSION": "master"
     },
-    "aliases": [
-        "929003045301",
-        "929003047401",
-        "929003047501",
-        "929003045401"
-    ],
-    "name": "Hue Centura",
-    "standby_power": 0.25
+    "name": "Elgato Ring Light",
+    "standby_power": 0.45
 }
