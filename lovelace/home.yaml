@@ -127,13 +127,3 @@ cards:
                 green: 0
                 yellow: 30
                 red: 70
-      - type: entities
-        title: Coronavirus
-        show_header_toggle: false
-        entities:
-          - entity: sensor.coronavirus_aachen_cityregion_rki_incidence7
-            name: Aachen CityRegion 7-Day Incidence
-          - entity: sensor.coronavirus_aachen_cityregion_rki_cases7
-            name: Aachen CityRegion 7-Day Cases
-          - entity: sensor.coronavirus_aachen_cityregion_rki_deaths7
-            name: Aachen CityRegion 7-Day Deaths
