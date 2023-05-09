@@ -11,14 +11,6 @@ cards:
   - type: vertical-stack
     cards:
       - type: entities
-        title: Coronavirus Germany
-        show_header_toggle: false
-        entities:
-          - entity: sensor.coronavirus_germany_confirmed
-            name: Germany Cases
-          - entity: sensor.coronavirus_germany_deaths
-            name: Germany Deaths
-      - type: entities
         title: Coronavirus Aachen
         show_header_toggle: false
         entities:

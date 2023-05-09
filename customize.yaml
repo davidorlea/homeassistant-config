@@ -92,18 +92,6 @@ sensor.coronavirus_aachen_cityregion_rki_deaths7:
 sensor.coronavirus_aachen_cityregion_rki_incidence7:
   friendly_name: Coronavirus Aachen CityRegion 7-Day Incidence
   icon: mdi:biohazard
-sensor.coronavirus_germany_confirmed:
-  friendly_name: Coronavirus Germany Cases
-  icon: mdi:biohazard
-sensor.coronavirus_germany_current:
-  friendly_name: Coronavirus Germany Current
-  icon: mdi:biohazard
-sensor.coronavirus_germany_deaths:
-  friendly_name: Coronavirus Germany Deaths
-  icon: mdi:biohazard
-sensor.coronavirus_germany_recovered:
-  friendly_name: Coronavirus Germany Recovered
-  icon: mdi:biohazard
 
 sensor.influxdb_fritzbox_connection_status:
   friendly_name: 'Connection Status'
