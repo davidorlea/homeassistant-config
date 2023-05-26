@@ -87,5 +87,3 @@ scene: !include scenes.yaml
 scrape: !include scrape.yaml
 
 script: !include_dir_merge_named scripts
-
-weather: !include weather.yaml

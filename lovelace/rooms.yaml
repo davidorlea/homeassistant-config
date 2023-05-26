@@ -10,15 +10,15 @@ cards:
           - type: sensor
             name: Temperature
             graph: line
-            entity: sensor.dark_sky_temperature
+            entity: sensor.openweathermap_temperature
           - type: sensor
             name: Humidity
             graph: line
-            entity: sensor.dark_sky_humidity
+            entity: sensor.openweathermap_humidity
           - type: sensor
             name: Pressue
             graph: line
-            entity: sensor.dark_sky_pressure
+            entity: sensor.openweathermap_pressure
       - type: entities
         show_header_toggle: false
         entities:

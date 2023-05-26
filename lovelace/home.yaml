@@ -101,7 +101,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: weather-forecast
-        entity: weather.dark_sky
+        entity: weather.openweathermap
       - type: conditional
         conditions:
           - entity: sensor.dwd_pollen_41_grass

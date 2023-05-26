@@ -16,11 +16,11 @@ cards:
     title: Meteorology
     show_header_toggle: false
     entities:
-      - sensor.dark_sky_condition
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_humidity
-      - sensor.dark_sky_pressure
-      - sensor.dark_sky_wind_speed
-      - sensor.dark_sky_wind_bearing
-      - sensor.dark_sky_visibility
-      - sensor.dark_sky_ozone
+      - sensor.openweathermap_condition
+      - sensor.openweathermap_temperature
+      - sensor.openweathermap_humidity
+      - sensor.openweathermap_pressure
+      - sensor.openweathermap_wind_speed
+      - sensor.openweathermap_wind_bearing
+      - sensor.openweathermap_visibility
+      - sensor.openweathermap_uv_index
