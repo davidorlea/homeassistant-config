@@ -51,7 +51,7 @@ case "$1" in
         fi
         check
         if [ "$2" != "--skip-reload" ]; then
-            reload "/api/services/homeassistant/restart"
+            reload "/api/services/homeassistant/reload_all"
         fi
         ;;
     "automations" )
