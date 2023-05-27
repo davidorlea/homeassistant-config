@@ -22,30 +22,35 @@
   sensors:
     coronavirus_aachen_cityregion_rki_cases:
       value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases') | round(0) }}"
+      availability_template: "{{ is_number(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases')) }}"
       unit_of_measurement: "people"
       attribute_templates:
         attribution: "Data provided by RKI"
         last_updated: "{{ strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr') | as_timestamp | timestamp_utc }}"
     coronavirus_aachen_cityregion_rki_cases7:
       value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases7_lk') | round(0) }}"
+      availability_template: "{{ is_number(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases7_lk')) }}"
       unit_of_measurement: "people"
       attribute_templates:
         attribution: "Data provided by RKI"
         last_updated: "{{ strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr') | as_timestamp | timestamp_utc }}"
     coronavirus_aachen_cityregion_rki_deaths:
       value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'deaths') | round(0) }}"
+      availability_template: "{{ is_number(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'deaths')) }}"
       unit_of_measurement: "people"
       attribute_templates:
         attribution: "Data provided by RKI"
         last_updated: "{{ strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr') | as_timestamp | timestamp_utc }}"
     coronavirus_aachen_cityregion_rki_deaths7:
       value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'death7_lk') | round(0) }}"
+      availability_template: "{{ is_number(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'death7_lk')) }}"
       unit_of_measurement: "people"
       attribute_templates:
         attribution: "Data provided by RKI"
         last_updated: "{{ strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr') | as_timestamp | timestamp_utc }}"
     coronavirus_aachen_cityregion_rki_incidence7:
       value_template: "{{ state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases7_per_100k') | round(0) }}"
+      availability_template: "{{ is_number(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'cases7_per_100k')) }}"
       attribute_templates:
         attribution: "Data provided by RKI"
         last_updated: "{{ strptime(state_attr('sensor.coronavirus_aachen_cityregion_rki', 'last_update'), '%d.%m.%Y, %H:%M Uhr') | as_timestamp | timestamp_utc }}"
