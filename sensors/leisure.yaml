@@ -18,3 +18,8 @@
         {% elif now().weekday() in (6,)%}
           {{ iif(today_at("12:00") <= now() <= today_at("20:00"), "open", "closed") }}
         {% endif %}
+    boulderado_gym_occupancy:
+      friendly_name: Boulderado Gym Occupancy
+      value_template: "{{ max(0, int(states('sensor.boulderado_gym_counter'))) }}"
+      availability_template: "{{ is_state('sensor.boulderado_gym_opening', 'open') and is_number(states('sensor.boulderado_gym_counter')) }}"
+      unit_of_measurement: "people"

@@ -3,13 +3,11 @@ BoulderGymIntent:
     type: plain
     text: >-
       {% set occupancy = states("sensor.boulderado_gym_occupancy") %}
-      {% if occupancy == "unknown" %}
+      {% if not is_number(occupancy) %}
       {{ [
         "Das weiß ich leider gerade nicht.",
         "Das kann ich dir leider gerade nicht sagen."
         ] | random }}
-      {% elif opening == "closed" %}
-      Die Boulderhalle ist zur Zeit geschlossen.
       {% elif int(occupancy) < 50 %}
       In der Boulderhalle ist es gerade sehr leer. Es sind {{ occupancy }} Personen da.
       {% elif int(occupancy) < 100 %}

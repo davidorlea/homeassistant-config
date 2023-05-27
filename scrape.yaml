@@ -1,7 +1,5 @@
 - resource: https://www.boulderado.de/boulderadoweb/gym-clientcounter/index.php?mode=get&token=eyJhbGciOiJIUzI1NiIsICJ0eXAiOiJKV1QifQ.eyJjdXN0b21lciI6IkNhbXB1c0JIIn0.ppndrOlwdq9MWNVqhKdhm4KuOXJlFi7Tld2ocLbjeMw
   sensor:
-    - name: Boulderado Gym Occupancy
+    - name: Boulderado Gym Counter
       select: 'div.actcounter'
       attribute: 'data-value'
-      unit_of_measurement: 'people'
-      value_template: '{{ iif(is_state("sensor.boulderado_gym_opening", "open"), max(0, int(value)), "unknown") }}'
