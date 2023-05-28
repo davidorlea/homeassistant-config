@@ -8,5 +8,5 @@
         {% else %}
           0
         {% endif %}
-      icon_template: >-
-        mdi:timelapse
+      availability_template: "{{ has_value('switch.kitchen_coffee_machine_relay') }}"
+      icon_template: mdi:timelapse
