@@ -1,2 +1,8 @@
 alarm_clock:
   name: Alarm Clock
+
+intrusion_alarm_notification:
+  name: Intrusion Alarm Notification
+
+intrusion_alarm_siren:
+  name: Intrusion Alarm Siren

@@ -23,25 +23,36 @@
         entity_id: input_select.away_mode
         state: 'on'
   action:
-    - service: notify.mobile_app_iphone_von_david
-      data:
-        title: "Intrusion Alarm"
-        message: "Intrusion detected at home!"
-        data:
-          tag: "intrusion-alarm"
-          push:
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
-    - service: script.sonos_play
-      data:
-        devices:
-          - media_player.sonos_device_wohnzimmer
-          - media_player.sonos_device_kuche
-          - media_player.sonos_device_schlafzimmer
-        source: http://192.168.178.10:8123/local/sounds/alarm_siren.mp3
-        volume: 0.2
+    - parallel:
+        - if:
+            - condition: state
+              entity_id: input_boolean.intrusion_alarm_notification
+              state: 'on'
+          then:
+            - service: notify.mobile_app_iphone_von_david
+              data:
+                title: "Intrusion Alarm"
+                message: "Intrusion detected at home!"
+                data:
+                  tag: "intrusion-alarm"
+                  push:
+                    sound:
+                      name: default
+                      critical: 1
+                      volume: 1.0
+        - if:
+            - condition: state
+              entity_id: input_boolean.intrusion_alarm_siren
+              state: 'on'
+          then:
+            - service: script.sonos_play
+              data:
+                devices:
+                  - media_player.sonos_device_wohnzimmer
+                  - media_player.sonos_device_kuche
+                  - media_player.sonos_device_schlafzimmer
+                source: http://192.168.178.10:8123/local/sounds/alarm_siren.mp3
+                volume: 0.2
 
 - alias: 'Water Leak Alarm'
   id: 2b33953a-560a-4344-9985-776bf654d45d
