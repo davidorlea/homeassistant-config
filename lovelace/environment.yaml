@@ -24,3 +24,4 @@ cards:
       - sensor.openweathermap_wind_bearing
       - sensor.openweathermap_visibility
       - sensor.openweathermap_uv_index
+      - sensor.openweathermap_dew_point
