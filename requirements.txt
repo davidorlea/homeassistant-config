@@ -1,2 +1,2 @@
-homeassistant==2023.6.3
+homeassistant==2023.8.1
 mysqlclient
