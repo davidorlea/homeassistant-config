@@ -98,7 +98,6 @@ from .const import (
     DATA_DISCOVERED_ENTITIES,
     DATA_DOMAIN_ENTITIES,
     DATA_USED_UNIQUE_IDS,
-    DISCOVERY_SOURCE_ENTITY,
     DISCOVERY_TYPE,
     DOMAIN,
     DOMAIN_CONFIG,
@@ -156,7 +155,7 @@ SENSOR_CONFIG = {
     vol.Optional(CONF_MODEL): cv.string,
     vol.Optional(CONF_MANUFACTURER): cv.string,
     vol.Optional(CONF_MODE): vol.In([cls.value for cls in CalculationStrategy]),
-    vol.Optional(CONF_STANDBY_POWER): vol.Coerce(float),
+    vol.Optional(CONF_STANDBY_POWER): vol.Any(vol.Coerce(float), cv.template),
     vol.Optional(CONF_DISABLE_STANDBY_POWER): cv.boolean,
     vol.Optional(CONF_CUSTOM_MODEL_DIRECTORY): cv.string,
     vol.Optional(CONF_POWER_SENSOR_ID): cv.entity_id,
@@ -354,9 +353,6 @@ async def _async_setup_entities(
 
     try:
         entities = await create_sensors(hass, config, discovery_info, config_entry)
-        if not entities:
-            return
-
         if config_entry:
             save_entity_ids_on_config_entry(hass, config_entry, entities)
     except SensorConfigurationError as err:
@@ -502,9 +498,14 @@ def register_entity_services() -> None:
 def convert_config_entry_to_sensor_config(config_entry: ConfigEntry) -> ConfigType:
     """Convert the config entry structure to the sensor config which we use to create the entities."""
     sensor_config = dict(config_entry.data.copy())
+    sensor_type = sensor_config.get(CONF_SENSOR_TYPE)
 
-    if sensor_config.get(CONF_SENSOR_TYPE) == SensorType.GROUP:
+    if sensor_type == SensorType.GROUP:
         sensor_config[CONF_CREATE_GROUP] = sensor_config.get(CONF_NAME)
+
+    if sensor_type == SensorType.REAL_POWER:
+        sensor_config[CONF_POWER_SENSOR_ID] = sensor_config.get(CONF_ENTITY_ID)
+        sensor_config[CONF_FORCE_ENERGY_SENSOR_CREATION] = True
 
     if CONF_DAILY_FIXED_ENERGY in sensor_config:
         daily_fixed_config: dict[str, Any] = copy.copy(sensor_config.get(CONF_DAILY_FIXED_ENERGY))  # type: ignore
@@ -557,7 +558,7 @@ def convert_config_entry_to_sensor_config(config_entry: ConfigEntry) -> ConfigTy
     return sensor_config
 
 
-async def create_sensors(  # noqa: C901
+async def create_sensors(
     hass: HomeAssistant,
     config: ConfigType,
     discovery_info: DiscoveryInfoType | None = None,
@@ -588,10 +589,8 @@ async def create_sensors(  # noqa: C901
                 new=await create_general_standby_sensors(hass, global_config),
             )
 
-    # Setup a power sensor for one single appliance. Either by manual configuration or discovery
+    # Set up a power sensor for one single appliance. Either by manual configuration or discovery
     if CONF_ENTITIES not in config and CONF_INCLUDE not in config:
-        if discovery_info:
-            config[CONF_ENTITY_ID] = discovery_info[CONF_ENTITY_ID]
         merged_sensor_config = get_merged_sensor_configuration(global_config, config)
         return await create_individual_sensors(
             hass,
@@ -611,7 +610,10 @@ async def create_sensors(  # noqa: C901
                 child_entities = await create_sensors(
                     hass,
                     entity_config,
-                    context=context,
+                    context=CreationContext(
+                        group=context.group,
+                        entity_config=entity_config,
+                    ),
                 )
                 entities_to_add.extend_items(child_entities)
             except SensorConfigurationError as exception:
@@ -677,27 +679,24 @@ async def create_individual_sensors(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> EntitiesBucket:
     """Create entities (power, energy, utility_meters) which track the appliance."""
-    if discovery_info:
-        source_entity: SourceEntity = discovery_info.get(DISCOVERY_SOURCE_ENTITY)  # type: ignore
-    else:
-        source_entity = await create_source_entity(sensor_config[CONF_ENTITY_ID], hass)
+
+    source_entity = await create_source_entity(sensor_config[CONF_ENTITY_ID], hass)
 
     if (used_unique_ids := hass.data[DOMAIN].get(DATA_USED_UNIQUE_IDS)) is None:
-        used_unique_ids = hass.data[DOMAIN][DATA_USED_UNIQUE_IDS] = []
+        used_unique_ids = hass.data[DOMAIN][
+            DATA_USED_UNIQUE_IDS
+        ] = []  # pragma: no cover
     try:
         await check_entity_not_already_configured(
             sensor_config,
             source_entity,
             hass,
             used_unique_ids,
-            discovery_info is not None,
         )
     except SensorAlreadyConfiguredError as error:
         # Include previously discovered/configured entities in group when no specific configuration
         if context.group and list(context.entity_config.keys()) == [CONF_ENTITY_ID]:
-            return EntitiesBucket([], error.existing_entities)
-        if discovery_info:
-            return EntitiesBucket()
+            return EntitiesBucket([], error.get_existing_entities())
         raise error
 
     entities_to_add: list[Entity] = []
@@ -787,12 +786,12 @@ async def attach_entities_to_source_device(
     if source_entity.entity_entry and source_entity.device_entry:
         device_id = source_entity.device_entry.id
         device_registry = dr.async_get(hass)
-        for entity in entities_to_add:
-            if not isinstance(entity, BaseEntity):
-                continue
+        for entity in (
+            entity for entity in entities_to_add if isinstance(entity, BaseEntity)
+        ):
             try:
                 entity.source_device_id = source_entity.device_entry.id  # type: ignore
-            except AttributeError:
+            except AttributeError:  # pragma: no cover
                 _LOGGER.error(f"{entity.entity_id}: Cannot set device id on entity")
         if (
             config_entry
@@ -809,7 +808,6 @@ async def check_entity_not_already_configured(
     source_entity: SourceEntity,
     hass: HomeAssistant,
     used_unique_ids: list[str],
-    is_discovered: bool = True,
 ) -> None:
     if source_entity.entity_id == DUMMY_ENTITY_ID:
         return
@@ -817,34 +815,15 @@ async def check_entity_not_already_configured(
     configured_entities: dict[str, list[SensorEntity]] = hass.data[DOMAIN][
         DATA_CONFIGURED_ENTITIES
     ]
-    discovered_entities: dict[str, list[SensorEntity]] = hass.data[DOMAIN][
-        DATA_DISCOVERED_ENTITIES
-    ]
 
-    # Prefer configured entity over discovered entity
-    if not is_discovered and source_entity.entity_id in discovered_entities:
-        entity_reg = er.async_get(hass)
-        for entity in discovered_entities.get(source_entity.entity_id) or []:
-            if entity_reg.async_get(entity.entity_id):
-                entity_reg.async_remove(entity.entity_id)
-            hass.states.async_remove(entity.entity_id)
-        discovered_entities[source_entity.entity_id] = []
-        return
-
-    existing_entities = (
-        configured_entities.get(source_entity.entity_id)
-        or discovered_entities.get(source_entity.entity_id)
-        or []
-    )
+    existing_entities = configured_entities.get(source_entity.entity_id) or []
 
     unique_id = sensor_config.get(CONF_UNIQUE_ID) or source_entity.unique_id
     if unique_id in used_unique_ids:
         raise SensorAlreadyConfiguredError(source_entity.entity_id, existing_entities)
 
     entity_id = source_entity.entity_id
-    if unique_id is None and (
-        entity_id in discovered_entities or entity_id in configured_entities
-    ):
+    if unique_id is None and entity_id in configured_entities:
         raise SensorAlreadyConfiguredError(source_entity.entity_id, existing_entities)
 
 

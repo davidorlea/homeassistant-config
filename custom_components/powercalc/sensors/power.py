@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime, timedelta
-from decimal import Decimal, DecimalException
+from decimal import Decimal
 from typing import Any, cast
 
 import homeassistant.helpers.entity_registry as er
@@ -58,6 +58,7 @@ from custom_components.powercalc.const import (
     CONF_MODEL,
     CONF_MULTIPLY_FACTOR,
     CONF_MULTIPLY_FACTOR_STANDBY,
+    CONF_PLAYBOOK,
     CONF_POWER,
     CONF_POWER_SENSOR_CATEGORY,
     CONF_POWER_SENSOR_ID,
@@ -68,7 +69,6 @@ from custom_components.powercalc.const import (
     CONF_WLED,
     DATA_CALCULATOR_FACTORY,
     DATA_STANDBY_POWER_SENSORS,
-    DISCOVERY_POWER_PROFILE,
     DOMAIN,
     DUMMY_ENTITY_ID,
     OFF_STATES,
@@ -81,6 +81,7 @@ from custom_components.powercalc.errors import (
     StrategyConfigurationError,
     UnsupportedStrategyError,
 )
+from custom_components.powercalc.helpers import evaluate_power
 from custom_components.powercalc.power_profile.factory import get_power_profile
 from custom_components.powercalc.power_profile.power_profile import (
     PowerProfile,
@@ -130,15 +131,7 @@ async def create_virtual_power_sensor(
     """Create the power sensor entity."""
     power_profile = None
     try:
-        # When the user did not manually configure a model and a model was auto discovered we can load it.
-
-        if (
-            discovery_info
-            and sensor_config.get(CONF_MODEL) is None
-            and discovery_info.get(DISCOVERY_POWER_PROFILE)
-        ):
-            power_profile = discovery_info.get(DISCOVERY_POWER_PROFILE)
-        elif not is_manually_configured(sensor_config):
+        if not is_manually_configured(sensor_config):
             try:
                 model_info = await autodiscover_model(hass, source_entity.entity_entry)
                 power_profile = await get_power_profile(
@@ -197,7 +190,9 @@ async def create_virtual_power_sensor(
         standby_power_on = Decimal(0)
         if not sensor_config.get(CONF_DISABLE_STANDBY_POWER):
             if sensor_config.get(CONF_STANDBY_POWER) is not None:
-                standby_power = Decimal(sensor_config.get(CONF_STANDBY_POWER))  # type: ignore
+                standby_power = sensor_config.get(CONF_STANDBY_POWER)  # type: ignore
+                if not isinstance(standby_power, Template):
+                    standby_power = Decimal(standby_power)
             elif power_profile is not None:
                 standby_power = Decimal(power_profile.standby_power)
                 standby_power_on = Decimal(power_profile.standby_power_on)
@@ -213,14 +208,13 @@ async def create_virtual_power_sensor(
 
         _LOGGER.debug(
             "Creating power sensor (entity_id=%s entity_category=%s, sensor_name=%s "
-            "strategy=%s manufacturer=%s model=%s standby_power=%s unique_id=%s)",
+            "strategy=%s manufacturer=%s model=%s unique_id=%s)",
             source_entity.entity_id,
             entity_category,
             name,
             strategy,
             power_profile.manufacturer if power_profile else "",
             power_profile.model if power_profile else "",
-            round(standby_power, 2),
             unique_id,
         )
 
@@ -284,21 +278,13 @@ def is_manually_configured(sensor_config: ConfigType) -> bool:
     """
     if CONF_MODEL in sensor_config:
         return False
-    if CONF_FIXED in sensor_config:
-        return True
-    if CONF_LINEAR in sensor_config:
-        return True
-    return False
+    return any(key in sensor_config for key in [CONF_LINEAR, CONF_FIXED, CONF_PLAYBOOK])
 
 
 def is_fully_configured(config: ConfigType) -> bool:
-    if config.get(CONF_FIXED):
-        return True
-    if config.get(CONF_LINEAR):
-        return True
-    if config.get(CONF_WLED):
-        return True
-    return False
+    return any(
+        key in config for key in [CONF_LINEAR, CONF_WLED, CONF_FIXED, CONF_PLAYBOOK]
+    )
 
 
 class PowerSensor(BaseEntity):
@@ -323,7 +309,7 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
         name: str,
         source_entity: SourceEntity,
         unique_id: str | None,
-        standby_power: Decimal,
+        standby_power: Decimal | Template,
         standby_power_on: Decimal,
         update_frequency: timedelta,
         multiply_factor: float | None,
@@ -409,9 +395,14 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
             async_dispatcher_send(self.hass, SIGNAL_POWER_SENSOR_STATE_CHANGE)
 
         async def initial_update(hass: HomeAssistant) -> None:
+            if self._strategy_instance:
+                await self._strategy_instance.on_start(hass)
             for entity_id in self._track_entities:
                 new_state = self.hass.states.get(entity_id)
-                await self._handle_source_entity_state_change(entity_id, new_state)
+                await self._handle_source_entity_state_change(
+                    entity_id,
+                    new_state,
+                )
                 async_dispatcher_send(self.hass, SIGNAL_POWER_SENSOR_STATE_CHANGE)
 
         """Add listeners and get initial state."""
@@ -446,6 +437,9 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
             for template in entities_to_track
             if isinstance(template, TrackTemplate)
         ]
+        if isinstance(self._standby_power, Template):
+            self._standby_power.hass = self.hass
+            track_templates.append(TrackTemplate(self._standby_power, None, None))
         if track_templates:
             async_track_template_result(
                 self.hass,
@@ -506,16 +500,16 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
 
     @callback
     def _update_power_sensor(self, power: Decimal) -> None:
-        self._power = round(power, self._rounding_digits)
+        self._power = power
+        if self._multiply_factor:
+            self._power *= Decimal(self._multiply_factor)
+        self._power = round(self._power, self._rounding_digits)
         self.async_write_ha_state()
 
-    def _has_valid_state(self, state: State | None) -> bool:
+    def _has_valid_state(self, state: State) -> bool:
         """Check if the state is valid, we can use it for power calculation."""
         if self.source_entity == DUMMY_ENTITY_ID:
             return True
-
-        if state is None:
-            return False
 
         if state.state == STATE_UNKNOWN:
             return False
@@ -561,13 +555,7 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
                 standby_power *= Decimal(self._multiply_factor)
             power += standby_power
 
-        try:
-            return Decimal(power)
-        except DecimalException:
-            _LOGGER.error(
-                f"{state.entity_id}: Could not convert value '{power}' to decimal",
-            )
-            return None
+        return Decimal(power)
 
     def _switch_sub_profile_dynamically(self, state: State) -> None:
         """Dynamically select a different sub profile depending on the entity state or attributes
@@ -611,9 +599,15 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
         if self._strategy_instance.can_calculate_standby():
             standby_power = await self._strategy_instance.calculate(state) or Decimal(0)
 
+        evaluated = await evaluate_power(standby_power)
+        if evaluated is None:
+            evaluated = Decimal(0)
+        standby_power = evaluated
+
         if self._multiply_factor_standby and self._multiply_factor:
             standby_power *= Decimal(self._multiply_factor)
-        return Decimal(standby_power)
+
+        return standby_power
 
     async def is_calculation_enabled(self) -> bool:
         if CONF_CALCULATION_ENABLED_CONDITION not in self._sensor_config:
@@ -625,7 +619,7 @@ class VirtualPowerSensor(SensorEntity, PowerSensor):
             template = Template(template)
 
         if not isinstance(template, Template):
-            return True
+            return True  # pragma: no cover
 
         template.hass = self.hass
         return bool(template.async_render())
