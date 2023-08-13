@@ -1,5 +1,0 @@
-- resource: https://www.boulderado.de/boulderadoweb/gym-clientcounter/index.php?mode=get&token=eyJhbGciOiJIUzI1NiIsICJ0eXAiOiJKV1QifQ.eyJjdXN0b21lciI6IkNhbXB1c0JIIn0.ppndrOlwdq9MWNVqhKdhm4KuOXJlFi7Tld2ocLbjeMw
-  sensor:
-    - name: Boulderado Gym Counter
-      select: 'div.actcounter'
-      attribute: 'data-value'
