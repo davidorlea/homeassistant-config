@@ -7,6 +7,7 @@ on:
 
 env:
   DEFAULT_PYTHON: '3.11'
+  DEFAULT_PRE_COMMIT: '3.4.0'
 
 jobs:
   pre-commit:
@@ -18,5 +19,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.DEFAULT_PYTHON }}
+      - name: Install pre-commit
+        run: python -m pip install pre-commit==${{ env.DEFAULT_PRE_COMMIT }}
+      - name: Install pre-commit dependencies
+        run: pre-commit install-hooks
       - name: Run pre-commit against all files
-        uses: pre-commit/action@v3.0.0
+        run: pre-commit run --all-files
