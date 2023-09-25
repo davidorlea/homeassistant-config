@@ -3,7 +3,8 @@ name: Lint
 on:
   pull_request:
   push:
-    branches: [main]
+    branches:
+      - master
 
 env:
   DEFAULT_PYTHON: '3.11'
