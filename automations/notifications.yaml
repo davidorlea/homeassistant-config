@@ -1,5 +1,6 @@
 - alias: 'Send Notification about unclosed Outdoor Doors'
   id: 75546147-378a-4dbc-b2ca-f4d4f707da15
+  max_exceeded: silent
   trigger:
     platform: state
     entity_id:
@@ -36,6 +37,7 @@
 
 - alias: 'Clear Notification about unclosed Outdoor Doors'
   id: 98cd6b76-8b4c-48f2-82c5-73d3e492e426
+  max_exceeded: silent
   trigger:
     platform: state
     entity_id:
@@ -57,6 +59,7 @@
 
 - alias: 'Send Notification about unclosed Bedroom Windows'
   id: 0c534f2d-72da-42fb-86e3-034ba16a16f0
+  max_exceeded: silent
   trigger:
     platform: state
     entity_id:
@@ -93,6 +96,7 @@
 
 - alias: 'Clear Notification about unclosed Bedroom Windows'
   id: e77baedc-3316-4650-9565-82049ec3ace4
+  max_exceeded: silent
   trigger:
     platform: state
     entity_id:
@@ -114,6 +118,7 @@
 
 - alias: 'Send Notification about pending Bedroom Ventilation'
   id: 09ac3a7a-e198-4bd6-8892-6320aa9be819
+  max_exceeded: silent
   trigger:
     - platform: state
       entity_id:
@@ -160,6 +165,7 @@
 
 - alias: 'Clear Notification about pending Bedroom Ventilation'
   id: 279a2bf7-b4cc-4095-a3d4-b3b6e10619bc
+  max_exceeded: silent
   trigger:
     platform: state
     entity_id:
