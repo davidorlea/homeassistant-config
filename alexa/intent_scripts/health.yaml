@@ -1,20 +1,3 @@
-CoronaVirusIntent:
-  speech:
-    type: ssml
-    text: >-
-      <speak>
-        {% set cases7 = states("sensor.coronavirus_aachen_cityregion_rki_cases7") | int(-1) %}
-        {% set incidence7 = states("sensor.coronavirus_aachen_cityregion_rki_incidence7") | int(-1) %}
-        {% if cases7 == -1 or deaths7 == -1 or incidence7 == -1 %}
-        {{ [
-          "Das weiß ich leider gerade nicht.",
-          "Das kann ich dir leider gerade nicht sagen."
-          ] | random }}
-        {% else %}
-        Laut <sub alias="Robert Koch-Institut">RKI</sub> haben sich in der Städteregion Aachen in den letzten 7 Tagen nachweislich <say-as interpret-as="cardinal">{{ cases7 }}</say-as> Menschen mit dem Virus infiziert. Die 7-Tage-Inzidenz liegt heute bei <say-as interpret-as="cardinal">{{ incidence7 }}</say-as>.
-        {% endif %}
-      </speak>
-
 PollenIntent:
   speech:
     type: plain

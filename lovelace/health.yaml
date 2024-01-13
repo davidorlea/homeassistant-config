@@ -8,19 +8,3 @@ cards:
     entities:
       - sensor.dwd_pollen_41_grass
       - sensor.dwd_pollen_41_tree
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: Coronavirus Aachen
-        show_header_toggle: false
-        entities:
-          - entity: sensor.coronavirus_aachen_cityregion_rki_cases
-            name: Aachen CityRegion Cases
-          - entity: sensor.coronavirus_aachen_cityregion_rki_deaths
-            name: Aachen CityRegion Deaths
-          - entity: sensor.coronavirus_aachen_cityregion_rki_cases7
-            name: Aachen CityRegion 7-Day Cases
-          - entity: sensor.coronavirus_aachen_cityregion_rki_deaths7
-            name: Aachen CityRegion 7-Day Deaths
-          - entity: sensor.coronavirus_aachen_cityregion_rki_incidence7
-            name: Aachen CityRegion 7-Day Incidence
