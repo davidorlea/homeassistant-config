@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DEFAULT_PYTHON: '3.11'
+  DEFAULT_PYTHON: '3.12'
   DEFAULT_PYTHON_CACHE: '1'
 
 jobs:
