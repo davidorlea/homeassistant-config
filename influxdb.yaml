@@ -4,13 +4,6 @@ password: !secret influxdb_password
 database: !secret influxdb_database
 include:
   entities:
-    - sensor.dark_sky_humidity
-    - sensor.dark_sky_ozone
-    - sensor.dark_sky_pressure
-    - sensor.dark_sky_temperature
-    - sensor.dark_sky_visibility
-    - sensor.dark_sky_wind_bearing
-    - sensor.dark_sky_wind_speed
     - sensor.dwd_pollen_41_grass
     - sensor.dwd_pollen_41_tree
     - sensor.history_stats_away_mode
@@ -33,20 +26,6 @@ ignore_attributes:
   - friendly_name
   - icon
 component_config:
-  sensor.dark_sky_humidity:
-    override_measurement: 'sensor.dark_sky_humidity'
-  sensor.dark_sky_ozone:
-    override_measurement: 'sensor.dark_sky_ozone'
-  sensor.dark_sky_pressure:
-    override_measurement: 'sensor.dark_sky_pressure'
-  sensor.dark_sky_temperature:
-    override_measurement: 'sensor.dark_sky_temperature'
-  sensor.dark_sky_visibility:
-    override_measurement: 'sensor.dark_sky_visibility'
-  sensor.dark_sky_wind_bearing:
-    override_measurement: 'sensor.dark_sky_wind_bearing'
-  sensor.dark_sky_wind_speed:
-    override_measurement: 'sensor.dark_sky_wind_speed'
   sensor.dwd_pollen_41_grass:
     override_measurement: 'sensor.dwd_pollen_41_grass'
   sensor.dwd_pollen_41_tree:
