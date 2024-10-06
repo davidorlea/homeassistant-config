@@ -16,7 +16,8 @@
         - input_select.bed_mode
       state: 'off'
     - condition: numeric_state
-      entity_id: sensor.openweathermap_temperature
+      entity_id: weather.meteorologisk
+      attribute: temperature
       below: 16
     - condition: not
       conditions:
@@ -75,7 +76,8 @@
         - input_select.bed_mode
       state: 'off'
     - condition: numeric_state
-      entity_id: sensor.openweathermap_temperature
+      entity_id: weather.meteorologisk
+      attribute: temperature
       below: 16
     - condition: not
       conditions:

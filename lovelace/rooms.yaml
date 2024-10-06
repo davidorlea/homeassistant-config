@@ -7,18 +7,27 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: sensor
+          - type: entity
+            entity: weather.meteorologisk
+            attribute: temperature
             name: Temperature
+            unit: '°C'
+            icon: mdi:thermometer
             graph: line
-            entity: sensor.openweathermap_temperature
-          - type: sensor
+          - type: entity
+            entity: weather.meteorologisk
+            attribute: humidity
             name: Humidity
+            unit: '%'
+            icon: mdi:water-percent
             graph: line
-            entity: sensor.openweathermap_humidity
-          - type: sensor
+          - type: entity
+            entity: weather.meteorologisk
+            attribute: pressure
             name: Pressue
+            unit: hPa
+            icon: mdi:thermometer-lines
             graph: line
-            entity: sensor.openweathermap_pressure
       - type: entities
         show_header_toggle: false
         entities:

@@ -70,7 +70,7 @@ cards:
             icon: mdi:window-open-variant
             state_color: true
         state_filter:
-          - "on"
+          - 'on'
         card:
           type: entities
           title: Open
@@ -101,7 +101,9 @@ cards:
   - type: vertical-stack
     cards:
       - type: weather-forecast
-        entity: weather.openweathermap
+        entity: weather.meteorologisk
+        show_forecast: true
+        forecast_type: daily
       - type: conditional
         conditions:
           - entity: sensor.dwd_pollen_41_grass
