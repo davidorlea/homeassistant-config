@@ -170,6 +170,10 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - fan.bathroom_fan
+      - type: entities
+        show_header_toggle: false
+        entities:
           - entity: binary_sensor.bathroom_water_leak_sensor_water_leak
             name: Bathroom Water Leak
             icon: mdi:home-flood

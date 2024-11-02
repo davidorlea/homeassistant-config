@@ -23,6 +23,13 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.movie_night
+          - entity: fan.bathroom_fan
+            name: Bathroom Fan
+            tap_action:
+              action: call-service
+              service: fan.toggle
+              service_data:
+                entity_id: fan.bathroom_fan
           - entity: fan.kitchen_fan
             name: Kitchen Fan
             tap_action:

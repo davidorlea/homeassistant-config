@@ -1,6 +1,9 @@
 alarm_clock:
   name: Alarm Clock
 
+dummy_bathroom_fan_switch:
+  name: Dummy Bathroom Fan Switch
+
 intrusion_alarm_notification:
   name: Intrusion Alarm Notification
 
