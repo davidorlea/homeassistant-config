@@ -1,0 +1,14 @@
+- platform: template
+  fans:
+    kitchen_fan:
+      friendly_name: Kitchen Fan
+      unique_id: 2c710b8c-f09a-486c-94e3-d564aace35e3
+      value_template: "{{ states('switch.0x08ddebfffed785c0') }}"
+      turn_on:
+        - action: switch.turn_on
+          target:
+            entity_id: switch.0x08ddebfffed785c0
+      turn_off:
+        - action: switch.turn_off
+          target:
+            entity_id: switch.0x08ddebfffed785c0

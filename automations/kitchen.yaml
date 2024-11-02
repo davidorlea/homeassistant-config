@@ -13,3 +13,57 @@
     - service: switch.turn_off
       target:
         entity_id: switch.kitchen_coffee_machine_relay
+
+- alias: 'Turn on Kitchen Fan'
+  id: c2887c1d-e759-4d79-bcc5-1a3adee523ee
+  trigger:
+    - platform: state
+      entity_id: fan.kitchen_fan
+      to: 'off'
+      for:
+        hours: 6
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'just on'
+      to: 'on'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'just on'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: fan.kitchen_fan
+      state: 'off'
+      for:
+        hours: 6
+    - condition: state
+      entity_id: input_select.away_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_select.bed_mode
+      state: 'on'
+  action:
+    - service: fan.turn_on
+      target:
+        entity_id: fan.kitchen_fan
+
+- alias: 'Turn off Kitchen Fan'
+  id: 1ca528ab-9344-4252-a21e-286e01cb322f
+  trigger:
+    - platform: state
+      entity_id: fan.kitchen_fan
+      to: 'on'
+      for:
+        minutes: 60
+    - platform: state
+      entity_id: input_select.away_mode
+      from: 'on'
+      to: 'just off'
+    - platform: state
+      entity_id: input_select.bed_mode
+      from: 'on'
+      to: 'just off'
+  action:
+    - service: fan.turn_off
+      target:
+        entity_id: fan.kitchen_fan

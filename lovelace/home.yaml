@@ -23,6 +23,13 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.movie_night
+          - entity: fan.kitchen_fan
+            name: Kitchen Fan
+            tap_action:
+              action: call-service
+              service: fan.toggle
+              service_data:
+                entity_id: fan.kitchen_fan
       - type: entities
         title: Ambient Lights
         show_header_toggle: false

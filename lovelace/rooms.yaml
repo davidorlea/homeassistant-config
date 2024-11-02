@@ -64,6 +64,10 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
+          - fan.kitchen_fan
+      - type: entities
+        show_header_toggle: false
+        entities:
           - entity: switch.kitchen_coffee_machine_relay
             name: Coffee Machine
             icon: mdi:coffee-maker
