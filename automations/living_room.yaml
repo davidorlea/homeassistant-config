@@ -1,4 +1,4 @@
-- alias: 'Turn off TV'
+- alias: 'Turn TV off'
   id: 61529196-14fc-4945-adc3-18902d77c5ff
   trigger:
     - platform: state

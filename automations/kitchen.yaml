@@ -1,4 +1,4 @@
-- alias: 'Turn off Coffee Maschine'
+- alias: 'Turn Coffee Maschine off'
   id: 8eb927c2-c053-453f-b29e-dd9724426f7a
   trigger:
     - platform: state
@@ -14,7 +14,7 @@
       target:
         entity_id: switch.kitchen_coffee_machine_relay
 
-- alias: 'Turn on Kitchen Fan'
+- alias: 'Turn Kitchen Fan on'
   id: c2887c1d-e759-4d79-bcc5-1a3adee523ee
   trigger:
     - platform: state
@@ -47,7 +47,7 @@
       target:
         entity_id: fan.kitchen_fan
 
-- alias: 'Turn off Kitchen Fan'
+- alias: 'Turn Kitchen Fan off'
   id: 1ca528ab-9344-4252-a21e-286e01cb322f
   trigger:
     - platform: state
