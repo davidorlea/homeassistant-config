@@ -36,12 +36,14 @@
       state: 'off'
       for:
         hours: 6
-    - condition: state
-      entity_id: input_select.away_mode
-      state: 'on'
-    - condition: state
-      entity_id: input_select.bed_mode
-      state: 'on'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'on'
+        - condition: state
+          entity_id: input_select.bed_mode
+          state: 'on'
   action:
     - service: fan.turn_on
       target:
