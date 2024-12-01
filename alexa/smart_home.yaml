@@ -4,6 +4,8 @@ smart_home:
   client_secret: !secret alexa_client_secret
   filter:
     include_entities:
+      - fan.bathroom_fan
+      - fan.kitchen_fan
       - light.outdoor_frontdoor_light
       - light.outdoor_backdoor_light
       - light.kitchen_ceiling_light
@@ -24,6 +26,12 @@ smart_home:
       - scene.stay_cosy
       - switch.kitchen_coffee_machine_relay
   entity_config:
+    fan.bathroom_fan:
+      name: Lüfter Badezimmer
+      description: Lüfter im Badezimmer
+    fan.kitchen_fan:
+      name: Lüfter Küche
+      description: Lüfter in der Küche
     light.outdoor_frontdoor_light:
       name: Haustürlampe Außen
       description: Außenlampe an der Haustür
