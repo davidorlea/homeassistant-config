@@ -109,9 +109,9 @@ cards:
           - sensor.gas_station_price
       - type: map
         aspect_ratio: 16x9
-        default_zoom: 17
+        default_zoom: 16
         entities:
-          - sensor.tier_nearest_scooter
+          - sensor.tankerkoenig
   - type: vertical-stack
     cards:
       - type: weather-forecast

@@ -7,6 +7,3 @@
 [submodule "custom_components/tankerkoenig"]
 	path = custom_components/tankerkoenig
 	url = https://github.com/davidorlea/homeassistant-tankerkoenig.git
-[submodule "custom_components/tier_nearest_scooter"]
-	path = custom_components/tier_nearest_scooter
-	url = https://github.com/davidorlea/homeassistant-tier_nearest_scooter.git
