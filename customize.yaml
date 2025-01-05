@@ -104,8 +104,6 @@ sensor.influxdb_pi_last_boot:
   device_class: timestamp
 sensor.influxdb_pi_uptime:
   friendly_name: 'Uptime'
-sensor.kitchen_coffee_machine_relay_active:
-  friendly_name: 'Kitchen Coffee Machine Active'
 sensor.nearest_scooter_distance:
   friendly_name: 'Nearest Scooter (Walking Distance)'
 sensor.nearest_scooter_battery:
