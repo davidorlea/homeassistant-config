@@ -13,10 +13,6 @@ include:
     - sensor.history_stats_kitchen_coffee_machine_relay
     - sensor.history_stats_outdoor_frontdoor
     - sensor.history_stats_outdoor_backdoor
-    - sensor.kitchen_coffee_machine_current
-    - sensor.kitchen_coffee_machine_power
-    - sensor.kitchen_coffee_machine_total_daily_energy
-    - sensor.kitchen_coffee_machine_voltage
     - sensor.tankerkoenig
 ignore_attributes:
   - attribution
@@ -58,13 +54,5 @@ component_config:
     override_measurement: 'sensor.history_stats_outdoor_backdoor'
     ignore_attributes:
       - value
-  sensor.kitchen_coffee_machine_current:
-    override_measurement: 'sensor.kitchen_coffee_machine_current'
-  sensor.kitchen_coffee_machine_power:
-    override_measurement: 'sensor.kitchen_coffee_machine_power'
-  sensor.kitchen_coffee_machine_total_daily_energy:
-    override_measurement: 'sensor.kitchen_coffee_machine_total_daily_energy'
-  sensor.kitchen_coffee_machine_voltage:
-    override_measurement: 'sensor.kitchen_coffee_machine_voltage'
   sensor.tankerkoenig:
     override_measurement: 'sensor.tankerkoenig'
