@@ -44,4 +44,4 @@
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:
-        source: "Pillow Talk"
+        source: "Apple Music Hits"
