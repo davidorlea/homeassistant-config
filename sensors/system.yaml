@@ -75,14 +75,14 @@
       value_template: '{{ value | filesizeformat }}'
       group_function: sum
       where: 'true'
-      measurement: '(SELECT non_negative_difference("x_avm_de_totalbytesreceived64") FROM "fritzbox" WHERE time > now() - 24h)'
+      measurement: '(SELECT non_negative_difference(max("x_avm_de_totalbytesreceived64")) FROM "fritzbox" WHERE time > now() - 24h GROUP BY time(15m))'
       field: non_negative_difference
       database: telegraf
     - name: influxdb fritzbox total bytes sent
       value_template: '{{ value | filesizeformat }}'
       group_function: sum
       where: 'true'
-      measurement: '(SELECT non_negative_difference("x_avm_de_totalbytessent64") FROM "fritzbox" WHERE time > now() - 24h)'
+      measurement: '(SELECT non_negative_difference(max("x_avm_de_totalbytessent64")) FROM "fritzbox" WHERE time > now() - 24h GROUP BY time(15m))'
       field: non_negative_difference
       database: telegraf
     - name: influxdb fritzbox transmission rate down
