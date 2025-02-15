@@ -64,6 +64,14 @@ zone:
   radius: 100
   icon: mdi:home
 
+sonos:
+  media_player:
+    advertise_addr: !secret sonos_media_player_advertise_addr
+    hosts:
+      - !secret sonos_media_player_hosts_1
+      - !secret sonos_media_player_hosts_2
+      - !secret sonos_media_player_hosts_3
+
 powercalc:
 
 alexa: !include alexa/smart_home.yaml
