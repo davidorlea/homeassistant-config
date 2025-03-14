@@ -6,6 +6,9 @@ input_datetime.alarm_clock:
 light.bedroom_bed_light:
   friendly_name: 'Bedroom Bed Light'
   icon: mdi:spotlight-beam
+light.bedroom_cabinet_light:
+  friendly_name: 'Bedroom Cabinet Light'
+  icon: mdi:lamp
 light.bedroom_ceiling_light:
   friendly_name: 'Bedroom Ceiling Light'
   icon: mdi:ceiling-light
@@ -15,9 +18,6 @@ light.bedroom_dresser_light:
 light.hall_ceiling_light:
   friendly_name: 'Hall Ceiling Light'
   icon: mdi:ceiling-light
-light.kitchen_cabinet_light:
-  friendly_name: 'Kitchen Cabinet Light'
-  icon: mdi:lamp
 light.kitchen_ceiling_light:
   friendly_name: 'Kitchen Ceiling Light'
   icon: mdi:ceiling-light

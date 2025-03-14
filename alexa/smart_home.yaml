@@ -11,11 +11,11 @@ smart_home:
       - light.kitchen_ceiling_light
       - light.kitchen_counter_light
       - light.kitchen_sideboard_light
-      - light.kitchen_cabinet_light
       - light.living_room_ceiling_light
       - light.living_room_sofa_light
       - light.living_room_tv_light
       - light.bedroom_ceiling_light
+      - light.bedroom_cabinet_light
       - light.bedroom_dresser_light
       - light.bedroom_bed_light
       - light.hall_ceiling_light
@@ -47,9 +47,6 @@ smart_home:
     light.kitchen_sideboard_light:
       name: Anrichtenlampe Küche
       description: Anrichtenlampe in der Küche
-    light.kitchen_cabinet_light:
-      name: Vitrinenlampe Küche
-      description: Vitrinenlampe in der Küche
     light.living_room_ceiling_light:
       name: Deckenlampe Wohnzimmer
       description: Deckenlampe im Wohnzimmer
@@ -62,6 +59,9 @@ smart_home:
     light.bedroom_ceiling_light:
       name: Deckenlampe Schlafzimmer
       description: Deckenlampe im Schlafzimmer
+    light.bedroom_cabinet_light:
+      name: Vitrinenlampe Schlafzimmer
+      description: Vitrinenlampe im Schlafzimmer
     light.bedroom_dresser_light:
       name: Kommodenlampe Schlafzimmer
       description: Kommodenlampe im Schlafzimmer

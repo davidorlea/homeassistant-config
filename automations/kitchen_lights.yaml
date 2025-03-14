@@ -28,7 +28,7 @@
         - light.kitchen_ceiling_light
         - light.kitchen_counter_light
 
-- alias: 'Turn Kitchen Cabinet and Sideboard Light on'
+- alias: 'Turn Kitchen Sideboard Light on'
   id: 912dcf60-5a35-4f9e-934b-c33fc5bdd16d
   trigger:
     - platform: state
@@ -62,10 +62,9 @@
     service: script.random_color
     data:
       lights:
-        - light.kitchen_cabinet_light
         - light.kitchen_sideboard_light
 
-- alias: 'Turn Kitchen Cabinet and Sideboard Light off'
+- alias: 'Turn Kitchen Sideboard Light off'
   id: 213a5359-2fc3-47bd-9876-5dc402cbd7bd
   trigger:
     - platform: state
@@ -84,5 +83,4 @@
     service: light.turn_off
     target:
       entity_id:
-        - light.kitchen_cabinet_light
         - light.kitchen_sideboard_light
