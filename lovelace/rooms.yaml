@@ -101,6 +101,13 @@ cards:
           - light.living_room_ceiling_light
           - light.living_room_sofa_light
           - light.living_room_tv_light
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: switch.living_room_tv
+            name: Living Room TV
+            icon: mdi:television
+            state_color: true
   - type: vertical-stack
     title: Bedroom
     cards:
