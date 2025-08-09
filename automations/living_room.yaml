@@ -13,3 +13,20 @@
     - service: media_player.turn_off
       target:
         entity_id: media_player.lg_webos_tv
+
+- alias: 'Turn TV Power off'
+  id: 0958a97a-3efb-468a-9c75-eee8098f39ad
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.living_room_tv_power
+    below: 5
+    for:
+      minutes: 1
+  condition:
+    condition: state
+    entity_id: media_player.lg_webos_tv
+    state: 'off'
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.living_room_tv
