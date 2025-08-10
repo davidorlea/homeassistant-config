@@ -1,3 +1,34 @@
+- alias: "Turn TV on"
+  id: 23f2cd65-f5b3-491c-a87f-2055301daa28
+  triggers:
+    trigger: device
+    domain: webostv
+    type: webostv.turn_on
+    device_id: ab25640d50b175aaff23e7a6e8459140
+  actions:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.living_room_tv
+    - delay:
+        seconds: 5
+    - repeat:
+        sequence:
+          - action: wake_on_lan.send_magic_packet
+            data:
+              mac: !secret wake_on_lan_mac
+              broadcast_address: !secret wake_on_lan_broadcast_address
+              broadcast_port: !secret wake_on_lan_broadcast_port
+          - delay:
+              seconds: 2
+        until:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: media_player.lg_webos_tv
+                state: 'on'
+              - condition: template
+                value_template: "{{ repeat.index >= 10 }}"
+
 - alias: 'Turn TV off'
   id: 61529196-14fc-4945-adc3-18902d77c5ff
   trigger:
