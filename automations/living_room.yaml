@@ -52,7 +52,7 @@
     entity_id: sensor.living_room_tv_power
     below: 5
     for:
-      minutes: 1
+      seconds: 30
   condition:
     condition: state
     entity_id: media_player.lg_webos_tv
