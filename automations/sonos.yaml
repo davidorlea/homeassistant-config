@@ -11,13 +11,13 @@
       - 'idle'
       - 'paused'
     for:
-      minutes: 5
+      minutes: 10
   action:
     - service: media_player.volume_set
       target:
         entity_id: "{{ trigger.entity_id }}"
       data:
-        volume_level: 0.1
+        volume_level: 0.08
     - service: media_player.volume_mute
       target:
         entity_id: "{{ trigger.entity_id }}"
