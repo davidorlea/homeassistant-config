@@ -36,6 +36,8 @@ lovelace:
 
 http:
   server_port: !secret http_server_port
+  cors_allowed_origins:
+    - !secret http_cors_allowed_origins_1
   use_x_forwarded_for: true
   trusted_proxies:
     - !secret http_trusted_proxies_1
