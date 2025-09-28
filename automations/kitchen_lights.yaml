@@ -12,7 +12,7 @@
         - light.kitchen_ceiling_light
         - light.kitchen_counter_light
 
-- alias: 'Turn Kitchen Ceiling and Counter Light off after last Movement'
+- alias: 'Turn Kitchen Ceiling off after last Movement'
   id: 57517167-d96e-4ba2-ab26-b050d4084689
   trigger:
     platform: state
@@ -26,6 +26,20 @@
     target:
       entity_id:
         - light.kitchen_ceiling_light
+
+- alias: 'Turn Kitchen Counter Light off after last Movement'
+  id: fa446cd6-baee-4e6e-a60a-240dc738b37e
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_motion_sensor_occupancy
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 10
+  action:
+    service: light.turn_off
+    target:
+      entity_id:
         - light.kitchen_counter_light
 
 - alias: 'Turn Kitchen Sideboard Light on'
