@@ -39,6 +39,7 @@ http:
   cors_allowed_origins:
     - !secret http_cors_allowed_origins_1
   use_x_forwarded_for: true
+  use_x_frame_options: true
   trusted_proxies:
     - !secret http_trusted_proxies_1
   ip_ban_enabled: true
