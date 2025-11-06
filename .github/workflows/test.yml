@@ -29,4 +29,4 @@ jobs:
       - name: Pull Docker image
         run: docker pull ${{ env.DEFAULT_HOME_ASSISTANT }}
       - name: Check Home Assistant configuration
-        run: docker run --rm -v ${{ github.workspace }}:/config ${{ env.DEFAULT_HOME_ASSISTANT }} hass -c /config --script check_config
+        run: docker run --rm -v ${{ github.workspace }}:/config ${{ env.DEFAULT_HOME_ASSISTANT }} hass --script check_config --config /config
