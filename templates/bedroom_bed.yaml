@@ -1,0 +1,5 @@
+- binary_sensor:
+    - default_entity_id: binary_sensor.bedroom_bed_occupancy
+      state: "off"
+      icon: mdi:bed
+      device_class: occupancy
