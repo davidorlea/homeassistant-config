@@ -3,49 +3,6 @@
   stop_id: 24236
   track: "H.1"
 
-- platform: template
-  sensors:
-    next_bus_time:
-      unit_of_measurement: min
-      value_template: >-
-        {% if (states("sensor.aseag_next_bus_24236_h_1") | int(0)) >= 1 %}
-          {% set departure = state_attr("sensor.aseag_next_bus_24236_h_1", "predictions")[0].departure %}
-          {{ ((as_timestamp(departure) - as_timestamp(now())) / 60) | round(0) }}
-        {% else %}
-          None
-        {% endif %}
-      availability_template: "{{ has_value('sensor.aseag_next_bus_24236_h_1') }}"
-      icon_template: mdi:bus-clock
-
 - platform: tankerkoenig
   api_key: !secret tankerkoenig_api_key
   fuel_type: 'diesel'
-
-- platform: template
-  sensors:
-    gas_station_price:
-      unit_of_measurement: €
-      value_template: "{{ states('sensor.tankerkoenig') if has_value('sensor.tankerkoenig') else None }}"
-      availability_template: "{{ has_value('sensor.tankerkoenig') }}"
-      icon_template: mdi:gas-station
-    gas_station_brand:
-      value_template: "{{ state_attr('sensor.tankerkoenig', 'brand') if has_value('sensor.tankerkoenig') else None }}"
-      availability_template: "{{ has_value('sensor.tankerkoenig') }}"
-      icon_template: mdi:gas-station
-    gas_station_address:
-      value_template: "{{ state_attr('sensor.tankerkoenig', 'address') if has_value('sensor.tankerkoenig') else None }}"
-      availability_template: "{{ has_value('sensor.tankerkoenig') }}"
-      icon_template: mdi:gas-station
-
-- platform: template
-  sensors:
-    nearest_scooter_distance:
-      unit_of_measurement: m
-      value_template: "{{ states('sensor.tier_nearest_scooter') if has_value('sensor.tier_nearest_scooter') else None }}"
-      availability_template: "{{ has_value('sensor.tier_nearest_scooter') }}"
-      icon_template: mdi:scooter
-    nearest_scooter_battery:
-      unit_of_measurement: '%'
-      value_template: "{{ state_attr('sensor.tier_nearest_scooter', 'battery_level') if has_value('sensor.tier_nearest_scooter') else None }}"
-      availability_template: "{{ has_value('sensor.tier_nearest_scooter') }}"
-      icon_template: mdi:scooter

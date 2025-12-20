@@ -1,9 +1,8 @@
-- platform: template
-  fans:
-    bathroom_fan:
-      friendly_name: Bathroom Fan
+- fan:
+    - default_entity_id: fan.bathroom_fan
+      name: Bathroom Fan
       unique_id: 1561d0b8-0b22-489b-88f7-471ffc7830e7
-      value_template: "{{ states('input_boolean.dummy_bathroom_fan_switch') }}"
+      state: "{{ states('input_boolean.dummy_bathroom_fan_switch') }}"
       turn_on:
         - action: input_boolean.turn_on
           target:
@@ -13,13 +12,10 @@
           target:
             entity_id: input_boolean.dummy_bathroom_fan_switch
 
-
-- platform: template
-  fans:
-    kitchen_fan:
-      friendly_name: Kitchen Fan
+    - default_entity_id: fan.kitchen_fan
+      name: Kitchen Fan
       unique_id: 2c710b8c-f09a-486c-94e3-d564aace35e3
-      value_template: "{{ states('switch.0x08ddebfffed785c0') }}"
+      state: "{{ states('switch.0x08ddebfffed785c0') }}"
       turn_on:
         - action: switch.turn_on
           target:

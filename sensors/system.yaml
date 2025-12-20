@@ -99,14 +99,3 @@
       measurement: '"fritzbox"'
       field: bytesendrate
       database: telegraf
-
-- platform: template
-  sensors:
-    influxdb_fritzbox_last_reconnect:
-      value_template: "{{ (as_timestamp(states.sensor.influxdb_fritzbox_uptime.last_changed) - states.sensor.influxdb_fritzbox_uptime.state | float) | timestamp_utc }}"
-      icon_template: mdi:clock
-      device_class: timestamp
-    influxdb_pi_last_boot:
-      value_template: "{{ (as_timestamp(states.sensor.influxdb_pi_uptime.last_changed) - states.sensor.influxdb_pi_uptime.state | float) | timestamp_utc }}"
-      icon_template: mdi:clock
-      device_class: timestamp

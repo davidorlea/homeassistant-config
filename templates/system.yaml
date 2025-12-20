@@ -1,0 +1,10 @@
+- sensor:
+    - default_entity_id: sensor.influxdb_fritzbox_last_reconnect
+      state: "{{ (as_timestamp(states.sensor.influxdb_fritzbox_uptime.last_changed) - states.sensor.influxdb_fritzbox_uptime.state | float) | timestamp_utc }}"
+      icon: mdi:clock
+      device_class: timestamp
+
+    - default_entity_id: sensor.influxdb_pi_last_boot
+      state: "{{ (as_timestamp(states.sensor.influxdb_pi_uptime.last_changed) - states.sensor.influxdb_pi_uptime.state | float) | timestamp_utc }}"
+      icon: mdi:clock
+      device_class: timestamp
