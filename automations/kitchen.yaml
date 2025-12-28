@@ -12,7 +12,7 @@
   action:
     - service: switch.turn_off
       target:
-        entity_id: switch.kitchen_coffee_machine_relay
+        entity_id: switch.kitchen_coffee_machine
 
 - alias: 'Turn Kitchen Fan on'
   id: c2887c1d-e759-4d79-bcc5-1a3adee523ee

@@ -10,7 +10,7 @@ include:
     - sensor.history_stats_bed_mode
     - sensor.history_stats_bedroom_window_left
     - sensor.history_stats_bedroom_window_right
-    - sensor.history_stats_kitchen_coffee_machine_relay
+    - sensor.history_stats_kitchen_coffee_machine
     - sensor.history_stats_outdoor_frontdoor
     - sensor.history_stats_outdoor_backdoor
     - sensor.tankerkoenig
@@ -42,8 +42,8 @@ component_config:
     override_measurement: 'sensor.history_stats_bedroom_window_right'
     ignore_attributes:
       - value
-  sensor.history_stats_kitchen_coffee_machine_relay:
-    override_measurement: 'sensor.history_stats_kitchen_coffee_machine_relay'
+  sensor.history_stats_kitchen_coffee_machine:
+    override_measurement: 'sensor.history_stats_kitchen_coffee_machine'
     ignore_attributes:
       - value
   sensor.history_stats_outdoor_frontdoor:

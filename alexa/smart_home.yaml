@@ -24,7 +24,7 @@ smart_home:
       - sensor.living_room_multi_sensor_temperature
       - scene.movie_night
       - scene.stay_cosy
-      - switch.kitchen_coffee_machine_relay
+      - switch.kitchen_coffee_machine
   entity_config:
     fan.bathroom_fan:
       name: Lüfter Badezimmer
@@ -80,6 +80,6 @@ smart_home:
     sensor.living_room_multi_sensor_temperature:
       name: Temperatur Wohnzimmer
       description: Temperatur im Wohnzimmer
-    switch.kitchen_coffee_machine_relay:
+    switch.kitchen_coffee_machine:
       name: Kaffeemaschine Küche
       description: Kaffeemaschine in der Küche
