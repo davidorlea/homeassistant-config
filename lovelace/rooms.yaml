@@ -99,6 +99,7 @@ cards:
         show_header_toggle: false
         entities:
           - light.living_room_ceiling_light
+          - light.living_room_ambient_light
           - light.living_room_sofa_light
           - light.living_room_tv_light
       - type: entities

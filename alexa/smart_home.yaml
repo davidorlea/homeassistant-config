@@ -12,6 +12,7 @@ smart_home:
       - light.kitchen_counter_light
       - light.kitchen_sideboard_light
       - light.living_room_ceiling_light
+      - light.living_room_ambient_light
       - light.living_room_sofa_light
       - light.living_room_tv_light
       - light.bedroom_ceiling_light
@@ -50,6 +51,9 @@ smart_home:
     light.living_room_ceiling_light:
       name: Deckenlampe Wohnzimmer
       description: Deckenlampe im Wohnzimmer
+    light.living_room_ambient_light:
+      name: Umgebungslampe Wohnzimmer
+      description: Umgebungslampe im Wohnzimmer
     light.living_room_sofa_light:
       name: Sofalampe Wohnzimmer
       description: Sofalampe im Wohnzimmer

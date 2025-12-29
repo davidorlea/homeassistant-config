@@ -30,6 +30,9 @@ light.kitchen_sideboard_light:
 light.living_room_ceiling_light:
   friendly_name: 'Living Room Ceiling Light'
   icon: mdi:ceiling-light
+light.living_room_ambient_light:
+  friendly_name: 'Living Room Ambient Light'
+  icon: mdi:lamp
 light.living_room_sofa_light:
   friendly_name: 'Living Room Sofa Light'
   icon: mdi:floor-lamp-dual
