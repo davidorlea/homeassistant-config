@@ -1,8 +1,355 @@
-/**
- * Minified by jsDelivr using Terser v5.7.1.
- * Original file: /npm/rgb-light-card@1.10.0/card.js
- *
- * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
- */
-class RGBLightCard extends HTMLElement{set hass(t){this._hass=t,this.content||(this.init(),this.update()),this.setVisibility()}init(){let t=this.attachShadow({mode:"open"});t.appendChild(RGBLightCard.getStaticCSS()),this.content=document.createElement("div"),this.content.className="wrapper",this.content.onclick=t=>t.stopPropagation(),t.appendChild(this.content)}update(){this.content.innerHTML="",this.content.appendChild(this.getDynamicCSS());for(const t of this.config.colors){const e=document.createElement("div");e.className="color";const r=document.createElement("div");r.className="color-circle",r.style.background=RGBLightCard.getCSSColor(t),r.addEventListener("click",(()=>this.applyColor(t))),e.appendChild(r);const i=document.createElement("div");i.className="color-label",i.innerHTML=t.label||"",e.appendChild(i),this.content.appendChild(e)}}getDynamicCSS(){const t=parseFloat(this.config.size)||32,e=parseFloat(this.config.label_size)||12,r=document.createElement("style");return r.textContent=`\n        .wrapper { justify-content: ${RGBLightCard.getJustify(this.config.justify)}; margin-bottom: -${t/8}px; }\n        .wrapper.hidden { display: none; }\n        .color-circle {  width: ${t}px; height: ${t}px; margin: ${t/8}px ${t/4}px ${t/4}px; }\n        .color-label { font-size: ${e}px; margin-bottom: ${t/8}px; }\n        `.replace(/\s\s+/g," "),r}static getStaticCSS(){const t=document.createElement("style");return t.textContent="\n        .wrapper { cursor: auto; display: flex; flex-wrap: wrap; }\n        .color { flex-basis: 0px; }\n        .color-circle {\n            border-radius: 50%; cursor: pointer; transition: box-shadow 0.15s ease-in-out;\n            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);\n        }\n        .color-circle:hover {\n            box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)\n        }\n        .color-label {\n            color: var(--primary-text-color);\n            text-align: center;\n            overflow-wrap: anywhere;\n        }\n        ".replace(/\s\s+/g," "),t}setConfig(t){const e=RGBLightCard.ensureBackwardCompatibility(t);if(!Array.isArray(e.colors))throw new Error("You need to define an array of colors");if(e.entity&&0!==e.entity.indexOf("light."))throw new Error(`Entity '${e.entity}' must be a light`);for(const t in e.colors){const r=e.colors[t],i=r.type||"light";if(-1===["light","call-service"].indexOf(i))throw new Error(`Invalid type '${i}' for colors[${t}]`);if("light"===i&&!e.entity&&!r.entity_id)throw new Error(`You need to define entity or colors[${t}].entity_id`);if("light"===i&&r.entity_id&&0!==r.entity_id.indexOf("light."))throw new Error(`colors[${t}].entity_id '${r.entity_id}' must be a valid light entity`);if("call-service"===i&&!r.service)throw new Error(`You need to define colors[${t}].service`);if("call-service"===i&&2!==r.service.split(".").length)throw new Error(`colors[${t}].service '${r.service}' must be a valid service`)}this.config=e,this.content&&this.update()}applyColor(t){if("call-service"===t.type){const[e,r]=t.service.split(".");return void this._hass.callService(e,r,t.service_data||{})}const e={entity_id:this.config.entity,...t,icon_color:void 0,type:void 0,label:void 0};this._hass.callService("light","turn_on",e)}setVisibility(){if(this.content&&this.config&&this.config.entity&&this._hass&&this._hass.states&&this._hass.states.hasOwnProperty(this.config.entity)){const t=-1!==["off","unavailable"].indexOf(this._hass.states[this.config.entity].state),e=this.config.hide_when_off&&t;this.content.className=e?"wrapper hidden":"wrapper"}}static ensureBackwardCompatibility(t){const e=JSON.parse(JSON.stringify(t));return e.colors&&Array.isArray(e.colors)?(e.colors=e.colors.map(((t,e)=>{if(t&&["script","scene"].indexOf(t.type)>-1){if(!t.entity_id)throw new Error(`You need to define colors[${e}].entity_id`);if(t.entity_id&&0!==t.entity_id.indexOf(t.type+"."))throw new Error(`colors[${e}].entity_id '${t.entity_id}' must be a ${t.type}`);t.service=`${t.type}.turn_on`,t.service_data={entity_id:t.entity_id},t.type="call-service",t.entity_id=void 0}return t})),e):e}static getCSSColor(t){if(t.icon_color)return t.icon_color;if(t.color_name)return t.color_name;if(t.color_temp||t.kelvin){let e=parseInt(t.color_temp,10)||Math.round(1e6/parseInt(t.kelvin,10));e=Math.max(154,Math.min(500,e));const r=327,i=[[166,209,255],[255,255,255],[255,160,0]].slice(e<r?0:1),o=[154,r,500].slice(e<r?0:1);return`rgb(${[0,1,2].map((t=>(e-o[0])*(i[1][t]-i[0][t])/(o[1]-o[0])+i[0][t])).map(Math.round).join(",")})`}if(Array.isArray(t.rgb_color)&&3===t.rgb_color.length)return`rgb(${t.rgb_color.join(",")})`;if(Array.isArray(t.hs_color)&&2===t.hs_color.length)return`hsl(${t.hs_color[0]},100%,${100-t.hs_color[1]/2}%)`;if(Array.isArray(t.xy_color)&&2===t.xy_color.length){return`rgb(${this.xyToRGB(t.xy_color[0],t.xy_color[1],255).join(",")})`}return"#7F848E"}static xyToRGB(t,e,r){let i=r/255,o=i/e*t,n=i/e*(1-t-e),s=[1.656492*o-.354851*i-.255038*n,.707196*-o+1.655397*i+.036152*n,.051713*o-.121364*i+1.01153*n];s=s.map((t=>t<=.0031308?12.92*t:1.055*Math.pow(t,1/2.4)-.055)).map((t=>Math.max(t,0)));let a=Math.max(...s);return s.map((t=>a>1?t/a:t)).map((t=>Math.floor(255*t)))}static getJustify(t){return{left:"flex-start",right:"flex-end",center:"center",between:"space-between",around:"space-around"}[t]||"flex-start"}static getStubConfig(t){const e=Object.values(t.states).filter((t=>0===t.entity_id.indexOf("light.")&&t.attributes&&t.attributes.supported_color_modes&&t.attributes.supported_color_modes.find((t=>-1!==["hs","rgb","xy"].indexOf(t))))),r=e.length>0?e[0].entity_id:"light.example_light";return{type:"entities",show_header_toggle:!1,entities:[{entity:r},{type:"custom:rgb-light-card",entity:r,colors:[{rgb_color:[234,136,140],brightness:255,transition:1},{rgb_color:[251,180,139],brightness:200,transition:1},{rgb_color:[136,198,237],brightness:150,transition:1},{rgb_color:[140,231,185],brightness:100,transition:1}]}]}}}customElements.define("rgb-light-card",RGBLightCard),window.customCards=window.customCards||[],window.customCards.push({type:"rgb-light-card",name:"RGB Light Card",description:"A custom card for RGB lights",preview:!0}),console.info("\n %c RGB Light Card %c v1.10.0 %c \n","background-color: #555;color: #fff;padding: 3px 2px 3px 3px;border-radius: 3px 0 0 3px;font-family: DejaVu Sans,Verdana,Geneva,sans-serif;text-shadow: 0 1px 0 rgba(1, 1, 1, 0.3)","background-color: #bc81e0;background-image: linear-gradient(90deg, #b65cff, #11cbfa);color: #fff;padding: 3px 3px 3px 2px;border-radius: 0 3px 3px 0;font-family: DejaVu Sans,Verdana,Geneva,sans-serif;text-shadow: 0 1px 0 rgba(1, 1, 1, 0.3)","background-color: transparent");
-//# sourceMappingURL=/sm/fe2bd42d3b457ccf982db3da33bee1c1fb5b4aadd46e612eda940d7b581bc67d.map
+class RGBLightCard extends HTMLElement {
+    set hass(hass) {
+        this._hass = hass;
+        if (!this.content) {
+            this.init();
+            this.update();
+        }
+        this.setVisibility();
+    }
+
+    get isInTile() {
+        return this.constructor.name === 'RGBLightCardFeature';
+    }
+
+    init() {
+        let shadow = this.attachShadow({ mode: 'open' });
+        shadow.appendChild(RGBLightCard.getStaticCSS());
+
+        this.content = document.createElement('div');
+        this.content.className = 'wrapper';
+        this.content.onclick = (ev) => ev.stopPropagation();
+        shadow.appendChild(this.content);
+    }
+
+    update() {
+        this.content.innerHTML = '';
+        this.content.appendChild(this.getDynamicCSS());
+        for (const color of this.config.colors) {
+            const element = document.createElement('div');
+            element.className = 'color';
+
+            const circle = document.createElement('div');
+            circle.className = 'color-circle';
+            circle.style.background = RGBLightCard.getCSSColor(color);
+            circle.addEventListener('click', () => this.applyColor(color));
+            element.appendChild(circle);
+
+            const label = document.createElement('div');
+            label.className = 'color-label';
+            label.innerHTML = color.label || '';
+            element.appendChild(label);
+
+            this.content.appendChild(element);
+        }
+    }
+
+    getDynamicCSS() {
+        const s = parseFloat(this.config.size) || 32; // Circle size
+        const fs = parseFloat(this.config.label_size) || 12; // Label font size
+        const style = document.createElement('style');
+        style.textContent = `
+        .wrapper {
+            justify-content: ${RGBLightCard.getJustify(this.config.justify)};
+            margin-bottom: -${s / 8}px;
+            margin-left: ${this.isInTile ? -s / 4 : 0}px;
+            margin-right: ${this.isInTile ? -s / 4 : 0}px;
+        }
+        .wrapper.hidden { display: none; }
+        .color-circle {  width: ${s}px; height: ${s}px; margin: ${s / 8}px ${s / 4}px ${s / 4}px; }
+        .color-label { font-size: ${fs}px; margin-bottom: ${s / 8}px; }
+        `.replace(/\s\s+/g, ' ');
+        return style;
+    }
+
+    static getStaticCSS() {
+        const style = document.createElement('style');
+        style.textContent = `
+        .wrapper { cursor: auto; display: flex; flex-wrap: wrap; }
+        .color { flex-basis: 0px; }
+        .color-circle {
+            border-radius: 50%; cursor: pointer; transition: box-shadow 0.15s ease-in-out;
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        }
+        .color-circle:hover {
+            box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)
+        }
+        .color-label {
+            color: var(--primary-text-color);
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+        `.replace(/\s\s+/g, ' ');
+        return style;
+    }
+
+    setConfig(haConfig) {
+        const config = RGBLightCard.ensureBackwardCompatibility(haConfig);
+
+        // Colors must be a defined array
+        if (!Array.isArray(config.colors)) {
+            throw new Error('You need to define an array of colors');
+        }
+        // If root entity is defined, it can only be a light
+        if (config.entity && config.entity.indexOf('light.') !== 0) {
+            throw new Error(`Entity '${config.entity}' must be a light`);
+        }
+        // Validate each color
+        for (const c in config.colors) {
+            const color = config.colors[c];
+            const type = color.type || 'light';
+            // Check if type is valid
+            if (['light', 'action'].indexOf(type) === -1) {
+                throw new Error(`Invalid type '${type}' for colors[${c}]`);
+            }
+            // If root entity is not defined, ensure light entity_id is defined
+            if (type === 'light' && !config.entity && !color.entity_id) {
+                throw new Error(`You need to define entity or colors[${c}].entity_id`);
+            }
+            // If entity_id is defined, check that it's a valid light
+            if (type === 'light' && color.entity_id && color.entity_id.indexOf('light.') !== 0) {
+                throw new Error(`colors[${c}].entity_id '${color.entity_id}' must be a valid light entity`);
+            }
+            // If action type, ensure action is defined
+            if (type === 'action' && !color.action) {
+                throw new Error(`You need to define colors[${c}].action`);
+            }
+            // Check that action is valid
+            if (type === 'action' && color.action.split('.').length !== 2) {
+                throw new Error(`colors[${c}].action '${color.action}' must be a valid action`);
+            }
+        }
+
+        this.config = config;
+
+        if (this.content) {
+            this.update();
+        }
+    }
+
+    applyColor(color) {
+        this.fireHapticFeedback();
+        if (color.type === 'action') {
+            const [domain, action] = color.action.split('.');
+            this._hass.callService(domain, action, color.data || {});
+            return;
+        }
+        const actionData = {
+            entity_id: this.config.entity,
+            ...color,
+            icon_color: undefined,
+            type: undefined,
+            label: undefined,
+        };
+        this._hass.callService('light', 'turn_on', actionData);
+    }
+
+    setVisibility() {
+        if (
+            this.content &&
+            this.config &&
+            this.config.entity &&
+            this._hass &&
+            this._hass.states &&
+            this._hass.states.hasOwnProperty(this.config.entity)
+        ) {
+            const isOff = ['off', 'unavailable'].indexOf(this._hass.states[this.config.entity].state) !== -1;
+            const hidden = this.config['hide_when_off'] && isOff;
+            this.content.className = hidden ? 'wrapper hidden' : 'wrapper';
+        }
+    }
+
+    fireHapticFeedback() {
+        const event = new Event('haptic', {
+            bubbles: true,
+            cancelable: false,
+            composed: true,
+        });
+        event.detail = 'light';
+        window.dispatchEvent(event);
+    }
+
+    // Transform a deprecated config into a more recent one
+    static ensureBackwardCompatibility(originalConfig) {
+        // Create a deep copy of the config
+        const config = JSON.parse(JSON.stringify(originalConfig));
+        if (!config.colors || !Array.isArray(config.colors)) {
+            return config;
+        }
+        config.colors = config.colors.map((color, c) => {
+            // Migrate to 1.12.0 format
+            if (color) {
+                if (color.type === 'call-service') {
+                    color.type = 'action';
+                }
+                if (color.service) {
+                    color.action = color.service;
+                    delete color.service;
+                }
+                if (color.service_data) {
+                    color.data = color.service_data;
+                    delete color.service_data;
+                }
+            }
+            return color;
+        });
+        return config;
+    }
+
+    static getCSSColor(color) {
+        if (color['icon_color']) {
+            return color['icon_color'];
+        }
+        if (color['color_name']) {
+            return color['color_name'];
+        }
+        if (color['color_temp_kelvin']) {
+            let mireds = Math.round(1000000 / parseInt(color['color_temp_kelvin'], 10));
+            mireds = Math.max(154, Math.min(500, mireds));
+            const center = (500 + 154) / 2;
+            const cr = [[166, 209, 255], [255, 255, 255], [255, 160, 0]].slice(mireds < center ? 0 : 1); // prettier-ignore
+            const tr = [154, center, 500].slice(mireds < center ? 0 : 1); // Defined here: https://git.io/JvRKR
+            return `rgb(${[0, 1, 2]
+                .map((i) => ((mireds - tr[0]) * (cr[1][i] - cr[0][i])) / (tr[1] - tr[0]) + cr[0][i])
+                .map(Math.round)
+                .join(',')})`;
+        }
+        if (Array.isArray(color['rgb_color']) && color['rgb_color'].length === 3) {
+            return `rgb(${color['rgb_color'].join(',')})`;
+        }
+        if (Array.isArray(color['rgbw_color']) && color['rgbw_color'].length === 4) {
+            return `rgb(${color['rgbw_color'].slice(0, 3).join(',')})`;
+        }
+        if (Array.isArray(color['rgbww_color']) && color['rgbww_color'].length === 5) {
+            return `rgb(${color['rgbww_color'].slice(0, 3).join(',')})`;
+        }
+        if (Array.isArray(color['hs_color']) && color['hs_color'].length === 2) {
+            return `hsl(${color['hs_color'][0]},100%,${100 - color['hs_color'][1] / 2}%)`;
+        }
+        if (Array.isArray(color['xy_color']) && color['xy_color'].length === 2) {
+            const rgb = this.xyToRGB(color['xy_color'][0], color['xy_color'][1], 255);
+            return `rgb(${rgb.join(',')})`;
+        }
+        if (color['brightness']) {
+            return `rgba(253,216,53,${color['brightness'] / 255})`;
+        }
+        if (color['brightness_pct']) {
+            return `rgba(253,216,53,${color['brightness_pct'] / 100})`;
+        }
+        return '#7F848E';
+    }
+
+    // Original python code from Home Assistant: https://git.io/JV8ln
+    static xyToRGB(x, y, brightness) {
+        let Y = brightness / 255;
+        let X = (Y / y) * x;
+        let Z = (Y / y) * (1.0 - x - y);
+        let rgb = [
+            X * 1.656492 - Y * 0.354851 - Z * 0.255038,
+            -X * 0.707196 + Y * 1.655397 + Z * 0.036152,
+            X * 0.051713 - Y * 0.121364 + Z * 1.01153,
+        ];
+
+        rgb = rgb
+            .map((c) => (c <= 0.0031308 ? 12.92 * c : (1.0 + 0.055) * Math.pow(c, 1.0 / 2.4) - 0.055)) // Apply reverse gamma correction
+            .map((c) => Math.max(c, 0)); // Bring all negative components to zero
+
+        let max = Math.max(...rgb);
+
+        return rgb
+            .map((c) => (max > 1 ? c / max : c)) // If one component is greater than 1, weight components by that value
+            .map((c) => Math.floor(c * 255));
+    }
+
+    static getJustify(option) {
+        return (
+            {
+                left: 'flex-start',
+                right: 'flex-end',
+                center: 'center',
+                between: 'space-between',
+                around: 'space-around',
+            }[option] || 'flex-start'
+        );
+    }
+
+    static getSupportedEntityIds(ha) {
+        return Object.values(ha.states)
+            .filter(
+                (entity) =>
+                    entity.entity_id.startsWith('light.') &&
+                    entity.attributes &&
+                    entity.attributes.supported_color_modes &&
+                    entity.attributes.supported_color_modes.find((mode) => ['hs', 'rgb', 'xy'].indexOf(mode) !== -1)
+            )
+            .map((entity) => entity.entity_id);
+    }
+
+    static getExampleColors() {
+        return [
+            { rgb_color: [234, 136, 140], brightness: 255, transition: 1 },
+            { rgb_color: [251, 180, 139], brightness: 200, transition: 1 },
+            { rgb_color: [136, 198, 237], brightness: 150, transition: 1 },
+            { rgb_color: [140, 231, 185], brightness: 100, transition: 1 },
+        ];
+    }
+
+    // Default config when creating the card from the UI
+    static getStubConfig(ha) {
+        const supportedEntityIds = RGBLightCard.getSupportedEntityIds(ha);
+        const entity = supportedEntityIds[0] || 'light.example_light';
+
+        return {
+            type: 'entities',
+            show_header_toggle: false,
+            entities: [
+                { entity: entity },
+                {
+                    type: 'custom:rgb-light-card',
+                    entity: entity,
+                    colors: RGBLightCard.getExampleColors(),
+                },
+            ],
+        };
+    }
+}
+
+class RGBLightCardFeature extends RGBLightCard {
+    static getStubConfig(ha, stateObj) {
+        let entity = stateObj ? stateObj.entity_id : undefined;
+        if (!entity || !entity.startsWith('light.')) {
+            const supportedEntityIds = RGBLightCard.getSupportedEntityIds(ha);
+            entity = supportedEntityIds[0] || 'light.example_light';
+        }
+        return {
+            type: 'custom:rgb-light-card-feature',
+            entity,
+            colors: RGBLightCard.getExampleColors(),
+        };
+    }
+}
+
+customElements.define('rgb-light-card', RGBLightCard);
+customElements.define('rgb-light-card-feature', RGBLightCardFeature);
+
+window.customCards = window.customCards || [];
+window.customCards.push({
+    type: 'rgb-light-card',
+    name: 'RGB Light Card',
+    description: 'A custom card for RGB lights',
+    preview: true,
+});
+
+window.customCardFeatures = window.customCardFeatures || [];
+window.customCardFeatures.push({
+    type: 'rgb-light-card-feature',
+    name: 'RGB Light Card (Tile feature)',
+    configurable: true,
+});
+
+console.info(
+    '\n %c RGB Light Card %c v1.14.0 %c \n',
+    'background-color: #555;color: #fff;padding: 3px 2px 3px 3px;border-radius: 3px 0 0 3px;font-family: DejaVu Sans,Verdana,Geneva,sans-serif;text-shadow: 0 1px 0 rgba(1, 1, 1, 0.3)',
+    'background-color: #bc81e0;background-image: linear-gradient(90deg, #b65cff, #11cbfa);color: #fff;padding: 3px 3px 3px 2px;border-radius: 0 3px 3px 0;font-family: DejaVu Sans,Verdana,Geneva,sans-serif;text-shadow: 0 1px 0 rgba(1, 1, 1, 0.3)',
+    'background-color: transparent'
+);
