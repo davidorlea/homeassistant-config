@@ -1,3 +1,19 @@
+- alias: 'Toggle Kitchen Ceiling Light when switched'
+  id: 7e40e40e-39a2-4298-bd20-e36369c4419e
+  trigger:
+    - trigger: state
+      entity_id: binary_sensor.kitchen_ceiling_light_button
+      from: 'on'
+      to: 'off'
+    - trigger: state
+      entity_id: binary_sensor.kitchen_ceiling_light_button
+      from: 'off'
+      to: 'on'
+  action:
+    service: light.toggle
+    target:
+      entity_id: light.kitchen_ceiling_light
+
 - alias: 'Turn Kitchen Ceiling and Counter Light on when there is Movement'
   id: 763269a9-c70f-4ae5-877e-fa35acea16fa
   trigger:

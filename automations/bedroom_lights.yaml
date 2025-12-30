@@ -1,3 +1,19 @@
+- alias: 'Toggle Bedroom Ceiling Light when switched'
+  id: 08e03ef3-0a7d-4f5b-9012-288cbf8b104c
+  trigger:
+    - trigger: state
+      entity_id: binary_sensor.bedroom_ceiling_light_button
+      from: 'on'
+      to: 'off'
+    - trigger: state
+      entity_id: binary_sensor.bedroom_ceiling_light_button
+      from: 'off'
+      to: 'on'
+  action:
+    service: light.toggle
+    target:
+      entity_id: light.bedroom_ceiling_light
+
 - alias: 'Turn Bedroom Ceiling Light on when there is Movement'
   id: ca2eea25-0572-478b-a3c1-1463663224e5
   trigger:
