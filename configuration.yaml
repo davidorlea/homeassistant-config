@@ -11,12 +11,6 @@ homeassistant:
   currency: !secret homeassistant_currency
   customize: !include customize.yaml
   external_url: !secret homeassistant_external_url
-  auth_providers:
-    - type: homeassistant
-    - type: trusted_networks
-      trusted_networks:
-        - !secret homeassistant_auth_providers_trusted_networks_1
-        - !secret homeassistant_auth_providers_trusted_networks_2
 
 logger:
   default: warning
