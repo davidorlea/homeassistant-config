@@ -1,3 +1,19 @@
+- alias: 'Toggle Hall Ceiling Light when switched'
+  id: a5dba6a0-e11c-4d9d-8c23-9bf8d181465b
+  trigger:
+    - trigger: state
+      entity_id: binary_sensor.hall_ceiling_light_button
+      from: 'on'
+      to: 'off'
+    - trigger: state
+      entity_id: binary_sensor.hall_ceiling_light_button
+      from: 'off'
+      to: 'on'
+  action:
+    service: light.toggle
+    target:
+      entity_id: light.hall_ceiling_light
+
 - alias: 'Turn Hall Ceiling Light on when there is Movement'
   id: dd2c9c06-bddd-43ef-8662-9710093d0f46
   trigger:
