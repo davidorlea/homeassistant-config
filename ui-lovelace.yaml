@@ -1,5 +1,3 @@
-title: MuffetNet
-
 views:
   - !include lovelace/home.yaml
   - !include lovelace/rooms.yaml
