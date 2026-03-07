@@ -1,7 +1,3 @@
-host: !secret influxdb_host
-username: !secret influxdb_username
-password: !secret influxdb_password
-database: !secret influxdb_database
 include:
   entities:
     - sensor.dwd_pollen_41_grass
