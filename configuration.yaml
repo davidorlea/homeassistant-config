@@ -78,7 +78,7 @@ sonos:
 
 powercalc:
 
-alexa: !include alexa/smart_home.yaml
+alexa: !include alexa.yaml
 
 automation: !include_dir_merge_list automations
 
