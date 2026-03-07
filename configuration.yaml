@@ -28,7 +28,7 @@ lovelace:
     - url: local/rgb-light-card/rgb-light-card.js
       type: module
   dashboards:
-    lovelace:
+    dashboard-default:
       mode: yaml
       filename: ui-lovelace.yaml
       title: !secret homeassistant_name
