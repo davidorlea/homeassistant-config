@@ -1,4 +1,7 @@
 WeatherIntent:
+  description: >-
+    Gibt die aktuellen Wetterbedingungen zurück, einschließlich Wettertyp, Temperatur in Grad Celsius,
+    Windgeschwindigkeit und Windrichtung.
   speech:
     type: plain
     text: >-

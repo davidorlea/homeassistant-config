@@ -1,4 +1,6 @@
 GoodMorningIntent:
+  description: >-
+    Begrüßt den Nutzer mit einem guten Morgen und deaktiviert den Schlafmodus.
   speech:
     type: plain
     text: >-
@@ -32,6 +34,9 @@ GoodMorningIntent:
                 option: 'off'
 
 GoodNightIntent:
+  description: >-
+    Verabschieded den Nutzer mit einer guten Nacht, gibt den aktuellen Wecker-Status und die eingestellte Zeit aus,
+    und aktiviert den Schlafmodus.
   speech:
     type: plain
     text: >-

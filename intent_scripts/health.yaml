@@ -1,4 +1,6 @@
 PollenIntent:
+  description: >-
+    Gibt die heutige Pollenvorhersage für Gräser und Bäume zurück, mit Stufen von unauffällig bis hoch.
   speech:
     type: plain
     text: >-

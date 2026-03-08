@@ -1,4 +1,6 @@
 GasStationIntent:
+  description: >-
+    Gibt den aktuellen Dieselpreis pro Liter, den Markennamen und die Adresse der nächstgelegenen Tankstelle zurück.
   speech:
     type: plain
     text: >-
@@ -18,6 +20,8 @@ GasStationIntent:
       {% endif %}
 
 NearestScooterIntent:
+  description: >-
+    Gibt die Entfernung in Metern und den Akkustand in Prozent des nächstgelegenen verfügbaren Scooters zurück.
   speech:
     type: plain
     text: >-
@@ -33,6 +37,8 @@ NearestScooterIntent:
       {% endif %}
 
 NextBusIntent:
+  description: >-
+    Gibt an, in wie vielen Minuten der nächste Bus von der nächstgelegenen Haltestelle abfährt.
   speech:
     type: plain
     text: >-

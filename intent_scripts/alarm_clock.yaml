@@ -1,4 +1,6 @@
 GetAlarmClockIntent:
+  description: >-
+    Gibt zurück, ob der Wecker aktiviert oder deaktiviert ist, und falls aktiviert, auf welche Zeit er gestellt ist.
   speech:
     type: plain
     text: >-
@@ -19,6 +21,9 @@ GetAlarmClockIntent:
       {% endif %}
 
 SetAlarmClockIntent:
+  description: >-
+    Stellt den Wecker auf eine bestimmte Zeit und aktiviert ihn. Benötigt den Parameter 'time'
+    (Zeichenkette, Format HH:MM:SS).
   speech:
     type: plain
     text: >-
@@ -38,6 +43,8 @@ SetAlarmClockIntent:
         entity_id: input_boolean.alarm_clock
 
 DisableAlarmClockIntent:
+  description: >-
+    Deaktiviert den Wecker.
   speech:
     type: plain
     text: >-

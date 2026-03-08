@@ -1,4 +1,6 @@
 GuestIntent:
+  description: >-
+    Aktiviert den Gast-Modus im Smart Home.
   speech:
     type: plain
     text: >-

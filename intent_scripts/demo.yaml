@@ -1,4 +1,6 @@
 LetTheDogsOutIntent:
+  description: >-
+    Spielt ein Hundebellen-Geräusch über die Sonos-Lautsprecher im Wohnzimmer und in der Küche ab.
   speech:
     type: plain
     text: >-
