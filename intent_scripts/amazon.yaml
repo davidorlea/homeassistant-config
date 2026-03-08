@@ -1,42 +1,42 @@
-amzn1.ask.skill.1cc4d058-60e4-4b70-aabf-766d9a26aae1:
-  speech:
-    type: plain
-    text: >-
-      Hallo, ich bin Home Assistant. Was kann ich für dich tun?
-  reprompt:
-    type: plain
-    text: >-
-      Wie kann ich dir helfen?
+# amzn1.ask.skill.1cc4d058-60e4-4b70-aabf-766d9a26aae1:
+#   speech:
+#     type: plain
+#     text: >-
+#       Hallo, ich bin Home Assistant. Was kann ich für dich tun?
+#   reprompt:
+#     type: plain
+#     text: >-
+#       Wie kann ich dir helfen?
 
-amzn1.ask.skill.1cc4d058-60e4-4b70-aabf-766d9a26aae1.SessionEndedRequest:
-  action:
+# amzn1.ask.skill.1cc4d058-60e4-4b70-aabf-766d9a26aae1.SessionEndedRequest:
+#   action:
 
-AMAZON.FallbackIntent:
-  speech:
-    type: plain
-    text: >-
-      Das kann ich leider nicht tun.
+# AMAZON.FallbackIntent:
+#   speech:
+#     type: plain
+#     text: >-
+#       Das kann ich leider nicht tun.
 
-AMAZON.CancelIntent:
-  speech:
-    type: plain
-    text: >-
-      Okay
+# AMAZON.CancelIntent:
+#   speech:
+#     type: plain
+#     text: >-
+#       Okay
 
-AMAZON.HelpIntent:
-  speech:
-    type: plain
-    text: >-
-      Ich bin eine Open Source Hausautomation, bei der lokale Kontrolle und Datenschutz an erster Stelle stehen. Angetrieben von einer weltweiten Community von Bastlern und Heimwerkern.
+# AMAZON.HelpIntent:
+#   speech:
+#     type: plain
+#     text: >-
+#       Ich bin eine Open Source Hausautomation, bei der lokale Kontrolle und Datenschutz an erster Stelle stehen. Angetrieben von einer weltweiten Community von Bastlern und Heimwerkern.
 
-AMAZON.StopIntent:
-  speech:
-    type: plain
-    text: >-
-      Okay
+# AMAZON.StopIntent:
+#   speech:
+#     type: plain
+#     text: >-
+#       Okay
 
-AMAZON.NavigateHomeIntent:
-  speech:
-    type: plain
-    text: >-
-      Okay
+# AMAZON.NavigateHomeIntent:
+#   speech:
+#     type: plain
+#     text: >-
+#       Okay
