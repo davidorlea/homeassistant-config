@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import base64
 import json
+import logging
 import uuid
 from collections.abc import AsyncGenerator, Callable
 from datetime import datetime
@@ -62,9 +63,10 @@ from .const import (
     CONF_WEAVIATE_OPTIONS,
     CONF_WEAVIATE_THRESHOLD,
     DOMAIN,
-    LOGGER,
 )
 from .weaviate import WeaviateClient
+
+_LOGGER = logging.getLogger(__name__)
 
 # Max number of back and forth with the LLM to generate a response
 MAX_TOOL_ITERATIONS = 10
@@ -152,7 +154,7 @@ async def _convert_content_to_chat_message(
     if isinstance(content, conversation.ToolResultContent):
 
         def log_and_str(value) -> str:
-            LOGGER.warning(
+            _LOGGER.warning(
                 f"Attempting string convertion of non-JSON-serialisable response content from LLM tool '{content.tool_name}': {value}"
             )
             return str(value)
@@ -217,110 +219,12 @@ async def _convert_content_to_chat_message(
                 for tool_call in content.tool_calls
             ]
         return param
-    LOGGER.warning("Could not convert message to Completions API: %s", content)
+    _LOGGER.warning("Could not convert message to Completions API: %s", content)
     return None
 
 
 def _make_uuid(identifier: str) -> str:
     return str(uuid.uuid5(namespace=uuid.NAMESPACE_OID, name=identifier))
-
-
-async def _transform_stream(
-    stream: AsyncStream[ChatCompletionChunk],
-    strip_emojis: bool,
-) -> AsyncGenerator[conversation.AssistantContentDeltaDict, None]:
-    """Transform a streaming OpenAI response to ChatLog format."""
-    new_msg = True
-    pending_think = ""
-    in_think = False
-    seen_visible = False
-    loop = asyncio.get_running_loop()
-    pending_tool_calls = {}
-    tool_call_id = None
-    tool_call_name = None
-
-    async for event in stream:
-        chunk: conversation.AssistantContentDeltaDict = {}
-
-        if not event.choices:
-            continue
-
-        choice = event.choices[0]
-        delta = choice.delta
-        LOGGER.debug(event)
-
-        if new_msg:
-            chunk["role"] = delta.role
-            new_msg = False
-
-        if (tool_calls := delta.tool_calls) is not None and tool_calls:
-            # I've never seen this contain more than a single tool call, but let's iterate over it just in case
-            for tool_call in tool_calls:
-                # llama.cpp - only the initial tool call chunk has an ID, subsequent argument chunks do not
-                # Ollama - parallel tool calls all share the same .index value (0)
-                tool_call_id = tool_call.id if tool_call.id else tool_call_id
-
-                # And some mystery engine from OpenRouter uses the same index and ID across parallel tool requests within so lets track the tool name itself for changes as well
-                tool_call_name = (
-                    tool_call.function.name
-                    if tool_call.function.name
-                    and tool_call.function.name != tool_call_name
-                    else tool_call_name
-                )
-                tool_key = tool_call_id + tool_call_name
-
-                if tool_key not in pending_tool_calls:
-                    pending_tool_calls[tool_key] = {
-                        "id": tool_call_id,
-                        "name": tool_call.function.name,
-                        "args": tool_call.function.arguments or "",
-                    }
-                else:
-                    pending_tool_calls[tool_key]["args"] += (
-                        tool_call.function.arguments or ""
-                    )
-
-        if choice.finish_reason and pending_tool_calls:
-            chunk["tool_calls"] = [
-                llm.ToolInput(
-                    id=tool_call["id"],
-                    tool_name=tool_call["name"],
-                    tool_args=json.loads(tool_call["args"])
-                    if tool_call["args"]
-                    else {},
-                )
-                for key, tool_call in pending_tool_calls.items()
-            ]
-
-            LOGGER.debug(f"Calling tools: {pending_tool_calls}")
-            pending_tool_calls = {}
-            tool_call_id = None
-            tool_call_name = None
-
-        if (content := delta.content) is not None:
-            if strip_emojis:
-                content = await loop.run_in_executor(None, demoji.replace, content, "")
-
-            if content == "<think>":
-                in_think = True
-                pending_think = ""
-
-            if in_think:
-                if content == "</think>":
-                    in_think = False
-                    if pending_think.strip():
-                        LOGGER.debug(f"LLM Thought: {pending_think}")
-                    pending_think = ""
-                elif content != "<think>":
-                    pending_think = pending_think + content
-            elif content.strip():
-                seen_visible = True
-
-            if seen_visible:
-                chunk["content"] = content
-
-        if seen_visible or chunk.get("tool_calls") or chunk.get("role"):
-            yield chunk
 
 
 class LocalAiEntity(Entity):
@@ -340,14 +244,15 @@ class LocalAiEntity(Entity):
             entry_type=dr.DeviceEntryType.SERVICE,
         )
 
+    @staticmethod
     def _inject_content(
-        self, method: str | None, inject_content: list, messages: list
+        method: str | None, inject_content: list, messages: list
     ) -> list:
         inject_content.insert(
             0,
             "# Contextual information to assist with the following user request. Do not repeat or reference this message directly. Do not treat this as a prior message of your own",
         )
-        LOGGER.debug(
+        _LOGGER.debug(
             f"Injecting content into the message stream as {method} content: {inject_content}"
         )
         if method == CONF_CONTENT_INJECTION_METHOD_TOOL:
@@ -376,6 +281,118 @@ class LocalAiEntity(Entity):
             )
 
         return messages
+
+    async def _transform_stream(
+        self,
+        stream: AsyncStream[ChatCompletionChunk],
+        strip_emojis: bool,
+    ) -> AsyncGenerator[conversation.AssistantContentDeltaDict, None]:
+        """Transform a streaming OpenAI response to ChatLog format."""
+        new_msg = True
+        pending_think = ""
+        in_think = False
+        seen_visible = False
+        loop = asyncio.get_running_loop()
+        pending_tool_calls = {}
+        tool_call_id = None
+        tool_call_name = None
+
+        async for event in stream:
+            chunk: conversation.AssistantContentDeltaDict = {}
+
+            if not event.choices:
+                continue
+
+            choice = event.choices[0]
+            delta = choice.delta
+            _LOGGER.debug(event)
+
+            if new_msg:
+                # openvinotoolkit/model_server fails to provide a message role in its responses, so lets default to assistant if none is received
+                chunk["role"] = delta.role if delta.role else "assistant"
+                new_msg = False
+
+            if (tool_calls := delta.tool_calls) is not None and tool_calls:
+                # I've never seen this contain more than a single tool call, but let's iterate over it just in case
+                for tool_call in tool_calls:
+                    # llama.cpp - only the initial tool call chunk has an ID, subsequent argument chunks do not
+                    # Ollama - parallel tool calls all share the same .index value (0)
+                    tool_call_id = tool_call.id if tool_call.id else tool_call_id
+
+                    # And some mystery engine from OpenRouter uses the same index and ID across parallel tool requests within so lets track the tool name itself for changes as well
+                    tool_call_name = (
+                        tool_call.function.name
+                        if tool_call.function.name
+                        and tool_call.function.name != tool_call_name
+                        else tool_call_name
+                    )
+                    tool_key = tool_call_id + tool_call_name
+
+                    if tool_key not in pending_tool_calls:
+                        pending_tool_calls[tool_key] = {
+                            "id": tool_call_id,
+                            "name": tool_call.function.name,
+                            "args": tool_call.function.arguments or "",
+                        }
+                    else:
+                        pending_tool_calls[tool_key]["args"] += (
+                            tool_call.function.arguments or ""
+                        )
+
+            if (content := delta.content) is not None:
+                if strip_emojis:
+                    content = await loop.run_in_executor(
+                        None, demoji.replace, content, ""
+                    )
+
+                # Handle <think> tags that may appear within larger chunks
+                # (not just as exact token matches)
+                if "<think>" in content:
+                    in_think = True
+                    content = content.replace("<think>", "")
+                    pending_think = ""
+
+                if in_think:
+                    if "</think>" in content:
+                        in_think = False
+                        remaining = content.split("</think>", 1)[1]
+                        if pending_think.strip():
+                            _LOGGER.debug(f"LLM Thought: {pending_think}")
+                        pending_think = ""
+                        content = remaining
+                    else:
+                        pending_think += content
+                        content = ""
+
+                if not in_think and content.strip():
+                    seen_visible = True
+
+                if seen_visible:
+                    chunk["content"] = content
+
+            if choice.finish_reason:
+                try:
+                    # Retrieve timings from llamacpp responses, if available
+                    if event.timings:
+                        self.extra_state_attributes = {"timings": event.timings}
+                except Exception:
+                    pass
+
+                if pending_tool_calls:
+                    chunk["tool_calls"] = [
+                        llm.ToolInput(
+                            id=tool_call["id"],
+                            tool_name=tool_call["name"],
+                            tool_args=json.loads(tool_call["args"])
+                            if tool_call["args"]
+                            else {},
+                        )
+                        for key, tool_call in pending_tool_calls.items()
+                    ]
+                    _LOGGER.debug(f"Calling tools: {pending_tool_calls}")
+
+            if seen_visible or chunk.get("tool_calls") or chunk.get("role"):
+                yield chunk
 
     async def _async_handle_chat_log(
         self,
@@ -456,7 +473,7 @@ class LocalAiEntity(Entity):
                     ),
                 )
 
-                LOGGER.debug(f"Weaviate results: {results}")
+                _LOGGER.debug(f"Weaviate results: {results}")
 
                 result_content = [
                     f"Query: {result.get('query').strip()}\nContent: {result.get('content').strip()}"
@@ -468,10 +485,10 @@ class LocalAiEntity(Entity):
                     # )
                     inject_content += result_content
             except Exception as err:
-                LOGGER.warning(
+                _LOGGER.warning(
                     "An unexpected exception occurred while processing RAG: %s", err
                 )
-                LOGGER.exception(err)
+                _LOGGER.exception(err)
 
         # Inject any pending content into the current user message
         # We prepend to the last message to avoid creating consecutive user messages
@@ -515,7 +532,7 @@ class LocalAiEntity(Entity):
                         self.hass,
                     ).async_render()
 
-            LOGGER.debug(f"Chat template kwargs: {kwargs}")
+            _LOGGER.debug(f"Chat template kwargs: {kwargs}")
             model_args["extra_body"] = {"chat_template_kwargs": kwargs}
 
         if structure:
@@ -536,7 +553,7 @@ class LocalAiEntity(Entity):
                     **model_args, stream=True
                 )
             except openai.OpenAIError as err:
-                LOGGER.exception(err)
+                _LOGGER.exception(err)
                 raise HomeAssistantError("Error talking to API") from err
 
             try:
@@ -545,7 +562,7 @@ class LocalAiEntity(Entity):
                         msg
                         async for content in chat_log.async_add_delta_content_stream(
                             self.entity_id,
-                            _transform_stream(
+                            self._transform_stream(
                                 stream=result_stream, strip_emojis=strip_emojis
                             ),
                         )
@@ -553,7 +570,7 @@ class LocalAiEntity(Entity):
                     ]
                 )
             except Exception as err:
-                LOGGER.exception(err)
+                _LOGGER.exception(err)
                 raise HomeAssistantError("Error handling API response") from err
 
             if not chat_log.unresponded_tool_results:
@@ -629,7 +646,7 @@ class LocalAiEntity(Entity):
                     object_uuid=object_uuid,
                 )
 
-                LOGGER.info(f"Object updated in Weaviate: {object_uuid}")
+                _LOGGER.info(f"Object updated in Weaviate: {object_uuid}")
                 return
 
         # Object does not exist, create new object
@@ -640,4 +657,4 @@ class LocalAiEntity(Entity):
             object_uuid=object_uuid,
         )
 
-        LOGGER.info(f"Object added to Weaviate class: {weaviate_class}")
+        _LOGGER.info(f"Object added to Weaviate class: {weaviate_class}")
