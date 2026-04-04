@@ -111,6 +111,14 @@
                 state: 'on'
               - condition: template
                 value_template: "{{ repeat.index >= 10 }}"
+    - condition: state
+      entity_id: media_player.lg_webos_tv
+      state: 'on'
+    - service: media_player.select_source
+      target:
+        entity_id: media_player.lg_webos_tv
+      data:
+        source: Apple TV
 
 - alias: 'Turn TV Power off'
   id: 0958a97a-3efb-468a-9c75-eee8098f39ad
