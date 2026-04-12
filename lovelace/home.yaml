@@ -34,8 +34,8 @@ cards:
         entities:
           - type: 'custom:rgb-light-card'
             entity: light.ambient_lights
-            size: 24
-            justify: around
+            size: 28
+            justify: center
             colors:
               - rgb_color: [255, 0, 0]
               - rgb_color: [255, 128, 0]
