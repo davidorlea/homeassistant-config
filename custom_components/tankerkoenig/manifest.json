@@ -1,0 +1,12 @@
+{
+  "domain": "tankerkoenig",
+  "name": "Tankerkoenig Sensor",
+  "codeowners": ["@davidorlea"],
+  "dependencies": [],
+  "documentation": "https://github.com/davidorlea/homeassistant-tankerkoenig",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/davidorlea/homeassistant-tankerkoenig/issues",
+  "requirements": [],
+  "version": "0.4.0"
+}
