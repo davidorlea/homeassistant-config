@@ -49,9 +49,9 @@ cards:
               - rgb_color: [128, 0, 255]
               - rgb_color: [255, 0, 255]
               - rgb_color: [255, 0, 128]
-              - type: call-service
-                service: script.random_color
-                service_data:
+              - type: action
+                action: script.random_color
+                data:
                   lights:
                     - light.ambient_lights
                   force: true
