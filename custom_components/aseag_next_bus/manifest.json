@@ -1,0 +1,12 @@
+{
+  "domain": "aseag_next_bus",
+  "name": "ASEAG Next Bus Sensor",
+  "codeowners": ["@davidorlea"],
+  "dependencies": [],
+  "documentation": "https://github.com/davidorlea/homeassistant-aseag_next_bus",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/davidorlea/homeassistant-aseag_next_bus/issues",
+  "requirements": [],
+  "version": "0.8.0"
+}
