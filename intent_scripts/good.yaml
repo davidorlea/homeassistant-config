@@ -17,7 +17,7 @@ GoodMorningIntent:
               entity_id: input_select.bed_mode
               state: 'on'
           sequence:
-            - service: input_select.select_option
+            - action: input_select.select_option
               target:
                 entity_id: input_select.bed_mode
               data:
@@ -27,7 +27,7 @@ GoodMorningIntent:
               entity_id: input_select.bed_mode
               state: 'just on'
           sequence:
-            - service: input_select.select_option
+            - action: input_select.select_option
               target:
                 entity_id: input_select.bed_mode
               data:
@@ -68,7 +68,7 @@ GoodNightIntent:
               entity_id: input_select.bed_mode
               state: 'off'
           sequence:
-            - service: input_select.select_option
+            - action: input_select.select_option
               target:
                 entity_id: input_select.bed_mode
               data:
@@ -78,7 +78,7 @@ GoodNightIntent:
               entity_id: input_select.bed_mode
               state: 'just off'
           sequence:
-            - service: input_select.select_option
+            - action: input_select.select_option
               target:
                 entity_id: input_select.bed_mode
               data:

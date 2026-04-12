@@ -7,7 +7,7 @@
     for:
       minutes: 30
   action:
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.away_mode
     data:
@@ -22,7 +22,7 @@
     for:
       minutes: 10
   action:
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.away_mode
     data:
@@ -40,7 +40,7 @@
     entity_id: input_select.away_mode
     state: 'off'
   action:
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.away_mode
     data:
@@ -58,7 +58,7 @@
     entity_id: input_select.away_mode
     state: 'just off'
   action:
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.away_mode
     data:
@@ -76,7 +76,7 @@
     entity_id: input_select.away_mode
     state: 'on'
   action:
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.away_mode
     data:
@@ -94,7 +94,7 @@
     entity_id: input_select.away_mode
     state: 'just on'
   action:
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.away_mode
     data:

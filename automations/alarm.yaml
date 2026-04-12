@@ -29,7 +29,7 @@
               entity_id: input_boolean.intrusion_alarm_notification
               state: 'on'
           then:
-            - service: notify.mobile_app_iphone_von_david
+            - action: notify.mobile_app_iphone_von_david
               data:
                 title: "Intrusion Alarm"
                 message: "Intrusion detected at home!"
@@ -45,7 +45,7 @@
               entity_id: input_boolean.intrusion_alarm_siren
               state: 'on'
           then:
-            - service: script.sonos_play
+            - action: script.sonos_play
               data:
                 devices:
                   - media_player.sonos_device_wohnzimmer
@@ -63,7 +63,7 @@
     from: 'off'
     to: 'on'
   action:
-    - service: notify.mobile_app_iphone_von_david
+    - action: notify.mobile_app_iphone_von_david
       data:
         title: "Water Leak Alarm"
         message: "Water leak detected at home!"
@@ -74,7 +74,7 @@
               name: default
               critical: 1
               volume: 1.0
-    - service: script.sonos_play
+    - action: script.sonos_play
       data:
         devices:
           - media_player.sonos_device_wohnzimmer

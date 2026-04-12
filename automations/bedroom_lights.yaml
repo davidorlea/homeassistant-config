@@ -10,7 +10,7 @@
       from: 'off'
       to: 'on'
   action:
-    service: light.toggle
+    action: light.toggle
     target:
       entity_id: light.bedroom_ceiling_light
 
@@ -41,7 +41,7 @@
             - binary_sensor.bedroom_window_right_contact
           state: 'off'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.bedroom_ceiling_light
 
@@ -56,7 +56,7 @@
       minutes: 1
       seconds: 30
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.bedroom_ceiling_light
 
@@ -84,7 +84,7 @@
         - binary_sensor.bedroom_window_right_contact
       state: 'off'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.bedroom_ceiling_light
 
@@ -110,7 +110,7 @@
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.bedroom_ceiling_light
 
@@ -141,7 +141,7 @@
         - 'Night'
         - 'Dawn'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.bedroom_bed_light
 
@@ -162,7 +162,7 @@
         - 'just off'
         - 'off'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.bedroom_bed_light
 
@@ -202,7 +202,7 @@
         - 'Night'
         - 'Dawn'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id:
         - light.bedroom_cabinet_light
@@ -242,7 +242,7 @@
         - 'just off'
         - 'off'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id:
         - light.bedroom_cabinet_light

@@ -29,7 +29,7 @@
           for:
             minutes: 10
   action:
-    service: notify.mobile_app_iphone_von_david
+    action: notify.mobile_app_iphone_von_david
     data:
       title: "Outdoor doors unclosed"
       message: "Close outdoor doors to keep it warm."
@@ -52,7 +52,7 @@
       - binary_sensor.outdoor_backdoor_contact
     state: 'off'
   action:
-    service: notify.mobile_app_iphone_von_david
+    action: notify.mobile_app_iphone_von_david
     data:
       message: "clear_notification"
       data:
@@ -89,7 +89,7 @@
           for:
             minutes: 10
   action:
-    service: notify.mobile_app_iphone_von_david
+    action: notify.mobile_app_iphone_von_david
     data:
       title: "Bedroom windows unclosed"
       message: "Close bedroom windows to keep it warm."
@@ -112,7 +112,7 @@
       - binary_sensor.bedroom_window_right_contact
     state: 'off'
   action:
-    service: notify.mobile_app_iphone_von_david
+    action: notify.mobile_app_iphone_von_david
     data:
       message: "clear_notification"
       data:
@@ -158,7 +158,7 @@
       for:
         hours: 6
   action:
-    service: notify.mobile_app_iphone_von_david
+    action: notify.mobile_app_iphone_von_david
     data:
       title: "Bedroom ventilation pending"
       message: "Open bedroom windows to get some fresh air."
@@ -183,7 +183,7 @@
           - binary_sensor.bedroom_window_right_contact
         state: 'on'
   action:
-    service: notify.mobile_app_iphone_von_david
+    action: notify.mobile_app_iphone_von_david
     data:
       message: "clear_notification"
       data:

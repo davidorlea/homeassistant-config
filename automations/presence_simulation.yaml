@@ -6,7 +6,7 @@
     from: 'just on'
     to: 'on'
   action:
-    service: presence_simulation.start
+    action: presence_simulation.start
     data:
       restore_states: false
 
@@ -18,4 +18,4 @@
     from: 'on'
     to: 'just off'
   action:
-    service: presence_simulation.stop
+    action: presence_simulation.stop

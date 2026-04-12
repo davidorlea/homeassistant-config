@@ -8,7 +8,7 @@ LetTheDogsOutIntent:
   action:
     - delay:
         seconds: 2
-    - service: script.sonos_play
+    - action: script.sonos_play
       data:
         devices:
           - media_player.sonos_device_wohnzimmer

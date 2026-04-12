@@ -10,7 +10,7 @@
       from: 'off'
       to: 'on'
   action:
-    service: light.toggle
+    action: light.toggle
     target:
       entity_id: light.kitchen_ceiling_light
 
@@ -22,7 +22,7 @@
     from: 'off'
     to: 'on'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id:
         - light.kitchen_ceiling_light
@@ -38,7 +38,7 @@
     for:
       minutes: 5
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id:
         - light.kitchen_ceiling_light
@@ -53,7 +53,7 @@
     for:
       minutes: 10
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id:
         - light.kitchen_counter_light
@@ -89,7 +89,7 @@
         - 'just off'
         - 'off'
   action:
-    service: script.random_color
+    action: script.random_color
     data:
       lights:
         - light.kitchen_sideboard_light
@@ -110,7 +110,7 @@
         - 'just off'
       to: 'on'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id:
         - light.kitchen_sideboard_light

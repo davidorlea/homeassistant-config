@@ -33,12 +33,12 @@ SetAlarmClockIntent:
         "Okay. Der Wecker ist eingeschaltet auf %s." | format(time)
         ] | random }}
   action:
-    - service: input_datetime.set_datetime
+    - action: input_datetime.set_datetime
       target:
         entity_id: input_datetime.alarm_clock
       data:
         time: '{{ time }}'
-    - service: input_boolean.turn_on
+    - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.alarm_clock
 
@@ -54,6 +54,6 @@ DisableAlarmClockIntent:
         "Okay. Der Wecker ist ausgeschaltet."
         ] | random }}
   action:
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       target:
         entity_id: input_boolean.alarm_clock

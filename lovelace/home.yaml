@@ -10,23 +10,23 @@ cards:
           - entity: media_player.lg_webos_tv
             name: LG TV
             tap_action:
-              action: call-service
-              service: media_player.toggle
-              service_data:
+              action: perform-action
+              perform_action: media_player.toggle
+              data:
                 entity_id: media_player.lg_webos_tv
           - entity: fan.bathroom_fan
             name: Bathroom Fan
             tap_action:
-              action: call-service
-              service: fan.toggle
-              service_data:
+              action: perform-action
+              perform_action: fan.toggle
+              data:
                 entity_id: fan.bathroom_fan
           - entity: fan.kitchen_fan
             name: Kitchen Fan
             tap_action:
-              action: call-service
-              service: fan.toggle
-              service_data:
+              action: perform-action
+              perform_action: fan.toggle
+              data:
                 entity_id: fan.kitchen_fan
       - type: entities
         title: Ambient Lights

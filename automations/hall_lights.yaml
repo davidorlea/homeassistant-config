@@ -10,7 +10,7 @@
       from: 'off'
       to: 'on'
   action:
-    service: light.toggle
+    action: light.toggle
     target:
       entity_id: light.hall_ceiling_light
 
@@ -34,7 +34,7 @@
         entity_id: binary_sensor.outdoor_frontdoor_contact
         state: 'off'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.hall_ceiling_light
 
@@ -48,7 +48,7 @@
     for:
       minutes: 3
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.hall_ceiling_light
 
@@ -67,7 +67,7 @@
       - 'Day'
       - 'Sunset'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.hall_ceiling_light
 
@@ -88,7 +88,7 @@
           - 'Day'
           - 'Sunset'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.hall_ceiling_light
 
@@ -104,7 +104,7 @@
     entity_id: binary_sensor.hall_motion_sensor_occupancy
     state: 'on'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.hall_ceiling_light
 
@@ -120,6 +120,6 @@
     entity_id: binary_sensor.hall_motion_sensor_occupancy
     state: 'off'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.hall_ceiling_light

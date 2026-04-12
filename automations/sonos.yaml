@@ -13,12 +13,12 @@
     for:
       minutes: 10
   action:
-    - service: media_player.volume_set
+    - action: media_player.volume_set
       target:
         entity_id: "{{ trigger.entity_id }}"
       data:
         volume_level: 0.08
-    - service: media_player.volume_mute
+    - action: media_player.volume_mute
       target:
         entity_id: "{{ trigger.entity_id }}"
       data:
@@ -44,7 +44,7 @@
         entity_id: "{{ trigger.entity_id }}"
       data:
         source: "Apple Music Hits"
-    - service: media_player.media_pause
+    - action: media_player.media_pause
       target:
         entity_id: "{{ trigger.entity_id }}"
 
@@ -61,7 +61,7 @@
       from: 'off'
       to: 'just on'
   action:
-    - service: media_player.media_pause
+    - action: media_player.media_pause
       target:
         entity_id:
           - media_player.sonos_device_kuche
@@ -69,6 +69,6 @@
     - condition: state
       entity_id: input_select.away_mode
       state: 'just on'
-    - service: media_player.media_pause
+    - action: media_player.media_pause
       target:
         entity_id: media_player.sonos_device_schlafzimmer

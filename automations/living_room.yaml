@@ -89,7 +89,7 @@
       entity_id: switch.living_room_tv
       state: 'off'
   actions:
-    - service: switch.turn_on
+    - action: switch.turn_on
       target:
         entity_id: switch.living_room_tv
     - delay:
@@ -114,7 +114,7 @@
     - condition: state
       entity_id: media_player.lg_webos_tv
       state: 'on'
-    - service: media_player.select_source
+    - action: media_player.select_source
       target:
         entity_id: media_player.lg_webos_tv
       data:
@@ -136,6 +136,6 @@
       entity_id: switch.living_room_tv
       state: 'on'
   action:
-    - service: switch.turn_off
+    - action: switch.turn_off
       target:
         entity_id: switch.living_room_tv

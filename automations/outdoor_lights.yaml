@@ -31,7 +31,7 @@
         - 'just off'
         - 'off'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.outdoor_frontdoor_light
 
@@ -60,7 +60,7 @@
         - 'just off'
         - 'off'
   action:
-    service: light.turn_on
+    action: light.turn_on
     target:
       entity_id: light.outdoor_backdoor_light
 
@@ -80,7 +80,7 @@
       from: 'just on'
       to: 'on'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.outdoor_frontdoor_light
 
@@ -104,6 +104,6 @@
       from: 'just on'
       to: 'on'
   action:
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.outdoor_backdoor_light

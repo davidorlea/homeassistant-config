@@ -22,25 +22,25 @@
     - delay:
         seconds: 600
     - event: alarm_clock_wake_up_finished
-    - service: media_player.unjoin
+    - action: media_player.unjoin
       data:
         entity_id: media_player.sonos_device_schlafzimmer
-    - service: media_player.volume_set
+    - action: media_player.volume_set
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:
         volume_level: 0.04
-    - service: media_player.volume_mute
+    - action: media_player.volume_mute
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:
         is_volume_muted: false
-    - service: media_player.shuffle_set
+    - action: media_player.shuffle_set
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:
         shuffle: true
-    - service: media_player.select_source
+    - action: media_player.select_source
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:

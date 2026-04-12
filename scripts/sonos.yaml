@@ -23,25 +23,25 @@ sonos_play:
     slaves: "{{ devices }}"
 
   sequence:
-    - service: sonos.snapshot
+    - action: sonos.snapshot
       data:
         entity_id: "{{ [master] + slaves }} "
-    - service: media_player.unjoin
+    - action: media_player.unjoin
       data:
         entity_id: "{{ [master] + slaves }}"
     - choose:
         - conditions: "{{ slaves | length >= 1 }}"
           sequence:
-            - service: media_player.join
+            - action: media_player.join
               data:
                 entity_id: "{{ master }}"
                 group_members: "{{ slaves }}"
-    - service: media_player.volume_set
+    - action: media_player.volume_set
       target:
         entity_id: "{{ [master] + slaves }}"
       data_template:
         volume_level: "{{ volume }}"
-    - service: media_player.play_media
+    - action: media_player.play_media
       target:
         entity_id: "{{ master }}"
       data_template:
@@ -54,6 +54,6 @@ sonos_play:
         - conditions: "{{ wait.completed }}"
           sequence:
             - wait_template: "{{ is_state(master, 'paused') }}"
-    - service: sonos.restore
+    - action: sonos.restore
       data:
         entity_id: "{{ [master] + slaves }}"

@@ -37,7 +37,7 @@ random_color:
               light: "{{ lights[repeat.index-1] }}"
           - condition: template
             value_template: "{{ force is sameas true or is_state(light, 'off') }}"
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: "{{ light }}"
             data_template:
