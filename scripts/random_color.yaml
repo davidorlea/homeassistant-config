@@ -27,7 +27,7 @@ random_color:
       [128, 0, 255],
       [255, 0, 255],
       [255, 0, 128]
-    ] | random }}"
+      ] | random }}"
 
   sequence:
     - repeat:
