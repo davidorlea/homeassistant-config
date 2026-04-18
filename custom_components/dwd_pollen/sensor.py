@@ -2,15 +2,18 @@
 
 from datetime import datetime, timedelta
 import logging
-
-import requests
-import voluptuous as vol
+from typing import Any, cast
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import ATTR_ATTRIBUTION, CONF_NAME, PERCENTAGE
+from homeassistant.core import HomeAssistant
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.util import Throttle
+import requests
+import voluptuous as vol
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -63,12 +66,17 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 )
 
 
-def setup_platform(_1, config, add_entities, _2):
+def setup_platform(
+    _hass: HomeAssistant,
+    config: ConfigType,
+    add_entities: AddEntitiesCallback,
+    _discovery_info: DiscoveryInfoType | None = None,
+) -> None:
     """Set up the sensor platform."""
 
-    name = config.get(CONF_NAME)
-    partregion_id = config.get(CONF_PARTREGION_ID)
-    pollen_types = config.get(CONF_POLLEN_TYPES)
+    name: str = config[CONF_NAME]
+    partregion_id: int = config[CONF_PARTREGION_ID]
+    pollen_types: list[str] = config[CONF_POLLEN_TYPES]
 
     api = DwdPollenApi()
     for pollen_type in pollen_types:
@@ -79,68 +87,83 @@ class DwdPollenApi:
     """Representation of the DWD Pollen API."""
 
     @staticmethod
-    def get_exposure():
+    def get_exposure() -> dict[str, Any] | None:
         """Get pollen exposure from the DWD Pollen API."""
         resource = (
             "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
         )
         try:
-            response = requests.get(resource, verify=True, timeout=10)
+            response = requests.get(resource, verify=True, timeout=(5, 10))
             response.raise_for_status()
-            return response.json()
+            return cast(dict[str, Any], response.json())
+        except requests.exceptions.JSONDecodeError as ex:
+            _LOGGER.error("Error parsing data: %s failed with %s", resource, ex)
+            return None
+        except requests.exceptions.HTTPError as ex:
+            if ex.response.status_code >= 500:
+                _LOGGER.debug("Error fetching data: %s failed with %s", resource, ex)
+            else:
+                _LOGGER.error("Error fetching data: %s failed with %s", resource, ex)
+            return None
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as ex:
+            _LOGGER.debug("Error fetching data: %s failed with %s", resource, ex)
+            return None
         except requests.exceptions.RequestException as ex:
             _LOGGER.error("Error fetching data: %s failed with %s", resource, ex)
-            return None
-        except ValueError as ex:
-            _LOGGER.error("Error parsing data: %s failed with %s", resource, ex)
             return None
 
 
 class DwdPollenSensor(Entity):
     """Representation of a DWD Pollen Sensor."""
 
-    def __init__(self, api, name, partregion_id, pollen_type):
+    def __init__(
+        self,
+        api: DwdPollenApi,
+        name: str,
+        partregion_id: int,
+        pollen_type: str,
+    ) -> None:
         """Initialize the DWD Pollen Sensor."""
-        self._api = api
-        self._name = name
-        self._partregion_id = partregion_id
-        self._pollen_type = pollen_type
-        self._state = None
-        self._attributes = {}
+        self._api: DwdPollenApi = api
+        self._name: str = name
+        self._partregion_id: int = partregion_id
+        self._pollen_type: str = pollen_type
+        self._state: int | None = None
+        self._attributes: dict[str, Any] = {}
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Return the name of the DWD Pollen Sensor."""
         return f"{self._name} {self._partregion_id} {self._pollen_type}"
 
     @property
-    def unit_of_measurement(self):
+    def unit_of_measurement(self) -> str:
         """Return the unit of measurement of the DWD Pollen Sensor."""
         return PERCENTAGE
 
     @property
-    def icon(self):
+    def icon(self) -> str:
         """Icon to use in the frontend of the DWD Pollen Sensor."""
         return ICON
 
     @property
-    def state(self):
+    def state(self) -> int | None:
         """Return the state of the DWD Pollen Sensor."""
         return self._state
 
     @property
-    def extra_state_attributes(self):
+    def extra_state_attributes(self) -> dict[str, Any]:
         """Return the state attributes of the DWD Pollen Sensor."""
         return self._attributes
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
-    def update(self):
+    def update(self) -> None:
         """Fetch new state data for the DWD Pollen Sensor."""
         self._state = None
         self._attributes = {}
 
-        result = self._api.get_exposure()
-        exposure = {}
+        result: dict[str, Any] | None = self._api.get_exposure()
+        exposure: dict[str, Any] = {}
 
         if result:
             try:
@@ -178,12 +201,12 @@ class DwdPollenSensor(Entity):
                 exposure["next_update"] = next_update
                 exposure["region_name"] = partregion["region_name"]
                 exposure["partregion_name"] = partregion["partregion_name"]
-            except KeyError as ex:
+            except (KeyError, TypeError) as ex:
                 _LOGGER.error(
-                    "Erroneous result found when expecting exposure data: %s", ex
+                    "Erroneous result found: %s failed with %s",
+                    result,
+                    ex,
                 )
-        else:
-            _LOGGER.error("Empty result found when expecting exposure data")
 
         if exposure:
             if exposure["level"] >= 0:
@@ -198,14 +221,19 @@ class DwdPollenSensor(Entity):
             self._attributes[ATTR_ATTRIBUTION] = ATTRIBUTION
 
     @staticmethod
-    def __find_partregion(partregion_list, partregion_id):
+    def __find_partregion(
+        partregion_list: list[dict[str, Any]], partregion_id: int
+    ) -> dict[str, Any]:
         """Extract partregion from list if all partregions."""
         for partregion in partregion_list:
             if partregion["partregion_id"] == partregion_id:
                 return partregion
+        return {}
 
     @staticmethod
-    def __calculate_level(pollen_list, pollen_category, day):
+    def __calculate_level(
+        pollen_list: dict[str, Any], pollen_category: str, day: str
+    ) -> int:
         """Calculate exposure level of a pollen category for a certain day."""
         pollen_mapping = {
             "alder": ["Erle"],
@@ -235,7 +263,7 @@ class DwdPollenSensor(Entity):
         return max(pollen_levels, default=-1)
 
     @staticmethod
-    def __get_description(level):
+    def __get_description(level: int) -> str:
         """Get short description of an exposure level."""
         description_mapping = {
             0: "no level of exposure",
