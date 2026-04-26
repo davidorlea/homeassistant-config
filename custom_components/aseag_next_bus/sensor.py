@@ -27,6 +27,7 @@ ATTR_DELAY = "delay"
 ATTR_DEPARTURE = "departure"
 ATTR_DESTINATION = "destination"
 ATTR_LINE = "line"
+ATTR_TRACKING = "tracking"
 ATTR_PREDICTIONS = "predictions"
 
 DEFAULT_MODE = "single"
@@ -152,6 +153,8 @@ class AseagNextBusSensor(Entity):
                 predictions = [
                     d["stopPrediction"] for d in result["departures"]["departures"]
                 ]
+                for p in predictions:
+                    p["_from_api"] = True
             except (KeyError, TypeError) as ex:
                 _LOGGER.error(
                     "Erroneous result found: %s failed with %s",
@@ -160,11 +163,13 @@ class AseagNextBusSensor(Entity):
                 )
 
         for p in self._predictions:
+            p["_from_api"] = False
             if not any(p["tripId"] in subl.values() for subl in predictions):
                 predictions.append(p)
 
         predictions = [p for p in predictions if p["track"] == self._track]
         predictions = [p for p in predictions if p["cancelled"] is False]
+        predictions = [p for p in predictions if p["stopCancelled"] is False]
         predictions = [p for p in predictions if self.__get_prediction_time(p) >= now]
 
         self._predictions = sorted(
@@ -179,6 +184,7 @@ class AseagNextBusSensor(Entity):
                     ATTR_DELAY: self.__get_prediction_delay(p),
                     ATTR_LINE: p["lineName"],
                     ATTR_DESTINATION: p["destinationText"],
+                    ATTR_TRACKING: self.__get_prediction_tracking(p),
                 }
                 for p in self._predictions
             ]
@@ -191,7 +197,19 @@ class AseagNextBusSensor(Entity):
             )
             self._attributes[ATTR_LINE] = self._predictions[0]["lineName"]
             self._attributes[ATTR_DESTINATION] = self._predictions[0]["destinationText"]
+            self._attributes[ATTR_TRACKING] = self.__get_prediction_tracking(
+                self._predictions[0]
+            )
             self._attributes[ATTR_ATTRIBUTION] = ATTRIBUTION
+
+    @staticmethod
+    def __get_prediction_tracking(prediction: dict[str, Any]) -> str:
+        """Return prediction tracking out of live, scheduled, or cached."""
+        if not prediction.get("_from_api"):
+            return "cached"
+        if "actualTime" in prediction:
+            return "live"
+        return "scheduled"
 
     @staticmethod
     def __get_prediction_time(prediction: dict[str, Any]) -> datetime:
