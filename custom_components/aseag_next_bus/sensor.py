@@ -150,12 +150,11 @@ class AseagNextBusSensor(Entity):
 
         if result:
             try:
-                predictions = [
-                    d["stopPrediction"] for d in result["departures"]["departures"]
-                ]
+                departures = (result.get("departures") or {}).get("departures") or []
+                predictions = [d["stopPrediction"] for d in departures]
                 for p in predictions:
                     p["_from_api"] = True
-            except (KeyError, TypeError) as ex:
+            except (AttributeError, KeyError, TypeError) as ex:
                 _LOGGER.error(
                     "Erroneous result found: %s failed with %s",
                     result,
