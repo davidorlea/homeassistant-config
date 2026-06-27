@@ -33,13 +33,13 @@ cards:
         attribute: pressure
         name: Pressure
         unit: hPa
-        icon: mdi:thermometer-lines
+        icon: mdi:gauge
       - type: attribute
         entity: weather.meteorologisk
         attribute: dew_point
         name: Dew Point
         unit: '°C'
-        icon: mdi:thermometer-water
+        icon: mdi:water-thermometer
       - type: attribute
         entity: weather.meteorologisk
         attribute: wind_speed
