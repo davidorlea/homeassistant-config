@@ -7,15 +7,15 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: entity
+          - type: sensor
             name: Temperature
             graph: line
             entity: sensor.outdoor_temperature
-          - type: entity
+          - type: sensor
             name: Humidity
             graph: line
             entity: sensor.outdoor_humidity
-          - type: entity
+          - type: sensor
             name: Dew Point
             graph: line
             entity: sensor.outdoor_dew_point
