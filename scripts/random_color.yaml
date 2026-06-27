@@ -40,5 +40,5 @@ random_color:
           - action: light.turn_on
             target:
               entity_id: "{{ light }}"
-            data_template:
+            data:
               rgb_color: "{{ color }}"
