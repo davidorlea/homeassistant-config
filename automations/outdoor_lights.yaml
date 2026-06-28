@@ -1,107 +1,107 @@
-- alias: 'Turn Outdoor Frontdoor Light on'
+- alias: Turn Outdoor Frontdoor Light on
   id: d5cb8c07-9327-4859-8381-783801d076fa
   triggers:
     - trigger: state
       entity_id: sensor.period_of_day
-      from: 'Sunset'
-      to: 'Dusk'
+      from: Sunset
+      to: Dusk
     - trigger: state
       entity_id: input_select.away_mode
       from: 'on'
-      to: 'just off'
+      to: just off
     - trigger: state
       entity_id: input_select.bed_mode
-      from: 'just off'
+      from: just off
       to: 'off'
   conditions:
     - condition: state
       entity_id: sensor.period_of_day
       state:
-        - 'Dusk'
-        - 'Night'
-        - 'Dawn'
+        - Dusk
+        - Night
+        - Dawn
     - condition: state
       entity_id: input_select.away_mode
       state:
-        - 'just off'
+        - just off
         - 'off'
     - condition: state
       entity_id: input_select.bed_mode
       state:
-        - 'just off'
+        - just off
         - 'off'
   actions:
     - action: light.turn_on
       target:
         entity_id: light.outdoor_frontdoor_light
 
-- alias: 'Turn Outdoor Backdoor Light on'
+- alias: Turn Outdoor Backdoor Light on
   id: d7efe2bf-f328-44ef-9ab0-98c2e5e0ba64
   triggers:
     - trigger: state
       entity_id: input_select.away_mode
       from: 'on'
-      to: 'just off'
+      to: just off
   conditions:
     - condition: state
       entity_id: sensor.period_of_day
       state:
-        - 'Dusk'
-        - 'Night'
-        - 'Dawn'
+        - Dusk
+        - Night
+        - Dawn
     - condition: state
       entity_id: input_select.away_mode
       state:
-        - 'just off'
+        - just off
         - 'off'
     - condition: state
       entity_id: input_select.bed_mode
       state:
-        - 'just off'
+        - just off
         - 'off'
   actions:
     - action: light.turn_on
       target:
         entity_id: light.outdoor_backdoor_light
 
-- alias: 'Turn Outdoor Frontdoor Light off'
+- alias: Turn Outdoor Frontdoor Light off
   id: 20b82cc6-4c54-4ac0-b938-4659dc4a3bcd
   triggers:
     - trigger: state
       entity_id: sensor.period_of_day
-      from: 'Dawn'
-      to: 'Sunrise'
+      from: Dawn
+      to: Sunrise
     - trigger: state
       entity_id: input_select.away_mode
-      from: 'just on'
+      from: just on
       to: 'on'
     - trigger: state
       entity_id: input_select.bed_mode
-      from: 'just on'
+      from: just on
       to: 'on'
   actions:
     - action: light.turn_off
       target:
         entity_id: light.outdoor_frontdoor_light
 
-- alias: 'Turn Outdoor Backdoor Light off'
+- alias: Turn Outdoor Backdoor Light off
   id: 19f05355-6ee0-4a43-a684-cb6738a5a585
   triggers:
     - trigger: state
       entity_id: sensor.period_of_day
-      from: 'Dawn'
-      to: 'Sunrise'
+      from: Dawn
+      to: Sunrise
     - trigger: state
       entity_id: input_select.away_mode
-      from: 'just on'
+      from: just on
       to: 'on'
     - trigger: state
       entity_id: input_select.away_mode
-      from: 'just off'
+      from: just off
       to: 'off'
     - trigger: state
       entity_id: input_select.bed_mode
-      from: 'just on'
+      from: just on
       to: 'on'
   actions:
     - action: light.turn_off

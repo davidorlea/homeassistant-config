@@ -3,7 +3,7 @@
   entity_id: input_select.away_mode
   state:
     - 'on'
-    - 'just on'
+    - just on
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
   end: '{{ now() }}'
@@ -13,7 +13,7 @@
   entity_id: input_select.bed_mode
   state:
     - 'on'
-    - 'just on'
+    - just on
   type: time
   start: '{{ now().replace(hour=0, minute=0, second=0) }}'
   end: '{{ now() }}'

@@ -1,9 +1,9 @@
-- alias: 'Transition Bed Mode From Just On to On'
+- alias: Transition Bed Mode From Just On to On
   id: 70f1accf-baed-461a-8ce5-d98ef1caa656
   triggers:
     - trigger: state
       entity_id: input_select.bed_mode
-      to: 'just on'
+      to: just on
       for:
         minutes: 30
   actions:
@@ -13,12 +13,12 @@
       data:
         option: 'on'
 
-- alias: 'Transition Bed Mode From Just Off to Off'
+- alias: Transition Bed Mode From Just Off to Off
   id: aac75176-cda4-4715-832a-1296b9e010f8
   triggers:
     - trigger: state
       entity_id: input_select.bed_mode
-      to: 'just off'
+      to: just off
       for:
         minutes: 5
   actions:
@@ -28,7 +28,7 @@
       data:
         option: 'off'
 
-- alias: 'Transition Bed Mode From Off to Just On'
+- alias: Transition Bed Mode From Off to Just On
   id: ce393b1a-b360-41d6-a527-1763128657cb
   triggers:
     - trigger: state
@@ -44,9 +44,9 @@
       target:
         entity_id: input_select.bed_mode
       data:
-        option: 'just on'
+        option: just on
 
-- alias: 'Transition Bed Mode From Just Off to On'
+- alias: Transition Bed Mode From Just Off to On
   id: 3053b38a-cc3f-4543-81cf-cd39430631a7
   triggers:
     - trigger: state
@@ -56,7 +56,7 @@
   conditions:
     - condition: state
       entity_id: input_select.bed_mode
-      state: 'just off'
+      state: just off
   actions:
     - action: input_select.select_option
       target:
@@ -64,7 +64,7 @@
       data:
         option: 'on'
 
-- alias: 'Transition Bed Mode From On to Just Off'
+- alias: Transition Bed Mode From On to Just Off
   id: 70baf7e8-3309-495e-9b69-694de5346f39
   triggers:
     - trigger: state
@@ -80,9 +80,9 @@
       target:
         entity_id: input_select.bed_mode
       data:
-        option: 'just off'
+        option: just off
 
-- alias: 'Transition Bed Mode From Just On to Off'
+- alias: Transition Bed Mode From Just On to Off
   id: 5b8858ea-4e4a-40c7-959a-8d86b4a0beaf
   triggers:
     - trigger: state
@@ -92,7 +92,7 @@
   conditions:
     - condition: state
       entity_id: input_select.bed_mode
-      state: 'just on'
+      state: just on
   actions:
     - action: input_select.select_option
       target:

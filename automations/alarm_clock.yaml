@@ -1,4 +1,4 @@
-- alias: 'Alarm Clock'
+- alias: Alarm Clock
   id: 5bed22d4-e379-4d9e-9363-4c7717c6358b
   triggers:
     - trigger: template
@@ -14,7 +14,7 @@
           state: 'on'
         - condition: state
           entity_id: input_select.bed_mode
-          state: 'just on'
+          state: just on
   actions:
     - event: alarm_clock_wake_up_started
       event_data:
@@ -44,4 +44,4 @@
       target:
         entity_id: media_player.sonos_device_schlafzimmer
       data:
-        source: "Apple Music Hits"
+        source: Apple Music Hits

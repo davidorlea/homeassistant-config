@@ -4,94 +4,94 @@ input_datetime.alarm_clock:
   icon: mdi:alarm
 
 light.bedroom_bed_light:
-  friendly_name: 'Bedroom Bed Light'
+  friendly_name: Bedroom Bed Light
   icon: mdi:bed-king-outline
 light.bedroom_cabinet_light:
-  friendly_name: 'Bedroom Cabinet Light'
+  friendly_name: Bedroom Cabinet Light
   icon: mdi:wardrobe-outline
 light.bedroom_ceiling_light:
-  friendly_name: 'Bedroom Ceiling Light'
+  friendly_name: Bedroom Ceiling Light
   icon: mdi:ceiling-light
 light.bedroom_dresser_light:
-  friendly_name: 'Bedroom Dresser Light'
+  friendly_name: Bedroom Dresser Light
   icon: mdi:buffet
 light.hall_ceiling_light:
-  friendly_name: 'Hall Ceiling Light'
+  friendly_name: Hall Ceiling Light
   icon: mdi:ceiling-light
 light.kitchen_ceiling_light:
-  friendly_name: 'Kitchen Ceiling Light'
+  friendly_name: Kitchen Ceiling Light
   icon: mdi:ceiling-light
 light.kitchen_counter_light:
-  friendly_name: 'Kitchen Counter Light'
+  friendly_name: Kitchen Counter Light
   icon: mdi:spotlight-beam
 light.kitchen_sideboard_light:
-  friendly_name: 'Kitchen Sideboard Light'
+  friendly_name: Kitchen Sideboard Light
   icon: mdi:lamp
 light.living_room_ceiling_light:
-  friendly_name: 'Living Room Ceiling Light'
+  friendly_name: Living Room Ceiling Light
   icon: mdi:ceiling-light
 light.living_room_ambient_light:
-  friendly_name: 'Living Room Ambient Light'
+  friendly_name: Living Room Ambient Light
   icon: mdi:lamp
 light.living_room_sofa_light:
-  friendly_name: 'Living Room Sofa Light'
+  friendly_name: Living Room Sofa Light
   icon: mdi:floor-lamp-dual
 light.living_room_tv_light:
-  friendly_name: 'Living Room TV Light'
+  friendly_name: Living Room TV Light
   icon: mdi:led-strip-variant
 light.outdoor_backdoor_light:
-  friendly_name: 'Outdoor Backdoor Light'
+  friendly_name: Outdoor Backdoor Light
   icon: mdi:outdoor-lamp
 light.outdoor_frontdoor_light:
-  friendly_name: 'Outdoor Frontdoor Light'
+  friendly_name: Outdoor Frontdoor Light
   icon: mdi:outdoor-lamp
 
 sensor.dwd_pollen_41_grass:
-  friendly_name: 'DWD Pollen Grass'
+  friendly_name: DWD Pollen Grass
 sensor.dwd_pollen_41_tree:
-  friendly_name: 'DWD Pollen Tree'
+  friendly_name: DWD Pollen Tree
 
 sensor.influxdb_fritzbox_connection_status:
-  friendly_name: 'Connection Status'
+  friendly_name: Connection Status
   icon: mdi:wan
 sensor.influxdb_fritzbox_external_ip_address:
-  friendly_name: 'External IP Address'
+  friendly_name: External IP Address
   icon: mdi:ip-network
 sensor.influxdb_fritzbox_link_status:
-  friendly_name: 'Link Status'
+  friendly_name: Link Status
   icon: mdi:wan
 sensor.influxdb_fritzbox_total_bytes_received:
-  friendly_name: 'Total Bytes Received (24h)'
+  friendly_name: Total Bytes Received (24h)
   icon: mdi:download-network
 sensor.influxdb_fritzbox_total_bytes_sent:
-  friendly_name: 'Total Bytes Sent (24h)'
+  friendly_name: Total Bytes Sent (24h)
   icon: mdi:upload-network
 sensor.influxdb_fritzbox_transmission_rate_down:
-  friendly_name: 'Transmission Rate Down'
+  friendly_name: Transmission Rate Down
   icon: mdi:download-network
 sensor.influxdb_fritzbox_transmission_rate_up:
-  friendly_name: 'Transmission Rate Up'
+  friendly_name: Transmission Rate Up
   icon: mdi:upload-network
 sensor.influxdb_fritzbox_uptime:
-  friendly_name: 'Uptime'
+  friendly_name: Uptime
 sensor.influxdb_pi_load1:
-  friendly_name: 'Load (1m)'
+  friendly_name: Load (1m)
   icon: mdi:memory
 sensor.influxdb_pi_load5:
-  friendly_name: 'Load (5m)'
+  friendly_name: Load (5m)
   icon: mdi:memory
 sensor.influxdb_pi_load15:
-  friendly_name: 'Load (15m)'
+  friendly_name: Load (15m)
   icon: mdi:memory
 sensor.influxdb_pi_cpu_usage:
-  friendly_name: 'CPU Usage'
+  friendly_name: CPU Usage
   icon: mdi:memory
   unit_of_measurement: '%'
 sensor.influxdb_pi_memory_usage:
-  friendly_name: 'Memory Usage'
+  friendly_name: Memory Usage
   icon: mdi:memory
   unit_of_measurement: '%'
 sensor.influxdb_pi_uptime:
-  friendly_name: 'Uptime'
+  friendly_name: Uptime
 sensor.uptime:
-  friendly_name: 'Last Start'
+  friendly_name: Last Start

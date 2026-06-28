@@ -4,7 +4,7 @@
       unique_id: ed6da17c-8c3a-4278-8a79-3a13c8e2b039
       device_class: temperature
       state_class: measurement
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
       icon: mdi:thermometer
       availability: "{{ state_attr('weather.meteorologisk', 'temperature') is not none }}"
       state: >
@@ -15,7 +15,7 @@
       unique_id: e7328290-62f3-43be-81ab-b722b6e51e44
       device_class: humidity
       state_class: measurement
-      unit_of_measurement: "%"
+      unit_of_measurement: '%'
       icon: mdi:water-percent
       availability: "{{ state_attr('weather.meteorologisk', 'humidity') is not none }}"
       state: >
@@ -26,7 +26,7 @@
       unique_id: 76d99cf8-8639-4e7d-9249-84ae7f829ecd
       device_class: temperature
       state_class: measurement
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
       icon: mdi:water-thermometer
       availability: "{{ state_attr('weather.meteorologisk', 'dew_point') is not none }}"
       state: >
@@ -37,7 +37,7 @@
       unique_id: be75ea1e-4723-4a39-94e3-b04f680e368f
       device_class: temperature
       state_class: measurement
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
       icon: mdi:water-thermometer
       availability: "{{ has_value('sensor.bathroom_multi_sensor_temperature') and has_value('sensor.bathroom_multi_sensor_humidity') }}"
       state: >
@@ -53,7 +53,7 @@
       unique_id: e4a27a28-4828-46d3-aa6b-3441a50fa582
       device_class: temperature
       state_class: measurement
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
       icon: mdi:water-thermometer
       availability: "{{ has_value('sensor.bedroom_multi_sensor_temperature') and has_value('sensor.bedroom_multi_sensor_humidity') }}"
       state: >
@@ -69,7 +69,7 @@
       unique_id: f0fc8811-be32-407e-acf7-5c69c7d43c9a
       device_class: temperature
       state_class: measurement
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
       icon: mdi:water-thermometer
       availability: "{{ has_value('sensor.living_room_multi_sensor_temperature') and has_value('sensor.living_room_multi_sensor_humidity') }}"
       state: >

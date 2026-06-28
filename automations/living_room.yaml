@@ -1,4 +1,4 @@
-- alias: 'Turn TV on'
+- alias: Turn TV on
   id: 24c4a623-0628-45ae-964a-9436f3cba4d1
   triggers:
     - trigger: device
@@ -9,13 +9,13 @@
   conditions:
     - condition: state
       entity_id: media_player.lg_webos_tv
-      state: "off"
+      state: 'off'
   actions:
     - action: media_player.turn_on
       target:
         entity_id: media_player.lg_webos_tv
 
-- alias: 'Turn TV off'
+- alias: Turn TV off
   id: 61529196-14fc-4945-adc3-18902d77c5ff
   triggers:
     - trigger: device
@@ -26,55 +26,55 @@
     - trigger: state
       entity_id: input_select.away_mode
       from: 'off'
-      to: 'just on'
+      to: just on
     - trigger: state
       entity_id: input_select.bed_mode
       from: 'off'
-      to: 'just on'
+      to: just on
   conditions:
     - condition: state
       entity_id: media_player.lg_webos_tv
-      state: "on"
+      state: 'on'
   actions:
     - action: media_player.turn_off
       target:
         entity_id: media_player.lg_webos_tv
 
-- alias: 'Turn TV Volume up'
+- alias: Turn TV Volume up
   id: d530c1f7-008d-487a-ac04-6dcd0e8dd2fd
   triggers:
     - trigger: device
       domain: mqtt
       device_id: 86d39ed7bb87433588884e39a14bc36d
       type: action
-      subtype: "on"
+      subtype: 'on'
   conditions:
     - condition: state
       entity_id: media_player.lg_webos_tv
-      state: "on"
+      state: 'on'
   actions:
     - action: media_player.volume_up
       target:
         entity_id: media_player.lg_webos_tv
 
-- alias: 'Turn TV Volume down'
+- alias: Turn TV Volume down
   id: e2b8f04b-e7ff-45f0-8480-68cbfa1bc024
   triggers:
     - trigger: device
       domain: mqtt
       device_id: 86d39ed7bb87433588884e39a14bc36d
       type: action
-      subtype: "off"
+      subtype: 'off'
   conditions:
     - condition: state
       entity_id: media_player.lg_webos_tv
-      state: "on"
+      state: 'on'
   actions:
     - action: media_player.volume_down
       target:
         entity_id: media_player.lg_webos_tv
 
-- alias: 'Turn TV Power on'
+- alias: Turn TV Power on
   id: 23f2cd65-f5b3-491c-a87f-2055301daa28
   triggers:
     - trigger: device
@@ -120,7 +120,7 @@
       data:
         source: Apple TV
 
-- alias: 'Turn TV Power off'
+- alias: Turn TV Power off
   id: 0958a97a-3efb-468a-9c75-eee8098f39ad
   triggers:
     - trigger: numeric_state

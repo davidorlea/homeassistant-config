@@ -4,4 +4,4 @@
       unique_id: 66361062-b4cf-44ae-90e7-24d693e788e6
       device_class: occupancy
       icon: mdi:bed
-      state: "off"
+      state: 'off'

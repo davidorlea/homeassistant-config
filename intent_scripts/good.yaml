@@ -21,11 +21,11 @@ GoodMorningIntent:
               target:
                 entity_id: input_select.bed_mode
               data:
-                option: 'just off'
+                option: just off
         - conditions:
             - condition: state
               entity_id: input_select.bed_mode
-              state: 'just on'
+              state: just on
           sequence:
             - action: input_select.select_option
               target:
@@ -72,11 +72,11 @@ GoodNightIntent:
               target:
                 entity_id: input_select.bed_mode
               data:
-                option: 'just on'
+                option: just on
         - conditions:
             - condition: state
               entity_id: input_select.bed_mode
-              state: 'just off'
+              state: just off
           sequence:
             - action: input_select.select_option
               target:

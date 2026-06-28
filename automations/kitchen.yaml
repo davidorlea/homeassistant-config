@@ -1,20 +1,20 @@
-- alias: 'Turn Coffee Maschine off'
+- alias: Turn Coffee Maschine off
   id: 8eb927c2-c053-453f-b29e-dd9724426f7a
   triggers:
     - trigger: state
       entity_id: input_select.away_mode
       from: 'off'
-      to: 'just on'
+      to: just on
     - trigger: state
       entity_id: input_select.bed_mode
       from: 'off'
-      to: 'just on'
+      to: just on
   actions:
     - action: switch.turn_off
       target:
         entity_id: switch.kitchen_coffee_machine
 
-- alias: 'Turn Kitchen Fan on'
+- alias: Turn Kitchen Fan on
   id: c2887c1d-e759-4d79-bcc5-1a3adee523ee
   triggers:
     - trigger: state
@@ -24,11 +24,11 @@
         hours: 6
     - trigger: state
       entity_id: input_select.away_mode
-      from: 'just on'
+      from: just on
       to: 'on'
     - trigger: state
       entity_id: input_select.bed_mode
-      from: 'just on'
+      from: just on
       to: 'on'
   conditions:
     - condition: state
@@ -49,7 +49,7 @@
       target:
         entity_id: fan.kitchen_fan
 
-- alias: 'Turn Kitchen Fan off'
+- alias: Turn Kitchen Fan off
   id: 1ca528ab-9344-4252-a21e-286e01cb322f
   triggers:
     - trigger: state
@@ -60,11 +60,11 @@
     - trigger: state
       entity_id: input_select.away_mode
       from: 'on'
-      to: 'just off'
+      to: just off
     - trigger: state
       entity_id: input_select.bed_mode
       from: 'on'
-      to: 'just off'
+      to: just off
   actions:
     - action: fan.turn_off
       target:

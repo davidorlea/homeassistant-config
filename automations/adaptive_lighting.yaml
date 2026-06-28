@@ -1,9 +1,9 @@
-- alias: 'Activate Sleep Mode of Adaptive Lighting'
+- alias: Activate Sleep Mode of Adaptive Lighting
   id: 172a87e1-2a8b-43df-b17a-4a63d57540a4
   triggers:
     - trigger: state
       entity_id: input_select.bed_mode
-      from: 'just on'
+      from: just on
       to: 'on'
   actions:
     - action: switch.turn_on
@@ -12,13 +12,13 @@
           - switch.adaptive_lighting_sleep_mode_kitchen
           - switch.adaptive_lighting_sleep_mode_living_room
 
-- alias: 'Deactivate Sleep Mode of Adaptive Lighting'
+- alias: Deactivate Sleep Mode of Adaptive Lighting
   id: 2e3918de-b332-4787-940d-f64e5d5e8b21
   triggers:
     - trigger: state
       entity_id: input_select.bed_mode
       from: 'on'
-      to: 'just off'
+      to: just off
   actions:
     - action: switch.turn_off
       target:

@@ -1,8 +1,8 @@
 - platform: aseag_next_bus
   mode: list
   stop_id: 24236
-  track: "H.1"
+  track: H.1
 
 - platform: tankerkoenig
   api_key: !secret tankerkoenig_api_key
-  fuel_type: 'diesel'
+  fuel_type: diesel

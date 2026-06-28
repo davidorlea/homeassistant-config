@@ -1,4 +1,4 @@
-- alias: 'Turn Living Room Ceiling Light on when there is Movement'
+- alias: Turn Living Room Ceiling Light on when there is Movement
   id: a9166a79-028c-40d2-b157-7dd6ec3189cb
   triggers:
     - trigger: state
@@ -10,13 +10,13 @@
       entity_id: input_select.bed_mode
       state:
         - 'on'
-        - 'just on'
+        - just on
   actions:
     - action: light.turn_on
       target:
         entity_id: light.living_room_ceiling_light
 
-- alias: 'Turn Living Room Ceiling Light off after last Movement'
+- alias: Turn Living Room Ceiling Light off after last Movement
   id: 8de09585-9311-457c-be0b-84f7c8142d41
   triggers:
     - trigger: state
@@ -30,13 +30,13 @@
       entity_id: input_select.bed_mode
       state:
         - 'on'
-        - 'just on'
+        - just on
   actions:
     - action: light.turn_off
       target:
         entity_id: light.living_room_ceiling_light
 
-- alias: 'Turn Living Room Ceiling Light on'
+- alias: Turn Living Room Ceiling Light on
   id: dc5d8157-3df4-47d5-9315-e4491ad42019
   triggers:
     - trigger: state
@@ -44,13 +44,13 @@
         - input_select.away_mode
         - input_select.bed_mode
       from: 'on'
-      to: 'just off'
+      to: just off
   actions:
     - action: light.turn_on
       target:
         entity_id: light.living_room_ceiling_light
 
-- alias: 'Turn Living Room Ceiling Light off'
+- alias: Turn Living Room Ceiling Light off
   id: 30efc83b-a870-48bb-8341-28d821a5a33d
   triggers:
     - trigger: state
@@ -58,43 +58,43 @@
         - input_select.away_mode
         - input_select.bed_mode
       from:
-        - 'just on'
-        - 'just off'
+        - just on
+        - just off
       to: 'on'
   actions:
     - action: light.turn_off
       target:
         entity_id: light.living_room_ceiling_light
 
-- alias: 'Turn Living Room Ambient and Sofa and TV Light on'
+- alias: Turn Living Room Ambient and Sofa and TV Light on
   id: 861debaa-4310-4053-b98b-2275847691bb
   triggers:
     - trigger: state
       entity_id: sensor.period_of_day
-      from: 'Sunset'
-      to: 'Dusk'
+      from: Sunset
+      to: Dusk
     - trigger: state
       entity_id:
         - input_select.away_mode
         - input_select.bed_mode
       from: 'on'
-      to: 'just off'
+      to: just off
   conditions:
     - condition: state
       entity_id: sensor.period_of_day
       state:
-        - 'Dusk'
-        - 'Night'
-        - 'Dawn'
+        - Dusk
+        - Night
+        - Dawn
     - condition: state
       entity_id: input_select.away_mode
       state:
-        - 'just off'
+        - just off
         - 'off'
     - condition: state
       entity_id: input_select.bed_mode
       state:
-        - 'just off'
+        - just off
         - 'off'
   actions:
     - action: script.random_color
@@ -104,20 +104,20 @@
           - light.living_room_sofa_light
           - light.living_room_tv_light
 
-- alias: 'Turn Living Room Ambient and Sofa and TV Light off'
+- alias: Turn Living Room Ambient and Sofa and TV Light off
   id: c3dda693-5c89-453b-8ca0-647e86f7b0ba
   triggers:
     - trigger: state
       entity_id: sensor.period_of_day
-      from: 'Dawn'
-      to: 'Sunrise'
+      from: Dawn
+      to: Sunrise
     - trigger: state
       entity_id:
         - input_select.away_mode
         - input_select.bed_mode
       from:
-        - 'just on'
-        - 'just off'
+        - just on
+        - just off
       to: 'on'
   actions:
     - action: light.turn_off

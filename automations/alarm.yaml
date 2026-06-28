@@ -1,4 +1,4 @@
-- alias: 'Intrusion Alarm'
+- alias: Intrusion Alarm
   id: 496e0316-b945-4f9c-a7dc-cb025d4971a9
   triggers:
     - trigger: state
@@ -18,7 +18,7 @@
       conditions:
         - condition: state
           entity_id: input_select.away_mode
-          state: 'just on'
+          state: just on
         - condition: state
           entity_id: input_select.away_mode
           state: 'on'
@@ -31,10 +31,10 @@
           then:
             - action: notify.mobile_app_iphone_von_david
               data:
-                title: "Intrusion Alarm"
-                message: "Intrusion detected at home!"
+                title: Intrusion Alarm
+                message: Intrusion detected at home!
                 data:
-                  tag: "intrusion-alarm"
+                  tag: intrusion-alarm
                   push:
                     sound:
                       name: default
@@ -54,7 +54,7 @@
                 source: http://192.168.178.10:8123/local/sounds/alarm_siren.mp3
                 volume: 0.2
 
-- alias: 'Water Leak Alarm'
+- alias: Water Leak Alarm
   id: 2b33953a-560a-4344-9985-776bf654d45d
   triggers:
     - trigger: state
@@ -65,10 +65,10 @@
   actions:
     - action: notify.mobile_app_iphone_von_david
       data:
-        title: "Water Leak Alarm"
-        message: "Water leak detected at home!"
+        title: Water Leak Alarm
+        message: Water leak detected at home!
         data:
-          tag: "water-leak-alarm"
+          tag: water-leak-alarm
           push:
             sound:
               name: default

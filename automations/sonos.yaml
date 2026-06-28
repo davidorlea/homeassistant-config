@@ -1,4 +1,4 @@
-- alias: 'Reset Sonos Volume'
+- alias: Reset Sonos Volume
   id: cef75154-16bc-4990-b1d8-00d7fe5b13d2
   mode: queued
   triggers:
@@ -8,8 +8,8 @@
         - media_player.sonos_device_schlafzimmer
         - media_player.sonos_device_wohnzimmer
       to:
-        - 'idle'
-        - 'paused'
+        - idle
+        - paused
       for:
         minutes: 10
   actions:
@@ -24,7 +24,7 @@
       data:
         is_volume_muted: false
 
-- alias: 'Reset Sonos Source'
+- alias: Reset Sonos Source
   id: 48231078-6bc7-4396-9f17-d8695a1ea491
   mode: queued
   triggers:
@@ -34,8 +34,8 @@
         - media_player.sonos_device_schlafzimmer
         - media_player.sonos_device_wohnzimmer
       to:
-        - 'idle'
-        - 'paused'
+        - idle
+        - paused
       for:
         minutes: 10
   actions:
@@ -43,23 +43,23 @@
       target:
         entity_id: "{{ trigger.entity_id }}"
       data:
-        source: "Apple Music Hits"
+        source: Apple Music Hits
     - action: media_player.media_pause
       target:
         entity_id: "{{ trigger.entity_id }}"
 
-- alias: 'Pause Sonos'
+- alias: Pause Sonos
   id: 6729b4c3-631f-4211-917b-9d110f94de0c
   mode: queued
   triggers:
     - trigger: state
       entity_id: input_select.away_mode
       from: 'off'
-      to: 'just on'
+      to: just on
     - trigger: state
       entity_id: input_select.bed_mode
       from: 'off'
-      to: 'just on'
+      to: just on
   actions:
     - action: media_player.media_pause
       target:
@@ -68,7 +68,7 @@
           - media_player.sonos_device_wohnzimmer
     - condition: state
       entity_id: input_select.away_mode
-      state: 'just on'
+      state: just on
     - action: media_player.media_pause
       target:
         entity_id: media_player.sonos_device_schlafzimmer
