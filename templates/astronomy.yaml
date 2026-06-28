@@ -1,5 +1,7 @@
 - sensor:
     - default_entity_id: sensor.period_of_day
+      name: Period of Day
+      unique_id: 51f66183-adee-42bf-8c00-e3983eeb8888
       state: >-
         {% if state_attr('sun.sun', 'elevation') < -6 %}
           Night

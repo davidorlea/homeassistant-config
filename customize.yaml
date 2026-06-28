@@ -50,12 +50,6 @@ sensor.dwd_pollen_41_grass:
   friendly_name: 'DWD Pollen Grass'
 sensor.dwd_pollen_41_tree:
   friendly_name: 'DWD Pollen Tree'
-sensor.gas_station_address:
-  friendly_name: 'Gas Station (Address)'
-sensor.gas_station_brand:
-  friendly_name: 'Gas Station (Brand)'
-sensor.gas_station_price:
-  friendly_name: 'Gas Station (Price)'
 
 sensor.influxdb_fritzbox_connection_status:
   friendly_name: 'Connection Status'
@@ -63,10 +57,6 @@ sensor.influxdb_fritzbox_connection_status:
 sensor.influxdb_fritzbox_external_ip_address:
   friendly_name: 'External IP Address'
   icon: mdi:ip-network
-sensor.influxdb_fritzbox_last_reconnect:
-  friendly_name: 'Last Reconnect'
-  icon: mdi:clock
-  device_class: timestamp
 sensor.influxdb_fritzbox_link_status:
   friendly_name: 'Link Status'
   icon: mdi:wan
@@ -101,19 +91,7 @@ sensor.influxdb_pi_memory_usage:
   friendly_name: 'Memory Usage'
   icon: mdi:memory
   unit_of_measurement: '%'
-sensor.influxdb_pi_last_boot:
-  friendly_name: 'Last Boot'
-  icon: mdi:clock
-  device_class: timestamp
 sensor.influxdb_pi_uptime:
   friendly_name: 'Uptime'
-sensor.nearest_scooter_distance:
-  friendly_name: 'Nearest Scooter (Walking Distance)'
-sensor.nearest_scooter_battery:
-  friendly_name: 'Nearest Scooter (Battery)'
-sensor.next_bus_time:
-  friendly_name: 'Next Bus (Remaining Time)'
-sensor.period_of_day:
-  friendly_name: 'Period of Day'
 sensor.uptime:
   friendly_name: 'Last Start'
