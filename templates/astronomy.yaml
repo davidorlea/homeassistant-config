@@ -2,6 +2,13 @@
     - default_entity_id: sensor.period_of_day
       name: Period of Day
       unique_id: 51f66183-adee-42bf-8c00-e3983eeb8888
+      icon: >-
+        {% if is_state('sun.sun', 'above_horizon') %}
+          mdi:weather-sunny
+        {% else %}
+          mdi:weather-night
+        {% endif %}
+      availability: "{{ state_attr('sun.sun', 'elevation') is not none and state_attr('sun.sun', 'rising') is not none }}"
       state: >-
         {% if state_attr('sun.sun', 'elevation') < -6 %}
           Night
@@ -15,10 +22,4 @@
           Sunset
         {% else %}
           Day
-        {% endif %}
-      icon: >-
-        {% if is_state('sun.sun', 'above_horizon') %}
-          mdi:weather-sunny
-        {% else %}
-          mdi:weather-night
         {% endif %}

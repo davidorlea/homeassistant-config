@@ -2,13 +2,15 @@
     - default_entity_id: sensor.influxdb_fritzbox_last_reconnect
       name: Last Reconnect
       unique_id: 846d9135-0d1c-46df-a296-078873e690bd
-      state: "{{ (as_timestamp(states.sensor.influxdb_fritzbox_uptime.last_changed) - states.sensor.influxdb_fritzbox_uptime.state | float) | timestamp_utc }}"
-      icon: mdi:clock
       device_class: timestamp
+      icon: mdi:clock
+      availability: "{{ has_value('sensor.influxdb_fritzbox_uptime') }}"
+      state: "{{ (as_timestamp(states.sensor.influxdb_fritzbox_uptime.last_changed) - states.sensor.influxdb_fritzbox_uptime.state | float) | timestamp_utc }}"
 
     - default_entity_id: sensor.influxdb_pi_last_boot
       name: Last Boot
       unique_id: d562fe17-7cd8-4fe8-8ff1-a0e338d04da8
-      state: "{{ (as_timestamp(states.sensor.influxdb_pi_uptime.last_changed) - states.sensor.influxdb_pi_uptime.state | float) | timestamp_utc }}"
-      icon: mdi:clock
       device_class: timestamp
+      icon: mdi:clock
+      availability: "{{ has_value('sensor.influxdb_pi_uptime') }}"
+      state: "{{ (as_timestamp(states.sensor.influxdb_pi_uptime.last_changed) - states.sensor.influxdb_pi_uptime.state | float) | timestamp_utc }}"

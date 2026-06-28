@@ -2,7 +2,11 @@
     - default_entity_id: sensor.next_bus_time
       name: Next Bus Time
       unique_id: eb1139aa-0bd3-4887-bfca-6e149fb31720
+      device_class: duration
+      state_class: measurement
       unit_of_measurement: min
+      icon: mdi:bus-clock
+      availability: "{{ has_value('sensor.aseag_next_bus_24236_h_1') and state_attr('sensor.aseag_next_bus_24236_h_1', 'predictions') is not none }}"
       state: >-
         {% if (states("sensor.aseag_next_bus_24236_h_1") | int(0)) >= 1 %}
           {% set departure = state_attr("sensor.aseag_next_bus_24236_h_1", "predictions")[0].departure %}
@@ -10,45 +14,46 @@
         {% else %}
           None
         {% endif %}
-      availability: "{{ has_value('sensor.aseag_next_bus_24236_h_1') }}"
-      icon: mdi:bus-clock
 
-- sensor:
     - default_entity_id: sensor.gas_station_price
       name: Gas Station Price
       unique_id: d544750c-3149-4268-89bc-b9d53947559a
-      unit_of_measurement: €
-      state: "{{ states('sensor.tankerkoenig') if has_value('sensor.tankerkoenig') else None }}"
-      availability: "{{ has_value('sensor.tankerkoenig') }}"
+      state_class: measurement
+      unit_of_measurement: EUR/L
       icon: mdi:gas-station
+      availability: "{{ has_value('sensor.tankerkoenig') }}"
+      state: "{{ states('sensor.tankerkoenig') if has_value('sensor.tankerkoenig') else None }}"
 
     - default_entity_id: sensor.gas_station_brand
       name: Gas Station Brand
       unique_id: 7de1c274-6af0-4b49-9c07-a79461a56e42
-      state: "{{ state_attr('sensor.tankerkoenig', 'brand') if has_value('sensor.tankerkoenig') else None }}"
-      availability: "{{ has_value('sensor.tankerkoenig') }}"
       icon: mdi:gas-station
+      availability: "{{ has_value('sensor.tankerkoenig') and state_attr('sensor.tankerkoenig', 'brand') is not none }}"
+      state: "{{ state_attr('sensor.tankerkoenig', 'brand') if has_value('sensor.tankerkoenig') else None }}"
 
     - default_entity_id: sensor.gas_station_address
       name: Gas Station Address
       unique_id: 5e464cd6-5b47-44e7-909d-243cbb01df4b
-      state: "{{ state_attr('sensor.tankerkoenig', 'address') if has_value('sensor.tankerkoenig') else None }}"
-      availability: "{{ has_value('sensor.tankerkoenig') }}"
       icon: mdi:gas-station
+      availability: "{{ has_value('sensor.tankerkoenig') and state_attr('sensor.tankerkoenig', 'address') is not none }}"
+      state: "{{ state_attr('sensor.tankerkoenig', 'address') if has_value('sensor.tankerkoenig') else None }}"
 
-- sensor:
     - default_entity_id: sensor.nearest_scooter_distance
       name: Nearest Scooter Distance
       unique_id: ebcca951-fbf6-4b10-a106-ea14f970c5d8
+      device_class: distance
+      state_class: measurement
       unit_of_measurement: m
-      state: "{{ states('sensor.tier_nearest_scooter') if has_value('sensor.tier_nearest_scooter') else None }}"
-      availability: "{{ has_value('sensor.tier_nearest_scooter') }}"
       icon: mdi:scooter
+      availability: "{{ has_value('sensor.tier_nearest_scooter') }}"
+      state: "{{ states('sensor.tier_nearest_scooter') if has_value('sensor.tier_nearest_scooter') else None }}"
 
     - default_entity_id: sensor.nearest_scooter_battery
       name: Nearest Scooter Battery
       unique_id: 4bd731b9-42d1-40d5-aa37-3ea47a4342ec
+      device_class: battery
+      state_class: measurement
       unit_of_measurement: '%'
-      state: "{{ state_attr('sensor.tier_nearest_scooter', 'battery_level') if has_value('sensor.tier_nearest_scooter') else None }}"
-      availability: "{{ has_value('sensor.tier_nearest_scooter') }}"
       icon: mdi:scooter
+      availability: "{{ has_value('sensor.tier_nearest_scooter') and state_attr('sensor.tier_nearest_scooter', 'battery_level') is not none }}"
+      state: "{{ state_attr('sensor.tier_nearest_scooter', 'battery_level') if has_value('sensor.tier_nearest_scooter') else None }}"

@@ -2,39 +2,43 @@
     - default_entity_id: sensor.outdoor_temperature
       name: Outdoor Temperature
       unique_id: ed6da17c-8c3a-4278-8a79-3a13c8e2b039
-      availability: "{{ state_attr('weather.meteorologisk', 'temperature') is not none }}"
-      state: >
-        {{ state_attr('weather.meteorologisk', 'temperature') }}
       device_class: temperature
       state_class: measurement
       unit_of_measurement: "°C"
       icon: mdi:thermometer
+      availability: "{{ state_attr('weather.meteorologisk', 'temperature') is not none }}"
+      state: >
+        {{ state_attr('weather.meteorologisk', 'temperature') }}
 
     - default_entity_id: sensor.outdoor_humidity
       name: Outdoor Humidity
       unique_id: e7328290-62f3-43be-81ab-b722b6e51e44
-      availability: "{{ state_attr('weather.meteorologisk', 'humidity') is not none }}"
-      state: >
-        {{ state_attr('weather.meteorologisk', 'humidity') }}
       device_class: humidity
       state_class: measurement
       unit_of_measurement: "%"
       icon: mdi:water-percent
+      availability: "{{ state_attr('weather.meteorologisk', 'humidity') is not none }}"
+      state: >
+        {{ state_attr('weather.meteorologisk', 'humidity') }}
 
     - default_entity_id: sensor.outdoor_dew_point
       name: Outdoor Dew Point
       unique_id: 76d99cf8-8639-4e7d-9249-84ae7f829ecd
-      availability: "{{ state_attr('weather.meteorologisk', 'dew_point') is not none }}"
-      state: >
-        {{ state_attr('weather.meteorologisk', 'dew_point') }}
       device_class: temperature
       state_class: measurement
       unit_of_measurement: "°C"
       icon: mdi:water-thermometer
+      availability: "{{ state_attr('weather.meteorologisk', 'dew_point') is not none }}"
+      state: >
+        {{ state_attr('weather.meteorologisk', 'dew_point') }}
 
     - default_entity_id: sensor.bathroom_multi_sensor_dew_point
       name: Dew Point
       unique_id: be75ea1e-4723-4a39-94e3-b04f680e368f
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      icon: mdi:water-thermometer
       availability: "{{ has_value('sensor.bathroom_multi_sensor_temperature') and has_value('sensor.bathroom_multi_sensor_humidity') }}"
       state: >
           {% set t = states('sensor.bathroom_multi_sensor_temperature') | float %}
@@ -43,14 +47,14 @@
           {% set b = 243.12 %}
           {% set gamma = log(rh / 100) + (a * t) / (b + t) %}
           {{ (b * gamma / (a - gamma)) | round(1) }}
-      device_class: temperature
-      state_class: measurement
-      unit_of_measurement: "°C"
-      icon: mdi:water-thermometer
 
     - default_entity_id: sensor.bedroom_multi_sensor_dew_point
       name: Dew Point
       unique_id: e4a27a28-4828-46d3-aa6b-3441a50fa582
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      icon: mdi:water-thermometer
       availability: "{{ has_value('sensor.bedroom_multi_sensor_temperature') and has_value('sensor.bedroom_multi_sensor_humidity') }}"
       state: >
           {% set t = states('sensor.bedroom_multi_sensor_temperature') | float %}
@@ -59,14 +63,14 @@
           {% set b = 243.12 %}
           {% set gamma = log(rh / 100) + (a * t) / (b + t) %}
           {{ (b * gamma / (a - gamma)) | round(1) }}
-      device_class: temperature
-      state_class: measurement
-      unit_of_measurement: "°C"
-      icon: mdi:water-thermometer
 
     - default_entity_id: sensor.living_room_multi_sensor_dew_point
       name: Dew Point
       unique_id: f0fc8811-be32-407e-acf7-5c69c7d43c9a
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      icon: mdi:water-thermometer
       availability: "{{ has_value('sensor.living_room_multi_sensor_temperature') and has_value('sensor.living_room_multi_sensor_humidity') }}"
       state: >
           {% set t = states('sensor.living_room_multi_sensor_temperature') | float %}
@@ -75,7 +79,3 @@
           {% set b = 243.12 %}
           {% set gamma = log(rh / 100) + (a * t) / (b + t) %}
           {{ (b * gamma / (a - gamma)) | round(1) }}
-      device_class: temperature
-      state_class: measurement
-      unit_of_measurement: "°C"
-      icon: mdi:water-thermometer
