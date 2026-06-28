@@ -1,28 +1,28 @@
 - alias: 'Intrusion Alarm'
   id: 496e0316-b945-4f9c-a7dc-cb025d4971a9
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.bedroom_motion_sensor_occupancy
-      - binary_sensor.bedroom_window_left_contact
-      - binary_sensor.bedroom_window_right_contact
-      - binary_sensor.hall_motion_sensor_occupancy
-      - binary_sensor.kitchen_motion_sensor_occupancy
-      - binary_sensor.living_room_motion_sensor_occupancy
-      - binary_sensor.outdoor_frontdoor_contact
-      - binary_sensor.outdoor_backdoor_contact
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: input_select.away_mode
-        state: 'just on'
-      - condition: state
-        entity_id: input_select.away_mode
-        state: 'on'
-  action:
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.bedroom_motion_sensor_occupancy
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+        - binary_sensor.hall_motion_sensor_occupancy
+        - binary_sensor.kitchen_motion_sensor_occupancy
+        - binary_sensor.living_room_motion_sensor_occupancy
+        - binary_sensor.outdoor_frontdoor_contact
+        - binary_sensor.outdoor_backdoor_contact
+      from: 'off'
+      to: 'on'
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'just on'
+        - condition: state
+          entity_id: input_select.away_mode
+          state: 'on'
+  actions:
     - parallel:
         - if:
             - condition: state
@@ -56,13 +56,13 @@
 
 - alias: 'Water Leak Alarm'
   id: 2b33953a-560a-4344-9985-776bf654d45d
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.bathroom_water_leak_sensor_water_leak
-    from: 'off'
-    to: 'on'
-  action:
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.bathroom_water_leak_sensor_water_leak
+      from: 'off'
+      to: 'on'
+  actions:
     - action: notify.mobile_app_iphone_von_david
       data:
         title: "Water Leak Alarm"

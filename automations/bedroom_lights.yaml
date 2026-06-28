@@ -1,6 +1,6 @@
 - alias: 'Toggle Bedroom Ceiling Light when switched'
   id: 08e03ef3-0a7d-4f5b-9012-288cbf8b104c
-  trigger:
+  triggers:
     - trigger: state
       entity_id: binary_sensor.bedroom_ceiling_light_button
       from: 'on'
@@ -9,19 +9,19 @@
       entity_id: binary_sensor.bedroom_ceiling_light_button
       from: 'off'
       to: 'on'
-  action:
-    action: light.toggle
-    target:
-      entity_id: light.bedroom_ceiling_light
+  actions:
+    - action: light.toggle
+      target:
+        entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light on when there is Movement'
   id: ca2eea25-0572-478b-a3c1-1463663224e5
-  trigger:
-    platform: state
-    entity_id: binary_sensor.bedroom_motion_sensor_occupancy
-    from: 'off'
-    to: 'on'
-  condition:
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.bedroom_motion_sensor_occupancy
+      from: 'off'
+      to: 'on'
+  conditions:
     - condition: state
       entity_id: input_select.bed_mode
       state:
@@ -40,36 +40,36 @@
             - binary_sensor.bedroom_window_left_contact
             - binary_sensor.bedroom_window_right_contact
           state: 'off'
-  action:
-    action: light.turn_on
-    target:
-      entity_id: light.bedroom_ceiling_light
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light off after last Movement'
   id: 4ae96393-de19-4df4-a54f-b0a886e51b39
-  trigger:
-    platform: state
-    entity_id: binary_sensor.bedroom_motion_sensor_occupancy
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 1
-      seconds: 30
-  action:
-    action: light.turn_off
-    target:
-      entity_id: light.bedroom_ceiling_light
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.bedroom_motion_sensor_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 1
+        seconds: 30
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light on when closing Windows and there is Movement'
   id: 4176c9f3-b6c3-4662-9574-d3898f678db1
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - binary_sensor.bedroom_window_left_contact
         - binary_sensor.bedroom_window_right_contact
       from: 'on'
       to: 'off'
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.bed_mode
       state:
@@ -83,21 +83,21 @@
         - binary_sensor.bedroom_window_left_contact
         - binary_sensor.bedroom_window_right_contact
       state: 'off'
-  action:
-    action: light.turn_on
-    target:
-      entity_id: light.bedroom_ceiling_light
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Ceiling Light off when opening Windows and there is Movement'
   id: 13b59629-0bf4-4582-998d-68c72b7abf7c
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - binary_sensor.bedroom_window_left_contact
         - binary_sensor.bedroom_window_right_contact
       from: 'off'
       to: 'on'
-  condition:
+  conditions:
     - condition: not
       conditions:
         - condition: state
@@ -109,23 +109,23 @@
     - condition: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
-  action:
-    action: light.turn_off
-    target:
-      entity_id: light.bedroom_ceiling_light
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id: light.bedroom_ceiling_light
 
 - alias: 'Turn Bedroom Bed Light on'
   id: 7b35e327-0f6a-4395-9dbd-82af35052d3c
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: input_select.bed_mode
       from: 'on'
       to: 'just off'
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
@@ -140,48 +140,48 @@
         - 'Dusk'
         - 'Night'
         - 'Dawn'
-  action:
-    action: light.turn_on
-    target:
-      entity_id: light.bedroom_bed_light
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id: light.bedroom_bed_light
 
 - alias: 'Turn Bedroom Bed Light off'
   id: be121c48-e608-4bf3-901c-3eaf9157b734
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       from: 'on'
       to: 'off'
       for:
         minutes: 1
         seconds: 30
-  condition:
+  conditions:
     - condition: state
       entity_id: input_select.bed_mode
       state:
         - 'just off'
         - 'off'
-  action:
-    action: light.turn_off
-    target:
-      entity_id: light.bedroom_bed_light
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id: light.bedroom_bed_light
 
 - alias: 'Turn Bedroom Cabinet and Dresser Light on'
   id: 3a478c03-2e81-4036-9962-4ee3a7e94930
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.hall_motion_sensor_occupancy
       from: 'off'
       to: 'on'
-    - platform: state
+    - trigger: state
       entity_id: input_select.bed_mode
       from: 'on'
       to: 'just off'
-  condition:
+  conditions:
     - condition: or
       conditions:
         - condition: state
@@ -201,30 +201,30 @@
         - 'Dusk'
         - 'Night'
         - 'Dawn'
-  action:
-    action: light.turn_on
-    target:
-      entity_id:
-        - light.bedroom_cabinet_light
-        - light.bedroom_dresser_light
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.bedroom_cabinet_light
+          - light.bedroom_dresser_light
 
 - alias: 'Turn Bedroom Cabinet and Dresser Light off'
   id: cb3f2886-4522-4f12-9a29-a3b7fa902f02
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       from: 'on'
       to: 'off'
       for:
         minutes: 1
         seconds: 30
-    - platform: state
+    - trigger: state
       entity_id: binary_sensor.hall_motion_sensor_occupancy
       from: 'on'
       to: 'off'
       for:
         minutes: 3
-  condition:
+  conditions:
     - condition: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'off'
@@ -241,9 +241,9 @@
       state:
         - 'just off'
         - 'off'
-  action:
-    action: light.turn_off
-    target:
-      entity_id:
-        - light.bedroom_cabinet_light
-        - light.bedroom_dresser_light
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.bedroom_cabinet_light
+          - light.bedroom_dresser_light

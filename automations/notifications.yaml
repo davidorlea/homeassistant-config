@@ -1,15 +1,15 @@
 - alias: 'Send Notification about unclosed Outdoor Doors'
   id: 75546147-378a-4dbc-b2ca-f4d4f707da15
   max_exceeded: silent
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.outdoor_frontdoor_contact
-      - binary_sensor.outdoor_backdoor_contact
-    to: 'on'
-    for:
-      minutes: 10
-  condition:
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.outdoor_frontdoor_contact
+        - binary_sensor.outdoor_backdoor_contact
+      to: 'on'
+      for:
+        minutes: 10
+  conditions:
     - condition: state
       entity_id:
         - input_select.away_mode
@@ -28,48 +28,48 @@
           state: 'on'
           for:
             minutes: 10
-  action:
-    action: notify.mobile_app_iphone_von_david
-    data:
-      title: "Outdoor doors unclosed"
-      message: "Close outdoor doors to keep it warm."
+  actions:
+    - action: notify.mobile_app_iphone_von_david
       data:
-        tag: "unclosed-outdoor-doors"
+        title: "Outdoor doors unclosed"
+        message: "Close outdoor doors to keep it warm."
+        data:
+          tag: "unclosed-outdoor-doors"
 
 - alias: 'Clear Notification about unclosed Outdoor Doors'
   id: 98cd6b76-8b4c-48f2-82c5-73d3e492e426
   max_exceeded: silent
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.outdoor_frontdoor_contact
-      - binary_sensor.outdoor_backdoor_contact
-    to: 'off'
-  condition:
-    condition: state
-    entity_id:
-      - binary_sensor.outdoor_frontdoor_contact
-      - binary_sensor.outdoor_backdoor_contact
-    state: 'off'
-  action:
-    action: notify.mobile_app_iphone_von_david
-    data:
-      message: "clear_notification"
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.outdoor_frontdoor_contact
+        - binary_sensor.outdoor_backdoor_contact
+      to: 'off'
+  conditions:
+    - condition: state
+      entity_id:
+        - binary_sensor.outdoor_frontdoor_contact
+        - binary_sensor.outdoor_backdoor_contact
+      state: 'off'
+  actions:
+    - action: notify.mobile_app_iphone_von_david
       data:
-        tag: "unclosed-outdoor-doors"
+        message: "clear_notification"
+        data:
+          tag: "unclosed-outdoor-doors"
 
 - alias: 'Send Notification about unclosed Bedroom Windows'
   id: 0c534f2d-72da-42fb-86e3-034ba16a16f0
   max_exceeded: silent
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.bedroom_window_left_contact
-      - binary_sensor.bedroom_window_right_contact
-    to: 'on'
-    for:
-      minutes: 10
-  condition:
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      to: 'on'
+      for:
+        minutes: 10
+  conditions:
     - condition: state
       entity_id:
         - input_select.away_mode
@@ -88,55 +88,55 @@
           state: 'on'
           for:
             minutes: 10
-  action:
-    action: notify.mobile_app_iphone_von_david
-    data:
-      title: "Bedroom windows unclosed"
-      message: "Close bedroom windows to keep it warm."
+  actions:
+    - action: notify.mobile_app_iphone_von_david
       data:
-        tag: "unclosed-bedroom-windows"
+        title: "Bedroom windows unclosed"
+        message: "Close bedroom windows to keep it warm."
+        data:
+          tag: "unclosed-bedroom-windows"
 
 - alias: 'Clear Notification about unclosed Bedroom Windows'
   id: e77baedc-3316-4650-9565-82049ec3ace4
   max_exceeded: silent
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.bedroom_window_left_contact
-      - binary_sensor.bedroom_window_right_contact
-    to: 'off'
-  condition:
-    condition: state
-    entity_id:
-      - binary_sensor.bedroom_window_left_contact
-      - binary_sensor.bedroom_window_right_contact
-    state: 'off'
-  action:
-    action: notify.mobile_app_iphone_von_david
-    data:
-      message: "clear_notification"
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      to: 'off'
+  conditions:
+    - condition: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      state: 'off'
+  actions:
+    - action: notify.mobile_app_iphone_von_david
       data:
-        tag: "unclosed-bedroom-windows"
+        message: "clear_notification"
+        data:
+          tag: "unclosed-bedroom-windows"
 
 - alias: 'Send Notification about pending Bedroom Ventilation'
   id: 09ac3a7a-e198-4bd6-8892-6320aa9be819
   max_exceeded: silent
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id:
         - input_select.away_mode
         - input_select.bed_mode
       to: 'off'
       for:
         minutes: 30
-    - platform: state
+    - trigger: state
       entity_id:
         - binary_sensor.bedroom_window_left_contact
         - binary_sensor.bedroom_window_right_contact
       to: 'off'
       for:
         hours: 6
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.period_of_day
       state:
@@ -157,34 +157,34 @@
       state: 'off'
       for:
         hours: 6
-  action:
-    action: notify.mobile_app_iphone_von_david
-    data:
-      title: "Bedroom ventilation pending"
-      message: "Open bedroom windows to get some fresh air."
+  actions:
+    - action: notify.mobile_app_iphone_von_david
       data:
-        tag: "pending-bedroom-ventilation"
+        title: "Bedroom ventilation pending"
+        message: "Open bedroom windows to get some fresh air."
+        data:
+          tag: "pending-bedroom-ventilation"
 
 - alias: 'Clear Notification about pending Bedroom Ventilation'
   id: 279a2bf7-b4cc-4095-a3d4-b3b6e10619bc
   max_exceeded: silent
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.bedroom_window_left_contact
-      - binary_sensor.bedroom_window_right_contact
-    to: 'on'
-  condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id:
-          - binary_sensor.bedroom_window_left_contact
-          - binary_sensor.bedroom_window_right_contact
-        state: 'on'
-  action:
-    action: notify.mobile_app_iphone_von_david
-    data:
-      message: "clear_notification"
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.bedroom_window_left_contact
+        - binary_sensor.bedroom_window_right_contact
+      to: 'on'
+  conditions:
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id:
+            - binary_sensor.bedroom_window_left_contact
+            - binary_sensor.bedroom_window_right_contact
+          state: 'on'
+  actions:
+    - action: notify.mobile_app_iphone_von_david
       data:
-        tag: "pending-bedroom-ventilation"
+        message: "clear_notification"
+        data:
+          tag: "pending-bedroom-ventilation"

@@ -1,6 +1,6 @@
 - alias: 'Toggle Kitchen Ceiling Light when switched'
   id: 7e40e40e-39a2-4298-bd20-e36369c4419e
-  trigger:
+  triggers:
     - trigger: state
       entity_id: binary_sensor.kitchen_ceiling_light_button
       from: 'on'
@@ -9,69 +9,69 @@
       entity_id: binary_sensor.kitchen_ceiling_light_button
       from: 'off'
       to: 'on'
-  action:
-    action: light.toggle
-    target:
-      entity_id: light.kitchen_ceiling_light
+  actions:
+    - action: light.toggle
+      target:
+        entity_id: light.kitchen_ceiling_light
 
 - alias: 'Turn Kitchen Ceiling and Counter Light on when there is Movement'
   id: 763269a9-c70f-4ae5-877e-fa35acea16fa
-  trigger:
-    platform: state
-    entity_id: binary_sensor.kitchen_motion_sensor_occupancy
-    from: 'off'
-    to: 'on'
-  action:
-    action: light.turn_on
-    target:
-      entity_id:
-        - light.kitchen_ceiling_light
-        - light.kitchen_counter_light
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.kitchen_motion_sensor_occupancy
+      from: 'off'
+      to: 'on'
+  actions:
+    - action: light.turn_on
+      target:
+        entity_id:
+          - light.kitchen_ceiling_light
+          - light.kitchen_counter_light
 
 - alias: 'Turn Kitchen Ceiling off after last Movement'
   id: 57517167-d96e-4ba2-ab26-b050d4084689
-  trigger:
-    platform: state
-    entity_id: binary_sensor.kitchen_motion_sensor_occupancy
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 5
-  action:
-    action: light.turn_off
-    target:
-      entity_id:
-        - light.kitchen_ceiling_light
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.kitchen_motion_sensor_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_ceiling_light
 
 - alias: 'Turn Kitchen Counter Light off after last Movement'
   id: fa446cd6-baee-4e6e-a60a-240dc738b37e
-  trigger:
-    platform: state
-    entity_id: binary_sensor.kitchen_motion_sensor_occupancy
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 10
-  action:
-    action: light.turn_off
-    target:
-      entity_id:
-        - light.kitchen_counter_light
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.kitchen_motion_sensor_occupancy
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 10
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_counter_light
 
 - alias: 'Turn Kitchen Sideboard Light on'
   id: 912dcf60-5a35-4f9e-934b-c33fc5bdd16d
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.period_of_day
       from: 'Sunset'
       to: 'Dusk'
-    - platform: state
+    - trigger: state
       entity_id:
         - input_select.away_mode
         - input_select.bed_mode
       from: 'on'
       to: 'just off'
-  condition:
+  conditions:
     - condition: state
       entity_id: sensor.period_of_day
       state:
@@ -88,20 +88,20 @@
       state:
         - 'just off'
         - 'off'
-  action:
-    action: script.random_color
-    data:
-      lights:
-        - light.kitchen_sideboard_light
+  actions:
+    - action: script.random_color
+      data:
+        lights:
+          - light.kitchen_sideboard_light
 
 - alias: 'Turn Kitchen Sideboard Light off'
   id: 213a5359-2fc3-47bd-9876-5dc402cbd7bd
-  trigger:
-    - platform: state
+  triggers:
+    - trigger: state
       entity_id: sensor.period_of_day
       from: 'Dawn'
       to: 'Sunrise'
-    - platform: state
+    - trigger: state
       entity_id:
         - input_select.away_mode
         - input_select.bed_mode
@@ -109,8 +109,8 @@
         - 'just on'
         - 'just off'
       to: 'on'
-  action:
-    action: light.turn_off
-    target:
-      entity_id:
-        - light.kitchen_sideboard_light
+  actions:
+    - action: light.turn_off
+      target:
+        entity_id:
+          - light.kitchen_sideboard_light

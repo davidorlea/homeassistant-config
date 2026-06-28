@@ -1,9 +1,9 @@
 - alias: 'Alarm Clock'
   id: 5bed22d4-e379-4d9e-9363-4c7717c6358b
-  trigger:
-    platform: template
-    value_template: "{{ now().strftime('%H:%M') == (today_at(states('input_datetime.alarm_clock')) - timedelta(minutes=10)).strftime('%H:%M') }}"
-  condition:
+  triggers:
+    - trigger: template
+      value_template: "{{ now().strftime('%H:%M') == (today_at(states('input_datetime.alarm_clock')) - timedelta(minutes=10)).strftime('%H:%M') }}"
+  conditions:
     - condition: state
       entity_id: input_boolean.alarm_clock
       state: 'on'
@@ -15,7 +15,7 @@
         - condition: state
           entity_id: input_select.bed_mode
           state: 'just on'
-  action:
+  actions:
     - event: alarm_clock_wake_up_started
       event_data:
         delay: 600

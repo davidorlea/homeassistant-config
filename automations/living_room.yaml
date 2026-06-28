@@ -23,11 +23,11 @@
       device_id: 86d39ed7bb87433588884e39a14bc36d
       type: action
       subtype: brightness_move_down
-    - platform: state
+    - trigger: state
       entity_id: input_select.away_mode
       from: 'off'
       to: 'just on'
-    - platform: state
+    - trigger: state
       entity_id: input_select.bed_mode
       from: 'off'
       to: 'just on'
@@ -81,7 +81,7 @@
       domain: webostv
       device_id: ab25640d50b175aaff23e7a6e8459140
       type: webostv.turn_on
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.lg_webos_tv
       state: 'off'
@@ -122,20 +122,20 @@
 
 - alias: 'Turn TV Power off'
   id: 0958a97a-3efb-468a-9c75-eee8098f39ad
-  trigger:
-    - platform: numeric_state
+  triggers:
+    - trigger: numeric_state
       entity_id: sensor.living_room_tv_power
       below: 5
       for:
         seconds: 30
-  condition:
+  conditions:
     - condition: state
       entity_id: media_player.lg_webos_tv
       state: 'off'
     - condition: state
       entity_id: switch.living_room_tv
       state: 'on'
-  action:
+  actions:
     - action: switch.turn_off
       target:
         entity_id: switch.living_room_tv
