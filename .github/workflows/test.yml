@@ -24,7 +24,7 @@ jobs:
       DEFAULT_HOME_ASSISTANT: ghcr.io/home-assistant/home-assistant:${{ matrix.tag }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
         with:
           submodules: recursive
       - name: Setup secrets
