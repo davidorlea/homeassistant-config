@@ -448,6 +448,7 @@ class LocalAiEntity(Entity):
                         for key, tool_call in pending_tool_calls.items()
                     ]
                     _LOGGER.debug("Calling tools: %s", pending_tool_calls)
+                    pending_tool_calls.clear()
 
             if (
                 seen_visible
