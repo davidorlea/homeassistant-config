@@ -182,9 +182,49 @@ class LocalAiEntity(Entity):
             entry_type=dr.DeviceEntryType.SERVICE,
         )
 
-    # noinspection PyMethodMayBeStatic
-    def _get_extra_body_args(self, _options: dict) -> dict:
-        return {}
+    @property
+    def options(self) -> dict:
+        """Return subentry data options."""
+        return self.subentry.data
+
+    @property
+    def server_options(self) -> dict:
+        """Return server options from entry data."""
+        return self.entry.data.get(CONF_SERVER_OPTIONS, {})
+
+    @property
+    def weaviate_server_opts(self) -> dict:
+        """Return Weaviate server options from entry data."""
+        return self.entry.data.get(CONF_WEAVIATE_OPTIONS, {})
+
+    def _get_extra_body_args(self, options: dict) -> dict:
+        """
+        Build extra_body args for the completion request.
+
+        Chat Template Arguments are sent as a top-level `chat_template_kwargs`
+        field, which most inference servers (llama.cpp, vLLM) read. Server-type
+        subclasses may override this to deliver them elsewhere.
+        """
+        extra_body_args: dict = {}
+
+        chat_template_opts = options.get(CONF_CHAT_TEMPLATE_OPTS, {})
+        chat_template_args = chat_template_opts.get(CONF_CHAT_TEMPLATE_KWARGS, [])
+        chat_template_args = [
+            keypair for keypair in chat_template_args if keypair["Key"].strip()
+        ]
+
+        if chat_template_args:
+            kwargs = {}
+            for keypair in chat_template_args:
+                if keypair["Key"]:
+                    # Value is a template, so non-string types and structures can be provided
+                    kwargs[keypair["Key"]] = template.Template(
+                        keypair["Value"],
+                        self.hass,
+                    ).async_render()
+            extra_body_args["chat_template_kwargs"] = kwargs
+
+        return extra_body_args
 
     async def _convert_content_to_chat_message(
         self,
@@ -313,6 +353,79 @@ class LocalAiEntity(Entity):
             )
 
         return messages
+
+    async def _maybe_inject_context(
+        self,
+        messages: list,
+        method: str | None,
+        tools: list[ChatCompletionFunctionToolParam] | None,
+        user_input: conversation.ConversationInput | None,
+    ) -> tuple[list, list[ChatCompletionFunctionToolParam] | None]:
+        """Decide whether to inject context into the message stream."""
+        if method and messages and messages[-1].get("role") == "user":
+            dt = dt_util.now()
+            date_str = dt.strftime("%A %d %B, %Y")
+            time_str = dt.strftime("%-I:%M %p")
+            inject_content: list[str] = [
+                f"The current date and time is: `{date_str}` at `{time_str}`.",
+            ]
+
+            weaviate_opts = self.options.get(CONF_WEAVIATE_OPTIONS, {})
+            weaviate_host = self.weaviate_server_opts.get(CONF_WEAVIATE_HOST)
+            weaviate_class = weaviate_opts.get(
+                CONF_WEAVIATE_CLASS_NAME,
+                CONF_WEAVIATE_DEFAULT_CLASS_NAME,
+            )
+
+            if weaviate_host and user_input and user_input.text:
+                try:
+                    client = WeaviateClient(
+                        hass=self.hass,
+                        host=weaviate_host,
+                        api_key=self.weaviate_server_opts.get(CONF_WEAVIATE_API_KEY),
+                    )
+
+                    results = await client.hybrid_search(
+                        class_name=weaviate_class,
+                        query=user_input.text,
+                        alpha=weaviate_opts.get(
+                            CONF_WEAVIATE_HYBRID_SEARCH_ALPHA,
+                            CONF_WEAVIATE_DEFAULT_HYBRID_SEARCH_ALPHA,
+                        ),
+                        threshold=weaviate_opts.get(
+                            CONF_WEAVIATE_THRESHOLD,
+                            CONF_WEAVIATE_DEFAULT_THRESHOLD,
+                        ),
+                        limit=int(
+                            weaviate_opts.get(
+                                CONF_WEAVIATE_MAX_RESULTS,
+                                CONF_WEAVIATE_DEFAULT_MAX_RESULTS,
+                            ),
+                        ),
+                    )
+
+                    _LOGGER.debug("Weaviate results: %s", results)
+
+                    result_content = [
+                        f"Query: {result.get('query').strip()}\nContent: {result.get('content').strip()}"
+                        for result in results
+                    ]
+                    if result_content:
+                        inject_content += result_content
+                except Exception:
+                    _LOGGER.exception(
+                        "An unexpected exception occurred while processing RAG",
+                    )
+
+            if inject_content:
+                messages = self._inject_content(method, inject_content, messages)
+                if tools:
+                    tools = [
+                        tool
+                        for tool in tools
+                        if not tool["function"]["name"].endswith("GetDateTime")
+                    ]
+        return messages, tools
 
     async def _transform_stream(
         self,
@@ -468,8 +581,8 @@ class LocalAiEntity(Entity):
         parallel_tool_calls: bool = False,
     ) -> None:
         """Generate an answer for the chat log."""
-        options = self.subentry.data
-        server_options = self.entry.data.get(CONF_SERVER_OPTIONS, {})
+        options = self.options
+        server_options = self.server_options
         strip_emojis = options.get(CONF_STRIP_EMOJIS)
 
         # Pass conversation session ID via metadata for LLM proxy tracing (LiteLLM + Langfuse)
@@ -503,112 +616,18 @@ class LocalAiEntity(Entity):
             max_message_history,
         )
 
-        # Home Assistant no longer injects the current date/time into the system prompt, for performance reasons (negatively impacts caching)
-        # It's still useful context to have however, and we can inject this at the end of the message chain along with any RAG content queried
-        dt = dt_util.now()
-        date_str = dt.strftime("%A %d %B, %Y")
-        time_str = dt.strftime("%-I:%M %p")
-
-        inject_content = [
-            f"The current date and time is: `{date_str}` at `{time_str}`.",
-        ]
-
-        # Retrieval Augmented Generation: Query Weaviate vector DB
-        weaviate_opts = options.get(CONF_WEAVIATE_OPTIONS, {})
-        weaviate_server_opts = self.entry.data.get(CONF_WEAVIATE_OPTIONS, {})
-        weaviate_host = weaviate_server_opts.get(CONF_WEAVIATE_HOST)
-        weaviate_class = weaviate_opts.get(
-            CONF_WEAVIATE_CLASS_NAME,
-            CONF_WEAVIATE_DEFAULT_CLASS_NAME,
-        )
-
-        if weaviate_host and user_input and user_input.text:
-            try:
-                client = WeaviateClient(
-                    hass=self.hass,
-                    host=weaviate_host,
-                    api_key=weaviate_server_opts.get(CONF_WEAVIATE_API_KEY),
-                )
-
-                results = await client.hybrid_search(
-                    class_name=weaviate_class,
-                    query=user_input.text,
-                    alpha=weaviate_opts.get(
-                        CONF_WEAVIATE_HYBRID_SEARCH_ALPHA,
-                        CONF_WEAVIATE_DEFAULT_HYBRID_SEARCH_ALPHA,
-                    ),
-                    threshold=weaviate_opts.get(
-                        CONF_WEAVIATE_THRESHOLD,
-                        CONF_WEAVIATE_DEFAULT_THRESHOLD,
-                    ),
-                    limit=int(
-                        weaviate_opts.get(
-                            CONF_WEAVIATE_MAX_RESULTS,
-                            CONF_WEAVIATE_DEFAULT_MAX_RESULTS,
-                        ),
-                    ),
-                )
-
-                _LOGGER.debug("Weaviate results: %s", results)
-
-                result_content = [
-                    f"Query: {result.get('query').strip()}\nContent: {result.get('content').strip()}"
-                    for result in results
-                ]
-                if result_content:
-                    inject_content += result_content
-            except Exception:
-                _LOGGER.exception(
-                    "An unexpected exception occurred while processing RAG",
-                )
-
-        # Inject any pending content into the current user message
-        # We prepend to the last message to avoid creating consecutive user messages
-        # which would violate chat template role alternation requirements
         method = options.get(CONF_CONTENT_INJECTION_METHOD)
-
-        if (
-            method
-            and inject_content
-            and messages
-            and messages[-1].get("role") == "user"
-        ):
-            messages = self._inject_content(method, inject_content, messages)
-            # remove the get date time tool if we are injecting it
-            if tools:
-                tools = [
-                    tool
-                    for tool in tools
-                    if not tool["function"]["name"].endswith("GetDateTime")
-                ]
+        messages, tools = await self._maybe_inject_context(
+            messages,
+            method,
+            tools,
+            user_input,
+        )
         model_args["messages"] = messages
 
         if tools:
             model_args["tools"] = tools
-
-        chat_template_opts = options.get(CONF_CHAT_TEMPLATE_OPTS, {})
-        chat_template_args = chat_template_opts.get(CONF_CHAT_TEMPLATE_KWARGS, [])
-
-        # Filter args without a name - they are marked as required in the schema but this isn't being enforced on the front-end
-        chat_template_args = [
-            keypair for keypair in chat_template_args if keypair["Key"].strip()
-        ]
-
-        # Additional args to be passed into extra_body:
-        # - chat_template_kwargs is supported in multiple inference servers, args depend on model support
-        # - metadata.session_id is supported by LiteLLM for observability & tracing in langfuse
-        extra_body_args = {}
-        if chat_template_args:
-            kwargs = {}
-            for keypair in chat_template_args:
-                if keypair["Key"]:
-                    # Our value is a template, so that non-string data types and more complex structures can be provided by the user
-                    kwargs[keypair["Key"]] = template.Template(
-                        keypair["Value"],
-                        self.hass,
-                    ).async_render()
-            extra_body_args["chat_template_kwargs"] = kwargs
-
+        extra_body_args = self._get_extra_body_args(options)
         # Pass conversation session ID via metadata for LLM proxy tracing (LiteLLM + Langfuse)
         if (
             pass_session_id
@@ -616,15 +635,9 @@ class LocalAiEntity(Entity):
             and hasattr(user_input, "conversation_id")
             and user_input.conversation_id
         ):
-            extra_body_args["metadata"] = {
-                "session_id": user_input.conversation_id,
-            }
-
-        for key, value in self._get_extra_body_args(options).items():
-            if isinstance(value, dict) and isinstance(extra_body_args.get(key), dict):
-                extra_body_args[key] = {**extra_body_args[key], **value}
-            else:
-                extra_body_args[key] = value
+            extra_body_args.setdefault("metadata", {})["session_id"] = (
+                user_input.conversation_id
+            )
 
         # Insert our extra_body args if we have any
         if extra_body_args:
@@ -645,6 +658,16 @@ class LocalAiEntity(Entity):
 
         client = self.entry.runtime_data
 
+        await self._run_agent_loop(client, model_args, chat_log, strip_emojis)
+
+    async def _run_agent_loop(
+        self,
+        client: openai.AsyncOpenAI,
+        model_args: dict[str, Any],
+        chat_log: conversation.ChatLog,
+        strip_emojis: bool,
+    ) -> None:
+        """Run the LLM agent loop with tool call iteration."""
         for _iteration in range(MAX_TOOL_ITERATIONS):
             try:
                 result_stream = await client.chat.completions.create(
@@ -718,10 +741,8 @@ class LocalAiEntity(Entity):
         identifier: str | None,
     ) -> None:
         """Add or update a record in Weaviate."""
-        options = self.subentry.data
-        weaviate_opts = options.get(CONF_WEAVIATE_OPTIONS, {})
-        weaviate_server_opts = self.entry.data.get(CONF_WEAVIATE_OPTIONS, {})
-        weaviate_host = weaviate_server_opts.get(CONF_WEAVIATE_HOST)
+        weaviate_opts = self.options.get(CONF_WEAVIATE_OPTIONS, {})
+        weaviate_host = self.weaviate_server_opts.get(CONF_WEAVIATE_HOST)
         weaviate_class = weaviate_opts.get(
             CONF_WEAVIATE_CLASS_NAME,
             CONF_WEAVIATE_DEFAULT_CLASS_NAME,
@@ -734,7 +755,7 @@ class LocalAiEntity(Entity):
         client = WeaviateClient(
             hass=self.hass,
             host=weaviate_host,
-            api_key=weaviate_server_opts.get(CONF_WEAVIATE_API_KEY),
+            api_key=self.weaviate_server_opts.get(CONF_WEAVIATE_API_KEY),
         )
 
         # If we have been provided an identifier, generate a UUID and check if it exists
