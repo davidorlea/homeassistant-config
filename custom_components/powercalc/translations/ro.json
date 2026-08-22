@@ -581,11 +581,15 @@
       },
       "wled": {
         "data": {
+          "current_entity": "Entitate de curent",
           "power_factor": "Factor de putere",
           "voltage": "Voltaj"
         },
         "description": "Asigurați-vă că activați limitatorul de luminozitate în software-ul WLED. Vedeți și {docs_uri}",
-        "title": "Configurare WLED"
+        "title": "Configurare WLED",
+        "data_description": {
+          "current_entity": "Selectați opțional un senzor care furnizează curentul estimat în mA. Necesar doar atunci când Powercalc nu poate găsi automat senzorul WLED pentru curentul estimat, de exemplu atunci când limitatorul de luminozitate este configurat pentru fiecare ieșire."
+        }
       }
     }
   },
@@ -601,6 +605,25 @@
     },
     "unknown_sub_profile": {
       "message": "\"{profile}\" nu este un subprofil cunoscut. Subprofiluri disponibile: {known_profiles}."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "measure_session_status": {
+        "name": "Measure session status",
+        "state": {
+          "idle": "Idle",
+          "validating": "Validating",
+          "ready": "Ready",
+          "awaiting_confirmation": "Awaiting confirmation",
+          "running": "Running",
+          "cancelling": "Cancelling",
+          "cancelled": "Cancelled",
+          "completed": "Completed",
+          "failed": "Failed",
+          "resumable": "Resumable"
+        }
+      }
     }
   },
   "issues": {
@@ -1083,8 +1106,12 @@
       "wled": {
         "title": "Opțiuni WLED",
         "data": {
+          "current_entity": "Entitate de curent",
           "power_factor": "Factorul de putere",
           "voltage": "Voltaj"
+        },
+        "data_description": {
+          "current_entity": "Selectați opțional un senzor care furnizează curentul estimat în mA. Necesar doar atunci când Powercalc nu poate găsi automat senzorul WLED pentru curentul estimat, de exemplu atunci când limitatorul de luminozitate este configurat pentru fiecare ieșire."
         }
       },
       "cost_options": {

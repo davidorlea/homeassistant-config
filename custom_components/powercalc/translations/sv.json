@@ -581,11 +581,15 @@
       },
       "wled": {
         "data": {
+          "current_entity": "Strömenhet",
           "power_factor": "Effektfaktor",
           "voltage": "Spänning"
         },
         "description": "Se till att aktivera ljusstyrkebegränsning i WLED-programvaran. Se även {docs_uri}",
-        "title": "WLED konfig"
+        "title": "WLED konfig",
+        "data_description": {
+          "current_entity": "Välj valfritt en sensor som anger den uppskattade strömmen i mA. Behövs endast när Powercalc inte kan hitta WLED-sensorn för uppskattad ström automatiskt, till exempel när ljusstyrkebegränsaren är konfigurerad per utgång."
+        }
       }
     }
   },
@@ -601,6 +605,25 @@
     },
     "unknown_sub_profile": {
       "message": "\"{profile}\" är inte en känd underprofil. Tillgängliga underprofiler: {known_profiles}."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "measure_session_status": {
+        "name": "Measure session status",
+        "state": {
+          "idle": "Idle",
+          "validating": "Validating",
+          "ready": "Ready",
+          "awaiting_confirmation": "Awaiting confirmation",
+          "running": "Running",
+          "cancelling": "Cancelling",
+          "cancelled": "Cancelled",
+          "completed": "Completed",
+          "failed": "Failed",
+          "resumable": "Resumable"
+        }
+      }
     }
   },
   "issues": {
@@ -1083,8 +1106,12 @@
       "wled": {
         "title": "WLED alternativ",
         "data": {
+          "current_entity": "Strömenhet",
           "power_factor": "Effektfaktor",
           "voltage": "Spänning"
+        },
+        "data_description": {
+          "current_entity": "Välj valfritt en sensor som anger den uppskattade strömmen i mA. Behövs endast när Powercalc inte kan hitta WLED-sensorn för uppskattad ström automatiskt, till exempel när ljusstyrkebegränsaren är konfigurerad per utgång."
         }
       },
       "cost_options": {

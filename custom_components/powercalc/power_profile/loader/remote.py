@@ -20,11 +20,11 @@ from custom_components.powercalc.const import (
     API_URL,
     BUILT_IN_LIBRARY_DIR,
     DOMAIN,
-    LIBRARY_DISCOVERY_IGNORED_DOMAINS,
+    LIBRARY_DISCOVERY_LOW_PRIORITY_DOMAINS,
 )
 from custom_components.powercalc.helpers import async_cache, clear_async_cache
 from custom_components.powercalc.power_profile.error import LibraryLoadingError, ProfileDownloadError
-from custom_components.powercalc.power_profile.loader.protocol import Loader
+from custom_components.powercalc.power_profile.loader.protocol import Loader, ModelMetadata
 from custom_components.powercalc.power_profile.power_profile import DeviceType, DiscoveryBy
 
 _LOGGER = logging.getLogger(__name__)
@@ -65,14 +65,18 @@ class RemoteLoader(Loader):
         self.manufacturer_lookup: dict[str, set[str]] = {}
         self.profile_hashes: dict[str, str] = {}
 
-    async def initialize(self) -> None:
-        """Initialize the loader."""
+    async def initialize(self, prefer_cached: bool = False) -> None:
+        """Initialize the loader.
+
+        Pass `prefer_cached` to keep the network off the critical path, using the library.json
+        already in local storage when there is one. Only the very first run has to download.
+        """
 
         integration = await async_get_integration(self.hass, DOMAIN)
         powercalc_version = AwesomeVersion(str(integration.version))
 
         self._clear_caches()
-        self.library_contents = await self.load_library_json()
+        self.library_contents = await self.load_library_json(prefer_cached)
         self.profile_hashes = await self.hass.async_add_executor_job(self._load_profile_hashes)
 
         self.model_infos.clear()
@@ -85,9 +89,9 @@ class RemoteLoader(Loader):
         for manufacturer in manufacturers:
             self._index_manufacturer(manufacturer, powercalc_version)
 
-    def get_discovery_ignored_domains(self) -> set[str]:
-        """Get integration domains excluded from discovery by library metadata."""
-        return set(self.library_contents.get(LIBRARY_DISCOVERY_IGNORED_DOMAINS, []))
+    def get_discovery_low_priority_domains(self) -> set[str]:
+        """Get the low priority discovery integration domains declared by library metadata."""
+        return set(self.library_contents.get(LIBRARY_DISCOVERY_LOW_PRIORITY_DOMAINS, []))
 
     def _index_manufacturer(self, manufacturer: LibraryManufacturer, powercalc_version: AwesomeVersion) -> None:
         """Register a manufacturer, its aliases and all of its supported models in the lookup tables."""
@@ -160,53 +164,74 @@ class RemoteLoader(Loader):
         clear_async_cache(self.find_model_migration)
         clear_async_cache(self.load_model)
 
-    async def load_library_json(self) -> dict[str, Any]:
-        """Load library.json file"""
+    async def load_library_json(self, prefer_cached: bool = False) -> dict[str, Any]:
+        """Load library.json, from local storage or from the download API.
 
-        local_path = self.hass.config.path(STORAGE_DIR, BUILT_IN_LIBRARY_DIR, "library.json")
-
-        def _load_local_library_json() -> dict[str, Any]:
-            """Load library.json file from local storage"""
-            if not os.path.exists(local_path):
-                raise ProfileDownloadError("Local library.json file not found")
-            with open(local_path) as f:
-                return cast(dict[str, Any], json.load(f))
-
-        async def _download_remote_library_json() -> dict[str, Any] | None:
-            """
-            Download library.json from Github.
-            On success, save it to local storage as a fallback for internet connection issues.
-            """
-            _LOGGER.debug("Loading library.json from github")
-
-            session = async_get_clientsession(self.hass)
-
-            try:
-                async with asyncio.timeout(TIMEOUT_SECONDS), session.get(ENDPOINT_LIBRARY) as resp:
-                    if resp.status != 200:
-                        raise ProfileDownloadError(
-                            f"Failed to download library.json, unexpected status code: {resp.status}",
-                        )
-
-                    data = await resp.read()
-
-            except (TimeoutError, ClientError) as err:
-                raise ProfileDownloadError(f"Failed to download library.json: {err}") from err
-
-            def _save_to_local_storage(data: bytes) -> None:
-                os.makedirs(os.path.dirname(local_path), exist_ok=True)
-                with open(local_path, "wb") as f:
-                    f.write(data)
-
-            await self.hass.async_add_executor_job(_save_to_local_storage, data)
-
-            return cast(dict[str, Any], json.loads(data))
+        With `prefer_cached` the locally stored copy wins when it exists, so the caller never
+        waits on the network. The periodic library update refreshes it later.
+        """
+        if prefer_cached:
+            cached_library = await self.hass.async_add_executor_job(self._read_local_library_json)
+            if cached_library is not None:
+                _LOGGER.debug("Loaded library.json from local storage")
+                return cached_library
+            _LOGGER.debug("No library.json in local storage yet, downloading it")
 
         try:
-            return cast(dict[str, Any], await self.download_with_retry(_download_remote_library_json))
+            return cast(dict[str, Any], await self.download_with_retry(self._download_remote_library_json))
         except ProfileDownloadError:
             _LOGGER.debug("Failed to download library.json, falling back to local copy")
-            return await self.hass.async_add_executor_job(_load_local_library_json)
+            return await self.hass.async_add_executor_job(self._load_local_library_json)
+
+    def _get_library_json_path(self) -> str:
+        """Retrieve the local storage path for the library.json file."""
+        return str(self.hass.config.path(STORAGE_DIR, BUILT_IN_LIBRARY_DIR, "library.json"))
+
+    def _read_local_library_json(self) -> dict[str, Any] | None:
+        """Read library.json from local storage, None when it has not been downloaded yet."""
+        local_path = self._get_library_json_path()
+        if not os.path.exists(local_path):
+            return None
+        with open(local_path) as f:
+            return cast(dict[str, Any], json.load(f))
+
+    def _load_local_library_json(self) -> dict[str, Any]:
+        """Load library.json from local storage, raising when it is not there."""
+        library_json = self._read_local_library_json()
+        if library_json is None:
+            raise ProfileDownloadError("Local library.json file not found")
+        return library_json
+
+    async def _download_remote_library_json(self) -> dict[str, Any] | None:
+        """
+        Download library.json from Github.
+        On success, save it to local storage as a fallback for internet connection issues.
+        """
+        _LOGGER.debug("Loading library.json from github")
+
+        local_path = self._get_library_json_path()
+        session = async_get_clientsession(self.hass)
+
+        try:
+            async with asyncio.timeout(TIMEOUT_SECONDS), session.get(ENDPOINT_LIBRARY) as resp:
+                if resp.status != 200:
+                    raise ProfileDownloadError(
+                        f"Failed to download library.json, unexpected status code: {resp.status}",
+                    )
+
+                data = await resp.read()
+
+        except (TimeoutError, ClientError) as err:
+            raise ProfileDownloadError(f"Failed to download library.json: {err}") from err
+
+        def _save_to_local_storage(data: bytes) -> None:
+            os.makedirs(os.path.dirname(local_path), exist_ok=True)
+            with open(local_path, "wb") as f:
+                f.write(data)
+
+        await self.hass.async_add_executor_job(_save_to_local_storage, data)
+
+        return cast(dict[str, Any], json.loads(data))
 
     @async_cache
     async def get_manufacturer_listing(
@@ -221,7 +246,8 @@ class RemoteLoader(Loader):
             for manufacturer in self.library_contents.get("manufacturers", [])
             if any(
                 self._model_matches_filters(model, device_types, discovery_by)
-                for model in manufacturer.get("models", [])
+                # Use the indexed models, so models requiring a newer Powercalc version are left out here as well.
+                for model in self.manufacturer_models.get(str(manufacturer.get("dir_name")), [])
             )
         }
 
@@ -254,11 +280,20 @@ class RemoteLoader(Loader):
         device_types: set[DeviceType] | None,
         discovery_by: DiscoveryBy | None,
     ) -> bool:
-        model_device_type = DeviceType(model.get("device_type", DeviceType.LIGHT))
+        """Check whether an indexed model passes the requested filters.
+
+        Device types and discovery modes this Powercalc version does not know about are treated
+        as a non match, so profiles using a newly introduced value never break the listings.
+        """
+        try:
+            model_device_type = DeviceType(model.get("device_type", DeviceType.LIGHT))
+            model_discovery_by = DiscoveryBy(model.get("discovery_by", DiscoveryBy.ENTITY))
+        except ValueError:
+            return False
+
         if device_types and model_device_type not in device_types:
             return False
 
-        model_discovery_by = DiscoveryBy(model.get("discovery_by", DiscoveryBy.ENTITY))
         return not discovery_by or model_discovery_by == discovery_by
 
     @async_cache
@@ -288,6 +323,20 @@ class RemoteLoader(Loader):
             return None
 
         return next(iter(matches))
+
+    async def get_model_metadata(self, manufacturer: str, model: str) -> ModelMetadata | None:
+        """Return discovery metadata straight from the library index, without downloading the profile."""
+        model_info = self.model_infos.get(f"{manufacturer}/{model}")
+        if not model_info:
+            return None
+
+        try:
+            device_type = DeviceType(model_info.get("device_type", DeviceType.LIGHT))
+            discovery_by = DiscoveryBy(model_info.get("discovery_by", DiscoveryBy.ENTITY))
+        except ValueError:
+            return None
+
+        return ModelMetadata(device_type=device_type, discovery_by=discovery_by)
 
     @async_cache
     async def load_model(
@@ -400,8 +449,8 @@ class RemoteLoader(Loader):
 
     async def download_with_retry(
         self,
-        callback: Callable[[], Coroutine[Any, Any, None | dict[str, Any]]],
-    ) -> None | dict[str, Any]:
+        callback: Callable[[], Coroutine[Any, Any, dict[str, Any] | None]],
+    ) -> dict[str, Any] | None:
         """Download a file from a remote endpoint with retries"""
         max_retries = 3
         retry_count = 0

@@ -1,3 +1,4 @@
+from dataclasses import replace
 import logging
 
 from homeassistant.config_entries import ConfigEntry
@@ -12,7 +13,7 @@ from homeassistant.helpers.entity_registry import RegistryEntry
 from homeassistant.helpers.typing import ConfigType
 
 from custom_components.powercalc.common import SourceEntity
-from custom_components.powercalc.const import CONF_AREA, DUMMY_ENTITY_ID
+from custom_components.powercalc.const import CONF_AREA
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -29,6 +30,19 @@ def is_composite_device_id(hass: HomeAssistant, device_id: str) -> bool:
     if not callable(is_composite):
         return False
     return bool(is_composite(device_id))
+
+
+def get_non_composite_devices(hass: HomeAssistant) -> list[DeviceEntry]:
+    """Return all registered devices which are not legacy composite devices.
+
+    Resolves the registry and the composite device support once, instead of per device like
+    a per-entry `is_composite_device_id` call would.
+    """
+    device_reg = device_registry.async_get(hass)
+    is_composite = getattr(device_reg, "async_is_composite_device_id", None)
+    if not callable(is_composite):
+        return list(device_reg.devices.values())
+    return [device for device in device_reg.devices.values() if not is_composite(device.id)]
 
 
 def get_related_device_ids(hass: HomeAssistant, device_id: str) -> set[str]:
@@ -97,11 +111,7 @@ def get_first_device_for_config_entry(hass: HomeAssistant, config_entry_id: str)
 
 def get_devices_for_config_entry(hass: HomeAssistant, config_entry_id: str) -> list[DeviceEntry]:
     """Return all non-composite devices belonging to a config entry."""
-    return [
-        device
-        for device in device_registry.async_get(hass).devices.values()
-        if config_entry_id in get_config_entry_ids(device) and not is_composite_device_id(hass, device.id)
-    ]
+    return [device for device in get_non_composite_devices(hass) if config_entry_id in get_config_entry_ids(device)]
 
 
 def get_related_devices(hass: HomeAssistant, device_id: str) -> list[DeviceEntry]:
@@ -116,25 +126,25 @@ def get_related_devices(hass: HomeAssistant, device_id: str) -> list[DeviceEntry
     return list(devices.values())
 
 
-def attach_configured_device_entry(
+def resolve_source_device(
     hass: HomeAssistant,
     sensor_config: ConfigType,
     source_entity: SourceEntity,
 ) -> SourceEntity:
     """Attach the configured device entry to a device-based source entity."""
-    if source_entity.entity_id != DUMMY_ENTITY_ID:
+    if not source_entity.is_dummy:
         return source_entity
 
     device_entry = get_device_entry(hass, sensor_config=sensor_config)
     if device_entry:
-        return source_entity._replace(device_entry=device_entry)
+        return replace(source_entity, device_entry=device_entry)
     return source_entity
 
 
-def attach_entities_to_resolved_device(
+def assign_device_to_entities(
+    hass: HomeAssistant,
     config_entry: ConfigEntry | None,
     entities_to_add: list[Entity],
-    hass: HomeAssistant,
     source_entity: SourceEntity | None,
     sensor_config: ConfigType | None = None,
 ) -> None:
@@ -145,11 +155,12 @@ def attach_entities_to_resolved_device(
         return
 
     for entity in entities_to_add:
-        try:
+        # Home Assistant only accepts `device_entry` on entities belonging to a config entry.
+        # Setting it for YAML entities makes HA report a deprecation warning, so those rely
+        # solely on the registry update `bind_entity_to_device` does after they are added.
+        if config_entry:
             entity.device_entry = device_entry
-            setattr(entity, "_powercalc_device_entry", device_entry)  # noqa: B010
-        except AttributeError:  # pragma: no cover
-            _LOGGER.error("%s: Cannot set device id on entity", entity.entity_id)
+        setattr(entity, "_powercalc_device_entry", device_entry)  # noqa: B010
 
 
 def get_device_entry(

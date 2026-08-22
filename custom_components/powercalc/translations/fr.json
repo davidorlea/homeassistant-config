@@ -581,11 +581,15 @@
       },
       "wled": {
         "data": {
+          "current_entity": "Entité de courant",
           "power_factor": "Facteur de puissance",
           "voltage": "Tension"
         },
         "description": "Assurez-vous d’activer le limiteur de luminosité dans le logiciel WLED. Voir aussi {docs_uri}",
-        "title": "Configuration WLED"
+        "title": "Configuration WLED",
+        "data_description": {
+          "current_entity": "Sélectionnez éventuellement un capteur fournissant le courant estimé en mA. Nécessaire uniquement lorsque Powercalc ne peut pas trouver automatiquement le capteur de courant estimé WLED, par exemple lorsque le limiteur de luminosité est configuré par sortie."
+        }
       }
     }
   },
@@ -601,6 +605,25 @@
     },
     "unknown_sub_profile": {
       "message": "« {profile} » n'est pas un sous-profil connu. Sous-profils disponibles : {known_profiles}."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "measure_session_status": {
+        "name": "Measure session status",
+        "state": {
+          "idle": "Idle",
+          "validating": "Validating",
+          "ready": "Ready",
+          "awaiting_confirmation": "Awaiting confirmation",
+          "running": "Running",
+          "cancelling": "Cancelling",
+          "cancelled": "Cancelled",
+          "completed": "Completed",
+          "failed": "Failed",
+          "resumable": "Resumable"
+        }
+      }
     }
   },
   "issues": {
@@ -1083,8 +1106,12 @@
       "wled": {
         "title": "Options WLED",
         "data": {
+          "current_entity": "Entité de courant",
           "power_factor": "Facteur de puissance",
           "voltage": "Tension"
+        },
+        "data_description": {
+          "current_entity": "Sélectionnez éventuellement un capteur fournissant le courant estimé en mA. Nécessaire uniquement lorsque Powercalc ne peut pas trouver automatiquement le capteur de courant estimé WLED, par exemple lorsque le limiteur de luminosité est configuré par sortie."
         }
       },
       "cost_options": {
