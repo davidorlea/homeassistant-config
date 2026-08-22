@@ -9,11 +9,14 @@ from homeassistant.const import CONF_LLM_HASS_API, CONF_PROMPT, MATCH_ALL
 from homeassistant.helpers import llm
 
 from .const import (
+    CONF_ALWAYS_CONTINUE_CONVERSATION,
+    CONF_ALWAYS_CONTINUE_CONVERSATION_DEFAULT,
     CONF_PARALLEL_TOOL_CALLS,
     CONF_SERVER_TYPE,
     DOMAIN,
     SERVER_TYPE_DEEPSEEK,
     SERVER_TYPE_GENERIC,
+    SERVER_TYPE_GOOGLE_GEMINI,
     SERVER_TYPE_LLAMACPP,
     SERVER_TYPE_LOCALAI,
     SERVER_TYPE_VLLM,
@@ -33,12 +36,16 @@ def _get_conversation_entity(
 ) -> type[LocalAiConversationEntity]:
     if getattr(_get_conversation_entity, "entity_map", None) is None:
         from .entities.deepseek import DeepSeekConversationEntity  # noqa: PLC0415
+        from .entities.google_gemini import (  # noqa: PLC0415
+            GoogleGeminiConversationEntity,
+        )
         from .entities.llama_cpp import LlamaCppConversationEntity  # noqa: PLC0415
         from .entities.localai import LocalAIServerConversationEntity  # noqa: PLC0415
         from .entities.vllm import VllmConversationEntity  # noqa: PLC0415
 
         _get_conversation_entity.entity_map = {
             SERVER_TYPE_DEEPSEEK: DeepSeekConversationEntity,
+            SERVER_TYPE_GOOGLE_GEMINI: GoogleGeminiConversationEntity,
             SERVER_TYPE_LLAMACPP: LlamaCppConversationEntity,
             SERVER_TYPE_LOCALAI: LocalAIServerConversationEntity,
             SERVER_TYPE_VLLM: VllmConversationEntity,
@@ -96,6 +103,9 @@ class LocalAiConversationEntity(LocalAiEntity, conversation.ConversationEntity):
         options = self.subentry.data
         system_prompt = options.get(CONF_PROMPT)
         parallel_tool_calls = options.get(CONF_PARALLEL_TOOL_CALLS, True)
+        always_continue_conversation = options.get(
+            CONF_ALWAYS_CONTINUE_CONVERSATION, CONF_ALWAYS_CONTINUE_CONVERSATION_DEFAULT
+        )
 
         hass_apis = [api.id for api in llm.async_get_apis(self.hass)]
 
@@ -119,4 +129,11 @@ class LocalAiConversationEntity(LocalAiEntity, conversation.ConversationEntity):
             parallel_tool_calls=parallel_tool_calls,
         )
 
-        return conversation.async_get_result_from_chat_log(user_input, chat_log)
+        # Set continue_conversation flag based on always_continue_conversation setting
+        chat_log_result = conversation.async_get_result_from_chat_log(
+            user_input, chat_log
+        )
+        if always_continue_conversation:
+            chat_log_result.continue_conversation = True
+
+        return chat_log_result

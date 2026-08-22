@@ -24,7 +24,7 @@
             }
           },
           "weaviate_options": {
-            "name": "Weaviate configuration",
+            "name": "Weaviate Configuration",
             "description": "Query a Weaviate vector database with user messages and augment the generation with semantically-similar results",
             "data": {
               "weaviate_host": "Weaviate server address",
@@ -33,6 +33,16 @@
             "data_description": {
               "weaviate_host": "Including protocol and port",
               "weaviate_api_key": "Your API key, if authentication is required"
+            }
+          },
+          "custom_headers": {
+            "name": "Custom HTTP headers",
+            "description": "Add custom HTTP headers to all LLM API requests",
+            "data": {
+              "server_headers": "Key-value pairs for server headers"
+            },
+            "data_description": {
+              "server_headers": "Each key-value pair adds a custom HTTP header to API requests"
             }
           }
         }
@@ -60,7 +70,7 @@
             }
           },
           "weaviate_options": {
-            "name": "Weaviate configuration",
+            "name": "Weaviate Configuration",
             "data": {
               "weaviate_host": "Weaviate server address",
               "weaviate_api_key": "API key"
@@ -68,6 +78,16 @@
             "data_description": {
               "weaviate_host": "Including protocol and port",
               "weaviate_api_key": "Your API key, if authentication is required"
+            }
+          },
+          "custom_headers": {
+            "name": "Custom HTTP headers",
+            "description": "Add custom HTTP headers to all LLM API requests",
+            "data": {
+              "server_headers": "Key-value pairs for server headers"
+            },
+            "data_description": {
+              "server_headers": "Each key-value pair adds a custom HTTP header to API requests"
             }
           }
         }
@@ -97,20 +117,28 @@
             "temperature": "Temperature",
             "max_message_history": "Max message history size (0 for no limit)",
             "parallel_tool_calls": "Parallel tool calling",
-            "content_injection_method": "Date/Time context injection role"
+            "content_injection_method": "Date/Time context injection role",
+            "always_continue_conversation": "Always continue conversation"
           },
           "data_description": {
             "model": "The model to use for the conversation agent",
             "prompt": "Instruct how the LLM should respond. This can be a template",
             "parallel_tool_calls": "Allow the model to use multiple tools in a single turn",
             "temperature": "Lower for more predictable responses, higher for more randomness",
-            "content_injection_method": "The message role to insert dynamic content as. See the readme for details"
+            "content_injection_method": "The message role to insert dynamic content as. See the readme for details",
+            "always_continue_conversation": "Voice assistants will always be prompted to continue the conversation"
           },
           "sections": {
             "chat_template_opts": {
               "name": "Chat Template Arguments",
               "data": {
                 "chat_template_kwargs": "Add custom arguments that are supported by your chosen model"
+              }
+            },
+            "request_body_opts": {
+              "name": "Request Body Parameters",
+              "data": {
+                "request_body_parameters": "Add provider-specific top-level parameters to the chat completion request body"
               }
             },
             "deepseek_config": {
@@ -155,7 +183,7 @@
               }
             },
             "weaviate_options": {
-              "name": "Weaviate configuration",
+              "name": "Weaviate Configuration",
               "data": {
                 "weaviate_class_name": "Weaviate object class name",
                 "weaviate_max_results": "Maximum number of results",
@@ -180,20 +208,28 @@
             "temperature": "Temperature",
             "max_message_history": "Max message history size (0 for no limit)",
             "parallel_tool_calls": "Parallel tool calling",
-            "content_injection_method": "Date/Time context injection role"
+            "content_injection_method": "Date/Time context injection role",
+            "always_continue_conversation": "Always continue conversation"
           },
           "data_description": {
             "model": "The model to use for the conversation agent",
             "prompt": "Instruct how the LLM should respond. This can be a template",
             "parallel_tool_calls": "Allow the model to use multiple tools in a single turn",
             "temperature": "Lower for more predictable responses, higher for more randomness",
-            "content_injection_method": "The message role to insert dynamic content as. See the readme for details"
+            "content_injection_method": "The message role to insert dynamic content as. See the readme for details",
+            "always_continue_conversation": "Voice assistants will always be prompted to continue the conversation"
           },
           "sections": {
             "chat_template_opts": {
               "name": "Chat Template Arguments",
               "data": {
                 "chat_template_kwargs": "Add custom arguments that are supported by your chosen model"
+              }
+            },
+            "request_body_opts": {
+              "name": "Request Body Parameters",
+              "data": {
+                "request_body_parameters": "Add provider-specific top-level parameters to the chat completion request body"
               }
             },
             "deepseek_config": {
@@ -238,7 +274,7 @@
               }
             },
             "weaviate_options": {
-              "name": "Weaviate configuration",
+              "name": "Weaviate Configuration",
               "data": {
                 "weaviate_class_name": "Weaviate object class name",
                 "weaviate_max_results": "Maximum number of results",
@@ -258,7 +294,9 @@
       },
       "entry_type": "Conversation agent",
       "error": {
-        "cannot_connect_weaviate": "Could not communicate with the Weaviate server"
+        "cannot_connect_weaviate": "Could not communicate with the Weaviate server",
+        "request_body_parameter_already_configurable": "The request body parameter \"{key}\" already has a dedicated configuration option.",
+        "reserved_request_body_parameter": "The request body parameter \"{key}\" is reserved and cannot be configured here."
       },
       "abort": {
         "cannot_connect": "Could not communicate with the LLM server",
@@ -289,6 +327,12 @@
               "name": "Chat Template Arguments",
               "data": {
                 "chat_template_kwargs": "Add custom arguments that are supported by your chosen model"
+              }
+            },
+            "request_body_opts": {
+              "name": "Request Body Parameters",
+              "data": {
+                "request_body_parameters": "Add provider-specific top-level parameters to the chat completion request body"
               }
             },
             "deepseek_config": {
@@ -358,6 +402,12 @@
                 "chat_template_kwargs": "Add custom arguments that are supported by your chosen model"
               }
             },
+            "request_body_opts": {
+              "name": "Request Body Parameters",
+              "data": {
+                "request_body_parameters": "Add provider-specific top-level parameters to the chat completion request body"
+              }
+            },
             "deepseek_config": {
               "name": "DeepSeek Configuration",
               "data": {
@@ -406,6 +456,10 @@
         "user": "Add AI task"
       },
       "entry_type": "AI task",
+      "error": {
+        "request_body_parameter_already_configurable": "The request body parameter \"{key}\" already has a dedicated configuration option.",
+        "reserved_request_body_parameter": "The request body parameter \"{key}\" is reserved and cannot be configured here."
+      },
       "abort": {
         "cannot_connect": "Could not communicate with the server",
         "unknown": "An unknown error occurred",

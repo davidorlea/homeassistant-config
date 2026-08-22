@@ -20,6 +20,8 @@ CONF_TEMPERATURE = "temperature"
 CONF_PARALLEL_TOOL_CALLS = "parallel_tool_calls"
 CONF_CHAT_TEMPLATE_OPTS = "chat_template_opts"
 CONF_CHAT_TEMPLATE_KWARGS = "chat_template_kwargs"
+CONF_REQUEST_BODY_OPTS = "request_body_opts"
+CONF_REQUEST_BODY_PARAMETERS = "request_body_parameters"
 CONF_PASS_SESSION_ID = "pass_session_id"  # noqa: S105
 CONF_SERVER_OPTIONS = "server_options"
 CONF_SERVER_TYPE = "server_type"
@@ -37,12 +39,16 @@ CONF_VLLM_CONFIG = "vllm_config"
 CONF_VLLM_THINKING_TOKEN_BUDGET = "vllm_thinking_token_budget"  # noqa: S105
 CONF_DEEPSEEK_CONFIG = "deepseek_config"
 CONF_DEEPSEEK_REASONING_EFFORT = "deepseek_reasoning_effort"
+CONF_LOCALAI_CONFIG = "localai_config"
+CONF_GOOGLE_GEMINI_CONFIG = "google_gemini_config"
 
 SERVER_TYPE_GENERIC = "generic"
 SERVER_TYPE_LLAMACPP = "llama_cpp"
 SERVER_TYPE_VLLM = "vllm"
 SERVER_TYPE_DEEPSEEK = "deepseek"
 SERVER_TYPE_LOCALAI = "localai"
+SERVER_TYPE_GOOGLE_GEMINI = "google_gemini"
+
 
 SERVER_TYPE_OPTIONS = {
     SERVER_TYPE_GENERIC: "Generic OpenAI-Compatible",
@@ -50,7 +56,10 @@ SERVER_TYPE_OPTIONS = {
     SERVER_TYPE_VLLM: "vLLM",
     SERVER_TYPE_DEEPSEEK: "DeepSeek Cloud",
     SERVER_TYPE_LOCALAI: "LocalAI",
+    SERVER_TYPE_GOOGLE_GEMINI: "Google (Gemini)",
 }
+CONF_ALWAYS_CONTINUE_CONVERSATION = "always_continue_conversation"
+CONF_ALWAYS_CONTINUE_CONVERSATION_DEFAULT = False
 
 CONF_AI_TASK_SUPPORTED_ATTRIBUTES = "supported_attributes"
 CONF_AI_TASK_SUPPORTED_ATTRIBUTE_OPTIONS = {
@@ -74,6 +83,8 @@ CONF_CONTENT_INJECTION_METHODS = [
     CONF_CONTENT_INJECTION_METHOD_USER,
 ]
 
+CONF_CUSTOM_HEADERS = "custom_headers"
+CONF_SERVER_HEADERS = "server_headers"
 CONF_WEAVIATE_OPTIONS = "weaviate_options"
 CONF_WEAVIATE_HOST = "weaviate_host"
 CONF_WEAVIATE_API_KEY = "weaviate_api_key"
