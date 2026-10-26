@@ -8,7 +8,7 @@ import json
 import logging
 import time
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Literal
 
 import demoji
@@ -46,10 +46,12 @@ from .const import (
     CONF_CONTENT_INJECTION_METHOD_ASSISTANT,
     CONF_CONTENT_INJECTION_METHOD_TOOL,
     CONF_CONTENT_INJECTION_METHOD_USER,
+    CONF_CUSTOM_HEADERS,
     CONF_MAX_MESSAGE_HISTORY,
     CONF_PASS_SESSION_ID,
     CONF_REQUEST_BODY_OPTS,
     CONF_REQUEST_BODY_PARAMETERS,
+    CONF_SERVER_HEADERS,
     CONF_SERVER_OPTIONS,
     CONF_STRIP_EMOJIS,
     CONF_TEMPERATURE,
@@ -65,6 +67,7 @@ from .const import (
     CONF_WEAVIATE_OPTIONS,
     CONF_WEAVIATE_THRESHOLD,
     DOMAIN,
+    TOOL_NAME_STOP_TALKING,
 )
 from .weaviate import WeaviateClient
 
@@ -95,6 +98,15 @@ class GenerationMetadata:
     timings: dict | None = None
     usage: dict | None = None
     finish_reason: str | None = None
+
+
+@dataclass
+class AgentContext:
+    """Per-iteration context for the agent loop."""
+
+    iteration: int = 0
+    conversation_id: str | None = None
+    extra_body: dict = field(default_factory=dict)
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -234,7 +246,7 @@ class LocalAiEntity(Entity):
         """Return Weaviate server options from entry data."""
         return self.entry.data.get(CONF_WEAVIATE_OPTIONS, {})
 
-    def _get_extra_body_args(self, options: dict) -> dict:
+    def _get_extra_body_args(self, context: AgentContext) -> None:
         """
         Build extra_body args for the completion request.
 
@@ -242,10 +254,10 @@ class LocalAiEntity(Entity):
         field, which most inference servers (llama.cpp, vLLM) read. Server-type
         subclasses may override this to deliver them elsewhere.
         """
-        extra_body_args: dict = {
-            "stream_options": {
-                "include_usage": True,
-            }
+        options = self.options
+        extra_body_args = context.extra_body
+        extra_body_args["stream_options"] = {
+            "include_usage": True,
         }
 
         chat_template_opts = options.get(CONF_CHAT_TEMPLATE_OPTS, {})
@@ -283,7 +295,38 @@ class LocalAiEntity(Entity):
                     self.hass,
                 ).async_render()
 
-        return extra_body_args
+        if (
+            self.server_options.get(CONF_PASS_SESSION_ID, False)
+            and context.conversation_id
+        ):
+            extra_body_args.setdefault("metadata", {})["session_id"] = (
+                context.conversation_id
+            )
+
+    async def _async_get_custom_headers(self, context: AgentContext) -> dict[str, str]:
+        """Build custom headers dict with per-request Jinja2 template rendering."""
+        custom_headers_section = self.entry.data.get(CONF_CUSTOM_HEADERS, {}) or {}
+        custom_headers_list = custom_headers_section.get(CONF_SERVER_HEADERS, []) or []
+        custom_headers = {item["Key"]: item["Value"] for item in custom_headers_list}
+        result: dict[str, str] = {}
+        for header_key, header_val in custom_headers.items():
+            if isinstance(header_val, str) and "{" in header_val:
+                try:
+                    rendered_val = template.Template(
+                        header_val, self.hass
+                    ).async_render(
+                        {"conversation_id": context.conversation_id},
+                        parse_result=False,
+                    )
+                    result[header_key] = str(rendered_val)
+                except Exception as err:
+                    _LOGGER.warning(
+                        "Error rendering custom header '%s': %s", header_key, err
+                    )
+                    result[header_key] = ""
+            else:
+                result[header_key] = str(header_val)
+        return result
 
     async def _convert_content_to_chat_message(
         self,
@@ -729,11 +772,7 @@ class LocalAiEntity(Entity):
     ) -> None:
         """Generate an answer for the chat log."""
         options = self.options
-        server_options = self.server_options
-        strip_emojis = options.get(CONF_STRIP_EMOJIS)
 
-        # Pass conversation session ID via metadata for LLM proxy tracing (LiteLLM + Langfuse)
-        pass_session_id = server_options.get(CONF_PASS_SESSION_ID, False)
         max_message_history = options.get(CONF_MAX_MESSAGE_HISTORY)
         if max_message_history is not None:
             max_message_history = int(max_message_history)
@@ -746,6 +785,14 @@ class LocalAiEntity(Entity):
                 "X-Title": "Home Assistant",
             },
         }
+
+        context = AgentContext(conversation_id=chat_log.conversation_id)
+
+        # Merge custom HTTP headers (with per-request Jinja2 template rendering)
+        custom_headers = await self._async_get_custom_headers(context)
+        for header_key, header_val in custom_headers.items():
+            if header_key not in model_args["extra_headers"]:
+                model_args["extra_headers"][header_key] = header_val
 
         # Omit when unset, some providers (e.g. Anthropic) reject a non-default temperature.
         temperature = options.get(CONF_TEMPERATURE)
@@ -787,17 +834,6 @@ class LocalAiEntity(Entity):
 
         if tools:
             model_args["tools"] = tools
-        extra_body_args = self._get_extra_body_args(options)
-        # Pass conversation session ID via metadata for LLM proxy tracing (LiteLLM + Langfuse)
-        if pass_session_id:
-            extra_body_args.setdefault("metadata", {})["session_id"] = (
-                chat_log.conversation_id
-            )
-
-        # Insert our extra_body args if we have any
-        if extra_body_args:
-            _LOGGER.debug("Extra-body args: %s", extra_body_args)
-            model_args["extra_body"] = extra_body_args
 
         if structure:
             if TYPE_CHECKING:
@@ -813,20 +849,28 @@ class LocalAiEntity(Entity):
 
         client = self.entry.runtime_data
 
-        await self._run_agent_loop(
-            client, model_args, chat_log, strip_emojis, chat_log.conversation_id
-        )
+        return await self._run_agent_loop(client, model_args, chat_log, context)
 
     async def _run_agent_loop(
         self,
         client: openai.AsyncOpenAI,
         model_args: dict[str, Any],
         chat_log: conversation.ChatLog,
-        strip_emojis: bool,
-        conversation_id: str | None = None,
-    ) -> None:
+        context: AgentContext,
+    ) -> bool:
         """Run the LLM agent loop with tool call iteration."""
+        halt_requested = False
+        strip_emojis = self.options.get(CONF_STRIP_EMOJIS)
+
         for iteration in range(MAX_TOOL_ITERATIONS):
+            context.iteration = iteration
+            self._get_extra_body_args(context)
+            if context.extra_body:
+                model_args["extra_body"] = context.extra_body
+            else:
+                model_args.pop("extra_body", None)
+            _LOGGER.debug("Extra-body args: %s", context.extra_body)
+
             if iteration == MAX_TOOL_ITERATIONS - 1:
                 _LOGGER.debug("Max iterations reached, injecting stop message")
                 model_args["messages"] = self._inject_stop_directive(
@@ -842,21 +886,40 @@ class LocalAiEntity(Entity):
                     stream=True,
                 )
 
+                turn_messages = [
+                    content
+                    async for content in chat_log.async_add_delta_content_stream(
+                        self.entity_id,
+                        self._transform_stream(
+                            stream=result_stream,
+                            strip_emojis=strip_emojis,
+                            conversation_id=context.conversation_id,
+                            meta=meta,
+                        ),
+                    )
+                ]
+
+                # Check for stop_talking tool call before merging into message chain
+                if not halt_requested:
+                    for content in turn_messages:
+                        if (
+                            isinstance(content, conversation.AssistantContent)
+                            and content.tool_calls
+                        ):
+                            halt_requested = any(
+                                tool
+                                for tool in content.tool_calls
+                                if tool.tool_name == TOOL_NAME_STOP_TALKING
+                            )
+                            break
+
                 model_args["messages"].extend(
                     [
                         msg
-                        async for content in chat_log.async_add_delta_content_stream(
-                            self.entity_id,
-                            self._transform_stream(
-                                stream=result_stream,
-                                strip_emojis=strip_emojis,
-                                conversation_id=conversation_id,
-                                meta=meta,
-                            ),
-                        )
+                        for content in turn_messages
                         if (
                             msg := await self._convert_content_to_chat_message(
-                                content, conversation_id
+                                content, context.conversation_id
                             )
                         )
                     ],
@@ -903,7 +966,7 @@ class LocalAiEntity(Entity):
                         "type": "generation_complete",
                         "model": model_args["model"],
                         "iteration": iteration + 1,
-                        "conversation_id": conversation_id,
+                        "conversation_id": context.conversation_id,
                         "content": content_text,
                         "tools_called": meta.tool_names or [],
                         "token_metadata": {
@@ -924,6 +987,8 @@ class LocalAiEntity(Entity):
 
             if not chat_log.unresponded_tool_results:
                 break
+
+        return halt_requested
 
     @staticmethod
     def _inject_stop_directive(messages: list) -> list:
