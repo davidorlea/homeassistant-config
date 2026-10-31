@@ -22,6 +22,12 @@
       from: 'off'
       to: 'on'
   conditions:
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - Sunrise
+        - Day
+        - Sunset
     - condition: or
       conditions:
         - condition: state
@@ -100,6 +106,12 @@
       from: 'on'
       to: 'off'
   conditions:
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - Sunrise
+        - Day
+        - Sunset
     - condition: state
       entity_id: binary_sensor.hall_motion_sensor_occupancy
       state: 'on'
