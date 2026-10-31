@@ -27,6 +27,12 @@
       state:
         - just off
         - 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - Sunrise
+        - Day
+        - Sunset
     - condition: or
       conditions:
         - condition: state
@@ -75,6 +81,12 @@
       state:
         - just off
         - 'off'
+    - condition: state
+      entity_id: sensor.period_of_day
+      state:
+        - Sunrise
+        - Day
+        - Sunset
     - condition: state
       entity_id: binary_sensor.bedroom_motion_sensor_occupancy
       state: 'on'
