@@ -55,6 +55,12 @@ cards:
         show_header_toggle: false
         entities:
           - fan.kitchen_fan
+          - entity: sensor.kitchen_fan_airflow
+            name: Airflow
+          - entity: sensor.history_stats_kitchen_fan
+            name: Runtime Today
+          - entity: sensor.kitchen_fan_air_exchanged_today
+            name: Air Exchanged Today
       - type: entities
         show_header_toggle: false
         entities:

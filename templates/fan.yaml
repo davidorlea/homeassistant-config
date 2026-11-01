@@ -26,3 +26,21 @@
         - action: switch.turn_off
           target:
             entity_id: switch.0x08ddebfffed785c0
+
+- sensor:
+    - default_entity_id: sensor.kitchen_fan_airflow
+      name: Kitchen Fan Airflow
+      unique_id: 94e33b83-e33a-487a-93ba-d66a8be6934d
+      state_class: measurement
+      unit_of_measurement: m³/h
+      icon: mdi:weather-windy
+      availability: "{{ has_value('fan.kitchen_fan') }}"
+      state: "{{ 78 if is_state('fan.kitchen_fan', 'on') else 0 }}"
+
+    - default_entity_id: sensor.kitchen_fan_air_exchanged_today
+      name: Kitchen Fan Air Exchanged Today
+      unique_id: f4c6dcb1-f75e-4d45-91cd-1ef6d2a88d17
+      unit_of_measurement: m³
+      icon: mdi:air-filter
+      availability: "{{ has_value('sensor.history_stats_kitchen_fan') }}"
+      state: "{{ (states('sensor.history_stats_kitchen_fan') | float(0) * 78) | round(1) }}"
