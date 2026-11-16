@@ -23,18 +23,20 @@ cards:
         show_header_toggle: false
         entities:
           - entity: binary_sensor.outdoor_frontdoor_contact
-            name: Outdoor Frontdoor
+            name: Frontdoor
             icon: mdi:door
             state_color: true
           - entity: binary_sensor.outdoor_backdoor_contact
-            name: Outdoor Backdoor
+            name: Backdoor
             icon: mdi:door
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - light.outdoor_frontdoor_light
-          - light.outdoor_backdoor_light
+          - entity: light.outdoor_frontdoor_light
+            name: Frontdoor Light
+          - entity: light.outdoor_backdoor_light
+            name: Backdoor Light
   - type: vertical-stack
     title: Kitchen
     cards:
@@ -42,19 +44,23 @@ cards:
         show_header_toggle: false
         entities:
           - entity: binary_sensor.kitchen_motion_sensor_occupancy
-            name: Kitchen Motion
+            name: Motion
             icon: mdi:motion-sensor
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - light.kitchen_ceiling_light
-          - light.kitchen_counter_light
-          - light.kitchen_sideboard_light
+          - entity: light.kitchen_ceiling_light
+            name: Ceiling Light
+          - entity: light.kitchen_counter_light
+            name: Counter Light
+          - entity: light.kitchen_sideboard_light
+            name: Sideboard Light
       - type: entities
         show_header_toggle: false
         entities:
-          - fan.kitchen_fan
+          - entity: fan.kitchen_fan
+            name: Fan
           - entity: sensor.kitchen_fan_airflow
             name: Airflow
           - entity: sensor.history_stats_kitchen_fan
@@ -89,21 +95,25 @@ cards:
         show_header_toggle: false
         entities:
           - entity: binary_sensor.living_room_motion_sensor_occupancy
-            name: Living Room Motion
+            name: Motion
             icon: mdi:motion-sensor
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - light.living_room_ceiling_light
-          - light.living_room_ambient_light
-          - light.living_room_sofa_light
-          - light.living_room_tv_light
+          - entity: light.living_room_ceiling_light
+            name: Ceiling Light
+          - entity: light.living_room_ambient_light
+            name: Ambient Light
+          - entity: light.living_room_sofa_light
+            name: Sofa Light
+          - entity: light.living_room_tv_light
+            name: TV Light
       - type: entities
         show_header_toggle: false
         entities:
           - entity: switch.living_room_tv
-            name: Living Room TV
+            name: TV
             icon: mdi:television
             state_color: true
   - type: vertical-stack
@@ -127,31 +137,35 @@ cards:
         show_header_toggle: false
         entities:
           - entity: binary_sensor.bedroom_window_left_contact
-            name: Bedroom Window Left
+            name: Window Left
             icon: mdi:window-closed-variant
             state_color: true
           - entity: binary_sensor.bedroom_window_right_contact
-            name: Bedroom Window Right
+            name: Window Right
             icon: mdi:window-closed-variant
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
           - entity: binary_sensor.bedroom_motion_sensor_occupancy
-            name: Bedroom Motion
+            name: Motion
             icon: mdi:motion-sensor
             state_color: true
           - entity: binary_sensor.bedroom_bed_occupancy
-            name: Bedroom Bed Occupancy
+            name: Bed Occupancy
             icon: mdi:bed
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - light.bedroom_ceiling_light
-          - light.bedroom_bed_light
-          - light.bedroom_cabinet_light
-          - light.bedroom_dresser_light
+          - entity: light.bedroom_ceiling_light
+            name: Ceiling Light
+          - entity: light.bedroom_bed_light
+            name: Bed Light
+          - entity: light.bedroom_cabinet_light
+            name: Cabinet Light
+          - entity: light.bedroom_dresser_light
+            name: Dresser Light
   - type: vertical-stack
     title: Bathroom
     cards:
@@ -172,12 +186,13 @@ cards:
       - type: entities
         show_header_toggle: false
         entities:
-          - fan.bathroom_fan
+          - entity: fan.bathroom_fan
+            name: Fan
       - type: entities
         show_header_toggle: false
         entities:
           - entity: binary_sensor.bathroom_water_leak_sensor_water_leak
-            name: Bathroom Water Leak
+            name: Water Leak
             icon: mdi:home-flood
             state_color: true
   - type: vertical-stack
@@ -187,10 +202,11 @@ cards:
         show_header_toggle: false
         entities:
           - entity: binary_sensor.hall_motion_sensor_occupancy
-            name: Hall Motion
+            name: Motion
             icon: mdi:motion-sensor
             state_color: true
       - type: entities
         show_header_toggle: false
         entities:
-          - light.hall_ceiling_light
+          - entity: light.hall_ceiling_light
+            name: Ceiling Light

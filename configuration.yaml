@@ -9,7 +9,6 @@ homeassistant:
   unit_system: !secret homeassistant_unit_system
   time_zone: !secret homeassistant_time_zone
   currency: !secret homeassistant_currency
-  customize: !include customize.yaml
   external_url: !secret homeassistant_external_url
 
 logger:

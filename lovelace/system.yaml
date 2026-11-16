@@ -6,26 +6,41 @@ cards:
     title: Home Assistant
     show_header_toggle: false
     entities:
-      - sensor.uptime
+      - entity: sensor.uptime
+        name: Last Start
   - type: entities
     title: Raspberry Pi
     show_header_toggle: false
     entities:
-      - sensor.influxdb_pi_load1
-      - sensor.influxdb_pi_load5
-      - sensor.influxdb_pi_load15
-      - sensor.influxdb_pi_cpu_usage
-      - sensor.influxdb_pi_memory_usage
-      - sensor.influxdb_pi_last_boot
+      - entity: sensor.influxdb_pi_load1
+        name: Load (1m)
+      - entity: sensor.influxdb_pi_load5
+        name: Load (5m)
+      - entity: sensor.influxdb_pi_load15
+        name: Load (15m)
+      - entity: sensor.influxdb_pi_cpu_usage
+        name: CPU Usage
+      - entity: sensor.influxdb_pi_memory_usage
+        name: Memory Usage
+      - entity: sensor.influxdb_pi_last_boot
+        name: Last Boot
   - type: entities
     title: Internet
     show_header_toggle: false
     entities:
-      - sensor.influxdb_fritzbox_link_status
-      - sensor.influxdb_fritzbox_connection_status
-      - sensor.influxdb_fritzbox_last_reconnect
-      - sensor.influxdb_fritzbox_external_ip_address
-      - sensor.influxdb_fritzbox_total_bytes_received
-      - sensor.influxdb_fritzbox_total_bytes_sent
-      - sensor.influxdb_fritzbox_transmission_rate_down
-      - sensor.influxdb_fritzbox_transmission_rate_up
+      - entity: sensor.influxdb_fritzbox_link_status
+        name: Link Status
+      - entity: sensor.influxdb_fritzbox_connection_status
+        name: Connection Status
+      - entity: sensor.influxdb_fritzbox_last_reconnect
+        name: Last Reconnect
+      - entity: sensor.influxdb_fritzbox_external_ip_address
+        name: External IP Address
+      - entity: sensor.influxdb_fritzbox_total_bytes_received
+        name: Total Bytes Received (24h)
+      - entity: sensor.influxdb_fritzbox_total_bytes_sent
+        name: Total Bytes Sent (24h)
+      - entity: sensor.influxdb_fritzbox_transmission_rate_down
+        name: Transmission Rate Down
+      - entity: sensor.influxdb_fritzbox_transmission_rate_up
+        name: Transmission Rate Up

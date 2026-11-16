@@ -4,24 +4,29 @@
   password: !secret influxdb_password
   queries:
     - name: influxdb pi load1
+      unique_id: 9e216817-6c60-4a31-8584-5fcb868ef4f7
       group_function: last
       where: '"host" = ''raspberrypi'''
       measurement: '"system"'
       field: load1
       database: telegraf
     - name: influxdb pi load5
+      unique_id: 15305bdf-4b6f-4fe6-89c9-f15ef2a6bf2b
       group_function: last
       where: '"host" = ''raspberrypi'''
       measurement: '"system"'
       field: load5
       database: telegraf
     - name: influxdb pi load15
+      unique_id: d99df0a7-8329-4538-8e29-f90a3095a6ba
       group_function: last
       where: '"host" = ''raspberrypi'''
       measurement: '"system"'
       field: load15
       database: telegraf
     - name: influxdb pi cpu usage
+      unique_id: 7623927d-8df8-419b-a554-92ef86387bcd
+      unit_of_measurement: '%'
       value_template: '{{ (100 - value | float) | round() }}'
       group_function: last
       where: '"host" = ''raspberrypi'' and "cpu" = ''cpu-total'''
@@ -29,6 +34,8 @@
       field: usage_idle
       database: telegraf
     - name: influxdb pi memory usage
+      unique_id: 21fef3b0-0e36-436b-a0cc-66de724137b2
+      unit_of_measurement: '%'
       value_template: '{{ (100 - value | float) | round() }}'
       group_function: last
       where: '"host" = ''raspberrypi'''
@@ -36,36 +43,42 @@
       field: available_percent
       database: telegraf
     - name: influxdb pi uptime
+      unique_id: 62f7b516-1f01-4bd4-b09f-c80b87180bd8
       group_function: last
       where: '"host" = ''raspberrypi'''
       measurement: '"system"'
       field: uptime
       database: telegraf
     - name: influxdb fritzbox link status
+      unique_id: 1917d2d6-d1ba-4044-a572-49561af916bd
       group_function: last
       where: 'true'
       measurement: '"fritzbox"'
       field: physicallinkstatus
       database: telegraf
     - name: influxdb fritzbox connection status
+      unique_id: ee67d62b-7d03-4893-beb2-3d511facfe4c
       group_function: last
       where: 'true'
       measurement: '"fritzbox"'
       field: connectionstatus
       database: telegraf
     - name: influxdb fritzbox uptime
+      unique_id: d4b80a58-51d8-42df-96aa-dd3e1d609f5b
       group_function: last
       where: 'true'
       measurement: '"fritzbox"'
       field: uptime
       database: telegraf
     - name: influxdb fritzbox external ip address
+      unique_id: 04dd8e95-aa69-4dac-ac79-d7118f7ab3b4
       group_function: last
       where: 'true'
       measurement: '"fritzbox"'
       field: externalipaddress
       database: telegraf
     - name: influxdb fritzbox total bytes received
+      unique_id: 50e6780f-b7b4-4a66-a392-7226542ed31d
       value_template: '{{ value | filesizeformat }}'
       group_function: sum
       where: 'true'
@@ -73,6 +86,7 @@
       field: non_negative_difference
       database: telegraf
     - name: influxdb fritzbox total bytes sent
+      unique_id: 5aa0bd20-f586-4ee0-9dd5-4d4cb0bdf7c1
       value_template: '{{ value | filesizeformat }}'
       group_function: sum
       where: 'true'
@@ -80,6 +94,7 @@
       field: non_negative_difference
       database: telegraf
     - name: influxdb fritzbox transmission rate down
+      unique_id: 08c29f8f-67e4-4dc2-9457-80fef0245a7d
       value_template: '{{ value | filesizeformat }}'
       group_function: last
       where: 'true'
@@ -87,6 +102,7 @@
       field: bytereceiverate
       database: telegraf
     - name: influxdb fritzbox transmission rate up
+      unique_id: 9abf16e2-fa3d-453e-91f1-4068db819a2a
       value_template: '{{ value | filesizeformat }}'
       group_function: last
       where: 'true'

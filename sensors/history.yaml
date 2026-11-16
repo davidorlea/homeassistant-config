@@ -1,5 +1,6 @@
 - platform: history_stats
   name: history stats away mode
+  unique_id: 60b4f22a-da71-4189-b672-6f38495fdf09
   entity_id: input_select.away_mode
   state:
     - 'on'
@@ -10,6 +11,7 @@
 
 - platform: history_stats
   name: history stats bed mode
+  unique_id: 59b4bef0-b3bd-477a-8eb7-307b82461c2b
   entity_id: input_select.bed_mode
   state:
     - 'on'
@@ -20,6 +22,7 @@
 
 - platform: history_stats
   name: history stats bedroom window left
+  unique_id: 86fe5aa7-dce3-40d7-8433-756bbb297641
   entity_id: binary_sensor.bedroom_window_left_contact
   state: 'on'
   type: time
@@ -28,6 +31,7 @@
 
 - platform: history_stats
   name: history stats bedroom window right
+  unique_id: 7b7f98c0-b0ff-41bc-8512-f222ddeb7df4
   entity_id: binary_sensor.bedroom_window_right_contact
   state: 'on'
   type: time
@@ -36,6 +40,7 @@
 
 - platform: history_stats
   name: history stats outdoor frontdoor
+  unique_id: 0b397bbd-0b25-454a-b187-4d08451d407b
   entity_id: binary_sensor.outdoor_frontdoor_contact
   state: 'on'
   type: time
@@ -44,6 +49,7 @@
 
 - platform: history_stats
   name: history stats outdoor backdoor
+  unique_id: 84009a90-1694-446a-b296-5e81c5f50522
   entity_id: binary_sensor.outdoor_backdoor_contact
   state: 'on'
   type: time
@@ -52,6 +58,7 @@
 
 - platform: history_stats
   name: history stats kitchen coffee machine
+  unique_id: 7730fca8-b1b3-4c5c-b218-bad85a855bdd
   entity_id: switch.kitchen_coffee_machine
   state: 'on'
   type: time
@@ -60,6 +67,7 @@
 
 - platform: history_stats
   name: history stats kitchen fan
+  unique_id: 334d2183-08c2-431e-ac20-4976f5bc5f64
   entity_id: fan.kitchen_fan
   state: 'on'
   type: time

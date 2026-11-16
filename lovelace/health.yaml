@@ -6,5 +6,7 @@ cards:
     title: Pollen
     show_header_toggle: false
     entities:
-      - sensor.dwd_pollen_41_grass
-      - sensor.dwd_pollen_41_tree
+      - entity: sensor.dwd_pollen_41_grass
+        name: DWD Pollen Grass
+      - entity: sensor.dwd_pollen_41_tree
+        name: DWD Pollen Tree

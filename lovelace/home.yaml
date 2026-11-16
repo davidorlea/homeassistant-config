@@ -87,8 +87,10 @@ cards:
         entities:
           - entity: input_datetime.alarm_clock
             name: Alarm Clock Time
+            icon: mdi:alarm
           - entity: input_boolean.alarm_clock
             name: Alarm Clock Status
+            icon: mdi:alarm-check
   - type: vertical-stack
     cards:
       - type: entities
