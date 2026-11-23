@@ -10,6 +10,15 @@
   end: '{{ now() }}'
 
 - platform: history_stats
+  name: history stats bathroom fan
+  unique_id: 71d268a8-13d6-414a-ac59-6c956863a2a2
+  entity_id: fan.bathroom_fan
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
   name: history stats bed mode
   unique_id: 59b4bef0-b3bd-477a-8eb7-307b82461c2b
   entity_id: input_select.bed_mode

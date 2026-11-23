@@ -188,6 +188,12 @@ cards:
         entities:
           - entity: fan.bathroom_fan
             name: Fan
+          - entity: sensor.bathroom_fan_airflow
+            name: Airflow
+          - entity: sensor.history_stats_bathroom_fan
+            name: Runtime Today
+          - entity: sensor.bathroom_fan_air_exchanged_today
+            name: Air Exchanged Today
       - type: entities
         show_header_toggle: false
         entities:

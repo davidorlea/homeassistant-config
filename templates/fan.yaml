@@ -2,16 +2,16 @@
     - default_entity_id: fan.bathroom_fan
       name: Bathroom Fan
       unique_id: 1561d0b8-0b22-489b-88f7-471ffc7830e7
-      availability: "{{ has_value('input_boolean.dummy_bathroom_fan_switch') }}"
-      state: "{{ states('input_boolean.dummy_bathroom_fan_switch') }}"
+      availability: "{{ has_value('switch.bathrom_fan_switch') }}"
+      state: "{{ states('switch.bathrom_fan_switch') }}"
       turn_on:
-        - action: input_boolean.turn_on
+        - action: switch.turn_on
           target:
-            entity_id: input_boolean.dummy_bathroom_fan_switch
+            entity_id: switch.bathrom_fan_switch
       turn_off:
-        - action: input_boolean.turn_off
+        - action: switch.turn_off
           target:
-            entity_id: input_boolean.dummy_bathroom_fan_switch
+            entity_id: switch.bathrom_fan_switch
 
     - default_entity_id: fan.kitchen_fan
       name: Kitchen Fan
@@ -28,6 +28,23 @@
             entity_id: switch.0x08ddebfffed785c0
 
 - sensor:
+    - default_entity_id: sensor.bathroom_fan_airflow
+      name: Bathroom Fan Airflow
+      unique_id: f42cf08c-61e5-4fd5-847b-2da903eb8338
+      state_class: measurement
+      unit_of_measurement: m³/h
+      icon: mdi:weather-windy
+      availability: "{{ has_value('fan.bathroom_fan') }}"
+      state: "{{ 105 if is_state('fan.bathroom_fan', 'on') else 0 }}"
+
+    - default_entity_id: sensor.bathroom_fan_air_exchanged_today
+      name: Bathroom Fan Air Exchanged Today
+      unique_id: 02fcdc91-8e87-4eca-a884-396241337dc6
+      unit_of_measurement: m³
+      icon: mdi:air-filter
+      availability: "{{ has_value('sensor.history_stats_bathroom_fan') }}"
+      state: "{{ (states('sensor.history_stats_bathroom_fan') | float(0) * 105) | round(1) }}"
+
     - default_entity_id: sensor.kitchen_fan_airflow
       name: Kitchen Fan Airflow
       unique_id: 94e33b83-e33a-487a-93ba-d66a8be6934d
