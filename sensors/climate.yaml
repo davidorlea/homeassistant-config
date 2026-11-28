@@ -1,0 +1,26 @@
+- platform: derivative
+  name: Bathroom Multi Sensor Humidity Derivative
+  unique_id: 97486e52-74c9-44c6-af29-bdb041c6f2d3
+  source: sensor.bathroom_multi_sensor_humidity
+  round: 2
+  unit_time: min
+  time_window: "00:02:00"
+  max_sub_interval: "00:05:00"
+
+- platform: derivative
+  name: Bedroom Multi Sensor Humidity Derivative
+  unique_id: 2dc19b13-1d38-4771-baa5-4061850732e1
+  source: sensor.bedroom_multi_sensor_humidity
+  round: 2
+  unit_time: min
+  time_window: "00:02:00"
+  max_sub_interval: "00:05:00"
+
+- platform: derivative
+  name: Living Room Multi Sensor Humidity Derivative
+  unique_id: e8cff267-79d4-43bf-b3cc-62191ab1e997
+  source: sensor.living_room_multi_sensor_humidity
+  round: 2
+  unit_time: min
+  time_window: "00:02:00"
+  max_sub_interval: "00:05:00"

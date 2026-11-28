@@ -1,0 +1,56 @@
+- alias: Turn Bathroom Fan On
+  id: f4f1487e-4bd7-44a5-bae9-963c6febd040
+  max_exceeded: silent
+  triggers:
+    - trigger: homeassistant
+      event: start
+    - trigger: numeric_state
+      entity_id: sensor.bathroom_multi_sensor_humidity_derivative
+      above: 1
+    - trigger: state
+      entity_id: input_select.bed_mode
+      to: just off
+  conditions:
+    - condition: state
+      entity_id: fan.bathroom_fan
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.bathroom_multi_sensor_humidity_derivative
+      above: 1
+    - condition: state
+      entity_id: input_select.bed_mode
+      state:
+        - just off
+        - 'off'
+  actions:
+    - action: fan.turn_on
+      target:
+        entity_id: fan.bathroom_fan
+
+- alias: Turn Bathroom Fan Off
+  id: 31bdea07-ed8f-4c6f-8208-d7294fc295b3
+  max_exceeded: silent
+  triggers:
+    - trigger: homeassistant
+      event: start
+    - trigger: state
+      entity_id: fan.bathroom_fan
+      to: 'on'
+      for:
+        minutes: 20
+    - trigger: numeric_state
+      entity_id: sensor.bathroom_multi_sensor_humidity_derivative
+      below: -1
+    - trigger: state
+      entity_id: input_select.bed_mode
+      to: just on
+  conditions:
+    - condition: state
+      entity_id: fan.bathroom_fan
+      state: 'on'
+  actions:
+    - delay:
+        minutes: 10
+    - action: fan.turn_off
+      target:
+        entity_id: fan.bathroom_fan
